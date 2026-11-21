@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+/* Fuentes por papel (como teoria-musical): una fuente = un tipo de información. */
+@import "@fontsource-variable/figtree";
+@import "@fontsource-variable/bricolage-grotesque/opsz.css";
+@import "@fontsource/dm-mono/400.css";
+@import "@fontsource/dm-mono/500.css";
+@import "@fontsource-variable/pixelify-sans";
+
+/* Modo oscuro: clase `dark` en <html> (la pone el script de index.html y el botón de tema). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * SISTEMA DE COLOR, tomado de teoria-musical (paleta Lospec500, nombres por SIGNIFICADO):
+ *  - Gris = estructura (fondo, superficies, bordes, texto).
+ *  - Verde = bien / hecho (siempre con ✓).
+ *  - Oro = fíjate: lo próximo, lo que vence, lo pendiente de decidir.
+ *  - Celeste (sky) = lo que suena ahora (la onda del sintonizador).
+ *  - Un color por FASE del calendario (azul, naranja, turquesa, rosa, índigo, celeste), siempre con su nombre.
+ * Variantes: (base) = barras, puntos, trazos · relleno = fondo con texto blanco · tinta = texto de color · suave = fondo suave.
+ * Estos estilos son SOLO de la página de bitácora; el juego tiene su propio estilo visual.
+ */
+@theme static {
+  --font-sans: "Figtree Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-titulo: "Bricolage Grotesque Variable", "Figtree Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-dato: "DM Mono", ui-monospace, Menlo, monospace;
+  --font-juego: "Pixelify Sans Variable", "Bricolage Grotesque Variable", ui-sans-serif, sans-serif;
+
+  --color-fondo: #f4f4f5;
+  --color-white: #ffffff;
+  --color-zinc-50: #f8f8f9;
+  --color-zinc-100: #ececed;
+  --color-zinc-200: #d1d1d4;
+  --color-zinc-300: #bdbec2;
+  --color-zinc-400: #a0a1a7;
+  --color-zinc-500: #707279;
+  --color-zinc-600: #3c3e47;
+  --color-zinc-700: #2e3039;
+  --color-zinc-800: #1f212a;
+  --color-zinc-900: #10121c;
+  --color-blanco: #ffffff;
+  --color-negro: #10121c;
+
+  --color-bien: #5ab552;
+  --color-bien-relleno: #3c7c36;
+  --color-bien-tinta: #377332;
+  --color-bien-suave: #e7f4e5;
+
+  --color-fijate: #dab163;
+  --color-fijate-tinta: #816838;
+  --color-fijate-suave: #faf3e8;
+  --color-fijate-claro: #f0dcae;
+
+  --color-sky-100: #d5effc;
+  --color-sky-300: #7fd1f6;
+  --color-sky-500: #3388de;
+  --color-sky-700: #1f4f80;
+
+  --color-azul: #3388de;
+  --color-azul-relleno: #2972bb;
+  --color-azul-tinta: #266bb0;
+  --color-azul-suave: #e1eefc;
+  --color-naranja: #e98537;
+  --color-naranja-relleno: #ad6126;
+  --color-naranja-tinta: #a15a23;
+  --color-naranja-suave: #feede3;
+  --color-turquesa: #00a3a3;
+  --color-turquesa-relleno: #007c7c;
+  --color-turquesa-tinta: #007272;
+  --color-turquesa-suave: #dcf2f1;
+  --color-rosa: #c878af;
+  --color-rosa-relleno: #9e5e8a;
+  --color-rosa-tinta: #945781;
+  --color-rosa-suave: #f8eaf3;
+  --color-indigo: #3859b3;
+  --color-indigo-relleno: #3859b3;
+  --color-indigo-tinta: #3859b3;
+  --color-indigo-suave: #dfe6f5;
+  --color-celeste: #36c5f4;
+  --color-celeste-relleno: #1f7e9d;
+  --color-celeste-tinta: #1c7491;
+  --color-celeste-suave: #e6f7fe;
+}
+
+/* Tema oscuro: se redefinen las variables (los grises se invierten), así casi nunca hace falta `dark:`. */
+.dark {
+  color-scheme: dark;
+  --color-fondo: #07080f;
+  --color-white: #1d1f29;
+  --color-zinc-50: #262833;
+  --color-zinc-100: #2f313b;
+  --color-zinc-200: #44464f;
+  --color-zinc-300: #575961;
+  --color-zinc-400: #707279;
+  --color-zinc-500: #a0a1a7;
+  --color-zinc-600: #b9b9bd;
+  --color-zinc-700: #d4d5d7;
+  --color-zinc-800: #e4e5e6;
+  --color-zinc-900: #ffffff;
+
+  --color-bien-tinta: #62b85a;
+  --color-bien-suave: #2c4036;
+  --color-fijate-tinta: #dab163;
+  --color-fijate-suave: #453f39;
+  --color-fijate-claro: #6b5a37;
+  --color-sky-100: #183a4d;
+  --color-sky-700: #b3e3f9;
+
+  --color-azul-tinta: #69a5e8;
+  --color-azul-suave: #263650;
+  --color-naranja-tinta: #ec8f4c;
+  --color-naranja-suave: #493733;
+  --color-turquesa-tinta: #3fbdbc;
+  --color-turquesa-suave: #163a3d;
+  --color-rosa-tinta: #d28ebc;
+  --color-rosa-suave: #423346;
+  --color-indigo: #4667ba;
+  --color-indigo-relleno: #4667ba;
+  --color-indigo-tinta: #829bd4;
+  --color-indigo-suave: #272f49;
+  --color-celeste-tinta: #36c5f4;
+  --color-celeste-suave: #2a4254;
+}
+
+html,
+body {
+  background-color: var(--color-fondo);
+  color: var(--color-zinc-900);
+  font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+#root { position: relative; overflow-x: clip; }
+
+:focus-visible { outline: 3px solid var(--color-sky-500); outline-offset: 3px; border-radius: 0.75rem; }
+
+html.cambiando-tema,
+html.cambiando-tema * {
+  transition: background-color 250ms ease, border-color 250ms ease, color 250ms ease, fill 250ms ease, stroke 250ms ease !important;
+}

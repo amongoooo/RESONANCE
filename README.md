@@ -6,24 +6,25 @@ Plataformero educativo de física del sonido: el mundo está desafinado y lo arr
 
 ## Estructura del repo
 
-- `docs/`: página de registro (estado, ruta de 32 semanas, bitácora y decisiones). GitHub Pages la publica desde aquí.
-  - `docs/index.html`: diseño y lógica de la página. Casi nunca hay que tocarlo.
-  - `docs/datos.js`: todo el contenido de la página. **Este es el archivo que se edita cada semana.**
-  - `docs/img/`: capturas, GIFs y fotos de bocetos para la bitácora (créala cuando subas la primera).
+- `bitacora/`: página de registro (estado, árbol de metas, ruta de 32 semanas, bitácora y decisiones), hecha con React + Vite. Su estilo viene de [teoria-musical](https://github.com/amongoooo/teoria-musical) y es **solo de esta página**: el juego tiene su propio estilo visual.
+  - `bitacora/src/datos.js`: todo el contenido de la página. **Este es el archivo que se edita día a día.**
+  - `bitacora/public/img/`: capturas, GIFs y fotos de bocetos para la bitácora (créala cuando subas la primera; en `imagen` se escribe `"img/archivo.gif"`).
+  - `bitacora/src/secciones/`: cada parte de la página; `bitacora/src/logica/`: árbol de metas y fechas, con pruebas.
+- `docs/`: la página anterior en HTML. Se borra cuando la nueva ya esté publicada.
 - La raíz queda reservada para el proyecto de Unity (`Assets/`, `Packages/`, `ProjectSettings/`). El `.gitignore` ya es la plantilla de Unity.
 
 ## Publicar la página con GitHub Pages
 
-Settings > Pages > Source: **Deploy from a branch** > rama `main`, carpeta **`/docs`** > Save. En uno o dos minutos queda en la dirección de arriba.
+Se publica sola con cada cambio en `bitacora/` que llegue a `main` (`.github/workflows/bitacora.yml`). Una sola vez: Settings > Pages > Source: **GitHub Actions**.
 
-Para verla en tu computadora, abre `docs/index.html` con doble clic.
+Para verla en tu computadora: `cd bitacora`, `npm install` (la primera vez) y `npm run dev`. Pruebas: `npm test`.
 
-## Rutina semanal (domingo, 5 minutos)
+## Rutina (5 minutos)
 
-1. En `docs/datos.js`, cambia `hecha: false` por `hecha: true` en las semanas terminadas.
-2. Agrega una entrada en `bitacora` (hasta arriba) con lo que lograste. Si tienes una captura o GIF, súbelo a `docs/img/` y ponlo en `imagen`.
+1. En `bitacora/src/datos.js`, cambia `hecha: false` por `hecha: true` en las semanas terminadas.
+2. Agrega una entrada en `bitacora` (hasta arriba) con lo que lograste. Si tienes una captura o GIF, súbelo a `bitacora/public/img/` y ponlo en `imagen`.
 3. Si decidiste algo importante, agrégalo a `decisiones`.
-4. En `metas`, marca los pasos cumplidos con `hecho: true`. Cuando termines una meta, ponle `cumplida: true` y agrega la siguiente; la página siempre muestra la más cercana.
+4. En el árbol de `metas`, marca los pasos cumplidos con `hecho: true`. El avance de cada rama se calcula solo y «Próxima meta» muestra la rama pendiente más cercana. Para una meta nueva, agrega una rama con `titulo`, `fecha` y sus `ramas` (pasos).
 5. Haz commit con un mensaje tipo `Semana 3: primer puzzle de cuerda`.
 
 El historial de commits más la bitácora son la evidencia de desarrollo por etapas para el reporte y la presentación.
