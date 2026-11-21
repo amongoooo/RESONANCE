@@ -1,0 +1,107 @@
+// ============================================================
+//  DATOS DE RESONANCIA
+//  Este es el único archivo que necesitas editar día a día.
+//  - Para marcar una semana como terminada: cambia  hecha: false  por  hecha: true
+//  - Para agregar una entrada a la bitácora: copia un bloque { ... } de "bitacora"
+//    y pégalo hasta arriba de la lista (las más nuevas van primero).
+//  - Para registrar una decisión: agrega un bloque a "decisiones".
+//  Cuida las comas entre bloques y las comillas en los textos.
+// ============================================================
+
+window.RESONANCIA = {
+  proyecto: {
+    nombre: "RESONANCIA",
+    resumen:
+      "Un plataformero de física del sonido: el mundo está desafinado y lo arreglas igualando ondas.",
+    autor: "amongo",
+    escuela: "TecNM campus Celaya",
+    competencia: "Infomatrix / SOLACYT, categoría Desarrollo de Software",
+    congelamiento: "2027-05-01",
+    version1: "2027-07-04",
+  },
+
+  // Fases del calendario. "id" se usa en las semanas.
+  fases: [
+    { id: 0, nombre: "Preproducción", inicio: "2026-11-23", fin: "2026-12-20", meta: "Prototipo del sintonizador y prueba de diversión" },
+    { id: 1, nombre: "Sistemas base", inicio: "2026-12-21", fin: "2027-01-31", meta: "Tiles, datos, skins, animación procedural y ecosistema" },
+    { id: 2, nombre: "Zona 1 completa", inicio: "2027-02-01", fin: "2027-03-14", meta: "Las Cuerdas terminada, pulida y probada con alumnos" },
+    { id: 3, nombre: "Producción", inicio: "2027-03-15", fin: "2027-05-02", meta: "Zonas 2, 3 y 4 con sus jefes" },
+    { id: 4, nombre: "Contenido final y pulido", inicio: "2027-05-03", fin: "2027-06-06", meta: "Zona final, arte, bugs y playtest completo" },
+    { id: 5, nombre: "Validación y reporte", inicio: "2027-06-07", fin: "2027-07-04", meta: "Pre/post test, reporte científico y versión 1.0" },
+  ],
+
+  // Las 32 semanas. Cambia "hecha" a true cuando termines cada una.
+  semanas: [
+    { n: 1, fase: 0, inicio: "2026-11-23", meta: "Proyecto base en Unity y repo en Git; correr, salto variable, coyote time y buffer.", hecha: false },
+    { n: 2, fase: 0, inicio: "2026-11-30", meta: "Sintonizador v0: onda senoidal dibujada y sonando; perilla de frecuencia.", hecha: false },
+    { n: 3, fase: 0, inicio: "2026-12-07", meta: "Primer puzzle (puerta que abre al igualar frecuencia) y plataforma de cuerda.", hecha: false },
+    { n: 4, fase: 0, inicio: "2026-12-14", meta: "Prueba de diversión; paleta, resolución y primer tileset de prueba.", hecha: false },
+    { n: 5, fase: 1, inicio: "2026-12-21", meta: "Rule Tile con autotiling, cámara Pixel Perfect y transición entre salas.", hecha: false },
+    { n: 6, fase: 1, inicio: "2026-12-28", meta: "ScriptableObjects: BiomaData, CriaturaData, SkinData.", hecha: false },
+    { n: 7, fase: 1, inicio: "2027-01-04", meta: "Personaje por partes con Sprite Library; shader de paleta; 2 skins de prueba.", hecha: false },
+    { n: 8, fase: 1, inicio: "2027-01-11", meta: "Animación procedural: criatura de segmentos con resortes y patas con IK.", hecha: false },
+    { n: 9, fase: 1, inicio: "2027-01-18", meta: "Ecosistema v1: eventos de sonido y criaturas que se acercan o huyen.", hecha: false },
+    { n: 10, fase: 1, inicio: "2027-01-25", meta: "Guardado, menú de pausa, ajustes de volumen y telemetría básica.", hecha: false },
+    { n: 11, fase: 2, inicio: "2027-02-01", meta: "Tileset final y props de Las Cuerdas.", hecha: false },
+    { n: 12, fase: 2, inicio: "2027-02-08", meta: "8 a 10 salas de la zona 1: en papel y bloqueadas en Unity.", hecha: false },
+    { n: 13, fase: 2, inicio: "2027-02-15", meta: "Arte final del protagonista y animaciones clave.", hecha: false },
+    { n: 14, fase: 2, inicio: "2027-02-22", meta: "Zumbidos con arte final; diseño del jefe.", hecha: false },
+    { n: 15, fase: 2, inicio: "2027-03-01", meta: "Jefe: El Gran Diapasón.", hecha: false },
+    { n: 16, fase: 2, inicio: "2027-03-08", meta: "Música de la zona 1 en capas; playtest con 5 a 10 estudiantes.", hecha: false },
+    { n: 17, fase: 3, inicio: "2027-03-15", meta: "Correcciones del playtest; mecánica de amplitud y tileset de la zona 2.", hecha: false },
+    { n: 18, fase: 3, inicio: "2027-03-22", meta: "Salas de la zona 2, Ecófagos y medidor de fatiga auditiva.", hecha: false },
+    { n: 19, fase: 3, inicio: "2027-03-29", meta: "Jefe El Amplificador y música de la zona 2.", hecha: false },
+    { n: 20, fase: 3, inicio: "2027-04-05", meta: "Mecánica de interferencia (dos emisores) y tileset de la zona 3.", hecha: false },
+    { n: 21, fase: 3, inicio: "2027-04-12", meta: "Salas de la zona 3, Estáticos y jefe El Gemelo Desfasado.", hecha: false },
+    { n: 22, fase: 3, inicio: "2027-04-19", meta: "Resonancia: columpios y cristales, tileset y salas de la zona 4.", hecha: false },
+    { n: 23, fase: 3, inicio: "2027-04-26", meta: "Jefe El Puente que Baila. Congelamiento de funciones el 1 de mayo.", hecha: false },
+    { n: 24, fase: 4, inicio: "2027-05-03", meta: "Zona final El Estudio y cierre de la historia.", hecha: false },
+    { n: 25, fase: 4, inicio: "2027-05-10", meta: "Retos de Afinación semi-procedurales y skins desbloqueables.", hecha: false },
+    { n: 26, fase: 4, inicio: "2027-05-17", meta: "Pase de arte: partículas, iluminación y música completa del hub.", hecha: false },
+    { n: 27, fase: 4, inicio: "2027-05-24", meta: "Examen pre/post con el maestro de Física; grupo confirmado; bugs.", hecha: false },
+    { n: 28, fase: 4, inicio: "2027-05-31", meta: "Playtest completo de inicio a fin con 5 o más personas.", hecha: false },
+    { n: 29, fase: 5, inicio: "2027-06-07", meta: "Aplicar pre-test, sesión de juego y post-test.", hecha: false },
+    { n: 30, fase: 5, inicio: "2027-06-14", meta: "Analizar resultados y telemetría.", hecha: false },
+    { n: 31, fase: 5, inicio: "2027-06-21", meta: "Reporte en formato avanzado (científico).", hecha: false },
+    { n: 32, fase: 5, inicio: "2027-06-28", meta: "Tráiler, build final v1.0 y registro en la convocatoria.", hecha: false },
+  ],
+
+  // Bitácora: lo más nuevo hasta arriba.
+  // Campos opcionales: imagen (ruta dentro del repo, p. ej. "img/semana1.gif"),
+  // enlace: { texto: "Ver video", url: "https://..." }
+  bitacora: [
+    {
+      fecha: "2026-11-20",
+      titulo: "Nace RESONANCIA",
+      texto:
+        "Después del segundo lugar con ECHO, decidí empezar con tiempo. Definí el concepto (un plataformero donde afinas ondas para avanzar), el documento de diseño y un calendario de 32 semanas con congelamiento de funciones el 1 de mayo.",
+      etiquetas: ["diseño", "planeación"],
+    },
+  ],
+
+  // Decisiones importantes y por qué se tomaron.
+  decisiones: [
+    { fecha: "2026-11-20", decision: "Motor: Unity", porque: "Ya lo domino por ECHO y trae Tilemap, 2D Animation, Pixel Perfect Camera y ScriptableObjects. Lo propio se programa donde se nota: sintetizador, animación procedural y ecosistema." },
+    { fecha: "2026-11-20", decision: "Audio: sintetizador propio + FMOD + música propia", porque: "Lo que el jugador manipula debe sonar exactamente como se ve; FMOD da capas y música adaptativa; la música por capas la produzco yo." },
+    { fecha: "2026-11-20", decision: "Validación con examen pre/post y telemetría", porque: "Demostrar con datos que el juego enseña, no solo mostrarlo." },
+    { fecha: "2026-11-20", decision: "Congelamiento de funciones el 1 de mayo de 2027", porque: "Después de esa fecha solo se pule, se arregla y se valida." },
+    { fecha: "2026-11-20", decision: "Pendiente: 2D pixel art o 2.5D con look 3D pixelado", porque: "Se decide a más tardar el 25 de noviembre con una prueba técnica de cámara. Límite duro: 20 de diciembre de 2026. Cuando lo decidas, quita  pendiente: true  y escribe la decisión.", pendiente: true },
+  ],
+
+  // Zonas del juego (las marcadas como extra solo si sobra tiempo).
+  zonas: [
+    { nombre: "Las Cuerdas", concepto: "Más rápido vibra, más agudo suena (frecuencia)." },
+    { nombre: "Cañón del Volumen", concepto: "Más amplitud, más fuerte y más lejos llega; escucha segura." },
+    { nombre: "Lago de Interferencias", concepto: "Dos ondas se suman o se anulan (superposición)." },
+    { nombre: "Torres de Cristal", concepto: "Empujar al ritmo justo hace crecer la vibración (resonancia)." },
+    { nombre: "Taller de Timbres", concepto: "Misma nota, distinto timbre por los armónicos.", extra: true },
+    { nombre: "Cavernas del Eco", concepto: "El sonido tarda en ir y volver (eco, Doppler).", extra: true },
+    { nombre: "El Estudio", concepto: "Todo junto: armar por capas el track que restaura el mundo." },
+  ],
+
+  validacion: {
+    pregunta: "¿Jugar RESONANCIA mejora la comprensión de conceptos de ondas y sonido en estudiantes de bachillerato?",
+    estado: "Se aplicará en junio de 2027 con un examen conceptual antes y después de jugar.",
+    resultados: null, // Cuando tengas datos: "Promedio antes: X / 10. Promedio después: Y / 10."
+  },
+};

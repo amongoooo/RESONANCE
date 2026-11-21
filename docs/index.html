@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RESONANCIA: registro del proyecto</title>
+<meta name="description" content="Registro de desarrollo de RESONANCIA, un plataformero educativo de física del sonido.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Pixelify+Sans:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --papel: #ECEFF3;
+    --cuadro: #D6DCE4;
+    --panel: #F7F8FA;
+    --tinta: #16203A;
+    --tinta-2: #4B5672;
+    --senal: #C9305F;
+    --afinado: #1C8068;
+    --pixel: "Pixelify Sans", "Atkinson Hyperlegible", system-ui, sans-serif;
+    --texto: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    margin: 0;
+    color: var(--tinta);
+    font-family: var(--texto);
+    font-size: 1.125rem;
+    line-height: 1.55;
+    background-color: var(--papel);
+    background-image:
+      linear-gradient(var(--cuadro) 1px, transparent 1px),
+      linear-gradient(90deg, var(--cuadro) 1px, transparent 1px);
+    background-size: 24px 24px;
+    background-position: -1px -1px;
+  }
+
+  .columna { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem; }
+
+  a { color: var(--tinta); text-decoration-color: var(--senal); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+  a:hover { color: var(--senal); }
+
+  :focus-visible { outline: 3px solid var(--senal); outline-offset: 3px; }
+
+  /* ---------- Portada ---------- */
+  .portada { padding: 3.5rem 0 2.5rem; }
+
+  h1 {
+    font-family: var(--pixel);
+    font-weight: 700;
+    font-size: clamp(2.75rem, 11vw, 5.5rem);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    margin: 0 0 1rem;
+    transition: color 0.3s;
+  }
+  h1.afinado { color: var(--afinado); }
+
+  .resumen { font-size: 1.3rem; line-height: 1.45; max-width: 34rem; margin: 0 0 2rem; }
+
+  .sintonizador {
+    margin: 0;
+    background: var(--panel);
+    border: 3px solid var(--tinta);
+    box-shadow: 6px 6px 0 var(--tinta);
+  }
+  .sintonizador canvas {
+    display: block;
+    width: 100%;
+    aspect-ratio: 240 / 96;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    cursor: crosshair;
+    touch-action: none;
+    border-bottom: 3px solid var(--tinta);
+  }
+  .sintonizador figcaption {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.25rem;
+    padding: 0.85rem 1rem;
+    font-size: 1rem;
+  }
+  #estado-onda { flex: 1 1 18rem; }
+  #estado-onda.afinado { color: var(--afinado); font-weight: 700; }
+  .lectura { color: var(--tinta-2); font-variant-numeric: tabular-nums; }
+
+  button {
+    font: inherit;
+    font-weight: 700;
+    color: var(--tinta);
+    background: var(--papel);
+    border: 2px solid var(--tinta);
+    padding: 0.35rem 0.9rem;
+    cursor: pointer;
+  }
+  button:hover { background: var(--tinta); color: var(--panel); }
+  button[aria-pressed="true"] { background: var(--tinta); color: var(--panel); }
+
+  nav.indice { margin-top: 2rem; }
+  nav.indice ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; }
+
+  /* ---------- Secciones ---------- */
+  main section { padding: 2.5rem 0; border-top: 3px solid var(--tinta); }
+
+  h2 { font-size: 1.6rem; line-height: 1.2; margin: 0 0 1.25rem; }
+  h3 { font-size: 1.15rem; line-height: 1.3; margin: 0 0 0.35rem; }
+  p { margin: 0 0 1rem; }
+
+  /* Estado */
+  .estado { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem 2rem; margin: 0; }
+  .estado dt { color: var(--tinta-2); font-size: 1rem; }
+  .estado dd { margin: 0.15rem 0 0; font-weight: 700; font-size: 1.2rem; line-height: 1.35; }
+  .estado dd small { display: block; font-weight: 400; font-size: 1rem; color: var(--tinta-2); }
+
+  /* Ruta */
+  .fases { list-style: none; margin: 0 0 1.75rem; padding: 0; display: flex; gap: 4px; }
+  .fases li { min-width: 0; }
+  .fases .barra { display: block; height: 14px; border: 2px solid var(--tinta); background: var(--panel); }
+  .fases .hecha .barra { background: var(--tinta); }
+  .fases .actual .barra { background: repeating-linear-gradient(90deg, var(--senal) 0 6px, var(--panel) 6px 9px); border-color: var(--senal); }
+  .fases .nombre { display: block; font-size: 0.85rem; line-height: 1.25; margin-top: 0.4rem; color: var(--tinta-2); hyphens: auto; overflow-wrap: anywhere; }
+  .fases .actual .nombre { color: var(--tinta); font-weight: 700; }
+
+  details { background: var(--panel); border: 2px solid var(--tinta); margin-bottom: 0.6rem; }
+  summary { cursor: pointer; padding: 0.6rem 0.9rem; font-weight: 700; }
+  summary .conteo { font-weight: 400; color: var(--tinta-2); }
+  .semanas { list-style: none; margin: 0; padding: 0 0.9rem 0.75rem; }
+  .semanas li { display: grid; grid-template-columns: 1.4rem 1fr; gap: 0.6rem; padding: 0.45rem 0; border-top: 1px solid var(--cuadro); font-size: 1rem; }
+  .casilla { width: 1rem; height: 1rem; margin-top: 0.3rem; border: 2px solid var(--tinta); }
+  .hecha .casilla { background: var(--afinado); border-color: var(--afinado); }
+  .semanas .cuando { color: var(--tinta-2); }
+  .semanas .hoy { box-shadow: inset 4px 0 0 var(--senal); padding-left: 0.5rem; margin-left: -0.5rem; }
+
+  /* Bitácora */
+  .entradas { list-style: none; margin: 0; padding: 0; }
+  .entradas li { padding: 0 0 1.75rem 1.25rem; border-left: 3px solid var(--tinta); position: relative; }
+  .entradas li::before { content: ""; position: absolute; left: -9px; top: 0.35rem; width: 15px; height: 15px; background: var(--senal); }
+  .entradas time { display: block; color: var(--tinta-2); font-size: 1rem; }
+  .entradas img { display: block; max-width: 100%; margin: 0.5rem 0 0.75rem; border: 2px solid var(--tinta); image-rendering: pixelated; }
+  .etiquetas { color: var(--tinta-2); font-size: 0.95rem; margin: 0; }
+
+  /* Decisiones */
+  .tabla { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; background: var(--panel); border: 2px solid var(--tinta); font-size: 1rem; }
+  th, td { text-align: left; vertical-align: top; padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--cuadro); }
+  th { border-bottom: 2px solid var(--tinta); }
+  td:first-child { white-space: nowrap; color: var(--tinta-2); }
+  tr.pendiente td:nth-child(2) { color: var(--senal); }
+
+  /* Juego */
+  .zonas { margin: 0; padding-left: 1.5rem; }
+  .zonas li { margin-bottom: 0.5rem; }
+  .zonas .extra { color: var(--tinta-2); }
+
+  footer { border-top: 3px solid var(--tinta); padding: 1.5rem 0 3rem; font-size: 1rem; color: var(--tinta-2); }
+  footer p { margin: 0 0 0.25rem; }
+
+  @media (max-width: 560px) {
+    body { font-size: 1.0625rem; }
+    .estado { grid-template-columns: 1fr; }
+    .fases { flex-direction: column; gap: 0.5rem; }
+    .fases li { display: grid; grid-template-columns: 4rem 1fr; align-items: center; gap: 0.75rem; flex: none !important; }
+    .fases .nombre { margin: 0; }
+    .sintonizador { box-shadow: 4px 4px 0 var(--tinta); }
+    table, tbody, tr, td { display: block; }
+    thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    tr { border-bottom: 1px solid var(--cuadro); padding: 0.6rem 0.75rem; }
+    td { border: 0; padding: 0.1rem 0; }
+    td:nth-child(2) { font-weight: 700; }
+  }
+</style>
+</head>
+<body>
+
+<header class="portada columna">
+  <h1 id="titulo">RESONANCIA</h1>
+  <p class="resumen" id="resumen"></p>
+
+  <figure class="sintonizador">
+    <canvas id="onda" width="240" height="96" tabindex="0" role="img"
+      aria-label="Sintonizador: una onda objetivo en gris y tu onda en rosa. Mueve el cursor o usa las flechas para igualarlas."></canvas>
+    <figcaption>
+      <span id="estado-onda" aria-live="polite">Mueve el cursor o el dedo sobre el panel hasta que tu onda cubra la silueta. También funciona con las flechas.</span>
+      <span class="lectura" id="lectura"></span>
+      <button type="button" id="sonido" aria-pressed="false">Escuchar</button>
+    </figcaption>
+  </figure>
+
+  <nav class="indice" aria-label="Secciones">
+    <ul>
+      <li><a href="#estado">Estado</a></li>
+      <li><a href="#ruta">Ruta</a></li>
+      <li><a href="#bitacora">Bitácora</a></li>
+      <li><a href="#decisiones">Decisiones</a></li>
+      <li><a href="#juego">El juego</a></li>
+      <li><a href="#validacion">Validación</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="columna">
+  <section id="estado" aria-labelledby="h-estado">
+    <h2 id="h-estado">Dónde va el proyecto</h2>
+    <dl class="estado" id="lista-estado"></dl>
+  </section>
+
+  <section id="ruta" aria-labelledby="h-ruta">
+    <h2 id="h-ruta">Ruta de 32 semanas</h2>
+    <ol class="fases" id="fases"></ol>
+    <div id="semanas"></div>
+  </section>
+
+  <section id="bitacora" aria-labelledby="h-bitacora">
+    <h2 id="h-bitacora">Bitácora</h2>
+    <ol class="entradas" id="entradas"></ol>
+  </section>
+
+  <section id="decisiones" aria-labelledby="h-decisiones">
+    <h2 id="h-decisiones">Decisiones</h2>
+    <div class="tabla">
+      <table>
+        <thead><tr><th scope="col">Fecha</th><th scope="col">Decisión</th><th scope="col">Por qué</th></tr></thead>
+        <tbody id="tabla-decisiones"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="juego" aria-labelledby="h-juego">
+    <h2 id="h-juego">El juego</h2>
+    <p>Tu herramienta no es un arma, es un sintonizador. Todo lo que está roto en el mundo está desafinado: giras perillas de frecuencia, amplitud y fase hasta que tu onda coincide con la del objeto, y el mundo reacciona. Cada zona enseña un concepto de física del sonido.</p>
+    <ol class="zonas" id="zonas"></ol>
+  </section>
+
+  <section id="validacion" aria-labelledby="h-validacion">
+    <h2 id="h-validacion">Validación</h2>
+    <div id="texto-validacion"></div>
+  </section>
+</main>
+
+<footer class="columna" id="pie"></footer>
+
+<script src="datos.js"></script>
+<script>
+(function () {
+  const D = window.RESONANCIA;
+  const MESES = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
+  const fecha = iso => new Date(iso + "T12:00:00");
+  const corta = iso => { const d = fecha(iso); return d.getDate() + " " + MESES[d.getMonth()]; };
+  const larga = iso => { const d = fecha(iso); return d.getDate() + " " + MESES[d.getMonth()] + " " + d.getFullYear(); };
+  const $ = id => document.getElementById(id);
+  function el(tag, props, ...hijos) {
+    const n = document.createElement(tag);
+    if (props) for (const k in props) {
+      if (k === "class") n.className = props[k];
+      else if (k === "text") n.textContent = props[k];
+      else n.setAttribute(k, props[k]);
+    }
+    hijos.forEach(h => h != null && n.append(h));
+    return n;
+  }
+
+  const hoy = new Date();
+  const p = D.proyecto;
+  $("resumen").textContent = p.resumen;
+
+  /* ---------- Estado ---------- */
+  const semanas = D.semanas;
+  const hechas = semanas.filter(s => s.hecha).length;
+  const enCurso = [...semanas].reverse().find(s => fecha(s.inicio) <= hoy);
+  const fase = D.fases.find(f => hoy >= fecha(f.inicio) && hoy <= new Date(fecha(f.fin).getTime() + 864e5))
+    || (hoy < fecha(D.fases[0].inicio) ? D.fases[0] : D.fases[D.fases.length - 1]);
+  const dias = Math.ceil((fecha(p.congelamiento) - hoy) / 864e5);
+
+  const filasEstado = [
+    ["Fase actual", fase.nombre, fase.meta],
+    ["Semanas completadas", hechas + " de " + semanas.length, hechas === 0 ? "Marca cada semana en datos.js al terminarla." : null],
+    ["Esta semana", enCurso ? "Semana " + enCurso.n : "Arranca el " + larga(semanas[0].inicio), enCurso ? enCurso.meta : semanas[0].meta],
+    ["Congelamiento de funciones", dias > 0 ? "Faltan " + dias + " días" : "Ya pasó: solo pulir y validar", "Después del " + larga(p.congelamiento) + " no entra nada nuevo."],
+  ];
+  filasEstado.forEach(([t, v, s]) => {
+    $("lista-estado").append(el("div", null, el("dt", { text: t }), el("dd", null, v, s ? el("small", { text: s }) : null)));
+  });
+
+  /* ---------- Ruta ---------- */
+  D.fases.forEach(f => {
+    const suyas = semanas.filter(s => s.fase === f.id);
+    const todas = suyas.length > 0 && suyas.every(s => s.hecha);
+    const clase = todas ? "hecha" : (f === fase ? "actual" : "");
+    const li = el("li", { class: clase }, el("span", { class: "barra", "aria-hidden": "true" }),
+      el("span", { class: "nombre", text: f.nombre }));
+    li.style.flex = suyas.length + " 1 0";
+    $("fases").append(li);
+
+    const lista = el("ol", { class: "semanas" });
+    suyas.forEach(s => {
+      const actual = enCurso && s.n === enCurso.n;
+      lista.append(el("li", { class: (s.hecha ? "hecha" : "") + (actual ? " hoy" : "") },
+        el("span", { class: "casilla", role: "img", "aria-label": s.hecha ? "Terminada" : "Pendiente" }),
+        el("span", null, el("strong", { text: "Semana " + s.n + " " }), el("span", { class: "cuando", text: "(desde el " + corta(s.inicio) + ") " }), s.meta)));
+    });
+    const hechasFase = suyas.filter(s => s.hecha).length;
+    const det = el("details", null,
+      el("summary", null, f.nombre + " ", el("span", { class: "conteo", text: corta(f.inicio) + " a " + corta(f.fin) + ", " + hechasFase + " de " + suyas.length + " semanas" })),
+      lista);
+    if (f === fase) det.open = true;
+    $("semanas").append(det);
+  });
+
+  /* ---------- Bitácora ---------- */
+  const entradas = [...D.bitacora].sort((a, b) => b.fecha.localeCompare(a.fecha));
+  if (entradas.length === 0) {
+    $("entradas").append(el("li", null, el("p", { text: "Aún no hay entradas. Agrega la primera en datos.js, en la lista \"bitacora\"." })));
+  }
+  entradas.forEach(e => {
+    const li = el("li", null, el("time", { datetime: e.fecha, text: larga(e.fecha) }), el("h3", { text: e.titulo }));
+    if (e.imagen) li.append(el("img", { src: e.imagen, alt: e.alt || e.titulo, loading: "lazy" }));
+    li.append(el("p", { text: e.texto }));
+    if (e.enlace) li.append(el("p", null, el("a", { href: e.enlace.url, text: e.enlace.texto })));
+    if (e.etiquetas && e.etiquetas.length) li.append(el("p", { class: "etiquetas", text: "Temas: " + e.etiquetas.join(", ") }));
+    $("entradas").append(li);
+  });
+
+  /* ---------- Decisiones ---------- */
+  D.decisiones.forEach(d => {
+    $("tabla-decisiones").append(el("tr", { class: d.pendiente ? "pendiente" : "" },
+      el("td", { text: larga(d.fecha) }), el("td", { text: d.decision }), el("td", { text: d.porque })));
+  });
+
+  /* ---------- Juego y validación ---------- */
+  D.zonas.forEach(z => {
+    $("zonas").append(el("li", { class: z.extra ? "extra" : "" },
+      el("strong", { text: z.nombre }), ": " + z.concepto + (z.extra ? " (extra, solo si sobra tiempo)" : "")));
+  });
+  const v = D.validacion;
+  $("texto-validacion").append(
+    el("p", null, el("strong", { text: "Pregunta de investigación: " }), v.pregunta),
+    el("p", { text: v.resultados ? v.resultados : v.estado }));
+
+  const ultima = entradas.length ? larga(entradas[0].fecha) : null;
+  $("pie").append(
+    el("p", { text: p.nombre + ", por " + p.autor + ", " + p.escuela + "." }),
+    el("p", { text: p.competencia + "." }),
+    ultima ? el("p", { text: "Última entrada en la bitácora: " + ultima + "." }) : null);
+
+  /* ---------- Sintonizador ---------- */
+  const lienzo = $("onda"), ctx = lienzo.getContext("2d");
+  const W = lienzo.width, H = lienzo.height, MEDIO = H / 2, ALTO = H * 0.4;
+  const quieto = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const css = getComputedStyle(document.documentElement);
+  const C = {
+    panel: css.getPropertyValue("--panel").trim(), cuadro: css.getPropertyValue("--cuadro").trim(),
+    tinta: css.getPropertyValue("--tinta").trim(), senal: css.getPropertyValue("--senal").trim(),
+    afinado: css.getPropertyValue("--afinado").trim(),
+  };
+  const yo = { ciclos: 1.6, amp: 0.3 };
+  let meta = { ciclos: 3, amp: 0.6 };
+  let fase0 = 0, afinado = false, afinadas = 0;
+
+  const hz = c => Math.round(c * 110);
+  function lectura() { $("lectura").textContent = "Tu onda: " + hz(yo.ciclos) + " Hz, amplitud " + Math.round(yo.amp * 100) + " %"; }
+
+  function dibujar() {
+    ctx.fillStyle = C.panel; ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = C.cuadro;
+    for (let x = 0; x < W; x += 12) ctx.fillRect(x, 0, 1, H);
+    for (let y = 0; y < H; y += 12) ctx.fillRect(0, y, W, 1);
+    ctx.fillStyle = C.tinta; ctx.globalAlpha = 0.18;
+    for (let x = 0; x < W; x++) {
+      const y = MEDIO - meta.amp * ALTO * Math.sin(2 * Math.PI * meta.ciclos * x / W + fase0);
+      ctx.fillRect(x, Math.round(y) - 3, 1, 7);
+    }
+    ctx.globalAlpha = 1; ctx.fillStyle = afinado ? C.afinado : C.senal;
+    for (let x = 0; x < W; x++) {
+      const y = MEDIO - yo.amp * ALTO * Math.sin(2 * Math.PI * yo.ciclos * x / W + fase0);
+      ctx.fillRect(x, Math.round(y) - 1, 1, 2);
+    }
+  }
+
+  function revisar() {
+    lectura();
+    actualizarSonido();
+    if (afinado) return;
+    if (Math.abs(yo.ciclos - meta.ciclos) < 0.12 && Math.abs(yo.amp - meta.amp) < 0.07) {
+      afinado = true; afinadas++;
+      $("titulo").classList.add("afinado");
+      const est = $("estado-onda");
+      est.classList.add("afinado");
+      est.textContent = afinadas === 1 ? "¡Afinado! Así se juega RESONANCIA. Viene otra onda." : "¡Afinado! Llevas " + afinadas + ". Viene otra.";
+      acorde();
+      setTimeout(nuevaMeta, 1600);
+    }
+    if (quieto) dibujar();
+  }
+
+  function nuevaMeta() {
+    let c, a;
+    do { c = 1.5 + Math.random() * 3.5; a = 0.3 + Math.random() * 0.6; }
+    while (Math.abs(c - yo.ciclos) < 0.6 && Math.abs(a - yo.amp) < 0.2);
+    meta = { ciclos: c, amp: a }; afinado = false;
+    $("titulo").classList.remove("afinado");
+    const est = $("estado-onda");
+    est.classList.remove("afinado");
+    est.textContent = "Nueva silueta: iguala su frecuencia (qué tan apretada) y su amplitud (qué tan alta).";
+    if (quieto) dibujar();
+  }
+
+  lienzo.addEventListener("pointermove", ev => {
+    const r = lienzo.getBoundingClientRect();
+    const fx = Math.min(1, Math.max(0, (ev.clientX - r.left) / r.width));
+    const fy = Math.min(1, Math.max(0, (ev.clientY - r.top) / r.height));
+    yo.ciclos = 1 + 5 * fx;
+    yo.amp = Math.max(0.1, 1 - fy);
+    revisar();
+  });
+  lienzo.addEventListener("pointerdown", ev => { lienzo.setPointerCapture(ev.pointerId); });
+  lienzo.addEventListener("keydown", ev => {
+    const pasos = { ArrowLeft: [-0.05, 0], ArrowRight: [0.05, 0], ArrowUp: [0, 0.03], ArrowDown: [0, -0.03] };
+    const d = pasos[ev.key]; if (!d) return;
+    ev.preventDefault();
+    yo.ciclos = Math.min(6, Math.max(1, yo.ciclos + d[0]));
+    yo.amp = Math.min(1, Math.max(0.1, yo.amp + d[1]));
+    revisar();
+  });
+
+  /* Sonido: se activa solo con el botón */
+  let audio = null, osc = null, vol = null;
+  function actualizarSonido() {
+    if (!osc) return;
+    const t = audio.currentTime;
+    osc.frequency.setTargetAtTime(hz(yo.ciclos), t, 0.03);
+    vol.gain.setTargetAtTime(0.05 * yo.amp, t, 0.03);
+  }
+  function acorde() {
+    if (!audio || !osc) return;
+    const t = audio.currentTime, o = audio.createOscillator(), g = audio.createGain();
+    o.type = "triangle"; o.frequency.value = hz(meta.ciclos) * 1.5;
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.06, t + 0.03); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.9);
+    o.connect(g).connect(audio.destination); o.start(t); o.stop(t + 1);
+  }
+  $("sonido").addEventListener("click", ev => {
+    const b = ev.currentTarget;
+    if (osc) {
+      vol.gain.setTargetAtTime(0, audio.currentTime, 0.02); osc.stop(audio.currentTime + 0.1); osc = null;
+      b.setAttribute("aria-pressed", "false"); b.textContent = "Escuchar"; return;
+    }
+    audio = audio || new (window.AudioContext || window.webkitAudioContext)();
+    audio.resume();
+    osc = audio.createOscillator(); vol = audio.createGain();
+    osc.type = "sine"; vol.gain.value = 0;
+    osc.connect(vol).connect(audio.destination); osc.start();
+    actualizarSonido();
+    b.setAttribute("aria-pressed", "true"); b.textContent = "Silenciar";
+  });
+
+  lectura();
+  dibujar();
+  if (!quieto) (function bucle() { fase0 += 0.05; dibujar(); requestAnimationFrame(bucle); })();
+})();
+</script>
+</body>
+</html>
