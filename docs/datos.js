@@ -20,6 +20,24 @@ window.RESONANCIA = {
     version1: "2027-07-04",
   },
 
+  // Metas con fecha. La página muestra la primera que no esté cumplida.
+  // Marca cada paso con  hecho: true  y la meta completa con  cumplida: true.
+  metas: [
+    {
+      titulo: "Tener el plan definitivo y decidir: 2D o 2.5D",
+      fecha: "2026-11-25",
+      limite: "2026-12-20",
+      cumplida: false,
+      pasos: [
+        { texto: "Comparar en papel las 32 semanas: cuánto tardaría cada una en 3D frente a 2D.", hecho: false },
+        { texto: "Diseñar en papel la zona 1 (Las Cuerdas): 8 a 10 salas y el primer puzzle.", hecho: false },
+        { texto: "Borrador del examen pre/post: 10 a 15 preguntas conceptuales.", hecho: false },
+        { texto: "Prueba de fuego en Unity: cámara pixelada sin que tiemblen los píxeles.", hecho: false },
+        { texto: "Decidir con los 3 criterios: cámara estable, personaje en Blender sin perder el día, 32 semanas con margen.", hecho: false },
+      ],
+    },
+  ],
+
   // Fases del calendario. "id" se usa en las semanas.
   fases: [
     { id: 0, nombre: "Preproducción", inicio: "2026-11-23", fin: "2026-12-20", meta: "Prototipo del sintonizador y prueba de diversión" },

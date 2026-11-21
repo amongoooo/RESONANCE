@@ -119,6 +119,13 @@
   .estado dd { margin: 0.15rem 0 0; font-weight: 700; font-size: 1.2rem; line-height: 1.35; }
   .estado dd small { display: block; font-weight: 400; font-size: 1rem; color: var(--tinta-2); }
 
+  /* Próxima meta */
+  .meta { background: var(--panel); border: 3px solid var(--senal); padding: 1rem 1.1rem 0.5rem; margin-bottom: 1.75rem; }
+  .meta h3 { font-size: 1.25rem; margin-bottom: 0.25rem; }
+  .meta .plazo { color: var(--tinta-2); font-size: 1rem; margin-bottom: 0.5rem; }
+  .meta .plazo strong { color: var(--senal); }
+  .meta .semanas { padding: 0; }
+
   /* Ruta */
   .fases { list-style: none; margin: 0 0 1.75rem; padding: 0; display: flex; gap: 4px; }
   .fases li { min-width: 0; }
@@ -208,6 +215,7 @@
 <main class="columna">
   <section id="estado" aria-labelledby="h-estado">
     <h2 id="h-estado">Dónde va el proyecto</h2>
+    <div id="meta"></div>
     <dl class="estado" id="lista-estado"></dl>
   </section>
 
@@ -277,6 +285,19 @@
   const fase = D.fases.find(f => hoy >= fecha(f.inicio) && hoy <= new Date(fecha(f.fin).getTime() + 864e5))
     || (hoy < fecha(D.fases[0].inicio) ? D.fases[0] : D.fases[D.fases.length - 1]);
   const dias = Math.ceil((fecha(p.congelamiento) - hoy) / 864e5);
+
+  const metaActual = (D.metas || []).filter(m => !m.cumplida).sort((a, b) => a.fecha.localeCompare(b.fecha))[0];
+  if (metaActual) {
+    const faltan = Math.ceil((fecha(metaActual.fecha) - hoy) / 864e5);
+    const plazo = faltan > 1 ? "Faltan " + faltan + " días" : faltan === 1 ? "Falta 1 día" : faltan === 0 ? "Es hoy" : "Se pasó por " + (-faltan) + " días";
+    const pasos = el("ol", { class: "semanas" });
+    (metaActual.pasos || []).forEach(p => pasos.append(el("li", { class: p.hecho ? "hecha" : "" },
+      el("span", { class: "casilla", role: "img", "aria-label": p.hecho ? "Hecho" : "Pendiente" }), el("span", { text: p.texto }))));
+    $("meta").append(el("div", { class: "meta" },
+      el("h3", { text: "Próxima meta: " + metaActual.titulo }),
+      el("p", { class: "plazo" }, el("strong", { text: plazo }), " (" + larga(metaActual.fecha) + ")" + (metaActual.limite ? ". Límite duro: " + larga(metaActual.limite) + "." : ".")),
+      pasos));
+  }
 
   const filasEstado = [
     ["Fase actual", fase.nombre, fase.meta],

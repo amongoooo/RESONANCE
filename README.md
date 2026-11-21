@@ -23,7 +23,8 @@ Para verla en tu computadora, abre `docs/index.html` con doble clic.
 1. En `docs/datos.js`, cambia `hecha: false` por `hecha: true` en las semanas terminadas.
 2. Agrega una entrada en `bitacora` (hasta arriba) con lo que lograste. Si tienes una captura o GIF, súbelo a `docs/img/` y ponlo en `imagen`.
 3. Si decidiste algo importante, agrégalo a `decisiones`.
-4. Haz commit con un mensaje tipo `Semana 3: primer puzzle de cuerda`.
+4. En `metas`, marca los pasos cumplidos con `hecho: true`. Cuando termines una meta, ponle `cumplida: true` y agrega la siguiente; la página siempre muestra la más cercana.
+5. Haz commit con un mensaje tipo `Semana 3: primer puzzle de cuerda`.
 
 El historial de commits más la bitácora son la evidencia de desarrollo por etapas para el reporte y la presentación.
 
