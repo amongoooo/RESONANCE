@@ -1,8 +1,10 @@
-import { motion } from 'motion/react'
-import { useMemo, useState } from 'react'
+import { AnimatePresence, motion } from 'motion/react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import D from './datos.js'
 import { conIds, proximaMeta } from './logica/arbol.js'
-import { cuando, deClave, masNuevoPrimero, sumarDias } from './logica/fechas.js'
+import { cuando, deClave, larga, masNuevoPrimero, sumarDias } from './logica/fechas.js'
+import { separarDecisiones } from './logica/listas.js'
+import { PAGINAS } from './logica/rutas.js'
 import ArbolMetas from './secciones/ArbolMetas.jsx'
 import Bitacora from './secciones/Bitacora.jsx'
 import Decisiones from './secciones/Decisiones.jsx'
@@ -10,57 +12,82 @@ import Estado from './secciones/Estado.jsx'
 import Juego from './secciones/Juego.jsx'
 import Ruta from './secciones/Ruta.jsx'
 import Sintonizador from './secciones/Sintonizador.jsx'
-import { Luna, Sol } from './ui/Iconos.jsx'
-import { AL_VERSE, RESORTE, SUBE } from './ui/movimiento.js'
-import Pulsable from './ui/Pulsable.jsx'
+import { Flecha } from './ui/Iconos.jsx'
+import { BarraAbajo, Cabecera, usePagina } from './ui/Navegacion.jsx'
+import { RESORTE } from './ui/movimiento.js'
 
-const SECCIONES = [
-  ['estado', 'Estado'],
-  ['metas', 'Metas'],
-  ['ruta', 'Ruta'],
-  ['bitacora', 'Bitácora'],
-  ['decisiones', 'Decisiones'],
-  ['juego', 'El juego'],
-]
-
-// Vidrio (de teoria-musical, src/ui/vidrio.js): solo para lo que flota fijo sobre el contenido.
-const VIDRIO =
-  'border border-blanco/70 bg-white/70 backdrop-blur-xl backdrop-saturate-150 shadow-[0_0_0_0.5px_rgb(16_18_28/0.12),0_8px_28px_rgb(16_18_28/0.10),inset_0_1px_0_rgb(255_255_255/0.7)] dark:border-blanco/15 dark:shadow-[0_0_0_0.5px_rgb(0_0_0/0.45),0_8px_28px_rgb(0_0_0/0.45),inset_0_1px_0_rgb(255_255_255/0.12)]'
-
-function BotonTema() {
-  const [oscuro, setOscuro] = useState(() => document.documentElement.classList.contains('dark'))
-  const cambiar = () => {
-    const html = document.documentElement
-    html.classList.add('cambiando-tema')
-    html.classList.toggle('dark', !oscuro)
-    try {
-      localStorage.setItem('resonancia:tema', oscuro ? 'claro' : 'oscuro')
-    } catch {
-      /* sin localStorage: solo dura esta visita */
-    }
-    setOscuro(!oscuro)
-    setTimeout(() => html.classList.remove('cambiando-tema'), 300)
-  }
+/** Título grande de cada página y una línea que dice qué hay en ella. */
+function Titulo({ titulo, bajada }) {
   return (
-    <Pulsable onClick={cambiar} aria-label={oscuro ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'} className="grid size-11 shrink-0 place-items-center rounded-full text-zinc-700">
-      {oscuro ? <Sol /> : <Luna />}
-    </Pulsable>
+    <div className="flex flex-col gap-2">
+      <h1 className="font-titulo text-4xl leading-none font-extrabold tracking-tight">{titulo}</h1>
+      {bajada && <p className="text-lg leading-snug text-zinc-600">{bajada}</p>}
+    </div>
   )
 }
 
-function Seccion({ id, titulo, children }) {
+/** Tarjeta que lleva a otra página. */
+function Atajo({ href, etiqueta, titulo, detalle }) {
   return (
-    <motion.section id={id} aria-labelledby={`h-${id}`} {...AL_VERSE} className="flex flex-col gap-5">
-      <h2 id={`h-${id}`} className="font-titulo text-3xl font-bold tracking-tight">
-        {titulo}
-      </h2>
-      {children}
-    </motion.section>
+    <a href={href} className="flex items-center gap-3 rounded-3xl border border-zinc-200 bg-white px-5 py-4 no-underline hover:border-zinc-300">
+      <span className="flex min-w-0 flex-1 flex-col gap-1">
+        <span className="text-sm font-semibold tracking-wider text-zinc-500 uppercase">{etiqueta}</span>
+        <span className="font-titulo text-lg leading-tight font-bold tracking-tight">{titulo}</span>
+        {detalle && <span className="font-dato text-sm font-medium text-zinc-500">{detalle}</span>}
+      </span>
+      <Flecha className="shrink-0 text-zinc-400" />
+    </a>
+  )
+}
+
+function Inicio({ fase, enCurso, proxima, entradas }) {
+  const [afinado, setAfinado] = useState(false)
+  const { pendientes } = separarDecisiones(D.decisiones)
+  const ultima = entradas[0]
+  return (
+    <div className="flex flex-col gap-10">
+      <div className="flex flex-col gap-5">
+        <motion.h1
+          animate={{ color: afinado ? 'var(--color-bien)' : 'var(--color-zinc-900)' }}
+          transition={{ duration: 0.3 }}
+          className="font-juego text-[clamp(3rem,13vw,5.5rem)] leading-none font-bold tracking-wide"
+        >
+          {D.proyecto.nombre}
+        </motion.h1>
+        <p className="max-w-xl text-xl leading-relaxed text-zinc-600">{D.proyecto.resumen}</p>
+        <Sintonizador alAfinar={setAfinado} />
+      </div>
+
+      <section aria-labelledby="h-estado" className="flex flex-col gap-4">
+        <h2 id="h-estado" className="font-titulo text-2xl font-bold tracking-tight">
+          Dónde va el proyecto
+        </h2>
+        <Estado D={D} fase={fase} enCurso={enCurso} proxima={proxima} />
+      </section>
+
+      <section aria-labelledby="h-ultimo" className="flex flex-col gap-3">
+        <h2 id="h-ultimo" className="font-titulo text-2xl font-bold tracking-tight">
+          Lo último
+        </h2>
+        {ultima && <Atajo href="#/bitacora" etiqueta="Bitácora" titulo={ultima.titulo} detalle={cuando(ultima)} />}
+        {pendientes.length > 0 && (
+          <Atajo
+            href="#/decisiones"
+            etiqueta="Por decidir"
+            titulo={pendientes[0].decision.replace(/^Pendiente:\s*/, '')}
+            detalle={pendientes.length > 1 ? `y ${pendientes.length - 1} más` : undefined}
+          />
+        )}
+        <Atajo href="#/juego" etiqueta="El juego" titulo="Cómo se juega y qué enseña cada zona" />
+      </section>
+    </div>
   )
 }
 
 export default function App() {
-  const [afinado, setAfinado] = useState(false)
+  const pagina = usePagina()
+  const principal = useRef(null)
+  const primeraVez = useRef(true)
   const hoy = new Date()
   const raiz = useMemo(() => conIds(D.metas), [])
   const proxima = useMemo(() => proximaMeta(raiz), [raiz])
@@ -70,74 +97,85 @@ export default function App() {
     (hoy < deClave(D.fases[0].inicio) ? D.fases[0] : D.fases[D.fases.length - 1])
   const entradas = [...D.bitacora].sort(masNuevoPrimero)
   const p = D.proyecto
+  const info = PAGINAS.find((x) => x.id === pagina)
+
+  // Al cambiar de página: arriba del todo, título de la pestaña y foco al contenido (para lectores de pantalla).
+  useEffect(() => {
+    document.title = pagina === 'inicio' ? `${p.nombre}: registro del proyecto` : `${info.titulo} · ${p.nombre}`
+    if (primeraVez.current) {
+      primeraVez.current = false
+      return
+    }
+    window.scrollTo({ top: 0, behavior: 'instant' })
+    principal.current?.focus({ preventScroll: true })
+  }, [pagina, info, p.nombre])
+
+  const contenido = {
+    inicio: <Inicio fase={fase} enCurso={enCurso} proxima={proxima} entradas={entradas} />,
+    plan: (
+      <div className="flex flex-col gap-12">
+        <Titulo titulo="Plan y metas" bajada="Qué sigue, cuánto falta y cómo se reparten las 32 semanas." />
+        <section aria-labelledby="h-metas" className="flex flex-col gap-4">
+          <h2 id="h-metas" className="font-titulo text-2xl font-bold tracking-tight">
+            Árbol de metas
+          </h2>
+          <ArbolMetas raiz={raiz} proxima={proxima} />
+        </section>
+        <section aria-labelledby="h-ruta" className="flex flex-col gap-4">
+          <h2 id="h-ruta" className="font-titulo text-2xl font-bold tracking-tight">
+            Ruta de {D.semanas.length} semanas
+          </h2>
+          <Ruta D={D} fase={fase} enCurso={enCurso} />
+        </section>
+      </div>
+    ),
+    bitacora: (
+      <div className="flex flex-col gap-8">
+        <Titulo titulo="Bitácora" bajada="Lo que hice y aprendí, con fecha y hora." />
+        <Bitacora entradas={entradas} />
+      </div>
+    ),
+    decisiones: (
+      <div className="flex flex-col gap-8">
+        <Titulo titulo="Decisiones" bajada="Qué decidí y por qué. Si algo cambia, la vieja se queda para ver el camino." />
+        <Decisiones decisiones={D.decisiones} />
+      </div>
+    ),
+    juego: (
+      <div className="flex flex-col gap-8">
+        <Titulo titulo="El juego" bajada="Un plataformero donde no peleas: afinas el mundo para avanzar." />
+        <Juego juego={D.juego} zonas={D.zonas} validacion={D.validacion} decisiones={D.decisiones} />
+      </div>
+    ),
+  }
 
   return (
     <>
-      <a href="#estado" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-2xl focus:bg-white focus:px-4 focus:py-2">
-        Saltar al contenido
-      </a>
+      <Cabecera nombre={p.nombre} />
 
-      {/* Cabecera de vidrio: flota sobre el contenido */}
-      <header className="sticky top-0 z-40 px-3 pt-[max(0.75rem,env(safe-area-inset-top))]">
-        <nav aria-label="Secciones" className={`mx-auto flex max-w-2xl items-center gap-1 rounded-full py-1 pr-1 pl-4 ${VIDRIO}`}>
-          <a href="#inicio" className="shrink-0 font-juego text-lg font-bold tracking-wide no-underline">
-            {p.nombre}
-          </a>
-          <ul className="flex min-w-0 flex-1 gap-1 overflow-x-auto px-2 [scrollbar-width:none]">
-            {SECCIONES.map(([id, nombre]) => (
-              <li key={id} className="shrink-0">
-                <a href={`#${id}`} className="flex min-h-11 items-center rounded-full px-3 text-base font-semibold text-zinc-600 no-underline hover:bg-zinc-100 hover:text-zinc-900">
-                  {nombre}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <BotonTema />
-        </nav>
-      </header>
-
-      <div className="mx-auto flex max-w-2xl flex-col gap-14 px-5 pt-10 pb-16">
-        <motion.header id="inicio" {...SUBE} className="flex flex-col gap-5">
-          <motion.h1
-            animate={{ color: afinado ? 'var(--color-bien)' : 'var(--color-zinc-900)' }}
-            transition={{ duration: 0.3 }}
-            className="font-juego text-[clamp(3rem,13vw,5.5rem)] leading-none font-bold tracking-wide"
+      <main ref={principal} tabIndex={-1} aria-label={info.titulo} className="mx-auto max-w-2xl px-4 pt-6 pb-36 outline-none sm:px-5">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={pagina}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8, transition: { duration: 0.12 } }}
+            transition={RESORTE.suave}
           >
-            {p.nombre}
-          </motion.h1>
-          <p className="max-w-xl text-xl leading-relaxed text-zinc-600">{p.resumen}</p>
-          <Sintonizador alAfinar={setAfinado} />
-        </motion.header>
+            {contenido[pagina]}
+          </motion.div>
+        </AnimatePresence>
 
-        <main className="flex flex-col gap-14">
-          <Seccion id="estado" titulo="Dónde va el proyecto">
-            <Estado D={D} fase={fase} enCurso={enCurso} proxima={proxima} />
-          </Seccion>
-          <Seccion id="metas" titulo="Árbol de metas">
-            <ArbolMetas raiz={raiz} proxima={proxima} />
-          </Seccion>
-          <Seccion id="ruta" titulo={`Ruta de ${D.semanas.length} semanas`}>
-            <Ruta D={D} fase={fase} enCurso={enCurso} />
-          </Seccion>
-          <Seccion id="bitacora" titulo="Bitácora">
-            <Bitacora entradas={entradas} />
-          </Seccion>
-          <Seccion id="decisiones" titulo="Decisiones">
-            <Decisiones decisiones={[...D.decisiones].sort(masNuevoPrimero)} />
-          </Seccion>
-          <Seccion id="juego" titulo="El juego">
-            <Juego zonas={D.zonas} validacion={D.validacion} />
-          </Seccion>
-        </main>
-
-        <motion.footer {...AL_VERSE} transition={RESORTE.suave} className="flex flex-col gap-1 border-t border-zinc-200 pt-6 text-base text-zinc-500">
+        <footer className="mt-16 flex flex-col gap-1 border-t border-zinc-200 pt-6 text-base text-zinc-500">
           <p>
             {p.nombre}, por {p.autor}, {p.escuela}.
           </p>
           <p>{p.competencia}.</p>
-          {entradas[0] && <p>Última entrada en la bitácora: {cuando(entradas[0])}.</p>}
-        </motion.footer>
-      </div>
+          {entradas[0] && <p>Última entrada en la bitácora: {larga(entradas[0].fecha)}.</p>}
+        </footer>
+      </main>
+
+      <BarraAbajo actual={pagina} />
     </>
   )
 }

@@ -12,3 +12,8 @@ createRoot(document.getElementById('root')).render(
     </MotionConfig>
   </StrictMode>,
 )
+
+// App instalable (Android) y sin internet: solo en la página publicada, no mientras se programa.
+if (import.meta.env.PROD && 'serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}))
+}

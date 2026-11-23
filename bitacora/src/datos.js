@@ -8,6 +8,8 @@
 //  - Para agregar una entrada a la bitácora: copia un bloque { ... } de "bitacora"
 //    y pégalo hasta arriba de la lista (las más nuevas van primero).
 //  - Para registrar una decisión: agrega un bloque a "decisiones".
+//    Si cambia una decisión vieja, no la borres: en la nueva pon  reemplaza: "<texto exacto de la vieja>"
+//    y la página la mueve a «Cambiaron» con un enlace a la nueva.
 //  Fechas siempre como "AAAA-MM-DD" y, en bitácora y decisiones, hora "HH:MM" (hora de CDMX)
 //  de cuando se subió. Cuida las comas entre bloques y las comillas.
 // ============================================================
@@ -152,8 +154,21 @@ export default {
     { fecha: "2026-11-20", decision: "Bitácora en React + Vite", porque: "Ya la uso en mis otras apps; trae animaciones y datos ordenados. El estilo viene de teoria-musical y es solo para esta página, no para el juego." },
     { fecha: "2026-11-20", decision: "Pendiente: 2D pixel art o 2.5D con look 3D pixelado", porque: "Se decide a más tardar el 25 de noviembre con una prueba técnica de cámara. Límite duro: 20 de diciembre de 2026. Cuando lo decidas, quita  pendiente: true  y escribe la decisión.", pendiente: true },
     { fecha: "2026-11-23", hora: "00:55", decision: "Música: el MIDI es la fuente de verdad; fondo en stems y lo que toca el jugador con samples propios", porque: "Lo visual necesita saber qué nota suena, y las tribus enseñan ritmos por partes, así que esas capas no pueden ser una grabación cerrada. El fondo conserva la mezcla del DAW." },
-    { fecha: "2026-11-23", hora: "01:01", decision: "Música solo con el audio de Unity, sin FMOD; compongo y exporto solo desde FL Studio", porque: "Un solo reloj evita que la música y lo visual se desfasen, y el diseño ya hace en código lo que FMOD daba (capas que entran en la siguiente barra). FL Studio exporta todas las pistas en un solo MIDI. Reemplaza la parte de FMOD de la decisión de audio del 20 de noviembre." },
+    { fecha: "2026-11-23", hora: "01:01", decision: "Música solo con el audio de Unity, sin FMOD; compongo y exporto solo desde FL Studio", reemplaza: "Audio: sintetizador propio + FMOD + música propia", porque: "Un solo reloj evita que la música y lo visual se desfasen, y el diseño ya hace en código lo que FMOD daba (capas que entran en la siguiente barra). FL Studio exporta todas las pistas en un solo MIDI. Reemplaza la parte de FMOD de la decisión de audio del 20 de noviembre." },
   ],
+
+  // Página «El juego»: la idea en un párrafo y los sistemas que lo hacen distinto.
+  juego: {
+    idea:
+      "Tu herramienta no es un arma, es un sintonizador. Todo lo que está roto en el mundo está desafinado: giras perillas de frecuencia, amplitud y fase hasta que tu onda coincide con la del objeto, y el mundo reacciona. Cada zona enseña un concepto de física del sonido.",
+    pilares: [
+      { nombre: "Sintetizador propio", texto: "Lo que el jugador mueve suena exactamente como se ve: la onda se genera en código, no es una grabación." },
+      { nombre: "Música por capas", texto: "Compuesta por mí en FL Studio. Un solo reloj musical mueve el sonido, las luces y las partículas." },
+      { nombre: "Criaturas procedurales", texto: "Se mueven con física (segmentos, resortes y patas que buscan el suelo), no con animaciones dibujadas cuadro por cuadro." },
+      { nombre: "Ecosistema que escucha", texto: "Las criaturas se acercan o huyen según el sonido que hagas." },
+      { nombre: "Todo por datos", texto: "Zonas, criaturas y skins se describen con datos, así agregar contenido no pide reprogramar." },
+    ],
+  },
 
   // Zonas del juego (las marcadas como extra solo si sobra tiempo).
   zonas: [
