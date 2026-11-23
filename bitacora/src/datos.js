@@ -152,6 +152,7 @@ export default {
     { fecha: "2026-11-20", decision: "Bitácora en React + Vite", porque: "Ya la uso en mis otras apps; trae animaciones y datos ordenados. El estilo viene de teoria-musical y es solo para esta página, no para el juego." },
     { fecha: "2026-11-20", decision: "Pendiente: 2D pixel art o 2.5D con look 3D pixelado", porque: "Se decide a más tardar el 25 de noviembre con una prueba técnica de cámara. Límite duro: 20 de diciembre de 2026. Cuando lo decidas, quita  pendiente: true  y escribe la decisión.", pendiente: true },
     { fecha: "2026-11-23", hora: "00:55", decision: "Música: el MIDI es la fuente de verdad; fondo en stems y lo que toca el jugador con samples propios", porque: "Lo visual necesita saber qué nota suena, y las tribus enseñan ritmos por partes, así que esas capas no pueden ser una grabación cerrada. El fondo conserva la mezcla del DAW." },
+    { fecha: "2026-11-23", hora: "01:01", decision: "Música solo con el audio de Unity, sin FMOD; compongo y exporto solo desde FL Studio", porque: "Un solo reloj evita que la música y lo visual se desfasen, y el diseño ya hace en código lo que FMOD daba (capas que entran en la siguiente barra). FL Studio exporta todas las pistas en un solo MIDI. Reemplaza la parte de FMOD de la decisión de audio del 20 de noviembre." },
   ],
 
   // Zonas del juego (las marcadas como extra solo si sobra tiempo).
