@@ -1,15 +1,27 @@
 import { corta } from '../logica/fechas.js'
 import { separarDecisiones } from '../logica/listas.js'
+import diseno from '../../contenido/diseno.md?raw'
 import { Bombilla, Flecha } from '../ui/Iconos.jsx'
+import Markdown from '../ui/Markdown.jsx'
 
-/** El juego, en tres apartados: idea (con lo que lo hace distinto y lo que falta decidir), zonas y validación. */
-export default function Juego({ vista, juego, zonas, validacion, decisiones, fases, semanas }) {
-  if (vista === 'zonas') return <Zonas zonas={zonas} />
+/** El juego, en cuatro apartados: idea (con lo que lo hace distinto, lo pendiente y las zonas), historia, diseño y validación. */
+export default function Juego({ vista, juego, zonas, zonasNota, validacion, decisiones, fases, semanas }) {
+  if (vista === 'historia') return <Historia />
+  if (vista === 'diseno') return <Markdown texto={diseno} />
   if (vista === 'validacion') return <Validacion validacion={validacion} fases={fases} semanas={semanas} />
-  return <Idea juego={juego} decisiones={decisiones} />
+  return <Idea juego={juego} decisiones={decisiones} zonas={zonas} zonasNota={zonasNota} />
 }
 
-function Idea({ juego, decisiones }) {
+function Historia() {
+  return (
+    <div className="flex flex-col gap-2 rounded-3xl border border-dashed border-zinc-300 px-5 py-5">
+      <span className="font-titulo text-xl font-bold tracking-tight">En preparación</span>
+      <span className="text-lg leading-relaxed text-zinc-600">La historia se va a mostrar aquí, capa por capa: el mundo, quién eres, qué buscas y por qué el mundo está en silencio.</span>
+    </div>
+  )
+}
+
+function Idea({ juego, decisiones, zonas, zonasNota }) {
   const { pendientes } = separarDecisiones(decisiones)
   return (
     <div className="flex flex-col gap-10">
@@ -44,19 +56,21 @@ function Idea({ juego, decisiones }) {
         </ul>
       </section>
 
+      <Zonas zonas={zonas} nota={zonasNota} />
     </div>
   )
 }
 
-function Zonas({ zonas }) {
+function Zonas({ zonas, nota }) {
   const principales = zonas.filter((z) => !z.extra)
   const extras = zonas.filter((z) => z.extra)
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-3">
       <section aria-labelledby="h-zonas" className="flex flex-col gap-3">
-        <h2 id="h-zonas" className="sr-only">
-          El recorrido
+        <h2 id="h-zonas" className="font-titulo text-xl font-bold tracking-tight">
+          Las zonas
         </h2>
+        {nota && <p className="-mt-1 rounded-2xl bg-fijate-suave px-4 py-2.5 text-base leading-snug text-fijate-tinta">{nota}</p>}
         <ol className="relative ml-4 flex flex-col gap-3 border-l-2 border-sky-300 pl-6">
           {principales.map((z, i) => (
             <li key={z.nombre} className="relative rounded-3xl border border-zinc-200 bg-white px-5 py-4">

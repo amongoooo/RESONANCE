@@ -81,7 +81,7 @@ function Inicio({ fase, enCurso, proxima, entradas }) {
             detalle={pendientes.length > 1 ? `y ${pendientes.length - 1} más` : undefined}
           />
         )}
-        <Atajo href="#/juego" etiqueta="El juego" titulo="Cómo se juega y qué enseña cada zona" />
+        <Atajo href="#/juego" etiqueta="El juego" titulo="La idea, la historia y cómo suena y se ve" />
       </section>
     </div>
   )
@@ -124,7 +124,7 @@ export default function App() {
     plan: () => (vista.id === 'ruta' ? <Ruta D={D} fase={fase} enCurso={enCurso} /> : <ArbolMetas raiz={raiz} proxima={proxima} />),
     registro: () => (vista.id === 'decisiones' ? <Decisiones decisiones={D.decisiones} /> : <Bitacora entradas={entradas} decisiones={D.decisiones} desde={p.inicio} />),
     juego: () => (
-      <Juego vista={vista.id} juego={D.juego} zonas={D.zonas} validacion={D.validacion} decisiones={D.decisiones} fases={D.fases} semanas={D.semanas} />
+      <Juego vista={vista.id} juego={D.juego} zonas={D.zonas} zonasNota={D.zonasNota} validacion={D.validacion} decisiones={D.decisiones} fases={D.fases} semanas={D.semanas} />
     ),
     ajustes: () => <Ajustes proyecto={p} />,
   }

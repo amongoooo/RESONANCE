@@ -226,7 +226,7 @@ export default function Pildora({ items, activo, variante = 'pestanas', todas = 
                     )}
                   </AnimatePresence>
                 ) : (
-                  <span className="relative truncate">{p.nombre}</span>
+                  <span className="relative truncate">{p.corto ?? p.nombre}</span>
                 )}
               </motion.button>
             )

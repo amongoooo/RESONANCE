@@ -28,8 +28,9 @@ const TODAS = [
     nombre: 'Juego',
     vistas: [
       { id: 'idea', nombre: 'Idea', bajada: 'Un plataformero donde no peleas: afinas el mundo para avanzar.' },
-      { id: 'zonas', nombre: 'Zonas', bajada: 'Cada zona enseña un concepto; la última los junta todos.' },
-      { id: 'validacion', nombre: 'Validación', bajada: 'Cómo se va a comprobar que el juego enseña.' },
+      { id: 'historia', nombre: 'Historia', bajada: 'El mundo, quién eres y por qué está en silencio, capa por capa.' },
+      { id: 'diseno', nombre: 'Diseño', bajada: 'Cómo suena y cómo se ve: la música y el estilo visual.' },
+      { id: 'validacion', nombre: 'Validación', corto: 'Validar', bajada: 'Cómo se va a comprobar que el juego enseña.' },
     ],
   },
   { id: 'ajustes', nombre: 'Ajustes', vistas: [] },
@@ -46,6 +47,7 @@ const ANTIGUAS = {
   bitacora: ['registro', 'bitacora'],
   decisiones: ['registro', 'decisiones'],
   validacion: ['juego', 'validacion'],
+  historia: ['juego', 'historia'],
   configuracion: ['ajustes'],
 }
 

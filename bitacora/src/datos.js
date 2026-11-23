@@ -172,6 +172,8 @@ export default {
   },
 
   // Zonas del juego (las marcadas como extra solo si sobra tiempo).
+  // zonasNota: aviso que sale arriba de las zonas; bórralo cuando las zonas estén al día.
+  zonasNota: "Por rediseñar: estas zonas son del concepto anterior (física del sonido). Se van a redefinir con las tribus y el enfoque en música.",
   zonas: [
     { nombre: "Las Cuerdas", concepto: "Más rápido vibra, más agudo suena (frecuencia)." },
     { nombre: "Cañón del Volumen", concepto: "Más amplitud, más fuerte y más lejos llega; escucha segura." },
