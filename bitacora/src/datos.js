@@ -73,7 +73,7 @@ export default {
   fases: [
     { id: 0, nombre: "Preproducción", inicio: "2026-11-23", fin: "2026-12-20", meta: "Prototipo del sintonizador y prueba de diversión" },
     { id: 1, nombre: "Sistemas base", inicio: "2026-12-21", fin: "2027-01-31", meta: "Tiles, datos, skins, animación procedural y ecosistema" },
-    { id: 2, nombre: "Zona 1 completa", inicio: "2027-02-01", fin: "2027-03-14", meta: "Las Cuerdas terminada, pulida y probada con alumnos" },
+    { id: 2, nombre: "Zona 1 completa", inicio: "2027-02-01", fin: "2027-03-14", meta: "Zona 1 (Ritmo) terminada, pulida y probada con alumnos" },
     { id: 3, nombre: "Producción", inicio: "2027-03-15", fin: "2027-05-02", meta: "Zonas 2, 3 y 4 con sus jefes" },
     { id: 4, nombre: "Contenido final y pulido", inicio: "2027-05-03", fin: "2027-06-06", meta: "Zona final, arte, bugs y playtest completo" },
     { id: 5, nombre: "Validación y reporte", inicio: "2027-06-07", fin: "2027-07-04", meta: "Pre/post test, reporte científico y versión 1.0" },
@@ -91,7 +91,7 @@ export default {
     { n: 8, fase: 1, inicio: "2027-01-11", meta: "Animación procedural: criatura de segmentos con resortes y patas con IK.", hecha: false },
     { n: 9, fase: 1, inicio: "2027-01-18", meta: "Ecosistema v1: eventos de sonido y criaturas que se acercan o huyen.", hecha: false },
     { n: 10, fase: 1, inicio: "2027-01-25", meta: "Guardado, menú de pausa, ajustes de volumen y telemetría básica.", hecha: false },
-    { n: 11, fase: 2, inicio: "2027-02-01", meta: "Tileset final y props de Las Cuerdas.", hecha: false },
+    { n: 11, fase: 2, inicio: "2027-02-01", meta: "Tileset final y props de la zona 1 (Ritmo).", hecha: false },
     { n: 12, fase: 2, inicio: "2027-02-08", meta: "8 a 10 salas de la zona 1: en papel y bloqueadas en Unity.", hecha: false },
     { n: 13, fase: 2, inicio: "2027-02-15", meta: "Arte final del protagonista y animaciones clave.", hecha: false },
     { n: 14, fase: 2, inicio: "2027-02-22", meta: "Zumbidos con arte final; diseño del jefe.", hecha: false },
@@ -157,13 +157,11 @@ export default {
 
   // Zonas del juego (las marcadas como extra solo si sobra tiempo).
   zonas: [
-    { nombre: "Las Cuerdas", concepto: "Más rápido vibra, más agudo suena (frecuencia)." },
-    { nombre: "Cañón del Volumen", concepto: "Más amplitud, más fuerte y más lejos llega; escucha segura." },
-    { nombre: "Lago de Interferencias", concepto: "Dos ondas se suman o se anulan (superposición)." },
-    { nombre: "Torres de Cristal", concepto: "Empujar al ritmo justo hace crecer la vibración (resonancia)." },
-    { nombre: "Taller de Timbres", concepto: "Misma nota, distinto timbre por los armónicos.", extra: true },
-    { nombre: "Cavernas del Eco", concepto: "El sonido tarda en ir y volver (eco, Doppler).", extra: true },
-    { nombre: "El Estudio", concepto: "Todo junto: armar por capas el track que restaura el mundo." },
+    { nombre: "Zona 1 · Ritmo", concepto: "Tribu de tambores inspirada en África occidental: recuperar el pulso común (bombo abajo, caja en medio, hi-hat arriba)." },
+    { nombre: "Zona 2 · Melodía", concepto: "Tribu de las escalas: notas que suben y bajan (lo agudo arriba, lo grave abajo)." },
+    { nombre: "Zona 3 · Armonía", concepto: "Tribu de los acordes: varias notas a la vez que se dejan espacio." },
+    { nombre: "Zona 4 · La mezcla", concepto: "Inspirada en Latinoamérica y México: mezcla lo aprendido y prepara la Gran Canción." },
+    { nombre: "El caracol", concepto: "Lugar central y caja de resonancia: ahí suena la Gran Canción y el mundo recupera el color." },
   ],
 
   validacion: {

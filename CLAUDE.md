@@ -12,12 +12,15 @@ Plataformero donde el jugador repara un mundo silenciado afinando ondas con un s
 - Sistemas: animación procedural de criaturas, ecosistema que reacciona al sonido, todo por datos (ScriptableObjects), skins intercambiables (2D Animation: Sprite Library + Sprite Resolver).
 - Validación: examen pre/post con estudiantes reales + telemetría del juego.
 - Congelamiento de funciones: 1 de mayo de 2027. Después solo se pule, se arregla y se valida.
-- Pendiente: 2D pixel art o 2.5D con look 3D pixelado (decisión a más tardar el 25 de noviembre de 2026; límite duro 20 de diciembre).
+- Estilo: 2D lateral en pixel art, Unity 6000.4.2f1 con URP 2D, Pixel Perfect a 480×270 y 16 PPU con escalado entero, tiles de 16×16. Animación procedural (sin cuadros). Lo grave abajo y lo agudo arriba. Mundo gris y silencioso que gana color cuando suena (decidido el 23 de noviembre de 2026).
+- Zonas: cada zona es una tribu musical: 1 Ritmo (África occidental), 2 Melodía, 3 Armonía, 4 La mezcla (Latinoamérica y México), más el caracol central.
+- Referencias vivas: dirección visual https://claude.ai/artifact/L9tEwrZ3Aygsxr2YmmKchH e historia y bestiario https://claude.ai/artifact/EYGJrP2Z6kRUfM7fMsZnY2.
 
 ## Estructura
 
 - `bitacora/` es la página de registro (React + Vite + Tailwind + Motion), publicada con GitHub Pages por `.github/workflows/bitacora.yml`. El contenido vive en `bitacora/src/datos.js` (árbol de metas, semanas, bitácora, decisiones); el resto del código de la página solo se toca si lo pido. Su estilo sale de mi repo teoria-musical y es solo de la página, no del juego.
-- `docs/` es la página anterior en HTML; se borra cuando la nueva esté publicada.
+- `docs/` es la página anterior en HTML; se borra cuando la nueva esté publicada. No se actualiza: las entradas de bitácora van en `bitacora/src/datos.js`.
+- `arte/` guarda plantillas y archivos fuente de arte (Aseprite) fuera del proyecto de Unity.
 - La raíz es para el proyecto de Unity. Cuando se agregue, configurar Git LFS para archivos pesados (texturas, audio, modelos).
 
 ## Cómo trabajar conmigo
