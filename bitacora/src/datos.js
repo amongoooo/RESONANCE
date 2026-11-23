@@ -22,6 +22,7 @@ export default {
     autor: "amongo",
     escuela: "TecNM campus Celaya",
     competencia: "Infomatrix / SOLACYT, categoría Desarrollo de Software",
+    inicio: "2026-11-20", // el calendario de la bitácora empieza aquí
     congelamiento: "2027-05-01",
     version1: "2027-07-04",
   },

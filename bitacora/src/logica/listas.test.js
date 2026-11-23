@@ -55,3 +55,29 @@ describe('listas', () => {
     expect(idDecision({ decision: 'Música: el MIDI' })).toBe('d-musica-el-midi')
   })
 })
+
+import { armarCalendario, contarPorDia, nivel } from './calendario.js'
+
+describe('calendario de cuadritos', () => {
+  const porDia = contarPorDia([{ fecha: '2026-11-20' }, { fecha: '2026-11-23' }, { fecha: '2026-11-23' }], [{ fecha: '2026-11-23' }])
+  it('cuenta registros por día', () => {
+    expect(porDia['2026-11-23']).toEqual({ entradas: 2, decisiones: 1 })
+    expect(nivel(0)).toBe(0)
+    expect(nivel(7)).toBe(3)
+  })
+  it('no muestra días antes del inicio ni después de hoy', () => {
+    const { semanas } = armarCalendario('2026-11-20', '2026-11-24', porDia)
+    // 20 nov 2026 es viernes: la primera semana empieza el lunes 16, con lunes a jueves vacíos.
+    expect(semanas).toHaveLength(2)
+    expect(semanas[0].slice(0, 4)).toEqual([null, null, null, null])
+    expect(semanas[0][4].fecha).toBe('2026-11-20')
+    expect(semanas[1][0].fecha).toBe('2026-11-23')
+    expect(semanas[1][0].total).toBe(3)
+    expect(semanas[1][2]).toBeNull()
+  })
+  it('marca dónde empieza cada mes', () => {
+    const { meses } = armarCalendario('2026-11-20', '2027-01-05')
+    expect(meses.map((m) => m.mes)).toEqual(['2026-11', '2026-12', '2027-01'])
+    expect(meses[0].semana).toBe(0)
+  })
+})

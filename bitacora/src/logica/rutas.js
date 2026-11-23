@@ -5,7 +5,7 @@
 // Las pestañas de abajo son las PÁGINAS; las que tienen apartados (vistas) los muestran en una barra arriba,
 // como Entrenar en teoria-musical (Oído | Ritmo | Letras).
 
-export const PAGINAS = [
+const TODAS = [
   { id: 'inicio', nombre: 'Inicio', vistas: [] },
   {
     id: 'plan',
@@ -34,6 +34,9 @@ export const PAGINAS = [
   },
   { id: 'ajustes', nombre: 'Ajustes', vistas: [] },
 ]
+
+/** Orden de la barra de abajo, de izquierda a derecha: Inicio al centro, al alcance del pulgar. */
+export const PAGINAS = ['juego', 'plan', 'inicio', 'registro', 'ajustes'].map((id) => TODAS.find((p) => p.id === id))
 
 // Direcciones viejas (anclas de la página anterior y las primeras de esta) → su página y vista nuevas.
 const ANTIGUAS = {
