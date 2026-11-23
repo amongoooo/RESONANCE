@@ -45,6 +45,45 @@ export default {
         ],
       },
       {
+        titulo: "Sala de estilo de la zona 1 (Ritmo)",
+        fecha: "2026-12-14",
+        nota: "Una sola sala pulida al máximo: el molde visual y técnico de todo el juego. Un paso por sesión, con plan y OK antes de cada uno.",
+        ramas: [
+          {
+            titulo: "Paso 1: Tilemap de la zona 1",
+            ramas: [
+              { titulo: "Tamaño de tile: 16×16 (un tile = una unidad de Unity).", hecho: true },
+              { titulo: "Plantilla de tiles con marcas de conexión (arte/plantillas).", hecho: true },
+              { titulo: "Estudiar tiles en Shovel Knight, Celeste, Terraria y Animal Well.", hecho: false },
+              { titulo: "Cerrar la paleta: casillas por material y hora del día.", hecho: false },
+              { titulo: "Dibujar los tiles de la plantilla en Aseprite.", hecho: false },
+              { titulo: "Tilemap con Rule Tile y cámara Pixel Perfect en Unity.", hecho: false },
+            ],
+          },
+          {
+            titulo: "Paso 2: Luz 2D estilo t3ssel8r y paso de gris a color",
+            ramas: [
+              { titulo: "Shader de paleta por casillas: fila de silencio a fila de color.", hecho: false },
+              { titulo: "Luz 2D sobre los tiles sin ensuciar el pixel art.", hecho: false },
+            ],
+          },
+          {
+            titulo: "Paso 3: Protagonista con cuerpo procedural",
+            ramas: [
+              { titulo: "Correr y saltar.", hecho: false },
+              { titulo: "Cuerpo procedural (sin cuadros de animación).", hecho: false },
+            ],
+          },
+          {
+            titulo: "Paso 4: El bombo de la tribu del ritmo",
+            ramas: [
+              { titulo: "Metrónomo ajustable.", hecho: false },
+              { titulo: "El bombo golpea el suelo a tiempo.", hecho: false },
+            ],
+          },
+        ],
+      },
+      {
         titulo: "Bitácora nueva, fase 1: React y árbol de metas",
         fecha: "2026-11-29",
         nota: "Solo después de la tarea de Unity del día. Con esta lista completa, la fase terminó.",
@@ -121,6 +160,14 @@ export default {
   bitacora: [
     {
       fecha: "2026-11-23",
+      hora: "12:00",
+      titulo: "Empieza la sala de estilo de la zona 1",
+      texto:
+        "Arranqué la sala de estilo: una sola sala de la tribu del ritmo pulida al máximo, que será el molde de todo el juego (fecha: 14 de diciembre). Definí tiles de 16×16 y la lista mínima de tiles, hice una plantilla con las marcas de conexión y propuse dibujar con una paleta por casillas, para que el gris del silencio, el color de cada zona y las skins sean solo filas de una tabla. Para aprender de tiles voy a estudiar Shovel Knight (paleta limitada y contraste), Celeste (uniones y esquinas), Terraria (variantes al azar) y Animal Well (luz sobre pixel art); y para atmósfera, Kingdom Two Crowns, Rain World, Owlboy, Blasphemous, Gris y los devlogs de t3ssel8r.",
+      etiquetas: ["arte", "diseño"],
+    },
+    {
+      fecha: "2026-11-23",
       hora: "00:55",
       titulo: "Cómo entra la música al juego",
       texto:
@@ -153,6 +200,10 @@ export default {
     { fecha: "2026-11-23", hora: "02:22", decision: "Juego en 2D lateral (plataformero), casi todo procedural", porque: "Lo decidí el 22 de noviembre en la noche y la prueba de capas 2D lo confirmó: pixel art a 480×270 con animación procedural tipo Rain World y luces y shaders que reaccionan a la música. El 2.5D pedía una prueba de cámara 3D y modelar en Blender, y eso se come semanas que necesito para las tribus." },
     { fecha: "2026-11-23", hora: "00:55", decision: "Música: el MIDI es la fuente de verdad; fondo en stems y lo que toca el jugador con samples propios", porque: "Lo visual necesita saber qué nota suena, y las tribus enseñan ritmos por partes, así que esas capas no pueden ser una grabación cerrada. El fondo conserva la mezcla del DAW." },
     { fecha: "2026-11-23", hora: "01:01", decision: "Compongo y exporto solo desde FL Studio (sin Ableton); en el juego sigue Unity + FMOD", porque: "FL Studio exporta todas las pistas en un solo MIDI, que es la fuente de verdad de la música. FMOD se queda para el audio del juego, como en la decisión de audio del 20 de noviembre. (Corregido el 23 de noviembre: antes decía «sin FMOD» por error.)" },
+    { fecha: "2026-11-23", hora: "12:00", decision: "La zona 1 es la tribu del Ritmo; las zonas siguen a las tribus", porque: "La historia cerrada ordena el mundo por tribus: 1 Ritmo (África occidental), 2 Melodía, 3 Armonía, 4 La mezcla (Latinoamérica y México) y el caracol al centro. «Las Cuerdas» y las zonas extra eran del diseño anterior." },
+    { fecha: "2026-11-23", hora: "12:00", decision: "Tiles de 16×16", porque: "Con 16 PPU un tile es una unidad de Unity: posiciones y saltos sin decimales. A 480×270 se ven 30×17 tiles, suficiente para ver una sala entera con lo grave abajo y lo agudo arriba." },
+    { fecha: "2026-11-23", hora: "12:00", decision: "Pendiente: dibujar con una paleta por casillas", porque: "Propuesta: dibujo a color y el código trata cada color como una casilla. El gris del silencio, el color de cada zona y las skins son filas de una tabla en el Inspector. Si dibujara en gris, dos materiales con el mismo brillo se volverían el mismo y no se podrían colorear distinto. Falta decidir las casillas por material y la hora del día de la zona 1.", pendiente: true },
+    { fecha: "2026-11-23", hora: "12:00", decision: "Pendiente: los mapas se arman en el Tilemap de Unity, no en Tiled", porque: "Propuesta: las luces, el bombo, el metrónomo y el Rule Tile viven en Unity; Tiled agregaría un paso de importación que puede fallar y repetiría el autotiling. Aseprite (con capas de tilemap) queda para todo el arte.", pendiente: true },
   ],
 
   // Zonas del juego (las marcadas como extra solo si sobra tiempo).
