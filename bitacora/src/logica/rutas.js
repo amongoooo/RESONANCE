@@ -1,23 +1,67 @@
 // Páginas de la bitácora. Cada una vive en su propia dirección con «#/», por ejemplo
-// https://amongoooo.github.io/resonance/#/bitacora. Con «#» GitHub Pages no necesita
+// https://amongoooo.github.io/resonance/#/registro/decisiones. Con «#» GitHub Pages no necesita
 // configurar nada: siempre sirve el mismo index.html y la página se elige aquí.
+//
+// Las pestañas de abajo son las PÁGINAS; las que tienen apartados (vistas) los muestran en una barra arriba,
+// como Entrenar en teoria-musical (Oído | Ritmo | Letras).
 
 export const PAGINAS = [
-  { id: 'inicio', nombre: 'Inicio', titulo: 'Inicio' },
-  { id: 'plan', nombre: 'Plan', titulo: 'Plan y metas' },
-  { id: 'bitacora', nombre: 'Bitácora', titulo: 'Bitácora' },
-  { id: 'decisiones', nombre: 'Decisiones', titulo: 'Decisiones' },
-  { id: 'juego', nombre: 'El juego', titulo: 'El juego' },
+  { id: 'inicio', nombre: 'Inicio', vistas: [] },
+  {
+    id: 'plan',
+    nombre: 'Plan',
+    vistas: [
+      { id: 'metas', nombre: 'Metas', bajada: 'Qué sigue y cuánto falta para cada meta.' },
+      { id: 'ruta', nombre: 'Ruta', bajada: 'Las 32 semanas, por fase.' },
+    ],
+  },
+  {
+    id: 'registro',
+    nombre: 'Registro',
+    vistas: [
+      { id: 'bitacora', nombre: 'Bitácora', bajada: 'Lo que hice y aprendí, con fecha y hora.' },
+      { id: 'decisiones', nombre: 'Decisiones', bajada: 'Qué decidí y por qué. Si algo cambia, la vieja se queda para ver el camino.' },
+    ],
+  },
+  {
+    id: 'juego',
+    nombre: 'Juego',
+    vistas: [
+      { id: 'idea', nombre: 'Idea', bajada: 'Un plataformero donde no peleas: afinas el mundo para avanzar.' },
+      { id: 'zonas', nombre: 'Zonas', bajada: 'Cada zona enseña un concepto; la última los junta todos.' },
+      { id: 'validacion', nombre: 'Validación', bajada: 'Cómo se va a comprobar que el juego enseña.' },
+    ],
+  },
+  { id: 'ajustes', nombre: 'Ajustes', vistas: [] },
 ]
 
-// Las anclas de la página anterior (#estado, #metas…) siguen funcionando: llevan a su página nueva.
-const ANTIGUAS = { estado: 'inicio', metas: 'plan', ruta: 'plan', validacion: 'juego' }
-
-/** De «#/bitacora», «#bitacora» o «» a un id de página. Lo desconocido va a Inicio. */
-export const paginaDeHash = (hash = '') => {
-  const limpio = hash.replace(/^#\/?/, '').split(/[/?]/)[0].toLowerCase()
-  if (PAGINAS.some((p) => p.id === limpio)) return limpio
-  return ANTIGUAS[limpio] ?? 'inicio'
+// Direcciones viejas (anclas de la página anterior y las primeras de esta) → su página y vista nuevas.
+const ANTIGUAS = {
+  estado: ['inicio'],
+  metas: ['plan', 'metas'],
+  ruta: ['plan', 'ruta'],
+  bitacora: ['registro', 'bitacora'],
+  decisiones: ['registro', 'decisiones'],
+  validacion: ['juego', 'validacion'],
+  configuracion: ['ajustes'],
 }
 
-export const hashDePagina = (id) => (id === 'inicio' ? '#/' : `#/${id}`)
+/**
+ * De «#/registro/decisiones», «#/plan», «#bitacora» o «» a { pagina, vista }.
+ * Lo desconocido va a Inicio; una vista que no existe va a la primera de su página (vista: null).
+ */
+export const rutaDeHash = (hash = '') => {
+  const [a = '', b = ''] = hash.replace(/^#\/?/, '').split('?')[0].toLowerCase().split('/')
+  const pagina = PAGINAS.find((p) => p.id === a)
+  if (pagina) return { pagina: pagina.id, vista: pagina.vistas.some((v) => v.id === b) ? b : null }
+  const vieja = ANTIGUAS[a]
+  return vieja ? { pagina: vieja[0], vista: vieja[1] ?? null } : { pagina: 'inicio', vista: null }
+}
+
+/** La vista que toca mostrar: la pedida o la primera de la página. */
+export const vistaDe = ({ pagina, vista }) => {
+  const p = PAGINAS.find((x) => x.id === pagina)
+  return p.vistas.find((v) => v.id === vista) ?? p.vistas[0] ?? null
+}
+
+export const hashDe = (pagina, vista) => (pagina === 'inicio' ? '#/' : vista ? `#/${pagina}/${vista}` : `#/${pagina}`)

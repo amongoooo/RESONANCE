@@ -2,14 +2,25 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { MotionConfig } from 'motion/react'
 import App from './App.jsx'
+import { aplicar } from './logica/opciones.js'
+import { useOpciones } from './ui/Navegacion.jsx'
 import './index.css'
+
+aplicar()
+
+/** Animaciones: «reducidas» en Ajustes, o «reducir movimiento» del sistema, quitan desplazamientos y rebotes. */
+function Raiz() {
+  const { movimiento } = useOpciones()
+  return (
+    <MotionConfig reducedMotion={movimiento === 'reducido' ? 'always' : 'user'}>
+      <App />
+    </MotionConfig>
+  )
+}
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    {/* reducedMotion="user": con «reducir movimiento» del sistema, Motion quita los desplazamientos */}
-    <MotionConfig reducedMotion="user">
-      <App />
-    </MotionConfig>
+    <Raiz />
   </StrictMode>,
 )
 

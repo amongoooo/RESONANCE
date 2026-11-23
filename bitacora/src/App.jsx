@@ -4,7 +4,9 @@ import D from './datos.js'
 import { conIds, proximaMeta } from './logica/arbol.js'
 import { cuando, deClave, larga, masNuevoPrimero, sumarDias } from './logica/fechas.js'
 import { separarDecisiones } from './logica/listas.js'
-import { PAGINAS } from './logica/rutas.js'
+import { guardarUltima } from './logica/opciones.js'
+import { hashDe, PAGINAS, vistaDe } from './logica/rutas.js'
+import Ajustes from './secciones/Ajustes.jsx'
 import ArbolMetas from './secciones/ArbolMetas.jsx'
 import Bitacora from './secciones/Bitacora.jsx'
 import Decisiones from './secciones/Decisiones.jsx'
@@ -13,15 +15,16 @@ import Juego from './secciones/Juego.jsx'
 import Ruta from './secciones/Ruta.jsx'
 import Sintonizador from './secciones/Sintonizador.jsx'
 import { Flecha } from './ui/Iconos.jsx'
-import { BarraAbajo, Cabecera, usePagina } from './ui/Navegacion.jsx'
+import { BarraAbajo, BarraVistas, Cabecera, useRuta } from './ui/Navegacion.jsx'
 import { RESORTE } from './ui/movimiento.js'
 
-/** Título grande de cada página y una línea que dice qué hay en ella. */
-function Titulo({ titulo, bajada }) {
+/** Título grande de cada apartado: la página arriba en pequeño y una línea que dice qué hay. */
+function Titulo({ pagina, titulo, bajada }) {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-1.5">
+      <span className="font-juego text-base tracking-wide text-zinc-500 uppercase">{pagina}</span>
       <h1 className="font-titulo text-4xl leading-none font-extrabold tracking-tight">{titulo}</h1>
-      {bajada && <p className="text-lg leading-snug text-zinc-600">{bajada}</p>}
+      {bajada && <p className="mt-0.5 text-lg leading-snug text-zinc-600">{bajada}</p>}
     </div>
   )
 }
@@ -69,10 +72,10 @@ function Inicio({ fase, enCurso, proxima, entradas }) {
         <h2 id="h-ultimo" className="font-titulo text-2xl font-bold tracking-tight">
           Lo último
         </h2>
-        {ultima && <Atajo href="#/bitacora" etiqueta="Bitácora" titulo={ultima.titulo} detalle={cuando(ultima)} />}
+        {ultima && <Atajo href="#/registro/bitacora" etiqueta="Bitácora" titulo={ultima.titulo} detalle={cuando(ultima)} />}
         {pendientes.length > 0 && (
           <Atajo
-            href="#/decisiones"
+            href="#/registro/decisiones"
             etiqueta="Por decidir"
             titulo={pendientes[0].decision.replace(/^Pendiente:\s*/, '')}
             detalle={pendientes.length > 1 ? `y ${pendientes.length - 1} más` : undefined}
@@ -85,7 +88,10 @@ function Inicio({ fase, enCurso, proxima, entradas }) {
 }
 
 export default function App() {
-  const pagina = usePagina()
+  const ruta = useRuta()
+  const { pagina } = ruta
+  const info = PAGINAS.find((x) => x.id === pagina)
+  const vista = vistaDe(ruta)
   const principal = useRef(null)
   const primeraVez = useRef(true)
   const hoy = new Date()
@@ -97,85 +103,63 @@ export default function App() {
     (hoy < deClave(D.fases[0].inicio) ? D.fases[0] : D.fases[D.fases.length - 1])
   const entradas = [...D.bitacora].sort(masNuevoPrimero)
   const p = D.proyecto
-  const info = PAGINAS.find((x) => x.id === pagina)
+  const clave = `${pagina}/${vista?.id ?? ''}`
 
-  // Al cambiar de página: arriba del todo, título de la pestaña y foco al contenido (para lectores de pantalla).
+  // Al cambiar de página o apartado: arriba del todo, título de la pestaña, foco al contenido (lectores de pantalla)
+  // y se recuerda como «la última» (Ajustes > Al abrir la página).
   useEffect(() => {
-    document.title = pagina === 'inicio' ? `${p.nombre}: registro del proyecto` : `${info.titulo} · ${p.nombre}`
+    document.title = pagina === 'inicio' ? `${p.nombre}: registro del proyecto` : `${vista?.nombre ?? info.nombre} · ${p.nombre}`
+    guardarUltima(hashDe(pagina, vista?.id))
     if (primeraVez.current) {
       primeraVez.current = false
       return
     }
     window.scrollTo({ top: 0, behavior: 'instant' })
     principal.current?.focus({ preventScroll: true })
-  }, [pagina, info, p.nombre])
+  }, [clave, pagina, vista, info, p.nombre])
 
+  const titulo = vista && <Titulo pagina={info.nombre} titulo={vista.nombre} bajada={vista.bajada} />
   const contenido = {
-    inicio: <Inicio fase={fase} enCurso={enCurso} proxima={proxima} entradas={entradas} />,
-    plan: (
-      <div className="flex flex-col gap-12">
-        <Titulo titulo="Plan y metas" bajada="Qué sigue, cuánto falta y cómo se reparten las 32 semanas." />
-        <section aria-labelledby="h-metas" className="flex flex-col gap-4">
-          <h2 id="h-metas" className="font-titulo text-2xl font-bold tracking-tight">
-            Árbol de metas
-          </h2>
-          <ArbolMetas raiz={raiz} proxima={proxima} />
-        </section>
-        <section aria-labelledby="h-ruta" className="flex flex-col gap-4">
-          <h2 id="h-ruta" className="font-titulo text-2xl font-bold tracking-tight">
-            Ruta de {D.semanas.length} semanas
-          </h2>
-          <Ruta D={D} fase={fase} enCurso={enCurso} />
-        </section>
-      </div>
+    inicio: () => <Inicio fase={fase} enCurso={enCurso} proxima={proxima} entradas={entradas} />,
+    plan: () => (vista.id === 'ruta' ? <Ruta D={D} fase={fase} enCurso={enCurso} /> : <ArbolMetas raiz={raiz} proxima={proxima} />),
+    registro: () => (vista.id === 'decisiones' ? <Decisiones decisiones={D.decisiones} /> : <Bitacora entradas={entradas} />),
+    juego: () => (
+      <Juego vista={vista.id} juego={D.juego} zonas={D.zonas} validacion={D.validacion} decisiones={D.decisiones} fases={D.fases} semanas={D.semanas} />
     ),
-    bitacora: (
-      <div className="flex flex-col gap-8">
-        <Titulo titulo="Bitácora" bajada="Lo que hice y aprendí, con fecha y hora." />
-        <Bitacora entradas={entradas} />
-      </div>
-    ),
-    decisiones: (
-      <div className="flex flex-col gap-8">
-        <Titulo titulo="Decisiones" bajada="Qué decidí y por qué. Si algo cambia, la vieja se queda para ver el camino." />
-        <Decisiones decisiones={D.decisiones} />
-      </div>
-    ),
-    juego: (
-      <div className="flex flex-col gap-8">
-        <Titulo titulo="El juego" bajada="Un plataformero donde no peleas: afinas el mundo para avanzar." />
-        <Juego juego={D.juego} zonas={D.zonas} validacion={D.validacion} decisiones={D.decisiones} />
-      </div>
-    ),
+    ajustes: () => <Ajustes proyecto={p} />,
   }
 
   return (
     <>
-      <Cabecera nombre={p.nombre} />
+      {vista ? <BarraVistas pagina={pagina} actual={vista.id} /> : <Cabecera nombre={p.nombre} />}
 
-      <main ref={principal} tabIndex={-1} aria-label={info.titulo} className="mx-auto max-w-2xl px-4 pt-6 pb-36 outline-none sm:px-5">
+      <main ref={principal} tabIndex={-1} aria-label={vista?.nombre ?? info.nombre} className="mx-auto max-w-2xl px-4 pt-4 pb-36 outline-none sm:px-5">
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
-            key={pagina}
+            key={clave}
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8, transition: { duration: 0.12 } }}
             transition={RESORTE.suave}
+            className="flex flex-col gap-8"
           >
-            {contenido[pagina]}
+            {titulo}
+            {contenido[pagina]()}
           </motion.div>
         </AnimatePresence>
 
-        <footer className="mt-16 flex flex-col gap-1 border-t border-zinc-200 pt-6 text-base text-zinc-500">
-          <p>
-            {p.nombre}, por {p.autor}, {p.escuela}.
-          </p>
-          <p>{p.competencia}.</p>
-          {entradas[0] && <p>Última entrada en la bitácora: {larga(entradas[0].fecha)}.</p>}
-        </footer>
+        {pagina === 'inicio' && (
+          <footer className="mt-16 flex flex-col gap-1 border-t border-zinc-200 pt-6 text-base text-zinc-500">
+            <p>
+              {p.nombre}, por {p.autor}, {p.escuela}.
+            </p>
+            <p>{p.competencia}.</p>
+            {entradas[0] && <p>Última entrada en la bitácora: {larga(entradas[0].fecha)}.</p>}
+          </footer>
+        )}
       </main>
 
-      <BarraAbajo actual={pagina} />
+      <BarraAbajo ruta={ruta} />
     </>
   )
 }

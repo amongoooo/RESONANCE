@@ -144,3 +144,8 @@ html.cambiando-tema * {
 
 /* El contenido recibe el foco al cambiar de página (para lectores de pantalla); no necesita marco. */
 [tabindex="-1"]:focus { outline: none; }
+
+/* Ajustes (src/logica/opciones.js). Letra grande: todo está en rem, así crece parejo. */
+html.letra-grande { font-size: 112.5%; }
+/* Vidrio opaco: lo que flota pasa a superficie sólida, sin desenfoque (más contraste y menos trabajo para el teléfono). */
+html.opaco .vidrio { -webkit-backdrop-filter: none; backdrop-filter: none; background-color: var(--color-white); }

@@ -1,16 +1,27 @@
 import { describe, expect, it } from 'vitest'
 import { contarEtiquetas, idDecision, porMes, separarDecisiones } from './listas.js'
-import { paginaDeHash } from './rutas.js'
+import { hashDe, rutaDeHash, vistaDe } from './rutas.js'
 
 describe('páginas', () => {
-  it('elige la página por la dirección', () => {
-    expect(paginaDeHash('#/bitacora')).toBe('bitacora')
-    expect(paginaDeHash('')).toBe('inicio')
-    expect(paginaDeHash('#/no-existe')).toBe('inicio')
+  it('elige página y apartado por la dirección', () => {
+    expect(rutaDeHash('#/registro/decisiones')).toEqual({ pagina: 'registro', vista: 'decisiones' })
+    expect(rutaDeHash('#/plan')).toEqual({ pagina: 'plan', vista: null })
+    expect(rutaDeHash('')).toEqual({ pagina: 'inicio', vista: null })
+    expect(rutaDeHash('#/no-existe')).toEqual({ pagina: 'inicio', vista: null })
   })
-  it('las anclas viejas llevan a su página nueva', () => {
-    expect(paginaDeHash('#metas')).toBe('plan')
-    expect(paginaDeHash('#decisiones')).toBe('decisiones')
+  it('sin apartado (o uno que no existe) muestra el primero', () => {
+    expect(vistaDe(rutaDeHash('#/plan')).id).toBe('metas')
+    expect(vistaDe(rutaDeHash('#/juego/nada')).id).toBe('idea')
+    expect(vistaDe(rutaDeHash('#/ajustes'))).toBeNull()
+  })
+  it('las direcciones viejas llevan a su lugar nuevo', () => {
+    expect(rutaDeHash('#metas')).toEqual({ pagina: 'plan', vista: 'metas' })
+    expect(rutaDeHash('#/decisiones')).toEqual({ pagina: 'registro', vista: 'decisiones' })
+    expect(rutaDeHash('#bitacora')).toEqual({ pagina: 'registro', vista: 'bitacora' })
+  })
+  it('arma direcciones', () => {
+    expect(hashDe('inicio')).toBe('#/')
+    expect(hashDe('registro', 'bitacora')).toBe('#/registro/bitacora')
   })
 })
 

@@ -29,12 +29,12 @@ function Tarjeta({ d, tipo }) {
       <span className={`font-titulo text-lg leading-tight font-bold tracking-tight ${tipo === 'cambiada' ? 'text-zinc-500 line-through decoration-zinc-300' : ''}`}>{limpiar(d.decision)}</span>
       <span className="text-base leading-snug text-zinc-600">{d.porque}</span>
       {d.reemplaza && tipo !== 'cambiada' && (
-        <a href="#/decisiones" onClick={irA(d.reemplaza)} className="mt-1 text-sm font-semibold text-zinc-500 underline underline-offset-4">
+        <a href="#/registro/decisiones" onClick={irA(d.reemplaza)} className="mt-1 text-sm font-semibold text-zinc-500 underline underline-offset-4">
           Cambia una decisión anterior
         </a>
       )}
       {d.reemplazadaPor && (
-        <a href="#/decisiones" onClick={irA(d.reemplazadaPor.decision)} className="mt-1 flex items-center gap-1 text-base font-semibold text-sky-500 no-underline">
+        <a href="#/registro/decisiones" onClick={irA(d.reemplazadaPor.decision)} className="mt-1 flex items-center gap-1 text-base font-semibold text-sky-500 no-underline">
           La cambió: {limpiar(d.reemplazadaPor.decision)} ({cuando(d.reemplazadaPor)}) <Flecha width={18} height={18} className="shrink-0" />
         </a>
       )}
