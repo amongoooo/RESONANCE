@@ -7,7 +7,7 @@ Cómo entra la música al juego. Decidido el 23 de noviembre de 2026.
 - **El MIDI es la fuente de verdad.** Compongo en FL Studio y exporto un solo `.mid` con todas las pistas. Así el juego sabe qué nota suena, cuándo y con qué fuerza.
 - **Híbrido.** Las capas de fondo son stems (WAV) que conservan la mezcla del DAW. Lo que el jugador toca, aprende o compone (los ritmos de las tribus, el modo director) lo toca el juego con samples de mi propia biblioteca de sonidos.
 - **Un solo reloj.** El mismo reloj musical mueve el sonido, las luces y las partículas: si la música va más rápido, todo lo visual va más rápido con ella.
-- **Sin FMOD.** Toda la música va con el audio de Unity; las capas nuevas entran en la siguiente barra para que nunca se oigan a destiempo.
+- **Unity + FMOD.** Compongo solo en FL Studio (sin Ableton) y el audio del juego va con Unity + FMOD; las capas nuevas entran en la siguiente barra para que nunca se oigan a destiempo.
 
 ## Cómo se organizan las pistas
 
