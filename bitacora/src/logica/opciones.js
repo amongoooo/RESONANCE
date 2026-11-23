@@ -11,6 +11,7 @@ export const OPCIONES = {
   vidrio: 'desenfoque', // desenfoque | opaco
   nombres: 'elegida', //  elegida (solo la pestaña elegida muestra su nombre) | todas
   abrir: 'inicio', //     inicio | ultima (la última página que viste)
+  barras: 'normal', //    normal (páginas abajo, apartados arriba) | invertidas (al revés; también deslizando la barra)
 }
 
 const leer = () => {

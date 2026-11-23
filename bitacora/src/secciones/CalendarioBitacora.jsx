@@ -119,7 +119,7 @@ export default function CalendarioBitacora({ entradas, decisiones, desde, hasta,
   const ancho = Math.max(semanas.length * COL - HUECO, (posMeses.at(-1)?.izq ?? 0) + 28)
 
   return (
-    <div ref={refFijo} className="sticky z-20 -mx-1 flex flex-col items-center" style={{ top: 'calc(max(0.75rem, env(safe-area-inset-top)) + 3.5rem)' }}>
+    <div ref={refFijo} className="sticky z-20 -mx-1 flex flex-col items-center" style={{ top: 'var(--alto-arriba, 4.25rem)' }}>
       <AnimatePresence initial={false}>
         {abierto && (
           <motion.div key="calendario" {...DESPLEGAR} className="w-full overflow-hidden">

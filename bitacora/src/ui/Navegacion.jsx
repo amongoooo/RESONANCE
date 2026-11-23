@@ -1,7 +1,8 @@
-import { AnimatePresence, LayoutGroup, motion } from 'motion/react'
-import { useEffect, useState, useSyncExternalStore } from 'react'
-import { opciones, suscribirOpciones } from '../logica/opciones.js'
-import { hashDe, PAGINAS, rutaDeHash } from '../logica/rutas.js'
+import { motion } from 'motion/react'
+import { useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from 'react'
+import { cambiarOpcion, opciones, suscribirOpciones } from '../logica/opciones.js'
+import { hashDe, PAGINAS, rutaDeHash, vistaDe } from '../logica/rutas.js'
+import Pildora from './Pildora.jsx'
 import { Casa, Descargar, Engrane, Libro, Onda, Ramas } from './Iconos.jsx'
 import { RESORTE } from './movimiento.js'
 import Pulsable from './Pulsable.jsx'
@@ -31,110 +32,84 @@ export function useOpciones() {
 // Cada pestaña recuerda su última vista mientras la página esté abierta (como Aprender y Entrenar en teoria-musical).
 const ultimaVista = {}
 
-/**
- * Barra fija abajo, al alcance del pulgar (como la de teoria-musical): la pestaña elegida crece y muestra su nombre;
- * las demás, solo su ícono (o todas con nombre: Ajustes > Nombres en la barra). Tocar la pestaña en la que ya estás
- * sube al principio.
- */
-export function BarraAbajo({ ruta }) {
-  const { nombres } = useOpciones()
-  const todas = nombres === 'todas'
-  if (ruta.vista) ultimaVista[ruta.pagina] = ruta.vista
-  return (
-    <nav aria-label="Páginas" className="pointer-events-none fixed inset-x-0 bottom-0 z-40 flex justify-center px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
-      <LayoutGroup id="pestanas">
-        <ul className={`pointer-events-auto flex w-full max-w-md items-center justify-between rounded-full p-1.5 ${VIDRIO}`}>
-          {PAGINAS.map((p) => {
-            const Icono = ICONOS[p.id]
-            const activa = p.id === ruta.pagina
-            const conNombre = activa || todas
-            return (
-              <motion.li key={p.id} layout transition={RESORTE.pulsar} className={todas ? 'min-w-0 flex-1' : 'shrink-0'}>
-                <Pulsable
-                  href={hashDe(p.id, ultimaVista[p.id])}
-                  onClick={(e) => {
-                    if (!activa) return
-                    e.preventDefault()
-                    window.scrollTo({ top: 0, behavior: opciones().movimiento === 'reducido' ? 'auto' : 'smooth' })
-                  }}
-                  aria-current={activa ? 'page' : undefined}
-                  aria-label={p.nombre}
-                  className={`relative flex items-center justify-center rounded-full no-underline transition-colors duration-200 ${
-                    todas ? 'h-14 flex-col gap-0.5 px-1' : activa ? 'h-12 gap-1.5 px-4' : 'size-12'
-                  } ${activa ? 'text-zinc-900' : 'text-zinc-500'}`}
-                >
-                  {activa && (
-                    <motion.span
-                      layoutId="marca-pestana"
-                      transition={RESORTE.pulsar}
-                      className="absolute inset-0 rounded-full bg-white shadow-[0_1px_5px_rgb(16_18_28/0.18)] dark:bg-zinc-100"
-                      aria-hidden="true"
-                    />
-                  )}
-                  <motion.span layout="position" transition={RESORTE.pulsar} className="relative grid place-items-center">
-                    <Icono width={activa ? 26 : 24} height={activa ? 26 : 24} strokeWidth={activa ? 2.3 : 2} />
-                  </motion.span>
-                  <AnimatePresence initial={false}>
-                    {conNombre && (
-                      <motion.span
-                        key="nombre"
-                        initial={todas ? false : { opacity: 0, width: 0 }}
-                        animate={{ opacity: 1, width: 'auto' }}
-                        exit={{ opacity: 0, width: 0 }}
-                        transition={RESORTE.pulsar}
-                        className={`relative overflow-hidden whitespace-nowrap ${todas ? 'max-w-full truncate text-[0.75rem]' : 'text-sm'} ${activa ? 'font-bold' : 'font-semibold'}`}
-                        aria-hidden="true"
-                      >
-                        {p.nombre}
-                      </motion.span>
-                    )}
-                  </AnimatePresence>
-                </Pulsable>
-              </motion.li>
-            )
-          })}
-        </ul>
-      </LayoutGroup>
-    </nav>
-  )
+const subir = () => window.scrollTo({ top: 0, behavior: opciones().movimiento === 'reducido' ? 'auto' : 'smooth' })
+const navegar = (hash) => {
+  if (window.location.hash !== hash) window.location.hash = hash
 }
 
 /**
- * Barra de apartados arriba (como Oído | Ritmo | Letras en Entrenar de teoria-musical): píldora de vidrio pegada
- * arriba, con una marca blanca que se desliza al elegido.
+ * Las dos barras: las PÁGINAS (abajo, al alcance del pulgar) y, si la página tiene apartados, sus VISTAS (arriba,
+ * como Entrenar en teoria-musical). Deslizar cualquiera de las dos hacia arriba o hacia abajo las intercambia
+ * (Ajustes > Orden de las barras); deslizar otra vez las regresa.
  */
-export function BarraVistas({ pagina, actual }) {
-  const p = PAGINAS.find((x) => x.id === pagina)
-  if (!p.vistas.length) return null
+function useBarras(ruta) {
+  const { nombres, barras } = useOpciones()
+  const pagina = PAGINAS.find((x) => x.id === ruta.pagina)
+  const vista = vistaDe(ruta)
+  if (vista) ultimaVista[pagina.id] = vista.id
+  const tieneVistas = pagina.vistas.length > 0
+  const invertidas = tieneVistas && barras === 'invertidas'
+  const alternar = () => cambiarOpcion('barras', barras === 'invertidas' ? 'normal' : 'invertidas')
+
+  const paginas = (
+    <Pildora
+      items={PAGINAS.map((p) => ({ ...p, Icono: ICONOS[p.id] }))}
+      activo={pagina.id}
+      variante="pestanas"
+      todas={nombres === 'todas'}
+      etiqueta="Páginas"
+      alIr={(p) => navegar(hashDe(p.id, ultimaVista[p.id]))}
+      alRepetir={subir}
+      alInvertir={tieneVistas ? alternar : undefined}
+    />
+  )
+  const vistas = tieneVistas ? (
+    <Pildora
+      items={pagina.vistas}
+      activo={vista.id}
+      variante="vistas"
+      etiqueta={pagina.nombre}
+      alIr={(v) => navegar(hashDe(pagina.id, v.id))}
+      alRepetir={subir}
+      alInvertir={alternar}
+    />
+  ) : null
+  return { arriba: invertidas ? paginas : vistas, abajo: invertidas ? vistas : paginas, arribaEsPaginas: invertidas }
+}
+
+/** Barra de arriba (pegada al subir la página). Su alto queda en --alto-arriba para lo que se pega debajo (el calendario). */
+export function BarraArriba({ ruta }) {
+  const { arriba, arribaEsPaginas } = useBarras(ruta)
+  const caja = useRef(null)
+  useLayoutEffect(() => {
+    const el = caja.current
+    const html = document.documentElement
+    if (!el) return html.style.removeProperty('--alto-arriba')
+    const medir = () => html.style.setProperty('--alto-arriba', `${el.offsetHeight}px`)
+    medir()
+    const ro = new ResizeObserver(medir)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [arriba])
+  if (!arriba) return null
   return (
-    <div className="pointer-events-none sticky top-0 z-30 mx-auto max-w-2xl px-4 pt-[max(0.75rem,env(safe-area-inset-top))] pb-2 sm:px-5">
-      <LayoutGroup id={`vistas-${pagina}`}>
-        <div role="tablist" aria-label={p.nombre} className={`pointer-events-auto flex h-12 w-full gap-1 rounded-full p-1 ${VIDRIO}`}>
-          {p.vistas.map((v) => {
-            const activa = v.id === actual
-            return (
-              <a
-                key={v.id}
-                href={hashDe(pagina, v.id)}
-                role="tab"
-                aria-selected={activa}
-                className={`relative flex min-w-0 flex-1 items-center justify-center rounded-full px-2 text-base font-bold no-underline transition-colors ${activa ? 'text-zinc-900' : 'text-zinc-500'}`}
-                style={{ touchAction: 'manipulation' }}
-              >
-                {activa && (
-                  <motion.span
-                    layoutId={`marca-${pagina}`}
-                    transition={RESORTE.pulsar}
-                    className="absolute inset-0 rounded-full bg-white shadow-[0_1px_4px_rgb(16_18_28/0.14)] dark:bg-zinc-100"
-                  />
-                )}
-                <span className="relative truncate">{v.nombre}</span>
-              </a>
-            )
-          })}
-        </div>
-      </LayoutGroup>
+    <div ref={caja} data-barra-arriba className="pointer-events-none sticky top-0 z-30 flex justify-center px-4 pt-[max(0.75rem,env(safe-area-inset-top))] pb-2 sm:px-5">
+      <motion.div layoutId={arribaEsPaginas ? 'barra-paginas' : 'barra-vistas'} transition={RESORTE.pantalla} className={`flex w-full justify-center ${arribaEsPaginas ? 'max-w-md' : 'max-w-2xl'}`}>
+        {arriba}
+      </motion.div>
     </div>
+  )
+}
+
+/** Barra fija abajo. */
+export function BarraAbajo({ ruta }) {
+  const { abajo, arribaEsPaginas } = useBarras(ruta)
+  return (
+    <nav aria-label="Navegación" className="pointer-events-none fixed inset-x-0 bottom-0 z-40 flex justify-center px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+      <motion.div layoutId={arribaEsPaginas ? 'barra-vistas' : 'barra-paginas'} transition={RESORTE.pantalla} className="flex w-full max-w-md justify-center">
+        {abajo}
+      </motion.div>
+    </nav>
   )
 }
 

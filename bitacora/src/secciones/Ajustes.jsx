@@ -31,7 +31,7 @@ const AJUSTES = [
       },
       {
         id: 'vidrio',
-        nombre: 'Barras',
+        nombre: 'Material de las barras',
         valores: [
           ['desenfoque', 'Vidrio', 'Las barras que flotan dejan ver el contenido desenfocado.'],
           ['opaco', 'Sólidas', 'Barras sólidas: más contraste y menos trabajo para el teléfono.'],
@@ -56,6 +56,14 @@ const AJUSTES = [
         valores: [
           ['elegida', 'Solo la elegida', 'La pestaña en la que estás crece y muestra su nombre; las demás, solo el ícono.'],
           ['todas', 'Todas', 'Cada pestaña muestra su nombre debajo del ícono.'],
+        ],
+      },
+      {
+        id: 'barras',
+        nombre: 'Orden de las barras',
+        valores: [
+          ['normal', 'Páginas abajo', 'Las páginas abajo y los apartados (como Bitácora | Decisiones) arriba. Desliza una barra hacia arriba o abajo para cambiarlas.'],
+          ['invertidas', 'Páginas arriba', 'Las páginas arriba y los apartados abajo, junto al pulgar. Desliza una barra hacia arriba o abajo para regresarlas.'],
         ],
       },
       {

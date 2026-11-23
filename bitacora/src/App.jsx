@@ -15,7 +15,7 @@ import Juego from './secciones/Juego.jsx'
 import Ruta from './secciones/Ruta.jsx'
 import Sintonizador from './secciones/Sintonizador.jsx'
 import { Flecha } from './ui/Iconos.jsx'
-import { BarraAbajo, BarraVistas, Cabecera, useRuta } from './ui/Navegacion.jsx'
+import { BarraAbajo, BarraArriba, Cabecera, useRuta } from './ui/Navegacion.jsx'
 import { RESORTE } from './ui/movimiento.js'
 
 /** Título grande de cada apartado: la página arriba en pequeño y una línea que dice qué hay. */
@@ -131,7 +131,7 @@ export default function App() {
 
   return (
     <>
-      {vista ? <BarraVistas pagina={pagina} actual={vista.id} /> : <Cabecera nombre={p.nombre} />}
+      {vista ? <BarraArriba ruta={ruta} /> : <Cabecera nombre={p.nombre} />}
 
       <main ref={principal} tabIndex={-1} aria-label={vista?.nombre ?? info.nombre} className="mx-auto max-w-2xl px-4 pt-4 pb-36 outline-none sm:px-5">
         <AnimatePresence mode="wait" initial={false}>

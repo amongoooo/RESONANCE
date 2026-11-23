@@ -54,7 +54,7 @@ export default function Bitacora({ entradas, decisiones = [], desde }) {
   const irA = (el, suave) => {
     if (!el) return
     // Lo que queda fijo arriba: la barra Bitácora | Decisiones y, debajo, el calendario (ya pegado arriba).
-    const barra = document.querySelector('[role="tablist"]')?.parentElement?.getBoundingClientRect().bottom ?? 0
+    const barra = document.querySelector('[data-barra-arriba]')?.getBoundingClientRect().bottom ?? 0
     const tope = barra + (fijo.current?.offsetHeight ?? 0) + 12
     const reducir = opciones().movimiento === 'reducido'
     window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - tope, behavior: suave && !reducir ? 'smooth' : 'auto' })
