@@ -8,8 +8,6 @@
 //  - Para agregar una entrada a la bitácora: copia un bloque { ... } de "bitacora"
 //    y pégalo hasta arriba de la lista (las más nuevas van primero).
 //  - Para registrar una decisión: agrega un bloque a "decisiones".
-//    Si cambia una decisión vieja, no la borres: en la nueva pon  reemplaza: "<texto exacto de la vieja>"
-//    y la página la mueve a «Cambiaron» con un enlace a la nueva.
 //  Fechas siempre como "AAAA-MM-DD" y, en bitácora y decisiones, hora "HH:MM" (hora de CDMX)
 //  de cuando se subió. Cuida las comas entre bloques y las comillas.
 // ============================================================
@@ -22,7 +20,6 @@ export default {
     autor: "amongo",
     escuela: "TecNM campus Celaya",
     competencia: "Infomatrix / SOLACYT, categoría Desarrollo de Software",
-    inicio: "2026-11-20", // el calendario de la bitácora empieza aquí
     congelamiento: "2027-05-01",
     version1: "2027-07-04",
   },
@@ -155,25 +152,10 @@ export default {
     { fecha: "2026-11-20", decision: "Bitácora en React + Vite", porque: "Ya la uso en mis otras apps; trae animaciones y datos ordenados. El estilo viene de teoria-musical y es solo para esta página, no para el juego." },
     { fecha: "2026-11-23", hora: "02:22", decision: "Juego en 2D lateral (plataformero), casi todo procedural", porque: "Lo decidí el 22 de noviembre en la noche y la prueba de capas 2D lo confirmó: pixel art a 480×270 con animación procedural tipo Rain World y luces y shaders que reaccionan a la música. El 2.5D pedía una prueba de cámara 3D y modelar en Blender, y eso se come semanas que necesito para las tribus." },
     { fecha: "2026-11-23", hora: "00:55", decision: "Música: el MIDI es la fuente de verdad; fondo en stems y lo que toca el jugador con samples propios", porque: "Lo visual necesita saber qué nota suena, y las tribus enseñan ritmos por partes, así que esas capas no pueden ser una grabación cerrada. El fondo conserva la mezcla del DAW." },
-    { fecha: "2026-11-23", hora: "01:01", decision: "Música solo con el audio de Unity, sin FMOD; compongo y exporto solo desde FL Studio", reemplaza: "Audio: sintetizador propio + FMOD + música propia", porque: "Un solo reloj evita que la música y lo visual se desfasen, y el diseño ya hace en código lo que FMOD daba (capas que entran en la siguiente barra). FL Studio exporta todas las pistas en un solo MIDI. Reemplaza la parte de FMOD de la decisión de audio del 20 de noviembre." },
+    { fecha: "2026-11-23", hora: "01:01", decision: "Compongo y exporto solo desde FL Studio (sin Ableton); en el juego sigue Unity + FMOD", porque: "FL Studio exporta todas las pistas en un solo MIDI, que es la fuente de verdad de la música. FMOD se queda para el audio del juego, como en la decisión de audio del 20 de noviembre. (Corregido el 23 de noviembre: antes decía «sin FMOD» por error.)" },
   ],
 
-  // Página «El juego»: la idea en un párrafo y los sistemas que lo hacen distinto.
-  juego: {
-    idea:
-      "Tu herramienta no es un arma, es un sintonizador. Todo lo que está roto en el mundo está desafinado: giras perillas de frecuencia, amplitud y fase hasta que tu onda coincide con la del objeto, y el mundo reacciona. Cada zona enseña un concepto de física del sonido.",
-    pilares: [
-      { nombre: "Sintetizador propio", texto: "Lo que el jugador mueve suena exactamente como se ve: la onda se genera en código, no es una grabación." },
-      { nombre: "Música por capas", texto: "Compuesta por mí en FL Studio. Un solo reloj musical mueve el sonido, las luces y las partículas." },
-      { nombre: "Criaturas procedurales", texto: "Se mueven con física (segmentos, resortes y patas que buscan el suelo), no con animaciones dibujadas cuadro por cuadro." },
-      { nombre: "Ecosistema que escucha", texto: "Las criaturas se acercan o huyen según el sonido que hagas." },
-      { nombre: "Todo por datos", texto: "Zonas, criaturas y skins se describen con datos, así agregar contenido no pide reprogramar." },
-    ],
-  },
-
   // Zonas del juego (las marcadas como extra solo si sobra tiempo).
-  // zonasNota: aviso que sale arriba de las zonas; bórralo cuando las zonas estén al día.
-  zonasNota: "Por rediseñar: estas zonas son del concepto anterior (física del sonido). Se van a redefinir con las tribus y el enfoque en música.",
   zonas: [
     { nombre: "Las Cuerdas", concepto: "Más rápido vibra, más agudo suena (frecuencia)." },
     { nombre: "Cañón del Volumen", concepto: "Más amplitud, más fuerte y más lejos llega; escucha segura." },
