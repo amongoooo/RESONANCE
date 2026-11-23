@@ -8,7 +8,8 @@
 //  - Para agregar una entrada a la bitácora: copia un bloque { ... } de "bitacora"
 //    y pégalo hasta arriba de la lista (las más nuevas van primero).
 //  - Para registrar una decisión: agrega un bloque a "decisiones".
-//  Fechas siempre como "AAAA-MM-DD". Cuida las comas entre bloques y las comillas.
+//  Fechas siempre como "AAAA-MM-DD" y, en bitácora y decisiones, hora "HH:MM" (hora de CDMX)
+//  de cuando se subió. Cuida las comas entre bloques y las comillas.
 // ============================================================
 
 export default {
@@ -119,6 +120,14 @@ export default {
   // enlace: { texto: "Ver video", url: "https://..." }
   bitacora: [
     {
+      fecha: "2026-11-23",
+      hora: "00:55",
+      titulo: "Cómo entra la música al juego",
+      texto:
+        "Terminé la prueba de estilo visual y diseñé el camino de la música: compongo en mi DAW, exporto MIDI y stems, y Unity los convierte en datos. Un solo reloj musical mueve el sonido, las luces y las partículas.",
+      etiquetas: ["diseño", "audio"],
+    },
+    {
       fecha: "2026-11-20",
       titulo: "La bitácora pasa a React",
       texto:
@@ -142,6 +151,7 @@ export default {
     { fecha: "2026-11-20", decision: "Congelamiento de funciones el 1 de mayo de 2027", porque: "Después de esa fecha solo se pule, se arregla y se valida." },
     { fecha: "2026-11-20", decision: "Bitácora en React + Vite", porque: "Ya la uso en mis otras apps; trae animaciones y datos ordenados. El estilo viene de teoria-musical y es solo para esta página, no para el juego." },
     { fecha: "2026-11-20", decision: "Pendiente: 2D pixel art o 2.5D con look 3D pixelado", porque: "Se decide a más tardar el 25 de noviembre con una prueba técnica de cámara. Límite duro: 20 de diciembre de 2026. Cuando lo decidas, quita  pendiente: true  y escribe la decisión.", pendiente: true },
+    { fecha: "2026-11-23", hora: "00:55", decision: "Música: el MIDI es la fuente de verdad; fondo en stems y lo que toca el jugador con samples propios", porque: "Lo visual necesita saber qué nota suena, y las tribus enseñan ritmos por partes, así que esas capas no pueden ser una grabación cerrada. El fondo conserva la mezcla del DAW." },
   ],
 
   // Zonas del juego (las marcadas como extra solo si sobra tiempo).
