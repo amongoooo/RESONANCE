@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import { larga } from '../logica/fechas.js'
+import { cuando } from '../logica/fechas.js'
 import { AL_VERSE } from '../ui/movimiento.js'
 
 export default function Bitacora({ entradas }) {
@@ -9,10 +9,10 @@ export default function Bitacora({ entradas }) {
   return (
     <ol className="relative ml-2 flex flex-col gap-6 border-l-2 border-zinc-200 pl-6">
       {entradas.map((e) => (
-        <motion.li key={e.fecha + e.titulo} {...AL_VERSE} className="relative">
+        <motion.li key={e.fecha + (e.hora ?? '') + e.titulo} {...AL_VERSE} className="relative">
           <span aria-hidden="true" className="absolute top-1.5 -left-[33px] size-4 rounded-full border-4 border-fondo bg-sky-500" />
-          <time dateTime={e.fecha} className="font-dato text-sm font-medium text-zinc-500">
-            {larga(e.fecha)}
+          <time dateTime={e.hora ? `${e.fecha}T${e.hora}` : e.fecha} className="font-dato text-sm font-medium text-zinc-500">
+            {cuando(e)}
           </time>
           <h3 className="mt-1 font-titulo text-xl leading-tight font-bold tracking-tight">{e.titulo}</h3>
           {e.imagen && (

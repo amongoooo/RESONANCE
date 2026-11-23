@@ -2,7 +2,7 @@ import { motion } from 'motion/react'
 import { useMemo, useState } from 'react'
 import D from './datos.js'
 import { conIds, proximaMeta } from './logica/arbol.js'
-import { deClave, larga, sumarDias } from './logica/fechas.js'
+import { cuando, deClave, masNuevoPrimero, sumarDias } from './logica/fechas.js'
 import ArbolMetas from './secciones/ArbolMetas.jsx'
 import Bitacora from './secciones/Bitacora.jsx'
 import Decisiones from './secciones/Decisiones.jsx'
@@ -68,7 +68,7 @@ export default function App() {
   const fase =
     D.fases.find((f) => hoy >= deClave(f.inicio) && hoy < sumarDias(deClave(f.fin), 1)) ??
     (hoy < deClave(D.fases[0].inicio) ? D.fases[0] : D.fases[D.fases.length - 1])
-  const entradas = [...D.bitacora].sort((a, b) => b.fecha.localeCompare(a.fecha))
+  const entradas = [...D.bitacora].sort(masNuevoPrimero)
   const p = D.proyecto
 
   return (
@@ -123,7 +123,7 @@ export default function App() {
             <Bitacora entradas={entradas} />
           </Seccion>
           <Seccion id="decisiones" titulo="Decisiones">
-            <Decisiones decisiones={D.decisiones} />
+            <Decisiones decisiones={[...D.decisiones].sort(masNuevoPrimero)} />
           </Seccion>
           <Seccion id="juego" titulo="El juego">
             <Juego zonas={D.zonas} validacion={D.validacion} />
@@ -135,7 +135,7 @@ export default function App() {
             {p.nombre}, por {p.autor}, {p.escuela}.
           </p>
           <p>{p.competencia}.</p>
-          {entradas[0] && <p>Última entrada en la bitácora: {larga(entradas[0].fecha)}.</p>}
+          {entradas[0] && <p>Última entrada en la bitácora: {cuando(entradas[0])}.</p>}
         </motion.footer>
       </div>
     </>
