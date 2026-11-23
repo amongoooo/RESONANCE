@@ -29,4 +29,5 @@ Plataformero donde el jugador repara un mundo silenciado afinando ondas con un s
 - Explica con relaciones intuitivas ("si X sube, Y baja"), no con fórmulas.
 - Todo lo que hablemos va a la página: decisiones, entradas de bitácora, metas y tareas de la semana (`bitacora/contenido/tareas/`). Si algo es solo una propuesta sin mi OK, va como decisión con `pendiente: true`.
 - Los cambios van siempre en un PR desde la rama de trabajo. Nunca hagas push ni merge a `main` hasta que yo lo diga.
+- Pásame el enlace del PR siempre que puedas, en cada mensaje donde haya uno abierto o cambios nuevos en él.
 - Al final de cada mensaje dime: (1) si seguimos en este chat o conviene abrir otro por el contexto, y (2) qué modelo de Claude y qué nivel de esfuerzo recomiendas para la tarea que sigue.
