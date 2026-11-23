@@ -1,6 +1,10 @@
 import { corta } from '../logica/fechas.js'
 import { separarDecisiones } from '../logica/listas.js'
+import { useEffect, useState } from 'react'
 import diseno from '../../contenido/diseno.md?raw'
+import historiaCifrada from '../../contenido/historia.cifrada.json'
+import { descifrar } from '../logica/cifrado.js'
+import Pulsable from '../ui/Pulsable.jsx'
 import { Bombilla, Flecha } from '../ui/Iconos.jsx'
 import Markdown from '../ui/Markdown.jsx'
 
@@ -12,12 +16,101 @@ export default function Juego({ vista, juego, zonas, zonasNota, validacion, deci
   return <Idea juego={juego} decisiones={decisiones} zonas={zonas} zonasNota={zonasNota} />
 }
 
+// La contraseña se recuerda solo en este navegador si se pide («Recordar»). Si la historia se vuelve a cifrar
+// con otra contraseña, la guardada deja de servir y se vuelve a pedir.
+const CLAVE_GUARDADA = 'resonancia:historia'
+const leerGuardada = () => {
+  try {
+    return localStorage.getItem(CLAVE_GUARDADA) ?? sessionStorage.getItem(CLAVE_GUARDADA)
+  } catch {
+    return null
+  }
+}
+
+/** Historia: está cifrada en el repo (público); se lee con la contraseña. */
 function Historia() {
+  const [texto, setTexto] = useState(null)
+  const [clave, setClave] = useState('')
+  const [recordar, setRecordar] = useState(true)
+  const [estado, setEstado] = useState('pidiendo') // pidiendo | probando | mal
+
+  useEffect(() => {
+    const guardada = leerGuardada()
+    if (!guardada) return
+    setEstado('probando')
+    descifrar(historiaCifrada, guardada).then((t) => {
+      if (t) setTexto(t)
+      setEstado('pidiendo')
+    })
+  }, [])
+
+  const abrir = async (e) => {
+    e.preventDefault()
+    if (!clave.trim()) return
+    setEstado('probando')
+    const t = await descifrar(historiaCifrada, clave.trim())
+    if (!t) return setEstado('mal')
+    try {
+      ;(recordar ? localStorage : sessionStorage).setItem(CLAVE_GUARDADA, clave.trim())
+    } catch {
+      /* sin almacenamiento: se pedirá otra vez */
+    }
+    setTexto(t)
+    setEstado('pidiendo')
+  }
+
+  const cerrar = () => {
+    try {
+      localStorage.removeItem(CLAVE_GUARDADA)
+      sessionStorage.removeItem(CLAVE_GUARDADA)
+    } catch {
+      /* nada */
+    }
+    setTexto(null)
+    setClave('')
+  }
+
+  if (texto)
+    return (
+      <div className="flex flex-col gap-4">
+        <Markdown texto={texto} />
+        <Pulsable onClick={cerrar} className="min-h-11 self-start rounded-full bg-zinc-100 px-4 text-base font-bold text-zinc-700">
+          Cerrar con candado
+        </Pulsable>
+      </div>
+    )
+
   return (
-    <div className="flex flex-col gap-2 rounded-3xl border border-dashed border-zinc-300 px-5 py-5">
-      <span className="font-titulo text-xl font-bold tracking-tight">En preparación</span>
-      <span className="text-lg leading-relaxed text-zinc-600">La historia se va a mostrar aquí, capa por capa: el mundo, quién eres, qué buscas y por qué el mundo está en silencio.</span>
-    </div>
+    <form onSubmit={abrir} className="flex flex-col gap-3 rounded-3xl border border-zinc-200 bg-white px-5 py-5">
+      <span className="font-titulo text-xl font-bold tracking-tight">La historia tiene candado</span>
+      <span className="text-base leading-snug text-zinc-600">Va cifrada para que nadie la lea antes de tiempo, ni siquiera en el repo. Escribe la contraseña para abrirla.</span>
+      <label className="flex flex-col gap-1.5">
+        <span className="sr-only">Contraseña</span>
+        <input
+          type="password"
+          autoComplete="current-password"
+          value={clave}
+          onChange={(e) => {
+            setClave(e.target.value)
+            if (estado === 'mal') setEstado('pidiendo')
+          }}
+          placeholder="Contraseña"
+          className={`min-h-12 rounded-2xl border bg-zinc-50 px-4 text-lg outline-none focus:border-sky-500 ${estado === 'mal' ? 'border-fijate' : 'border-zinc-200'}`}
+        />
+      </label>
+      <label className="flex min-h-11 items-center gap-2 text-base text-zinc-700">
+        <input type="checkbox" checked={recordar} onChange={(e) => setRecordar(e.target.checked)} className="size-5 accent-sky-500" />
+        Recordar en este navegador
+      </label>
+      {estado === 'mal' && <span className="text-base font-semibold text-fijate-tinta">Esa no es. Revisa la contraseña e inténtalo otra vez.</span>}
+      <Pulsable
+        type="submit"
+        disabled={estado === 'probando'}
+        className="min-h-12 self-start rounded-full bg-zinc-900 px-5 text-base font-bold text-fondo disabled:opacity-60"
+      >
+        {estado === 'probando' ? 'Abriendo…' : 'Abrir'}
+      </Pulsable>
+    </form>
   )
 }
 

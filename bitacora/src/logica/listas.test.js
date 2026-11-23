@@ -81,3 +81,14 @@ describe('calendario de cuadritos', () => {
     expect(meses[0].semana).toBe(0)
   })
 })
+
+import { cifrar, descifrar } from './cifrado.js'
+
+describe('historia cifrada', () => {
+  it('se descifra solo con la contraseña correcta', async () => {
+    const c = await cifrar('# Capa 1\nhola ñandú', 'clave buena')
+    expect(c.datos).not.toContain('hola')
+    expect(await descifrar(c, 'clave buena')).toBe('# Capa 1\nhola ñandú')
+    expect(await descifrar(c, 'otra')).toBeNull()
+  })
+})
