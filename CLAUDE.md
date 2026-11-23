@@ -8,7 +8,8 @@ Plataformero donde el jugador repara un mundo silenciado afinando ondas con un s
 
 ## Decisiones fijas
 
-- Motor: Unity. Audio: sintetizador propio en C# (`OnAudioFilterRead`) + FMOD + mi propia música por capas.
+- Motor: Unity. Audio: sintetizador propio en C# (`OnAudioFilterRead`) + mi propia música por capas, todo en el audio de Unity (sin FMOD, decidido 23 nov 2026).
+- Música: el MIDI exportado de FL Studio es la fuente de verdad; fondo en stems y lo que toca el jugador con samples propios. Diseño: https://claude.ai/artifact/UD4nvVJtPFJYg8sFcdgZ38
 - Sistemas: animación procedural de criaturas, ecosistema que reacciona al sonido, todo por datos (ScriptableObjects), skins intercambiables (2D Animation: Sprite Library + Sprite Resolver).
 - Validación: examen pre/post con estudiantes reales + telemetría del juego.
 - Congelamiento de funciones: 1 de mayo de 2027. Después solo se pule, se arregla y se valida.
