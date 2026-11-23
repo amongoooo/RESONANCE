@@ -2,15 +2,17 @@ import { corta } from '../logica/fechas.js'
 import { separarDecisiones } from '../logica/listas.js'
 import { useEffect, useState } from 'react'
 import diseno from '../../contenido/diseno.md?raw'
+import musica from '../../contenido/musica.md?raw'
 import historiaCifrada from '../../contenido/historia.cifrada.json'
 import { descifrar } from '../logica/cifrado.js'
 import Pulsable from '../ui/Pulsable.jsx'
 import { Bombilla, Flecha } from '../ui/Iconos.jsx'
 import Markdown from '../ui/Markdown.jsx'
 
-/** El juego, en cuatro apartados: idea (con lo que lo hace distinto, lo pendiente y las zonas), historia, diseño y validación. */
+/** El juego, en cinco apartados: idea (con lo que lo hace distinto, lo pendiente y las zonas), historia, música, diseño y validación. */
 export default function Juego({ vista, juego, zonas, zonasNota, validacion, decisiones, fases, semanas }) {
   if (vista === 'historia') return <Historia />
+  if (vista === 'musica') return <Markdown texto={musica} />
   if (vista === 'diseno') return <Markdown texto={diseno} />
   if (vista === 'validacion') return <Validacion validacion={validacion} fases={fases} semanas={semanas} />
   return <Idea juego={juego} decisiones={decisiones} zonas={zonas} zonasNota={zonasNota} />

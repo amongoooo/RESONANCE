@@ -29,6 +29,7 @@ const TODAS = [
     vistas: [
       { id: 'idea', nombre: 'Idea', bajada: 'Un plataformero donde no peleas: afinas el mundo para avanzar.' },
       { id: 'historia', nombre: 'Historia', bajada: 'El mundo, quién eres y por qué está en silencio, capa por capa.' },
+      { id: 'musica', nombre: 'Música', bajada: 'La historia real de la música que inspira cada zona, con sus fuentes.' },
       { id: 'diseno', nombre: 'Diseño', bajada: 'Cómo suena y cómo se ve: la música y el estilo visual.' },
       { id: 'validacion', nombre: 'Validación', corto: 'Validar', bajada: 'Cómo se va a comprobar que el juego enseña.' },
     ],

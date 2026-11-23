@@ -196,7 +196,7 @@ export default function Pildora({ items, activo, variante = 'pestanas', todas = 
                 // Con el dedo o el ratón lo resuelve la píldora (pointerup); este clic es el del teclado o el lector.
                 onClick={(e) => e.detail === 0 && ir(i)}
                 className={`relative flex items-center justify-center rounded-full transition-colors duration-200 ${activa ? 'text-zinc-900' : 'text-zinc-500'} ${
-                  !pestanas ? 'h-full min-w-0 flex-1 px-2 text-base font-bold' : todas ? 'h-13 min-w-0 flex-1 flex-col gap-0.5 px-1' : activa ? 'h-12 shrink-0 gap-1.5 px-4' : 'size-12 shrink-0'
+                  !pestanas ? `h-full min-w-0 font-bold ${items.length > 4 ? 'flex-auto px-1 text-sm sm:text-[0.9375rem]' : 'flex-1 px-2 text-base'}` : todas ? 'h-13 min-w-0 flex-1 flex-col gap-0.5 px-1' : activa ? 'h-12 shrink-0 gap-1.5 px-4' : 'size-12 shrink-0'
                 }`}
               >
                 {activa && (
