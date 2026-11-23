@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>RESONANCIA: registro del proyecto</title>
+    <meta name="description" content="Registro de desarrollo de RESONANCIA, un plataformero educativo de física del sonido." />
+    <meta name="theme-color" content="#f4f4f5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#07080f" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='4' fill='%2310121c'/%3E%3Cpath d='M2 8 Q4 2 6 8 T10 8 T14 8' fill='none' stroke='%2336c5f4' stroke-width='1.6'/%3E%3C/svg%3E" />
+    <script>
+      // Tema antes de pintar (sin destello): automático, o el que se eligió en la página.
+      try {
+        const t = localStorage.getItem('resonancia:tema')
+        const oscuro = t === 'oscuro' || (t !== 'claro' && matchMedia('(prefers-color-scheme: dark)').matches)
+        if (oscuro) document.documentElement.classList.add('dark')
+      } catch (e) {}
+    </script>
+    <script type="module" crossorigin src="./assets/index-BZVnHLiV.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-D7Gi2BJg.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
