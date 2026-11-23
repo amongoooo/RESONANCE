@@ -33,7 +33,7 @@ export default {
     fecha: "2027-07-04",
     ramas: [
       {
-        titulo: "Tener el plan definitivo y decidir: 2D o 2.5D",
+        titulo: "Tener el plan definitivo (ya decidido: 2D)",
         fecha: "2026-11-25",
         limite: "2026-12-20",
         ramas: [
