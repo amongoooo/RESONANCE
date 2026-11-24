@@ -45,6 +45,45 @@ export default {
         ],
       },
       {
+        titulo: "Sala de estilo de la zona 1 (Ritmo)",
+        fecha: "2026-12-14",
+        nota: "Una sola sala pulida al máximo: el molde visual y técnico de todo el juego. Un paso por sesión, con plan y OK antes de cada uno.",
+        ramas: [
+          {
+            titulo: "Paso 1: Tilemap de la zona 1",
+            ramas: [
+              { titulo: "Tamaño de tile: 16×16 (un tile = una unidad de Unity).", hecho: true },
+              { titulo: "Plantilla de tiles con marcas de conexión (arte/plantillas).", hecho: true },
+              { titulo: "Estudiar tiles en Shovel Knight, Celeste, Terraria y Animal Well.", hecho: false },
+              { titulo: "Cerrar la paleta: casillas por material y hora del día (23 casillas, abierta a cambios).", hecho: true },
+              { titulo: "Dibujar los tiles de la plantilla en Aseprite.", hecho: false },
+              { titulo: "Tilemap con Rule Tile y cámara Pixel Perfect en Unity.", hecho: false },
+            ],
+          },
+          {
+            titulo: "Paso 2: Luz 2D estilo t3ssel8r y paso de gris a color",
+            ramas: [
+              { titulo: "Shader de paleta por casillas: fila de silencio a fila de color.", hecho: false },
+              { titulo: "Luz 2D sobre los tiles sin ensuciar el pixel art.", hecho: false },
+            ],
+          },
+          {
+            titulo: "Paso 3: Protagonista con cuerpo procedural",
+            ramas: [
+              { titulo: "Correr y saltar.", hecho: false },
+              { titulo: "Cuerpo procedural (sin cuadros de animación).", hecho: false },
+            ],
+          },
+          {
+            titulo: "Paso 4: El bombo de la tribu del ritmo",
+            ramas: [
+              { titulo: "Metrónomo ajustable.", hecho: false },
+              { titulo: "El bombo golpea el suelo a tiempo.", hecho: false },
+            ],
+          },
+        ],
+      },
+      {
         titulo: "Bitácora nueva, fase 1: React y árbol de metas",
         fecha: "2026-11-29",
         nota: "Solo después de la tarea de Unity del día. Con esta lista completa, la fase terminó.",
@@ -73,7 +112,7 @@ export default {
   fases: [
     { id: 0, nombre: "Preproducción", inicio: "2026-11-23", fin: "2026-12-20", meta: "Prototipo del sintonizador y prueba de diversión" },
     { id: 1, nombre: "Sistemas base", inicio: "2026-12-21", fin: "2027-01-31", meta: "Tiles, datos, skins, animación procedural y ecosistema" },
-    { id: 2, nombre: "Zona 1 completa", inicio: "2027-02-01", fin: "2027-03-14", meta: "Las Cuerdas terminada, pulida y probada con alumnos" },
+    { id: 2, nombre: "Zona 1 completa", inicio: "2027-02-01", fin: "2027-03-14", meta: "Zona 1 (Ritmo) terminada, pulida y probada con alumnos" },
     { id: 3, nombre: "Producción", inicio: "2027-03-15", fin: "2027-05-02", meta: "Zonas 2, 3 y 4 con sus jefes" },
     { id: 4, nombre: "Contenido final y pulido", inicio: "2027-05-03", fin: "2027-06-06", meta: "Zona final, arte, bugs y playtest completo" },
     { id: 5, nombre: "Validación y reporte", inicio: "2027-06-07", fin: "2027-07-04", meta: "Pre/post test, reporte científico y versión 1.0" },
@@ -91,7 +130,7 @@ export default {
     { n: 8, fase: 1, inicio: "2027-01-11", meta: "Animación procedural: criatura de segmentos con resortes y patas con IK.", hecha: false },
     { n: 9, fase: 1, inicio: "2027-01-18", meta: "Ecosistema v1: eventos de sonido y criaturas que se acercan o huyen.", hecha: false },
     { n: 10, fase: 1, inicio: "2027-01-25", meta: "Guardado, menú de pausa, ajustes de volumen y telemetría básica.", hecha: false },
-    { n: 11, fase: 2, inicio: "2027-02-01", meta: "Tileset final y props de Las Cuerdas.", hecha: false },
+    { n: 11, fase: 2, inicio: "2027-02-01", meta: "Tileset final y props de la zona 1 (Ritmo).", hecha: false },
     { n: 12, fase: 2, inicio: "2027-02-08", meta: "8 a 10 salas de la zona 1: en papel y bloqueadas en Unity.", hecha: false },
     { n: 13, fase: 2, inicio: "2027-02-15", meta: "Arte final del protagonista y animaciones clave.", hecha: false },
     { n: 14, fase: 2, inicio: "2027-02-22", meta: "Zumbidos con arte final; diseño del jefe.", hecha: false },
@@ -119,6 +158,22 @@ export default {
   // Campos opcionales: imagen (ruta dentro del repo, p. ej. "img/semana1.gif"),
   // enlace: { texto: "Ver video", url: "https://..." }
   bitacora: [
+    {
+      fecha: "2026-11-24",
+      hora: "02:08",
+      titulo: "Paleta de la zona 1 cerrada (abierta a cambios)",
+      texto:
+        "Cerré la paleta de la zona 1: 23 casillas por rol (sombra, suelo, construido, aire, vida y sonido) para un atardecer, con el archivo .gpl para Aseprite. Dibujo a color y el código trata cada color como una casilla, así que el gris del silencio, el color de cada zona y las skins son filas de una tabla. Revisé que cada rampa se lea en gris y que lo que da al aire lleve contorno de sombra. Probé definir todos los colores de todas las zonas de una vez y me abrumó: mejor una zona por vez. Quedan pendientes dos ideas: criaturas con partes dibujadas y pelaje por código, y una luz que mueva cada píxel por su rampa.",
+      etiquetas: ["arte", "diseño"],
+    },
+    {
+      fecha: "2026-11-23",
+      hora: "12:00",
+      titulo: "Empieza la sala de estilo de la zona 1",
+      texto:
+        "Arranqué la sala de estilo: una sola sala de la tribu del ritmo pulida al máximo, que será el molde de todo el juego (fecha: 14 de diciembre). Definí tiles de 16×16 y la lista mínima de tiles, hice una plantilla con las marcas de conexión y propuse dibujar con una paleta por casillas, para que el gris del silencio, el color de cada zona y las skins sean solo filas de una tabla. Para aprender de tiles voy a estudiar Shovel Knight (paleta limitada y contraste), Celeste (uniones y esquinas), Terraria (variantes al azar) y Animal Well (luz sobre pixel art); y para atmósfera, Kingdom Two Crowns, Rain World, Owlboy, Blasphemous, Gris y los devlogs de t3ssel8r.",
+      etiquetas: ["arte", "diseño"],
+    },
     {
       fecha: "2026-11-23",
       hora: "00:55",
@@ -153,17 +208,31 @@ export default {
     { fecha: "2026-11-23", hora: "02:22", decision: "Juego en 2D lateral (plataformero), casi todo procedural", porque: "Lo decidí el 22 de noviembre en la noche y la prueba de capas 2D lo confirmó: pixel art a 480×270 con animación procedural tipo Rain World y luces y shaders que reaccionan a la música. El 2.5D pedía una prueba de cámara 3D y modelar en Blender, y eso se come semanas que necesito para las tribus." },
     { fecha: "2026-11-23", hora: "00:55", decision: "Música: el MIDI es la fuente de verdad; fondo en stems y lo que toca el jugador con samples propios", porque: "Lo visual necesita saber qué nota suena, y las tribus enseñan ritmos por partes, así que esas capas no pueden ser una grabación cerrada. El fondo conserva la mezcla del DAW." },
     { fecha: "2026-11-23", hora: "01:01", decision: "Compongo y exporto solo desde FL Studio (sin Ableton); en el juego sigue Unity + FMOD", porque: "FL Studio exporta todas las pistas en un solo MIDI, que es la fuente de verdad de la música. FMOD se queda para el audio del juego, como en la decisión de audio del 20 de noviembre. (Corregido el 23 de noviembre: antes decía «sin FMOD» por error.)" },
+    { fecha: "2026-11-23", hora: "12:00", decision: "La zona 1 es la tribu del Ritmo; las zonas siguen a las tribus", porque: "La historia cerrada ordena el mundo por tribus: 1 Ritmo (África occidental), 2 Melodía, 3 Armonía, 4 La mezcla (Latinoamérica y México) y el caracol al centro. «Las Cuerdas» y las zonas extra eran del diseño anterior." },
+    { fecha: "2026-11-23", hora: "12:00", decision: "Tiles de 16×16", porque: "Con 16 PPU un tile es una unidad de Unity: posiciones y saltos sin decimales. A 480×270 se ven 30×17 tiles, suficiente para ver una sala entera con lo grave abajo y lo agudo arriba." },
+    { fecha: "2026-11-24", hora: "02:08", decision: "Dibujo a color con una paleta por casillas", porque: "El código trata cada color como una casilla: el gris del silencio, el color de cada zona y las skins son filas de una tabla. Si dibujara en gris, dos materiales con el mismo brillo se volverían el mismo. Cada objeto elige su propia tabla (la skin del protagonista no repinta el suelo), las casillas se nombran por rol y no por color, y las nuevas se agregan siempre al final (hasta 32) para no mover lo ya dibujado." },
+    { fecha: "2026-11-24", hora: "02:08", decision: "Paleta de la zona 1: 23 casillas por rol, atardecer (abierta a cambios)", porque: "Sombra 3; suelo (laterita), construido (sabana), aire (índigo), vida (hoja) y sonido (música) 4 cada una. Cada material necesita unos 4 tonos para tener volumen en 16×16. Sonido es solo luz y ningún tile lo usa; todo lo que da al aire lleva contorno de sombra. Atardecer porque la luna de la historia está en su fase más delgada en la zona 1 y la luz 2D luce más con poca luz, pero oscuro sin llegar a negro (el suelo más oscuro no baja de 16 de gris). No habrá ciclo de día: la noche es una fila opcional de la tabla. Cada rampa se midió en gris: cada paso se separa 9 a 13 puntos del anterior. Las demás zonas se hacen una por una, cuando lleguen. Archivo: arte/paletas/resonancia_zona1.gpl." },
+    { fecha: "2026-11-24", hora: "02:08", decision: "Las distorsiones y efectos van después de convertir casillas a color", porque: "Si se mezclan píxeles antes de la conversión, la casilla 5 y la 7 dan una «casilla 6» que no era ninguna de las dos y el color sale mal. Las texturas de arte se leen sin suavizado y los efectos trabajan sobre la imagen ya en color a 480×270." },
+    { fecha: "2026-11-24", hora: "02:08", decision: "Pendiente: la luz 2D mueve cada píxel por su rampa en vez de pintar encima", porque: "Propuesta: un píxel «suelo-2» con mucha luz se ve como «suelo-3» y en sombra como «suelo-1», así la luz nunca crea colores fuera de la paleta y no ensucia el pixel art. Pide dibujar casi todo con los pasos 1 a 3 y dejar el 4 para el brillo. Se prueba en el Paso 2 con el shader de paleta.", pendiente: true },
+    { fecha: "2026-11-23", hora: "12:00", decision: "Pendiente: los mapas se arman en el Tilemap de Unity, no en Tiled", porque: "Propuesta: las luces, el bombo, el metrónomo y el Rule Tile viven en Unity; Tiled agregaría un paso de importación que puede fallar y repetiría el autotiling. Aseprite (con capas de tilemap) queda para todo el arte.", pendiente: true },
+    { fecha: "2026-11-24", hora: "00:14", decision: "Pendiente: criaturas híbridas (partes dibujadas más líneas por código)", porque: "Propuesta: cabeza, torso y patas como pocos sprites dibujados a mano (Sprite Library) y el pelaje, los hilos y las colas como líneas de 1 px que siguen una cadena con inercia. El pixel art sale de dibujar toda la escena a 480×270, así que las formas generadas por código también quedan pixeleadas. El riesgo es el parpadeo de los bordes al moverse a fracciones de píxel; se probará con una cadena de hilos en el Paso 3 antes de comprometerse. Si se aprueba, la regla «sin rotaciones libres de sprites» se relaja solo para criaturas.", pendiente: true },
+    { fecha: "2026-11-24", hora: "00:14", decision: "Pendiente: dibujar en color y que Unity lo convierta a casillas", porque: "Propuesta: dibujar en Aseprite en modo indexado con la paleta (se ve el color real) y que un script de importación de Unity guarde cada píxel como el número de su casilla; el shader lo pinta con la tabla (gris del silencio, zona, skins). Plan B si el script se complica: un shader que compara el color exacto. Se decide en el Paso 2.", pendiente: true },
+    { fecha: "2026-11-24", hora: "12:00", decision: "Pendiente: los tiles de la zona 1 se dibujan a mano, sin generador procedural", porque: "Propuesta: son 23 tiles obligatorios (10 variantes opcionales), unas pocas horas con Aseprite en modo Tiled; un generador necesita un estilo ya definido y la sala de estilo sirve justo para encontrarlo. Es además el molde que verán los jurados. Orden: relleno A5, bordes, esquinas, plataforma y muro, pasto e interiores, variantes al final. Si se revisa a futuro, solo para repetir un terreno en otra zona y después del congelamiento.", pendiente: true },
+    { fecha: "2026-11-24", hora: "12:00", decision: "Pendiente: medios bloques como tiles aparte dentro de la grid de 16×16 (no una grid de 8×8)", porque: "Propuesta: la media-inferior (dibujo en los 8 px de abajo, contorno de sombra en la fila 8) y, solo si hace falta, la media-superior, como tiles nuevos en filas nuevas de la plantilla; el collider se ajusta a la mitad. No se dibujan hasta terminar los 23 obligatorios, y quizá la plataforma B ya cubra el caso. Una grid de 8×8 rompe «un tile = una unidad» y multiplica el trabajo.", pendiente: true },
+    { fecha: "2026-11-24", hora: "12:30", decision: "La plantilla de tiles es la mía de varios juegos (unos 50 tiles únicos), con medios bloques dentro de los 16×16", porque: "Ya la probé en otros juegos y cubre más formas que la primera plantilla de 33: bloque base de 4×4 (4 esquinas, 8 bordes, 4 de relleno), 4 esquinas interiores, bloques de 1×1 (suelto, esquinas y bordes), conectores en L y en cruz, 4 bloques de medio tile, tiras horizontales, pilares verticales y el anillo. Los medios bloques son mitades de 8 px dentro de tiles de 16×16, sin grid de 8×8. En la guía, naranja = se une, blanco = da al aire y magenta = se une con relleno; esas marcas van en una capa guia aparte porque son casillas de sonido (20, 21 y 23) y no deben exportarse. La primera plantilla (arte/plantillas) queda como referencia para el Rule Tile."},
+    { fecha: "2026-11-24", hora: "12:30", decision: "Pendiente: dibujar los ~50 tiles en cuatro fases y revisar al final de cada una", porque: "Propuesta: fase 1 el 4×4 (16 tiles, ya da una sala); fase 2 esquinas interiores y bloques de 1×1; fase 3 tiras, pilares y anillo; fase 4 las 4 piezas pequeñas, la L y la cruz. Son de 2 a 3 tiles por día con un rato diario y quedan 20 días hasta el 14 de diciembre. Si el 4 de diciembre no voy por la fase 2, las fases 3 y 4 pasan al Paso 2 o a después del congelamiento.", pendiente: true },
+    { fecha: "2026-11-24", hora: "13:00", decision: "La plantilla propia no se modifica y se corta siempre en la rejilla de 16×16: 74 tiles", porque: "Los cortes solo caen en los bordes de color, y todos están en la rejilla de 16. Los bloques pequeños (16 cuartos de 8×8, 8 tiras de 16×8 y 8 pilares de 8×16) son piezas pegadas a un lado o a una esquina dentro de su celda de 16×16, así que cada celda con dibujo es un tile: 74 en total. La leyenda con celda, pieza y marca de cada lado está en arte/plantillas/LEYENDA.md."},
+    { fecha: "2026-11-24", hora: "13:00", decision: "Los tiles de azul más claro son variantes: el mismo tile con otro dibujo, para dar variedad", porque: "Los rellenos gris, azul y negro de la plantilla no son colores del juego: distinguen vecinos. El azul claro marca variantes (B3, B9, B12, B15, U8 y U9, más los rellenos B7, B10 y B11), con las mismas uniones que su tile base; el revisor comprobará que coincidan."},
+    { fecha: "2026-11-24", hora: "12:00", decision: "Pendiente: decoración de 8×8 en capa aparte; mecánicas con objetos y snap a 0,5", porque: "Propuesta: la decoración (tuberías, enredaderas) puede usar una grid hija de 0,5 con su propio PNG, plantilla y Rule Tile, con la misma paleta y sin collider; no rompe Pixel Perfect si queda a múltiplos de 8 px. Lo que tenga mecánica (por ejemplo una tubería que reacciona al sonido) va como objeto con ScriptableObject y snap a 0,5. Un Tilemap de 8×8 con collider solo si el prototipo de correr y saltar (Paso 3) lo pide. Antes de dibujar hay que definir qué hace el jugador con la pieza.", pendiente: true },
   ],
 
   // Zonas del juego (las marcadas como extra solo si sobra tiempo).
   zonas: [
-    { nombre: "Las Cuerdas", concepto: "Más rápido vibra, más agudo suena (frecuencia)." },
-    { nombre: "Cañón del Volumen", concepto: "Más amplitud, más fuerte y más lejos llega; escucha segura." },
-    { nombre: "Lago de Interferencias", concepto: "Dos ondas se suman o se anulan (superposición)." },
-    { nombre: "Torres de Cristal", concepto: "Empujar al ritmo justo hace crecer la vibración (resonancia)." },
-    { nombre: "Taller de Timbres", concepto: "Misma nota, distinto timbre por los armónicos.", extra: true },
-    { nombre: "Cavernas del Eco", concepto: "El sonido tarda en ir y volver (eco, Doppler).", extra: true },
-    { nombre: "El Estudio", concepto: "Todo junto: armar por capas el track que restaura el mundo." },
+    { nombre: "Zona 1 · Ritmo", concepto: "Tribu de tambores inspirada en África occidental: recuperar el pulso común (bombo abajo, caja en medio, hi-hat arriba)." },
+    { nombre: "Zona 2 · Melodía", concepto: "Tribu de las escalas: notas que suben y bajan (lo agudo arriba, lo grave abajo)." },
+    { nombre: "Zona 3 · Armonía", concepto: "Tribu de los acordes: varias notas a la vez que se dejan espacio." },
+    { nombre: "Zona 4 · La mezcla", concepto: "Inspirada en Latinoamérica y México: mezcla lo aprendido y prepara la Gran Canción." },
+    { nombre: "El caracol", concepto: "Lugar central y caja de resonancia: ahí suena la Gran Canción y el mundo recupera el color." },
   ],
 
   validacion: {
