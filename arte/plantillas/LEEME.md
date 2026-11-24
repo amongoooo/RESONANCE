@@ -15,6 +15,8 @@ Marcas: punteado verde = se une con otro tile (el dibujo continúa sin corte); l
 
 ## Plantilla propia (la que se usa)
 
-- `plantilla_propia_zona1.png`: la plantilla del autor (224×160, 52 tiles únicos de 16×16). La anterior queda como referencia para el Rule Tile.
-- `plantilla_propia_zona1_leyenda.png`: la misma, ampliada, con el id de cada tile. Marco amarillo = alineado a la rejilla de 16; marco rojo = corrido 8 px de la rejilla.
-- `tiles_propios.py`: lista de tiles (id, nombre, posición) y generador de la leyenda (`python3 tiles_propios.py <carpeta>`). Los nombres son una propuesta: se corrigen en el script.
+- `plantilla_propia_zona1.png`: la plantilla del autor (224×160). No se modifica. Se corta siempre en la rejilla de 16×16: son 74 tiles (cada celda con dibujo es uno).
+- Los bloques pequeños (cuartos, tiras y pilares) son piezas de 8 px pegadas a un lado o a una esquina dentro de su celda de 16×16; los cortes caen siempre en un borde de color.
+- El azul más claro marca variantes: el mismo tile con otro dibujo. Llevan las mismas uniones que su tile base.
+- `LEYENDA.md` y `plantilla_propia_zona1_leyenda.png`: id, nombre, celda, pieza y marca de cada lado. Las variantes llevan `*`.
+- `tiles_propios.py`: lista de tiles y generador de la leyenda (`python3 tiles_propios.py <carpeta>`); también comprueba que toda celda con dibujo esté en la lista. Los nombres son una propuesta: se corrigen en el script.
