@@ -16,6 +16,29 @@ export const Luna = (p) => (
 export const Flecha = (p) => (
   <svg {...base} {...p}><path d="M9 6l6 6-6 6" /></svg>
 )
+export const Casa = (p) => (
+  <svg {...base} {...p}><path d="M4 10.5L12 4l8 6.5V19a1 1 0 0 1-1 1h-4.5v-5.5h-5V20H5a1 1 0 0 1-1-1z" /></svg>
+)
+/** Plan: un tronco con ramas. */
+export const Ramas = (p) => (
+  <svg {...base} {...p}><circle cx="6" cy="5" r="2" /><circle cx="6" cy="19" r="2" /><circle cx="18" cy="9" r="2" /><path d="M6 7v10M6 13c0-3 3-4 10-4" /></svg>
+)
+export const Libro = (p) => (
+  <svg {...base} {...p}><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5zM20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5z" /></svg>
+)
+/** Decisiones: un camino que se parte en dos. */
+export const Cruce = (p) => (
+  <svg {...base} {...p}><path d="M12 21v-7M12 14L6 8M12 14l6-6M6 8V4M6 4L3.5 6.5M6 4l2.5 2.5M18 8V4M18 4l-2.5 2.5M18 4l2.5 2.5" /></svg>
+)
+export const Onda = (p) => (
+  <svg {...base} {...p}><path d="M2 12c1.5-6 3.5-6 5 0s3.5 6 5 0 3.5-6 5 0 3.5 6 5 0" /></svg>
+)
+export const Engrane = (p) => (
+  <svg {...base} {...p}><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z" /></svg>
+)
+export const Descargar = (p) => (
+  <svg {...base} {...p}><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14" /></svg>
+)
 
 /** ✓ blanco en un círculo verde: «hecho». */
 export function MarcaBien({ tam = 22, className = '' }) {

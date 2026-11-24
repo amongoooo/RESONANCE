@@ -1,5 +1,9 @@
 name: Publicar la bitácora en GitHub Pages
 
+# Publica en la rama gh-pages (Settings > Pages > Source: Deploy from a branch > gh-pages):
+# - main      → la página normal: https://amongoooo.github.io/resonance/
+# - cada PR   → su vista previa:  https://amongoooo.github.io/resonance/pr-preview/pr-N/
+#               (el bot deja el link en la PR y la borra al mezclarla o cerrarla).
 # Solo corre cuando cambia la bitácora: los cambios del proyecto de Unity no la vuelven a publicar.
 on:
   push:
@@ -7,44 +11,57 @@ on:
     paths:
       - 'bitacora/**'
       - '.github/workflows/bitacora.yml'
+  pull_request:
+    types: [opened, reopened, synchronize, closed]
+    paths:
+      - 'bitacora/**'
+      - '.github/workflows/bitacora.yml'
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
+  pull-requests: write
 
+# Una publicación a la vez, para que dos no escriban gh-pages al mismo tiempo.
 concurrency:
-  group: pages
+  group: gh-pages
   cancel-in-progress: false
 
 jobs:
-  build:
+  publicar:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: bitacora
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
+        if: github.event.action != 'closed'
         with:
           node-version: 22
           cache: npm
           cache-dependency-path: bitacora/package-lock.json
-      - run: npm ci
-      - run: npm test
-      - run: npm run build
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: bitacora/dist
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Instalar, probar y compilar
+        if: github.event.action != 'closed'
+        working-directory: bitacora
+        run: |
+          npm ci
+          npm test
+          npm run build
+          touch dist/.nojekyll
+
+      - name: Publicar la página (main)
+        if: github.event_name != 'pull_request'
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: bitacora/dist
+          branch: gh-pages
+          clean-exclude: pr-preview/
+          force: false
+
+      - name: Vista previa de la PR
+        if: github.event_name == 'pull_request'
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: bitacora/dist
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview

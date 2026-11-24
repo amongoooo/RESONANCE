@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { aClave, deClave, diasEntre, larga, plazo } from './fechas.js'
+import { aClave, cuando, deClave, diasEntre, larga, masNuevoPrimero, plazo } from './fechas.js'
 
 describe('fechas', () => {
   it('ida y vuelta sin correrse de día', () => {
@@ -15,5 +15,16 @@ describe('fechas', () => {
     expect(plazo('2026-11-21', hoy)).toBe('Falta 1 día')
     expect(plazo('2026-11-20', hoy)).toBe('Es hoy')
     expect(plazo('2026-11-18', hoy)).toBe('Se pasó por 2 días')
+  })
+})
+
+describe('fecha y hora de la bitácora', () => {
+  it('muestra la hora cuando la hay', () => {
+    expect(cuando({ fecha: '2026-11-23', hora: '00:55' })).toBe('23 nov 2026 · 00:55')
+    expect(cuando({ fecha: '2026-11-20' })).toBe('20 nov 2026')
+  })
+  it('ordena lo más nuevo primero, también dentro del mismo día', () => {
+    const l = [{ fecha: '2026-11-20' }, { fecha: '2026-11-23', hora: '00:55' }, { fecha: '2026-11-23', hora: '18:10' }]
+    expect([...l].sort(masNuevoPrimero).map((e) => e.hora ?? '-')).toEqual(['18:10', '00:55', '-'])
   })
 })

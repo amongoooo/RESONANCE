@@ -24,7 +24,7 @@ export default function Estado({ D, fase, enCurso, proxima }) {
     <div className="flex flex-col gap-4">
       {proxima && (
         <a
-          href="#metas"
+          href="#/plan"
           className="flex items-start gap-3 rounded-3xl border-2 border-fijate bg-fijate-suave px-5 py-4 no-underline"
         >
           <Bombilla className="mt-0.5 shrink-0 text-fijate-tinta" />

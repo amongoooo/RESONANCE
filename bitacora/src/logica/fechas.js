@@ -48,3 +48,9 @@ export const plazo = (clave, hoy = new Date()) => {
   if (n === 0) return 'Es hoy'
   return n === -1 ? 'Se pasó por 1 día' : `Se pasó por ${-n} días`
 }
+
+/** «23 nov 2026 · 00:55» si trae hora; si no, solo la fecha. Para bitácora y decisiones. */
+export const cuando = ({ fecha, hora }) => (hora ? `${larga(fecha)} · ${hora}` : larga(fecha))
+
+/** Orden de lo más nuevo a lo más viejo, por fecha y luego por hora (sin hora cuenta como el inicio del día). */
+export const masNuevoPrimero = (a, b) => `${b.fecha} ${b.hora ?? '00:00'}`.localeCompare(`${a.fecha} ${a.hora ?? '00:00'}`)

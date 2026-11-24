@@ -130,7 +130,7 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; }
+html { scroll-behavior: smooth; scroll-padding-top: 1rem; scroll-padding-bottom: 7rem; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 #root { position: relative; overflow-x: clip; }
@@ -141,3 +141,11 @@ html.cambiando-tema,
 html.cambiando-tema * {
   transition: background-color 250ms ease, border-color 250ms ease, color 250ms ease, fill 250ms ease, stroke 250ms ease !important;
 }
+
+/* El contenido recibe el foco al cambiar de página (para lectores de pantalla); no necesita marco. */
+[tabindex="-1"]:focus { outline: none; }
+
+/* Ajustes (src/logica/opciones.js). Letra grande: todo está en rem, así crece parejo. */
+html.letra-grande { font-size: 112.5%; }
+/* Vidrio opaco: lo que flota pasa a superficie sólida, sin desenfoque (más contraste y menos trabajo para el teléfono). */
+html.opaco .vidrio { -webkit-backdrop-filter: none; backdrop-filter: none; background-color: var(--color-white); }

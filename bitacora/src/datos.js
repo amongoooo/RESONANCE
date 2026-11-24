@@ -8,6 +8,8 @@
 //  - Para agregar una entrada a la bitácora: copia un bloque { ... } de "bitacora"
 //    y pégalo hasta arriba de la lista (las más nuevas van primero).
 //  - Para registrar una decisión: agrega un bloque a "decisiones".
+//    Si cambia una decisión vieja, no la borres: en la nueva pon  reemplaza: "<texto exacto de la vieja>"
+//    y la página la mueve a «Cambiaron» con un enlace a la nueva.
 //  Fechas siempre como "AAAA-MM-DD" y, en bitácora y decisiones, hora "HH:MM" (hora de CDMX)
 //  de cuando se subió. Cuida las comas entre bloques y las comillas.
 // ============================================================
@@ -20,6 +22,7 @@ export default {
     autor: "amongo",
     escuela: "TecNM campus Celaya",
     competencia: "Infomatrix / SOLACYT, categoría Desarrollo de Software",
+    inicio: "2026-11-20", // el calendario de la bitácora empieza aquí
     congelamiento: "2027-05-01",
     version1: "2027-07-04",
   },
@@ -226,7 +229,22 @@ export default {
     { fecha: "2026-11-24", hora: "12:00", decision: "Pendiente: decoración de 8×8 en capa aparte; mecánicas con objetos y snap a 0,5", porque: "Propuesta: la decoración (tuberías, enredaderas) puede usar una grid hija de 0,5 con su propio PNG, plantilla y Rule Tile, con la misma paleta y sin collider; no rompe Pixel Perfect si queda a múltiplos de 8 px. Lo que tenga mecánica (por ejemplo una tubería que reacciona al sonido) va como objeto con ScriptableObject y snap a 0,5. Un Tilemap de 8×8 con collider solo si el prototipo de correr y saltar (Paso 3) lo pide. Antes de dibujar hay que definir qué hace el jugador con la pieza.", pendiente: true },
   ],
 
+  // Página «El juego»: la idea en un párrafo y los sistemas que lo hacen distinto.
+  juego: {
+    idea:
+      "Tu herramienta no es un arma, es un sintonizador. Todo lo que está roto en el mundo está desafinado: giras perillas de frecuencia, amplitud y fase hasta que tu onda coincide con la del objeto, y el mundo reacciona. Cada zona enseña un concepto de física del sonido.",
+    pilares: [
+      { nombre: "Sintetizador propio", texto: "Lo que el jugador mueve suena exactamente como se ve: la onda se genera en código, no es una grabación." },
+      { nombre: "Música por capas", texto: "Compuesta por mí en FL Studio. Un solo reloj musical mueve el sonido, las luces y las partículas." },
+      { nombre: "Criaturas procedurales", texto: "Se mueven con física (segmentos, resortes y patas que buscan el suelo), no con animaciones dibujadas cuadro por cuadro." },
+      { nombre: "Ecosistema que escucha", texto: "Las criaturas se acercan o huyen según el sonido que hagas." },
+      { nombre: "Todo por datos", texto: "Zonas, criaturas y skins se describen con datos, así agregar contenido no pide reprogramar." },
+    ],
+  },
+
   // Zonas del juego (las marcadas como extra solo si sobra tiempo).
+  // zonasNota: aviso que sale arriba de las zonas; bórralo cuando las zonas estén al día.
+  zonasNota: "Por rediseñar: estas zonas son del concepto anterior (física del sonido). Se van a redefinir con las tribus y el enfoque en música.",
   zonas: [
     { nombre: "Zona 1 · Ritmo", concepto: "Tribu de tambores inspirada en África occidental: recuperar el pulso común (bombo abajo, caja en medio, hi-hat arriba)." },
     { nombre: "Zona 2 · Melodía", concepto: "Tribu de las escalas: notas que suben y bajan (lo agudo arriba, lo grave abajo)." },
