@@ -55,7 +55,7 @@ export default {
               { titulo: "Tamaño de tile: 16×16 (un tile = una unidad de Unity).", hecho: true },
               { titulo: "Plantilla de tiles con marcas de conexión (arte/plantillas).", hecho: true },
               { titulo: "Estudiar tiles en Shovel Knight, Celeste, Terraria y Animal Well.", hecho: false },
-              { titulo: "Cerrar la paleta: casillas por material y hora del día.", hecho: false },
+              { titulo: "Cerrar la paleta: casillas por material y hora del día (23 casillas, abierta a cambios).", hecho: true },
               { titulo: "Dibujar los tiles de la plantilla en Aseprite.", hecho: false },
               { titulo: "Tilemap con Rule Tile y cámara Pixel Perfect en Unity.", hecho: false },
             ],
@@ -159,6 +159,14 @@ export default {
   // enlace: { texto: "Ver video", url: "https://..." }
   bitacora: [
     {
+      fecha: "2026-11-24",
+      hora: "02:08",
+      titulo: "Paleta de la zona 1 cerrada (abierta a cambios)",
+      texto:
+        "Cerré la paleta de la zona 1: 23 casillas por rol (sombra, suelo, construido, aire, vida y sonido) para un atardecer, con el archivo .gpl para Aseprite. Dibujo a color y el código trata cada color como una casilla, así que el gris del silencio, el color de cada zona y las skins son filas de una tabla. Revisé que cada rampa se lea en gris y que lo que da al aire lleve contorno de sombra. Probé definir todos los colores de todas las zonas de una vez y me abrumó: mejor una zona por vez. Quedan pendientes dos ideas: criaturas con partes dibujadas y pelaje por código, y una luz que mueva cada píxel por su rampa.",
+      etiquetas: ["arte", "diseño"],
+    },
+    {
       fecha: "2026-11-23",
       hora: "12:00",
       titulo: "Empieza la sala de estilo de la zona 1",
@@ -202,7 +210,10 @@ export default {
     { fecha: "2026-11-23", hora: "01:01", decision: "Compongo y exporto solo desde FL Studio (sin Ableton); en el juego sigue Unity + FMOD", porque: "FL Studio exporta todas las pistas en un solo MIDI, que es la fuente de verdad de la música. FMOD se queda para el audio del juego, como en la decisión de audio del 20 de noviembre. (Corregido el 23 de noviembre: antes decía «sin FMOD» por error.)" },
     { fecha: "2026-11-23", hora: "12:00", decision: "La zona 1 es la tribu del Ritmo; las zonas siguen a las tribus", porque: "La historia cerrada ordena el mundo por tribus: 1 Ritmo (África occidental), 2 Melodía, 3 Armonía, 4 La mezcla (Latinoamérica y México) y el caracol al centro. «Las Cuerdas» y las zonas extra eran del diseño anterior." },
     { fecha: "2026-11-23", hora: "12:00", decision: "Tiles de 16×16", porque: "Con 16 PPU un tile es una unidad de Unity: posiciones y saltos sin decimales. A 480×270 se ven 30×17 tiles, suficiente para ver una sala entera con lo grave abajo y lo agudo arriba." },
-    { fecha: "2026-11-23", hora: "12:00", decision: "Pendiente: dibujar con una paleta por casillas", porque: "Propuesta: dibujo a color y el código trata cada color como una casilla. El gris del silencio, el color de cada zona y las skins son filas de una tabla en el Inspector. Si dibujara en gris, dos materiales con el mismo brillo se volverían el mismo y no se podrían colorear distinto. Falta decidir las casillas por material y la hora del día de la zona 1.", pendiente: true },
+    { fecha: "2026-11-24", hora: "02:08", decision: "Dibujo a color con una paleta por casillas", porque: "El código trata cada color como una casilla: el gris del silencio, el color de cada zona y las skins son filas de una tabla. Si dibujara en gris, dos materiales con el mismo brillo se volverían el mismo. Cada objeto elige su propia tabla (la skin del protagonista no repinta el suelo), las casillas se nombran por rol y no por color, y las nuevas se agregan siempre al final (hasta 32) para no mover lo ya dibujado." },
+    { fecha: "2026-11-24", hora: "02:08", decision: "Paleta de la zona 1: 23 casillas por rol, atardecer (abierta a cambios)", porque: "Sombra 3; suelo (laterita), construido (sabana), aire (índigo), vida (hoja) y sonido (música) 4 cada una. Cada material necesita unos 4 tonos para tener volumen en 16×16. Sonido es solo luz y ningún tile lo usa; todo lo que da al aire lleva contorno de sombra. Atardecer porque la luna de la historia está en su fase más delgada en la zona 1 y la luz 2D luce más con poca luz, pero oscuro sin llegar a negro (el suelo más oscuro no baja de 16 de gris). No habrá ciclo de día: la noche es una fila opcional de la tabla. Cada rampa se midió en gris: cada paso se separa 9 a 13 puntos del anterior. Las demás zonas se hacen una por una, cuando lleguen. Archivo: arte/paletas/resonancia_zona1.gpl." },
+    { fecha: "2026-11-24", hora: "02:08", decision: "Las distorsiones y efectos van después de convertir casillas a color", porque: "Si se mezclan píxeles antes de la conversión, la casilla 5 y la 7 dan una «casilla 6» que no era ninguna de las dos y el color sale mal. Las texturas de arte se leen sin suavizado y los efectos trabajan sobre la imagen ya en color a 480×270." },
+    { fecha: "2026-11-24", hora: "02:08", decision: "Pendiente: la luz 2D mueve cada píxel por su rampa en vez de pintar encima", porque: "Propuesta: un píxel «suelo-2» con mucha luz se ve como «suelo-3» y en sombra como «suelo-1», así la luz nunca crea colores fuera de la paleta y no ensucia el pixel art. Pide dibujar casi todo con los pasos 1 a 3 y dejar el 4 para el brillo. Se prueba en el Paso 2 con el shader de paleta.", pendiente: true },
     { fecha: "2026-11-23", hora: "12:00", decision: "Pendiente: los mapas se arman en el Tilemap de Unity, no en Tiled", porque: "Propuesta: las luces, el bombo, el metrónomo y el Rule Tile viven en Unity; Tiled agregaría un paso de importación que puede fallar y repetiría el autotiling. Aseprite (con capas de tilemap) queda para todo el arte.", pendiente: true },
     { fecha: "2026-11-24", hora: "00:14", decision: "Pendiente: criaturas híbridas (partes dibujadas más líneas por código)", porque: "Propuesta: cabeza, torso y patas como pocos sprites dibujados a mano (Sprite Library) y el pelaje, los hilos y las colas como líneas de 1 px que siguen una cadena con inercia. El pixel art sale de dibujar toda la escena a 480×270, así que las formas generadas por código también quedan pixeleadas. El riesgo es el parpadeo de los bordes al moverse a fracciones de píxel; se probará con una cadena de hilos en el Paso 3 antes de comprometerse. Si se aprueba, la regla «sin rotaciones libres de sprites» se relaja solo para criaturas.", pendiente: true },
     { fecha: "2026-11-24", hora: "00:14", decision: "Pendiente: dibujar en color y que Unity lo convierta a casillas", porque: "Propuesta: dibujar en Aseprite en modo indexado con la paleta (se ve el color real) y que un script de importación de Unity guarde cada píxel como el número de su casilla; el shader lo pinta con la tabla (gris del silencio, zona, skins). Plan B si el script se complica: un shader que compara el color exacto. Se decide en el Paso 2.", pendiente: true },

@@ -1,0 +1,29 @@
+GIMP Palette
+Name: RESONANCIA zona 1 atardecer
+Columns: 4
+# Indice 0 = vacio (transparente en modo indexado). No dibujar con el.
+# Casillas 1 a 23, nombradas por rol. Los nombres de color (laterita, sabana, indigo, hoja, musica) son los de la zona 1.
+255   0 255	0 vacio (no dibujar)
+ 17  19  27	1 sombra-1 contorno
+ 28  31  45	2 sombra-2
+ 45  47  67	3 sombra-3
+ 72  24  22	4 suelo-1 laterita oscura
+103  39  27	5 suelo-2 laterita
+136  59  34	6 suelo-3 laterita clara
+166  92  48	7 suelo-4 laterita luz
+133 104  75	8 construido-1 sabana oscura
+164 135  91	9 construido-2 sabana
+192 169 117	10 construido-3 sabana clara
+218 204 155	11 construido-4 sabana luz
+ 33  51  93	12 aire-1 indigo oscuro
+ 37  75 134	13 aire-2 indigo
+ 87 124 191	14 aire-3 indigo claro
+169 180 228	15 aire-4 indigo luz
+ 39  82  52	16 vida-1 hoja oscura
+ 60 108  57	17 vida-2 hoja
+ 91 136  61	18 vida-3 hoja clara
+133 163  72	19 vida-4 hoja luz
+216  45 142	20 sonido-1 magenta
+245 138  74	21 sonido-2 naranja
+255 185 181	22 sonido-3 durazno
+249 243 232	23 sonido-4 blanco calido
