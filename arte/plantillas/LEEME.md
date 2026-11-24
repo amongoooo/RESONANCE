@@ -12,3 +12,9 @@
 4. Para exportar, oculta `guia` y guarda una copia en PNG. Los cuadros vacíos se ignoran al cortar en Unity.
 
 Marcas: punteado verde = se une con otro tile (el dibujo continúa sin corte); línea rosa = da al aire (borde visible); amarilla = se apoya sobre el suelo; contorno gris punteado = variante opcional.
+
+## Plantilla propia (la que se usa)
+
+- `plantilla_propia_zona1.png`: la plantilla del autor (224×160, 52 tiles únicos de 16×16). La anterior queda como referencia para el Rule Tile.
+- `plantilla_propia_zona1_leyenda.png`: la misma, ampliada, con el id de cada tile. Marco amarillo = alineado a la rejilla de 16; marco rojo = corrido 8 px de la rejilla.
+- `tiles_propios.py`: lista de tiles (id, nombre, posición) y generador de la leyenda (`python3 tiles_propios.py <carpeta>`). Los nombres son una propuesta: se corrigen en el script.
