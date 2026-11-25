@@ -111,6 +111,10 @@ export function Barras({ ruta }) {
   const ahora = useRef({})
   ahora.current = { pagina: pagina.id, lado, reducir }
   const mostradaRef = useRef(mostrada)
+  // Cuántas veces cambió de lado: Pildora lo usa para que la marca blanca no vuele de una orilla a la otra.
+  const vueltas = useRef({ lado, n: 0 })
+  if (vueltas.current.lado !== lado) vueltas.current = { lado, n: vueltas.current.n + 1 }
+  const vuelta = vueltas.current.n
 
   // Las animaciones van en fila (una termina antes de que empiece la otra); mientras tanto no se puede jalar.
   const ocupado = useRef(0)
@@ -220,6 +224,7 @@ export function Barras({ ruta }) {
         alIr={(p) => navegar(hashDe(p.id, ultimaVista[p.id]))}
         alRepetir={subir}
         alJalar={jalar('paginas')}
+        vuelta={vuelta}
       />
     </motion.div>
   )
@@ -234,6 +239,7 @@ export function Barras({ ruta }) {
         alIr={(v) => navegar(hashDe(mostrada, v.id))}
         alRepetir={subir}
         alJalar={jalar('vistas')}
+        vuelta={vuelta}
       />
     </motion.div>
   )

@@ -40,8 +40,9 @@ const flotar = (d) => {
 /**
  * items: [{ id, nombre, Icono? }]. `variante`: 'pestanas' (ícono; la elegida crece y muestra su nombre, o todas con
  * nombre si `todas`) o 'vistas' (solo texto, a lo ancho). `alIr(item)` navega; `alRepetir()` al tocar la que ya está.
+ * `vuelta`: cambia cada vez que la barra pasa al otro lado; así la marca blanca no vuela de la barra vieja a la nueva.
  */
-export default function Pildora({ items, activo, variante = 'pestanas', todas = false, etiqueta, alIr, alRepetir, alJalar, className = '' }) {
+export default function Pildora({ items, activo, variante = 'pestanas', todas = false, etiqueta, alIr, alRepetir, alJalar, vuelta = 0, className = '' }) {
   const reducir = useReducido()
   const indiceRuta = items.findIndex((x) => x.id === activo)
   const [foco, setFoco] = useState(indiceRuta)
@@ -188,7 +189,7 @@ export default function Pildora({ items, activo, variante = 'pestanas', todas = 
         onPointerCancel={soltar}
         onKeyDown={onKeyDown}
       >
-        <LayoutGroup id={`pildora-${etiqueta}`}>
+        <LayoutGroup id={`pildora-${etiqueta}-${vuelta}`}>
           {items.map((p, i) => {
             const activa = i === foco
             const conNombre = !pestanas || activa || todas
