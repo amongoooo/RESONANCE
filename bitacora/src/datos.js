@@ -166,6 +166,14 @@ export default {
   bitacora: [
     {
       fecha: "2026-11-24",
+      hora: "23:51",
+      titulo: "Repo listo para el proyecto de Unity",
+      texto:
+        "Preparé el repo antes de mi primer commit de Unity. Con el nuevo .gitattributes, las texturas, el audio (con los bancos de FMOD), los modelos y los .aseprite que estén dentro de Assets/ van por Git LFS, y los archivos de texto de Unity se guardan siempre con saltos de línea LF, también en Windows. bitacora/ y arte/ siguen como Git normal. La carpeta .vscode/ que Unity creó en la raíz queda fuera del repo. El proyecto es Universal 2D en Unity 6000.4.2f1, con 2D Tilemap Extras 7.0.1 (trae el Rule Tile) y 2D Aseprite Importer 4.0.2, instalados desde el Unity Registry. Antes del primer commit compruebo que Git LFS esté instalado en mi equipo.",
+      etiquetas: ["herramientas", "planeación"],
+    },
+    {
+      fecha: "2026-11-24",
       hora: "22:21",
       titulo: "Plantilla de 38 tiles y Unity primero",
       texto:
@@ -269,6 +277,9 @@ export default {
     { fecha: "2026-11-24", hora: "22:21", decision: "Pendiente: objetos de 1/2 (tuberías), solo si hacen falta, en una grid hija de 0,5", reemplaza: "Pendiente: objetos de 1/2, ¿pieza dentro de la celda de 16 o grid hija de 0,5?", porque: "Propuesta sin probar en Unity: la plantilla de 38 ya no trae piezas de 1/2. Si un objeto las necesita, iría en una grid hija de 0,5 con su propia plantilla, y la misma de 38 a 8 px sirve para tuberías (líneas, esquinas, cruz). Se decide cuando aparezca el primer objeto de 1/2.", pendiente: true },
     { fecha: "2026-11-24", hora: "22:21", decision: "Pendiente: la decoración de pasto sobresale unos 4 px y su hoja necesita su propia plantilla", porque: "Propuesta: el pasto cae fuera de la celda de 16 y en celdas vecinas, así que la hoja de decoración usaría celdas mayores (por ejemplo 24×24 con margen de 4 px por lado) y su Rule Tile, con sprites más grandes que la celda y pivote centrado. Se decide en la capa de decoración, después del Rule Tile del terreno.", pendiente: true },
     { fecha: "2026-11-24", hora: "22:21", decision: "Las variantes se reconocen por su lugar en la plantilla, no por un azul más claro", reemplaza: "Los tiles de azul más claro son variantes: el mismo tile con otro dibujo, para dar variedad", porque: "La plantilla nueva pinta todos los bordes del mismo azul. Siguen siendo variantes (mismo tile con otro dibujo y las mismas uniones que su base): B3, B7, B9, B10, B11, B12, B15, U8 y U9, es decir, el segundo borde de cada lado, los rellenos 2 a 4 y la segunda pieza horizontal y vertical del anillo. El revisor las comprueba contra su base." },
+    { fecha: "2026-11-24", hora: "23:51", decision: "Git LFS solo para los archivos pesados dentro de Assets/", porque: "Texturas (png, jpg, tga, psd, tif, exr, hdr, bmp), Aseprite (.aseprite, .ase), audio (wav, mp3, ogg, aif, flac y los .bank de FMOD) y modelos (fbx, obj, blend, dae, glb) se guardan fuera del historial normal: en el repo queda un puntero pequeño y el archivo real va al almacén de LFS. Así cada versión de un audio o una textura no engorda el repo para siempre. Fuera de Assets/ todo sigue como Git normal, porque la publicación de la bitácora y las plantillas de arte/ usan PNG normales. LFS gasta la cuota de GitHub (en la cuenta gratuita, 1 GiB de espacio y 1 GiB de descarga al mes, por confirmar en Settings > Billing); la publicación de la página no descarga LFS. Video y fuentes se agregan a la lista si hacen falta." },
+    { fecha: "2026-11-24", hora: "23:51", decision: "Los archivos de texto de Unity se guardan siempre con saltos de línea LF", porque: "Unity escribe sus archivos de texto (.cs, .meta, escenas, prefabs, assets) con LF, y GitHub Desktop en Windows avisaba que los convertiría a CRLF. Con eol=lf en .gitattributes, Git los guarda y los saca en LF en cualquier equipo, así los cambios no se llenan de líneas que solo cambiaron el salto. Aplica solo a Assets/, Packages/ y ProjectSettings/; Git detecta solo qué archivos son de texto (text=auto)." },
+    { fecha: "2026-11-24", hora: "23:51", decision: ".vscode/ fuera del repo", porque: "Unity lo generó en la raíz y es configuración de mi editor, no del proyecto." },
   ],
 
   // Página «El juego»: la idea en un párrafo y los sistemas que lo hacen distinto.

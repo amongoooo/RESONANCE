@@ -1,0 +1,42 @@
+# Atributos de Git para el proyecto de Unity (la raíz del repo).
+# Solo afectan a las carpetas de Unity: bitacora/, arte/ y docs/ quedan como Git normal.
+# Las reglas de más abajo ganan sobre las de arriba.
+
+# --- Saltos de línea ---------------------------------------------------------
+# Unity escribe sus archivos de texto (.cs, .meta, .unity, .prefab, .asset…) con LF.
+# Así se guardan y se sacan siempre en LF, también en Windows (sin el aviso LF → CRLF).
+# text=auto: Git mira el contenido y deja en paz lo que sea binario.
+/Assets/**          text=auto eol=lf
+/Packages/**        text=auto eol=lf
+/ProjectSettings/** text=auto eol=lf
+
+# --- Git LFS (solo dentro de Assets/) ----------------------------------------
+# Estos archivos se guardan aparte y en el repo queda un puntero de texto.
+# Texturas
+/Assets/**/*.png   filter=lfs diff=lfs merge=lfs -text
+/Assets/**/*.jpg   filter=lfs diff=lfs merge=lfs -text
+/Assets/**/*.jpeg  filter=lfs diff=lfs merge=lfs -text
+/Assets/**/*.tga   filter=lfs diff=lfs merge=lfs -text
+/Assets/**/*.psd   filter=lfs diff=lfs merge=lfs -text
+/Assets/**/*.tif   filter=lfs diff=lfs merge=lfs -text
+/Assets/**/*.tiff  filter=lfs diff=lfs merge=lfs -text
+/Assets/**/*.exr   filter=lfs diff=lfs merge=lfs -text
+/Assets/**/*.hdr   filter=lfs diff=lfs merge=lfs -text
+/Assets/**/*.bmp   filter=lfs diff=lfs merge=lfs -text
+# Aseprite
+/Assets/**/*.aseprite filter=lfs diff=lfs merge=lfs -text
+/Assets/**/*.ase      filter=lfs diff=lfs merge=lfs -text
+# Audio (y bancos de FMOD)
+/Assets/**/*.wav   filter=lfs diff=lfs merge=lfs -text
+/Assets/**/*.mp3   filter=lfs diff=lfs merge=lfs -text
+/Assets/**/*.ogg   filter=lfs diff=lfs merge=lfs -text
+/Assets/**/*.aif   filter=lfs diff=lfs merge=lfs -text
+/Assets/**/*.aiff  filter=lfs diff=lfs merge=lfs -text
+/Assets/**/*.flac  filter=lfs diff=lfs merge=lfs -text
+/Assets/**/*.bank  filter=lfs diff=lfs merge=lfs -text
+# Modelos
+/Assets/**/*.fbx   filter=lfs diff=lfs merge=lfs -text
+/Assets/**/*.obj   filter=lfs diff=lfs merge=lfs -text
+/Assets/**/*.blend filter=lfs diff=lfs merge=lfs -text
+/Assets/**/*.dae   filter=lfs diff=lfs merge=lfs -text
+/Assets/**/*.glb   filter=lfs diff=lfs merge=lfs -text
