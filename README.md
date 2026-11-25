@@ -2,7 +2,7 @@
 
 Plataformero educativo de física del sonido: el mundo está desafinado y lo arreglas igualando ondas con un sintonizador (frecuencia, amplitud y fase). Proyecto para Infomatrix / SOLACYT, categoría Desarrollo de Software, hecho en Unity.
 
-**Página de registro del proyecto:** https://amongoooo.github.io/resonance/
+**Página de registro del proyecto:** https://amongoooo.github.io/RESONANCE/
 
 ## Estructura del repo
 

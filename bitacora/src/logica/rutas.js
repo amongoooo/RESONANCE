@@ -1,5 +1,5 @@
 // Páginas de la bitácora. Cada una vive en su propia dirección con «#/», por ejemplo
-// https://amongoooo.github.io/resonance/#/registro/decisiones. Con «#» GitHub Pages no necesita
+// https://amongoooo.github.io/RESONANCE/#/registro/decisiones. Con «#» GitHub Pages no necesita
 // configurar nada: siempre sirve el mismo index.html y la página se elige aquí.
 //
 // Las pestañas de abajo son las PÁGINAS; las que tienen apartados (vistas) los muestran en una barra arriba,

@@ -1,6 +1,8 @@
-import { AnimatePresence, LayoutGroup, animate, motion, useMotionValue, useReducedMotion } from 'motion/react'
+import { AnimatePresence, LayoutGroup, animate, motion, useMotionValue } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
+import { anotarMuestra, velocidadDe } from '../logica/gesto.js'
 import { RESORTE } from './movimiento.js'
+import { useReducido } from './useOpciones.js'
 
 // Píldora de navegación que se arrastra, la misma de teoria-musical (components/BarraPestanas.jsx y CaminoLecciones.jsx):
 //  - FLOTA: mientras el dedo está apoyado, la barra lo sigue con resistencia, sin pasar de `max` px; al soltar vuelve.
@@ -9,8 +11,9 @@ import { RESORTE } from './movimiento.js'
 //    encima o por debajo del eje de la barra; lo que no se va en inclinación se va en un golpe LATERAL. Sin dedo
 //    que jale (tocar, flechas), solo el golpe lateral. Todo vuelve a 0 a los `vuelve` ms.
 //  - IMÁN: la marca se corre un poco hacia el dedo sin dejar su opción.
-//  - Arrastrar de lado cambia de opción EN VIVO. Deslizar hacia arriba o abajo (más vertical que horizontal y más de
-//    `UMBRAL` px) llama a `alInvertir` (intercambia la barra de arriba con la de abajo).
+//  - Arrastrar de lado cambia de opción EN VIVO. Jalar hacia arriba o abajo (más vertical que horizontal) se lo pasa a
+//    `alJalar(fase, { dy, vy })`: quien contiene la barra la mueve y decide si cambia de lado o rebota
+//    (src/ui/Navegacion.jsx y src/logica/gesto.js). En 'mover' devuelve true si al soltar cambiaría de lado.
 export const FLOTA = { factor: 0.5, max: 14 }
 export const MATRACA = {
   max: 3,
@@ -21,11 +24,9 @@ export const MATRACA = {
   golpe: { ...RESORTE.pulsar, stiffness: RESORTE.pulsar.stiffness * 4, damping: RESORTE.pulsar.damping * 2 },
   vuelta: { ...RESORTE.suave, stiffness: RESORTE.suave.stiffness * 4, damping: RESORTE.suave.damping * 2 },
 }
-const REBOTE = { type: 'spring', stiffness: 520, damping: 11, mass: 0.7 }
+export const REBOTE = { type: 'spring', stiffness: 520, damping: 11, mass: 0.7 }
 const IMAN = 0.35
 const IMAN_MAX = 14
-/** Cuánto hay que deslizar en vertical para invertir las barras. */
-const UMBRAL = 34
 
 const gradosMatraca = (i, total) => {
   const centro = (total - 1) / 2
@@ -39,9 +40,10 @@ const flotar = (d) => {
 /**
  * items: [{ id, nombre, Icono? }]. `variante`: 'pestanas' (ícono; la elegida crece y muestra su nombre, o todas con
  * nombre si `todas`) o 'vistas' (solo texto, a lo ancho). `alIr(item)` navega; `alRepetir()` al tocar la que ya está.
+ * `vuelta`: cambia cada vez que la barra pasa al otro lado; así la marca blanca no vuela de la barra vieja a la nueva.
  */
-export default function Pildora({ items, activo, variante = 'pestanas', todas = false, etiqueta, alIr, alRepetir, alInvertir, className = '' }) {
-  const reducir = useReducedMotion()
+export default function Pildora({ items, activo, variante = 'pestanas', todas = false, etiqueta, alIr, alRepetir, alJalar, vuelta = 0, className = '' }) {
+  const reducir = useReducido()
   const indiceRuta = items.findIndex((x) => x.id === activo)
   const [foco, setFoco] = useState(indiceRuta)
   const focoRef = useRef(foco)
@@ -96,28 +98,38 @@ export default function Pildora({ items, activo, variante = 'pestanas', todas = 
       /* puntero que ya no existe */
     }
     const caja = e.currentTarget.getBoundingClientRect()
-    arrastre.current = { id: e.pointerId, x0: e.clientX, y0: e.clientY, eje: caja.top + caja.height / 2, movio: false, vertical: false, listo: false }
+    arrastre.current = {
+      id: e.pointerId,
+      x0: e.clientX,
+      y0: e.clientY,
+      eje: caja.top + caja.height / 2,
+      movio: false,
+      vertical: false,
+      listo: false,
+      muestras: [{ t: e.timeStamp, x: e.clientX, y: e.clientY }],
+    }
   }
   const onPointerMove = (e) => {
     const s = arrastre.current
     if (!s || s.id !== e.pointerId) return
     const dx = e.clientX - s.x0
     const dy = e.clientY - s.y0
+    anotarMuestra(s.muestras, { t: e.timeStamp, x: e.clientX, y: e.clientY })
     if (!s.movio && Math.hypot(dx, dy) < 8) return
-    if (!s.movio) s.vertical = Math.abs(dy) > Math.abs(dx) * 1.2 && !!alInvertir
+    if (!s.movio) s.vertical = Math.abs(dy) > Math.abs(dx) * 1.2 && !!alJalar
     s.movio = true
-    if (!reducir) {
-      flotaX.set(flotar(dx) * 0.4)
-      flotaY.set(flotar(dy) * (s.vertical ? 1.6 : 1))
-    }
     if (s.vertical) {
-      // Al pasar el umbral, un rebote avisa que al soltar se intercambian las barras.
-      const listo = Math.abs(dy) > UMBRAL
+      // La barra entera la mueve quien la contiene. Al pasar el umbral, un rebote avisa que al soltar cambia de lado.
+      const listo = !!alJalar('mover', { dy, vy: velocidadDe(s.muestras).vy })
       if (listo !== s.listo) {
         s.listo = listo
         if (!reducir) animate(escala, listo ? 0.95 : 1, REBOTE)
       }
       return
+    }
+    if (!reducir) {
+      flotaX.set(flotar(dx) * 0.4)
+      flotaY.set(flotar(dy))
     }
     const i = masCercana(e.clientX)
     if (i !== focoRef.current) {
@@ -137,11 +149,12 @@ export default function Pildora({ items, activo, variante = 'pestanas', todas = 
     animate(flotaY, 0, RESORTE.suave)
     animate(iman, 0, REBOTE)
     animate(escala, 1, RESORTE.suave)
-    if (e.type !== 'pointerup') return
     if (s.vertical) {
-      if (s.listo) alInvertir()
+      const dy = e.type === 'pointerup' ? e.clientY - s.y0 : 0
+      alJalar(e.type === 'pointerup' ? 'soltar' : 'cancelar', { dy, vy: e.type === 'pointerup' ? velocidadDe(s.muestras).vy : 0 })
       return
     }
+    if (e.type !== 'pointerup') return
     if (!s.movio) {
       const i = masCercana(e.clientX)
       if (i !== focoRef.current) matraca(i, Math.sign(i - focoRef.current))
@@ -176,7 +189,7 @@ export default function Pildora({ items, activo, variante = 'pestanas', todas = 
         onPointerCancel={soltar}
         onKeyDown={onKeyDown}
       >
-        <LayoutGroup id={`pildora-${etiqueta}`}>
+        <LayoutGroup id={`pildora-${etiqueta}-${vuelta}`}>
           {items.map((p, i) => {
             const activa = i === foco
             const conNombre = !pestanas || activa || todas

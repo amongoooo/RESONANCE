@@ -1,6 +1,6 @@
 import { LayoutGroup, motion } from 'motion/react'
 import { cambiarOpcion, restablecer } from '../logica/opciones.js'
-import { BotonInstalar, useInstalar, useOpciones } from '../ui/Navegacion.jsx'
+import { BotonInstalar, pedirLado, useInstalar, useOpciones } from '../ui/Navegacion.jsx'
 import { RESORTE } from '../ui/movimiento.js'
 import Pulsable from '../ui/Pulsable.jsx'
 
@@ -59,11 +59,21 @@ const AJUSTES = [
         ],
       },
       {
-        id: 'barras',
-        nombre: 'Orden de las barras',
+        id: 'navegacion',
+        nombre: 'Tipo de navegación',
         valores: [
-          ['normal', 'Páginas abajo', 'Las páginas abajo y los apartados (como Bitácora | Decisiones) arriba. Desliza una barra hacia arriba o abajo para cambiarlas.'],
-          ['invertidas', 'Páginas arriba', 'Las páginas arriba y los apartados abajo, junto al pulgar. Desliza una barra hacia arriba o abajo para regresarlas.'],
+          ['barra', 'Barra', 'Toca una pestaña o arrastra la barra de lado para pasar por ellas.'],
+          ['ruleta', 'Ruleta', 'Gírala de lado: la opción que se detiene en el centro es la elegida. Si todas caben a la vista, la ruleta tiene tope.'],
+        ],
+      },
+      {
+        id: 'lado',
+        nombre: 'Lado de la barra',
+        // Usa la misma animación que el gesto (src/ui/Navegacion.jsx).
+        alElegir: pedirLado,
+        valores: [
+          ['abajo', 'Abajo', 'Las páginas abajo, junto al pulgar, y los apartados (como Bitácora | Decisiones) arriba. También puedes jalar la barra hacia abajo para mandarla arriba.'],
+          ['arriba', 'Arriba', 'Las páginas arriba y los apartados abajo. También puedes jalar la barra hacia arriba para mandarla abajo.'],
         ],
       },
       {
@@ -79,7 +89,7 @@ const AJUSTES = [
 ]
 
 /** Botones de opción en una píldora, con la marca blanca que se desliza a la elegida. */
-function Segmentado({ id, valores, valor, etiqueta }) {
+function Segmentado({ id, valores, valor, etiqueta, alElegir = (v) => cambiarOpcion(id, v) }) {
   return (
     <LayoutGroup id={`ajuste-${id}`}>
       <div role="radiogroup" aria-labelledby={etiqueta} className="flex w-full gap-1 rounded-full bg-zinc-100 p-1">
@@ -91,7 +101,7 @@ function Segmentado({ id, valores, valor, etiqueta }) {
               type="button"
               role="radio"
               aria-checked={activo}
-              onClick={() => cambiarOpcion(id, v)}
+              onClick={() => alElegir(v)}
               className={`relative flex min-h-11 min-w-0 flex-1 items-center justify-center rounded-full px-2 text-base font-bold transition-colors ${activo ? 'text-zinc-900' : 'text-zinc-500'}`}
               style={{ touchAction: 'manipulation' }}
             >
@@ -164,7 +174,7 @@ export default function Ajustes({ proyecto }) {
                 <span id={`et-${f.id}`} className="font-titulo text-lg leading-tight font-bold tracking-tight">
                   {f.nombre}
                 </span>
-                <Segmentado id={f.id} valores={f.valores} valor={actuales[f.id]} etiqueta={`et-${f.id}`} />
+                <Segmentado id={f.id} valores={f.valores} valor={actuales[f.id]} etiqueta={`et-${f.id}`} alElegir={f.alElegir} />
                 {nota && <span className="text-base leading-snug text-zinc-600">{nota}</span>}
               </Fila>
             )
