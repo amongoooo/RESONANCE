@@ -2,7 +2,7 @@
 
 Uso: python3 revisar_tiles.py mis_tiles.png [--imagen errores.png] [--estricto]
 
-Lee el PNG exportado (224×160, indexado o RGBA, sin la capa guia) y revisa cada uno de los 74 tiles.
+Lee el PNG exportado (288×192, indexado o RGBA, sin la capa guia) y revisa cada uno de los 38 tiles.
 Las marcas de cada lado y la forma de cada pieza salen de la plantilla (tiles_propios.py), no se copian a mano.
 Las celdas vacías se saltan (pendientes), así sirve a medio dibujar.
 
@@ -27,8 +27,7 @@ from tiles_propios import TILES, VARIANTE_DE, borde  # noqa: E402
 
 PLANTILLA = os.path.join(AQUI, "plantilla_propia_zona1.png")
 PALETA = os.path.join(AQUI, "..", "paletas", "resonancia_zona1.gpl")
-GRUPO = {"B": "grueso", "I": "grueso", "U": "delgado", "L": "delgado", "X": "delgado",
-         "M": "8px", "T": "8px", "P": "8px", "A": "8px"}
+GRUPO = {"B": "grueso", "I": "grueso", "U": "delgado", "L": "delgado", "X": "delgado"}
 LADOS = ("arriba", "der", "abajo", "izq")
 OPUESTO = {"arriba": "abajo", "abajo": "arriba", "izq": "der", "der": "izq"}
 # Para cada lado, los dos lados perpendiculares que forman sus extremos.
