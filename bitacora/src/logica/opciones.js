@@ -11,12 +11,24 @@ export const OPCIONES = {
   vidrio: 'desenfoque', // desenfoque | opaco
   nombres: 'elegida', //  elegida (solo la pestaña elegida muestra su nombre) | todas
   abrir: 'inicio', //     inicio | ultima (la última página que viste)
-  barras: 'normal', //    normal (páginas abajo, apartados arriba) | invertidas (al revés; también deslizando la barra)
+  lado: 'abajo', //       abajo (páginas abajo, apartados arriba) | arriba (al revés; también jalando la barra)
+  navegacion: 'barra', // barra | ruleta (carrusel: la opción del centro es la elegida)
+}
+
+/** Ajustes guardados por versiones anteriores de la página → los de ahora. */
+export const migrar = (guardadas) => {
+  const o = { ...guardadas }
+  // «Orden de las barras» (hasta el 25 de nov.) pasó a ser «Lado de la barra».
+  if ('barras' in o) {
+    if (!o.lado) o.lado = o.barras === 'invertidas' ? 'arriba' : 'abajo'
+    delete o.barras
+  }
+  return o
 }
 
 const leer = () => {
   try {
-    const guardadas = JSON.parse(localStorage.getItem(CLAVE) ?? '{}')
+    const guardadas = migrar(JSON.parse(localStorage.getItem(CLAVE) ?? '{}'))
     // Tema de la versión anterior de la página (antes de Ajustes).
     const viejo = localStorage.getItem('resonancia:tema')
     if (!guardadas.tema && viejo) guardadas.tema = viejo
