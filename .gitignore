@@ -34,6 +34,9 @@
 # Visual Studio cache directory
 .vs/
 
+# VS Code: Unity lo genera en la raíz; es configuración de mi editor
+.vscode/
+
 # Gradle cache directory
 .gradle/
 
