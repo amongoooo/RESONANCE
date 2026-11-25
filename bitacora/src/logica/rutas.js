@@ -12,7 +12,7 @@ const TODAS = [
     nombre: 'Plan',
     vistas: [
       { id: 'metas', nombre: 'Metas', bajada: 'Qué sigue y cuánto falta para cada meta.' },
-      { id: 'ruta', nombre: 'Ruta', bajada: 'Las 32 semanas, por fase.' },
+      { id: 'ruta', nombre: 'Ruta', bajada: 'Qué toca cada día y las 32 semanas, por fase.' },
     ],
   },
   {
