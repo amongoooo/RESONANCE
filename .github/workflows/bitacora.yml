@@ -1,8 +1,8 @@
 name: Publicar la bitácora en GitHub Pages
 
 # Publica en la rama gh-pages (Settings > Pages > Source: Deploy from a branch > gh-pages):
-# - main      → la página normal: https://amongoooo.github.io/resonance/
-# - cada PR   → su vista previa:  https://amongoooo.github.io/resonance/pr-preview/pr-N/
+# - main      → la página normal: https://amongoooo.github.io/RESONANCE/
+# - cada PR   → su vista previa:  https://amongoooo.github.io/RESONANCE/pr-preview/pr-N/
 #               (el bot deja el link en la PR y la borra al mezclarla o cerrarla).
 # Solo corre cuando cambia la bitácora: los cambios del proyecto de Unity no la vuelven a publicar.
 on:
