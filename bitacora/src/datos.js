@@ -39,18 +39,18 @@ export default {
         titulo: "Tener el plan definitivo (ya decidido: 2D)",
         fecha: "2026-12-06",
         limite: "2026-12-20",
-        nota: "La decisión de 2D se cerró el 23 de nov. Las 32 semanas se rehicieron el 26 de nov. y esperan mi OK. Faltan la historia (sáb 28 nov) y las primeras 5 preguntas del examen (vie 4 dic); el resto del examen tiene su propia meta.",
+        nota: "La decisión de 2D se cerró el 23 de nov. Las 32 semanas se rehicieron y aprobaron el 26 de nov. Faltan la historia (sáb 28 nov) y las primeras 5 preguntas del examen (vie 4 dic); el resto del examen tiene su propia meta.",
         ramas: [
           { titulo: "Prueba de capas 2D en Unity: pixel perfect a 480×270, cuatro planos y paso de gris a color.", hecho: true },
           { titulo: "Decidir: 2D lateral, casi todo procedural.", hecho: true },
           { titulo: "Cerrar la historia hasta enemigos y puzzles (obstáculos, mapa, enemigos y puzzles).", hecho: false },
-          { titulo: "Rehacer las 32 semanas con la historia nueva (tribus y música), en 2D y con lo jugable antes que lo visual (propuesta del 26 nov.; falta mi OK).", hecho: false },
+          { titulo: "Rehacer las 32 semanas con la historia nueva (tribus y música), en 2D y con lo jugable antes que lo visual (aprobadas el 26 nov.).", hecho: true },
           { titulo: "Primeras 5 preguntas conceptuales del examen pre/post (vie 4 dic.).", hecho: false },
         ],
       },
       {
         titulo: "Sala de estilo de la zona 1 (Ritmo)",
-        nota: "Una sala de la zona 1 que sirve de molde técnico para todo el juego. Ya no se pule al máximo antes de seguir: primero lo jugable (collider, movimiento, bombo) y lo visual (luz, shader y arte) al final, porque el arte va a seguir cambiando. Por eso los pasos se hacen en el orden 1, 4, 3 y 2 (fechas propuestas el 26 de nov., falta mi OK). Un paso por sesión, con plan y OK antes de cada uno.",
+        nota: "Una sala de la zona 1 que sirve de molde técnico para todo el juego. Ya no se pule al máximo antes de seguir: primero lo jugable (collider, movimiento, bombo) y lo visual (luz, shader y arte) al final, porque el arte va a seguir cambiando. Por eso los pasos se hacen en el orden 1, 4, 3 y 2 (fechas aprobadas el 26 de nov.). Un paso por sesión, con plan y OK antes de cada uno.",
         ramas: [
           {
             titulo: "Paso 1: Tilemap de la zona 1",
@@ -121,7 +121,7 @@ export default {
       {
         titulo: "Zona 1 (Ritmo) jugable de punta a punta, en gris",
         fecha: "2027-02-07",
-        nota: "Propuesta del 26 de nov., falta mi OK. Todo con formas simples y sin arte: lo que se juega primero. La semana 12 (8 a 14 feb.) queda de margen.",
+        nota: "Aprobada el 26 de nov. Todo con formas simples y sin arte: lo que se juega primero. La semana 12 (8 a 14 feb.) queda de margen.",
         ramas: [
           { titulo: "Transición entre salas y reloj musical (21 a 27 dic.).", hecho: false },
           { titulo: "Datos con ScriptableObjects y el bombo que golpea el suelo a tiempo (28 dic. a 3 ene.).", hecho: false },
@@ -136,7 +136,7 @@ export default {
       {
         titulo: "Examen pre/post de música y sonido",
         fecha: "2027-06-13",
-        nota: "Propuesta del 26 de nov., falta mi OK. Mide lo que enseña el juego: sobre todo música, con algunas preguntas de cómo funciona el sonido. El grupo se pide en enero y se confirma en abril, no a fines de mayo: el semestre de bachillerato se acaba en junio.",
+        nota: "Fechas aprobadas el 26 de nov. Mide lo que enseña el juego: sobre todo música, con algunas preguntas de cómo funciona el sonido. El grupo se pide en enero y se confirma en abril, no a fines de mayo: el semestre de bachillerato se acaba en junio.",
         ramas: [
           { titulo: "Primeras 5 preguntas conceptuales (vie 4 dic.).", hecho: false },
           { titulo: "Preguntas 6 a 12, cada una con su respuesta y por qué las otras están mal (21 a 27 dic.).", hecho: false },
@@ -169,7 +169,7 @@ export default {
   ],
 
   // Las 32 semanas. Cambia "hecha" a true cuando termines cada una.
-  // Rehechas el 26 de nov. con la historia nueva y lo jugable antes que lo visual (pendiente de mi OK).
+  // Rehechas y aprobadas el 26 de nov. con la historia nueva y lo jugable antes que lo visual.
   semanas: [
     { n: 1, fase: 0, inicio: "2026-11-23", meta: "Proyecto base en Unity con Git LFS, cámara Pixel Perfect y sala de prueba pintada a mano con la plantilla; historia hasta enemigos y puzzles.", hecha: false },
     { n: 2, fase: 0, inicio: "2026-11-30", meta: "Movimiento con un rectángulo sobre la sala pintada a mano: collider, correr, salto variable, coyote time y buffer; cámara que lo sigue.", hecha: false },
@@ -209,6 +209,14 @@ export default {
   // Campos opcionales: imagen (ruta dentro del repo, p. ej. "img/semana1.gif"),
   // enlace: { texto: "Ver video", url: "https://..." }
   bitacora: [
+    {
+      fecha: "2026-11-26",
+      hora: "02:15",
+      titulo: "Aprobadas las 32 semanas y el alcance",
+      texto:
+        "Le di el OK a las 32 semanas rehechas y al alcance: zona 1 completa, zonas 2 a 4 cortas, el caracol con la Gran Canción y el modo director después de la 1.0. Con eso el plan definitivo solo espera la historia (sáb 28) y las primeras 5 preguntas del examen (vie 4 dic.). Siguen pendientes tres propuestas: que la zona 1 se juegue con el pulso y la frecuencia sea de la zona 2, la pregunta de validación con «música y sonido», y los géneros como recetas de piezas. Lo que sigue es diseñar los minijuegos del ritmo: primero en un documento aparte y, cuando quede bien, en esta página.",
+      etiquetas: ["planeación"],
+    },
     {
       fecha: "2026-11-26",
       hora: "01:30",
@@ -356,6 +364,9 @@ export default {
 
   // Decisiones importantes y por qué se tomaron.
   decisiones: [
+    { fecha: "2026-11-26", hora: "02:15", decision: "Las 32 semanas con la historia nueva y lo jugable primero", reemplaza: "Pendiente: las 32 semanas rehechas con la historia nueva y lo jugable primero", porque: "Aprobé la propuesta tal cual: sintonizador v0 en la semana 3 y puzzle con prueba de diversión en la 4; zona 1 jugable en gris en las semanas 5 a 11; cuerpo procedural en la 13; shader de paleta, luz y skins en la 14; tiles de arte en la 24, después del congelamiento; Rule Tile en la 9 con las salas; sin jefes (cada zona cierra con su maestro); la cuerda en la zona 2; nada de funciones nuevas después del 1 de mayo; margen en las semanas 12, 22, 23 y 28, y si se gasta, se recorta primero la zona 4 (queda el caracol) y luego la zona 3 baja a 3 salas. Incluye las fechas del examen y de los pasos de la sala de estilo." },
+    { fecha: "2026-11-26", hora: "02:15", decision: "Lo que cabe hasta el 1 de mayo: zona 1 completa, zonas 2 a 4 cortas y el modo director después de la 1.0", reemplaza: "Pendiente: lo que cabe hasta el 1 de mayo es la zona 1 completa y las zonas 2 a 4 cortas; el modo director va después de la 1.0", porque: "Con 1 h al día no caben 4 zonas de 8 a 10 salas: la zona 1 queda completa (8 a 10 salas), las zonas 2 y 3 con 4 a 5, la zona 4 con 3 que mezclan lo aprendido, más el caracol con la Gran Canción. El modo director libre va después de la 1.0. El arte de las zonas 2 a 4 usa otra fila de la paleta y solo se dibujan props nuevos." },
+    { fecha: "2026-11-26", hora: "02:15", decision: "Los minijuegos del ritmo se diseñan primero en un documento aparte y pasan a la página cuando queden bien", porque: "Es diseño que va a cambiar mucho mientras lo platico con Claude. En un documento aparte (como el de historia y bestiario) se puede editar y comentar sin llenar la página de decisiones a medias; cuando quede bien, lo que se decidió pasa a decisiones, metas y semanas." },
     { fecha: "2026-11-26", hora: "01:30", decision: "En el caracol crece un árbol de los ritmos", porque: "Cada pieza (pulso, bombo, caja, hi-hat, patrón de campana…) y cada receta de género que encuentro llena una rama, de los tambores de África occidental a la salsa, la samba, el blues, el rap y el reggaetón. Da ganas de explorar para completarlo y cuenta la historia real de la música, que es lo que mide el examen. Como los ritmos ya se guardan como datos, cada rama es un dato más y no una pantalla nueva. Va en la semana 11, junto con el guardado, porque el árbol tiene que recordar lo que encontré; puede comerse parte del margen de la semana 12." },
     { fecha: "2026-11-26", hora: "01:30", decision: "Toda mecánica se describe con 5 bloques: entrada, detección, estado y lógica, transformación y comunicación", porque: "Salió de un video: cualquier mecánica se arma combinando cinco bloques. Entrada: cómo la controla o la dispara el jugador. Detección: cómo un objeto se entera de lo que pasa a su alrededor. Estado y lógica: las reglas y lo que recuerda (abierto o cerrado). Transformación: cómo se mueve, cambia de aspecto o de estado físico. Comunicación: cómo se avisan los objetos entre sí (referencias, señales o llamadas). No toda mecánica usa los cinco, pero antes de programar una se escribe qué hace en cada bloque; así se ve qué falta y qué se puede reusar entre mecánicas." },
     { fecha: "2026-11-26", hora: "00:35", decision: "Pendiente: cada zona enseña un concepto con piezas, y los géneros son recetas de esas piezas", porque: "Propuesta para enseñar pop, rap o salsa sin meterlo todo de golpe. (1) La zona 1 no es un género: es el concepto ritmo en su raíz (África occidental). Se aprende una pieza a la vez, cada una con su clan y su altura: el pulso, el bombo abajo, la caja en medio, el hi-hat arriba, el patrón de campana, la llamada y respuesta, y al final la polirritmia con el maestro. Cada pieza sigue el mismo camino: la ves tocar a una criatura, la pruebas sin peligro, la usas para pasar y luego la juntas con las anteriores. (2) Los clanes conviven con ritmos distintos porque comparten el pulso, no el patrón: si todos van al mismo pulso, pueden tocar cosas diferentes y encajan; si cada uno va a su propio pulso, es ruido. Eso es justo lo que perdieron y lo que les devuelves. (3) Un género es una receta: las mismas piezas en otro orden, otra velocidad y otra mezcla. Si la caja cae en el 2 y el 4, suena a pop o rock; si baja la velocidad y la voz va encima del bombo y la caja, se acerca al rap; si el patrón de campana se vuelve clave, sale la salsa; el tresillo está en la habanera y en el dembow del reggaetón. Las recetas se descubren en ramas opcionales, en la zona 4 y en el final de música y tecnología. (4) Tu especie lleva y trae música entre tribus (ya está en la historia): si llevas una pieza de una zona a otra, la tribu la mezcla con lo suyo y aparece algo nuevo (una criatura, un camino, un ritmo). Así el jugador hace las mezclas, no solo las ve. (5) El árbol de los ritmos en el caracol ya se aprobó aparte (26 nov. 01:30). (6) Para que el mundo se sienta vivo: se oye antes de verse (música detrás de las paredes que te jala a explorar), las criaturas tocan aunque no las mires, las salas grises esconden pulsos y ritmos raros, hay caminos que se abren al volver con lo que aprendiste en otra zona, y el caracol y la luna cambian cada vez que regresas. Las tribus se inspiran en cómo se organiza la música real, no en disfraces ni estereotipos.", pendiente: true },
