@@ -114,6 +114,13 @@ export default {
     ],
   },
 
+  // Metas diarias (Plan > Ruta): cuánto tiempo planeo al día para el juego. Es un cálculo bajo a propósito para no
+  // confiarme; si me sobra tiempo, adelanto lo del día siguiente. Las tareas de cada día están en contenido/tareas/.
+  tiempo: {
+    minutos: 60,
+    opcionales: ["sáb"], // días en los que trabajar es opcional
+  },
+
   // Fases del calendario. "id" se usa en las semanas.
   fases: [
     { id: 0, nombre: "Preproducción", inicio: "2026-11-23", fin: "2026-12-20", meta: "Prototipo del sintonizador y prueba de diversión" },
@@ -164,6 +171,14 @@ export default {
   // Campos opcionales: imagen (ruta dentro del repo, p. ej. "img/semana1.gif"),
   // enlace: { texto: "Ver video", url: "https://..." }
   bitacora: [
+    {
+      fecha: "2026-11-25",
+      hora: "11:30",
+      titulo: "Metas diarias en la Ruta",
+      texto:
+        "Plan > Ruta ahora empieza con «Día por día»: las tareas de esta semana y la siguiente, cada día con su tiempo contra una hora diaria para el juego (el sábado es opcional). En realidad puedo trabajar 2 a 3 horas, pero planeo con 1 para no confiarme; si me sobra, adelanto lo del día siguiente. Las tareas siguen en contenido/tareas/ y ahora llevan cuánto piden (por ejemplo «· 45 min»); la página avisa si un día se pasa de la hora o si algo quedó pendiente. Repartí por días lo que falta de esta semana (cámara Pixel Perfect, importar la plantilla, sala de prueba, estudiar tiles y rehacer las 32 semanas) y la semana del Rule Tile. También mezclé el PR de la navegación nueva.",
+      etiquetas: ["planeación", "herramientas"],
+    },
     {
       fecha: "2026-11-25",
       hora: "09:40",
@@ -290,6 +305,8 @@ export default {
     { fecha: "2026-11-24", hora: "23:51", decision: ".vscode/ fuera del repo", porque: "Unity lo generó en la raíz y es configuración de mi editor, no del proyecto." },
     { fecha: "2026-11-25", hora: "09:40", decision: "Página de bitácora: la barra cambia de lado jalándola y se puede navegar con barra o con ruleta", porque: "Probé el gesto en una página de prueba antes de programarlo. La barra se jala hacia su orilla para mandarla al otro lado: cambia si la llevas 30 px o la sueltas a 500 px por segundo; hacia el centro siempre rebota. Animación «Lanzada»: sale acelerando con la velocidad del dedo hasta quedar fuera de la pantalla y entra por la orilla contraria frenando con un rebote chiquito. Mientras jalas, la otra barra se va escondiendo para que se entienda que van a cambiar de lugar. Al cambiar de página, la barra de apartados se esconde y vuelve a salir ya actualizada. La ruleta usa el mismo vidrio: si todas las opciones caben a la vista tiene tope y solo eliges entre las que se ven; si no, gira sin fin. Es solo de esta página, no del juego." },
     { fecha: "2026-11-25", hora: "09:40", decision: "Detalles de la navegación nueva de la bitácora", porque: "Los propuse con el cambio y los confirmé el 25 de nov. después de probarlo en el celular: (1) el lado que se elige es el de las páginas y los apartados van del lado contrario, también en Inicio y Ajustes; (2) en computadora el gesto se hace arrastrando con el mouse, y Ajustes > Lado de la barra sirve para quien no pueda hacer el gesto, con la misma animación; (3) la ruleta también cambia de lado con el gesto; (4) la ruleta navega cuando una opción se detiene en el centro, no mientras gira, y tocar una opción de un lado la gira hasta el centro; (5) el lado y el tipo de navegación se recuerdan solo en tu navegador, y «Orden de las barras» pasa a «Lado de la barra»; (6) con «reducir movimiento», las barras se desvanecen y aparecen sin rebote, y la ruleta se acomoda sin girar por inercia." },
+    { fecha: "2026-11-25", hora: "11:30", decision: "Metas diarias: 1 h al día para el juego, con el sábado opcional, en Plan > Ruta", porque: "Puedo trabajar unas 2 a 3 horas al día, pero planeo con 1 para no confiarme; si me sobra tiempo, adelanto lo del día siguiente. Las metas salen de los archivos de tareas de cada semana (contenido/tareas/), que ya iban por día, así que hay un solo lugar donde anotarlas; cada tarea dice cuánto pide y la página avisa si un día se pasa de la hora o si algo quedó pendiente. Se planea solo esta semana y la siguiente. En la página no aparece nada de otros proyectos." },
+    { fecha: "2026-11-25", hora: "11:30", decision: "Pendiente: el reparto día por día del 25 de nov. al 6 de dic.", porque: "Propuesta: esta semana, cámara Pixel Perfect (hoy), importar la plantilla y pintar una sala de prueba (jueves), estudiar tiles (viernes), lista de obstáculos y enemigos de la zona 1 (sábado, opcional) y rehacer las 32 semanas con Claude más la revisión de la semana (domingo). La siguiente, el Rule Tile del terreno por grupos de piezas (lunes a miércoles), el collider (jueves), el corte con cifras y las primeras 5 preguntas del examen pre/post (viernes) y las primeras pruebas de luz 2D y del shader de paleta (fin de semana). Los tiempos son estimados míos sin medir. Ojo: las semanas 2 a 4 de la Ruta (sintonizador, primer puzzle y prueba de diversión para el 20 de dic.) ya no coinciden con la sala de estilo; por eso rehacer las 32 semanas va este domingo.", pendiente: true },
   ],
 
   // Página «El juego»: la idea en un párrafo y los sistemas que lo hacen distinto.
