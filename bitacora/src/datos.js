@@ -60,7 +60,7 @@ export default {
               { titulo: "Estudiar tiles en Shovel Knight, Celeste, Terraria y Animal Well.", hecho: false },
               { titulo: "Cerrar la paleta: casillas por material y hora del día (23 casillas, abierta a cambios).", hecho: true },
               { titulo: "Plantilla propia de 38 tiles con leyenda, revisor y orden de trabajo (arte/plantillas).", hecho: true },
-              { titulo: "Proyecto base en Unity (URP 2D, Pixel Perfect 480×270, 16 PPU, Git LFS), 25 a 29 nov.", hecho: false },
+              { titulo: "Proyecto base en Unity (URP 2D, Pixel Perfect 480×270, 16 PPU, Git LFS), 25 a 29 nov.", hecho: true },
               { titulo: "Tilemap con Rule Tile del terreno desde la plantilla (con collider) y cámara Pixel Perfect, 30 nov a 4 dic.", hecho: false },
               { titulo: "Primeros tiles de arte del material de la zona 1 (bloque base), dibujados con Unity abierto, 10 a 13 dic.", hecho: false },
             ],
