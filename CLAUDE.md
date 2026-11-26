@@ -29,6 +29,7 @@ Plataformero donde el jugador repara un mundo silenciado afinando ondas con un s
 - Sé honesto si algo no cabe en el tiempo; protege el alcance y el calendario.
 - Explica con relaciones intuitivas ("si X sube, Y baja"), no con fórmulas.
 - Todo lo que hablemos va a la página: decisiones, entradas de bitácora, metas y tareas de la semana (`bitacora/contenido/tareas/`). Si algo es solo una propuesta sin mi OK, va como decisión con `pendiente: true`.
+- Se trabaja en GitHub (sesiones en la nube) y no en mi computadora siempre que se pueda, porque cambio entre teléfono y computadora; la computadora es solo para Unity. Lo que se haga en local se sube al terminar.
 - Los cambios van siempre en un PR desde la rama de trabajo. Nunca hagas push ni merge a `main` hasta que yo lo diga.
 - Pásame el enlace del PR siempre que puedas, en cada mensaje donde haya uno abierto o cambios nuevos en él.
 - Al final de cada mensaje dame también el prompt listo para copiar y abrir el siguiente chat: autocontenido, con la tarea que sigue, qué leer primero (este archivo, los documentos de referencia, el PR abierto) y qué ya está decidido.
