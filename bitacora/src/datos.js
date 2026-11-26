@@ -173,6 +173,14 @@ export default {
   bitacora: [
     {
       fecha: "2026-11-25",
+      hora: "21:55",
+      titulo: "Primera sala pintada con la plantilla",
+      texto:
+        "Me sobró tiempo y adelanté lo del jueves. Corté la plantilla del terreno en la rejilla de 16×16 con el Sprite Editor y salieron los 38 tiles; las celdas vacías no se crean. Hice la paleta de tiles Terreno_Zona1: al arrastrar el PNG cortado, Unity crea un tile por sprite (los guardé en Assets/Arte/Tiles/Terreno) y el PNG se queda en Plantillas. Después creé un Tilemap llamado Terreno y pinté a mano una sala simple, todavía sin Rule Tile ni collider. Así ya tengo una sala vista por la cámara Pixel Perfect; lo siguiente es que el Rule Tile ponga solo cada pieza.",
+      etiquetas: ["herramientas", "arte"],
+    },
+    {
+      fecha: "2026-11-25",
       hora: "21:40",
       titulo: "La cámara Pixel Perfect ya está en la escena",
       texto:
