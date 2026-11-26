@@ -37,20 +37,20 @@ export default {
     ramas: [
       {
         titulo: "Tener el plan definitivo (ya decidido: 2D)",
-        fecha: "2026-11-25",
+        fecha: "2026-12-06",
         limite: "2026-12-20",
+        nota: "La decisión de 2D se cerró el 23 de nov. Falta la historia (sáb 28 nov), rehacer las 32 semanas (dom 29 nov) y el examen (las primeras 5 preguntas el vie 4 dic; las demás se fechan el dom 29).",
         ramas: [
           { titulo: "Prueba de capas 2D en Unity: pixel perfect a 480×270, cuatro planos y paso de gris a color.", hecho: true },
           { titulo: "Decidir: 2D lateral, casi todo procedural.", hecho: true },
           { titulo: "Cerrar la historia hasta enemigos y puzzles (obstáculos, mapa, enemigos y puzzles).", hecho: false },
-          { titulo: "Rehacer las 32 semanas con la historia nueva (tribus y música) en 2D.", hecho: false },
+          { titulo: "Rehacer las 32 semanas con la historia nueva (tribus y música), en 2D y con lo jugable antes que lo visual.", hecho: false },
           { titulo: "Borrador del examen pre/post de música: 10 a 15 preguntas conceptuales.", hecho: false },
         ],
       },
       {
         titulo: "Sala de estilo de la zona 1 (Ritmo)",
-        fecha: "2026-12-14",
-        nota: "Una sola sala pulida al máximo: el molde visual y técnico de todo el juego. Un paso por sesión, con plan y OK antes de cada uno.",
+        nota: "Una sala de la zona 1 que sirve de molde técnico para todo el juego. Ya no se pule al máximo antes de seguir: primero lo jugable (collider, movimiento, bombo) y lo visual (luz, shader y arte) al final, porque el arte va a seguir cambiando. Sin fecha hasta rehacer las 32 semanas el dom 29 de nov. Un paso por sesión, con plan y OK antes de cada uno.",
         ramas: [
           {
             titulo: "Paso 1: Tilemap de la zona 1",
@@ -60,7 +60,7 @@ export default {
               { titulo: "Estudiar tiles en Shovel Knight, Celeste, Terraria y Animal Well.", hecho: true },
               { titulo: "Cerrar la paleta: casillas por material y hora del día (23 casillas, abierta a cambios).", hecho: true },
               { titulo: "Plantilla propia de 38 tiles con leyenda, revisor y orden de trabajo (arte/plantillas).", hecho: true },
-              { titulo: "Proyecto base en Unity (URP 2D, Pixel Perfect 480×270, 16 PPU, Git LFS), 25 a 29 nov.", hecho: true },
+              { titulo: "Proyecto base en Unity (URP 2D, Pixel Perfect 480×270, 16 PPU, Git LFS), 25 nov.", hecho: true },
               { titulo: "Cámara Pixel Perfect y sala de prueba pintada a mano (25 nov).", hecho: true },
               { titulo: "Collider sobre la sala pintada a mano, para mover al personaje (30 nov).", hecho: false },
               { titulo: "Rule Tile del terreno desde la plantilla, justo antes de armar salas en serie.", hecho: false },
@@ -77,9 +77,9 @@ export default {
           },
           {
             titulo: "Paso 3: Protagonista con cuerpo procedural",
+            nota: "Correr y saltar ya no van aquí: se hacen antes con un rectángulo (semana del 30 nov., en el prototipo). Este paso le pone el cuerpo a ese movimiento.",
             ramas: [
-              { titulo: "Correr y saltar.", hecho: false },
-              { titulo: "Cuerpo procedural (sin cuadros de animación).", hecho: false },
+              { titulo: "Cuerpo procedural (sin cuadros de animación) sobre el rectángulo que ya corre y salta.", hecho: false },
             ],
           },
           {
@@ -99,7 +99,7 @@ export default {
           { titulo: "Página en React con los estilos de teoria-musical.", hecho: true },
           { titulo: "Todo lo de la página anterior, sin perder nada.", hecho: true },
           { titulo: "Árbol de metas con ramas y avance por rama.", hecho: true },
-          { titulo: "Publicación automática con GitHub Actions (cambiar la fuente de Pages).", hecho: false },
+          { titulo: "Publicación automática con GitHub Actions (cambiar la fuente de Pages).", hecho: true },
           { titulo: "Revisarla en el celular y anotar lo que no me guste.", hecho: false },
         ],
       },
@@ -107,10 +107,11 @@ export default {
         titulo: "Prototipo del sintonizador y prueba de diversión",
         fecha: "2026-12-20",
         ramas: [
-          { titulo: "Proyecto base en Unity; correr, salto variable, coyote time y buffer.", hecho: false },
-          { titulo: "Sintonizador v0: onda senoidal dibujada y sonando; perilla de frecuencia.", hecho: false },
-          { titulo: "Primer puzzle: puerta que abre al igualar frecuencia.", hecho: false },
-          { titulo: "Prueba de diversión con alguien que no conozca el juego.", hecho: false },
+          { titulo: "Rectángulo con física que corre, con salto variable, coyote time y buffer (30 nov. a 3 dic.).", hecho: false },
+          { titulo: "Cámara que sigue al personaje sin temblar (4 dic.).", hecho: false },
+          { titulo: "Sintonizador v0: onda senoidal dibujada y sonando; perilla de frecuencia (7 a 13 dic.).", hecho: false },
+          { titulo: "Primer puzzle: puerta que abre al igualar frecuencia (14 a 20 dic.).", hecho: false },
+          { titulo: "Prueba de diversión con alguien que no conozca el juego (14 a 20 dic.).", hecho: false },
         ],
       },
     ],
@@ -135,18 +136,18 @@ export default {
 
   // Las 32 semanas. Cambia "hecha" a true cuando termines cada una.
   semanas: [
-    { n: 1, fase: 0, inicio: "2026-11-23", meta: "Proyecto base en Unity y repo en Git; correr, salto variable, coyote time y buffer.", hecha: false },
-    { n: 2, fase: 0, inicio: "2026-11-30", meta: "Sintonizador v0: onda senoidal dibujada y sonando; perilla de frecuencia.", hecha: false },
-    { n: 3, fase: 0, inicio: "2026-12-07", meta: "Primer puzzle (puerta que abre al igualar frecuencia) y plataforma de cuerda.", hecha: false },
-    { n: 4, fase: 0, inicio: "2026-12-14", meta: "Prueba de diversión; paleta, resolución y primer tileset de prueba.", hecha: false },
-    { n: 5, fase: 1, inicio: "2026-12-21", meta: "Rule Tile con autotiling, cámara Pixel Perfect y transición entre salas.", hecha: false },
+    { n: 1, fase: 0, inicio: "2026-11-23", meta: "Proyecto base en Unity con Git LFS, cámara Pixel Perfect y sala de prueba pintada a mano con la plantilla; historia hasta enemigos y puzzles.", hecha: false },
+    { n: 2, fase: 0, inicio: "2026-11-30", meta: "Movimiento con un rectángulo sobre la sala pintada a mano: collider, correr, salto variable, coyote time y buffer; cámara que lo sigue.", hecha: false },
+    { n: 3, fase: 0, inicio: "2026-12-07", meta: "Sintonizador v0: onda senoidal dibujada y sonando; perilla de frecuencia.", hecha: false },
+    { n: 4, fase: 0, inicio: "2026-12-14", meta: "Primer puzzle (puerta que abre al igualar frecuencia) y prueba de diversión.", hecha: false },
+    { n: 5, fase: 1, inicio: "2026-12-21", meta: "Plataforma de cuerda (salió de la semana 3) y transición entre salas.", hecha: false },
     { n: 6, fase: 1, inicio: "2026-12-28", meta: "ScriptableObjects: BiomaData, CriaturaData, SkinData.", hecha: false },
     { n: 7, fase: 1, inicio: "2027-01-04", meta: "Personaje por partes con Sprite Library; shader de paleta; 2 skins de prueba.", hecha: false },
     { n: 8, fase: 1, inicio: "2027-01-11", meta: "Animación procedural: criatura de segmentos con resortes y patas con IK.", hecha: false },
     { n: 9, fase: 1, inicio: "2027-01-18", meta: "Ecosistema v1: eventos de sonido y criaturas que se acercan o huyen.", hecha: false },
     { n: 10, fase: 1, inicio: "2027-01-25", meta: "Guardado, menú de pausa, ajustes de volumen y telemetría básica.", hecha: false },
     { n: 11, fase: 2, inicio: "2027-02-01", meta: "Tileset final y props de la zona 1 (Ritmo).", hecha: false },
-    { n: 12, fase: 2, inicio: "2027-02-08", meta: "8 a 10 salas de la zona 1: en papel y bloqueadas en Unity.", hecha: false },
+    { n: 12, fase: 2, inicio: "2027-02-08", meta: "Rule Tile del terreno; 8 a 10 salas de la zona 1: en papel y bloqueadas en Unity.", hecha: false },
     { n: 13, fase: 2, inicio: "2027-02-15", meta: "Arte final del protagonista y animaciones clave.", hecha: false },
     { n: 14, fase: 2, inicio: "2027-02-22", meta: "Zumbidos con arte final; diseño del jefe.", hecha: false },
     { n: 15, fase: 2, inicio: "2027-03-01", meta: "Jefe: El Gran Diapasón.", hecha: false },
@@ -173,6 +174,14 @@ export default {
   // Campos opcionales: imagen (ruta dentro del repo, p. ej. "img/semana1.gif"),
   // enlace: { texto: "Ver video", url: "https://..." }
   bitacora: [
+    {
+      fecha: "2026-11-25",
+      hora: "23:55",
+      titulo: "El plan, al día con «primero lo funcional»",
+      texto:
+        "Revisé con Claude que Plan y Ruta dijeran lo mismo que lo que hice y decidí hoy. Semanas: la 1 ya no promete correr y saltar, sino lo que sí salió (proyecto base, cámara y sala pintada a mano); la 2 es la del movimiento con un rectángulo; el sintonizador v0 pasa a la 3 y el primer puzzle con la prueba de diversión a la 4, así que todo el prototipo se recorre una semana y queda justo antes del 20 de diciembre. La plataforma de cuerda sale de la semana 3 y va a la 5; la cámara ya no aparece en la 5 porque está hecha, y el Rule Tile pasa a la 12, la semana en que armo las 8 a 10 salas. Metas: la sala de estilo ya no se pule al máximo para el 14 de diciembre; queda sin fecha hasta el domingo, con lo jugable antes que la luz y el arte. Correr y saltar salen del paso 3 (ese paso solo le pone el cuerpo al rectángulo). El plan definitivo vencía hoy y pasa al 6 de diciembre: le faltan la historia, las 32 semanas y el examen. Marqué como hecha la publicación automática de esta página. Elegir los trucos del estudio de tiles ya no es el 10 de diciembre, sino cuando empiece el arte. Lo de más adelante se acomoda el domingo.",
+      etiquetas: ["planeación"],
+    },
     {
       fecha: "2026-11-25",
       hora: "23:35",
@@ -296,6 +305,8 @@ export default {
 
   // Decisiones importantes y por qué se tomaron.
   decisiones: [
+    { fecha: "2026-11-25", hora: "23:55", decision: "Reparto día por día del 25 de nov. al 6 de dic.: primero lo funcional", reemplaza: "Pendiente: el reparto día por día del 25 de nov. al 6 de dic.", porque: "Esta semana salió adelantada: el mié 25 hice la cámara, corté la plantilla, pinté la sala de prueba y estudié tiles; quedan la historia (sáb, opcional) y rehacer las 32 semanas con la revisión de la semana (dom). La siguiente ya no es del Rule Tile: collider y rectángulo que camina (lun, lo adelanto el jue 26), correr (mar), salto variable (mié), coyote time y buffer (jue), cámara que sigue al personaje y primeras 5 preguntas del examen (vie), luz 2D opcional (sáb) y plan del sintonizador v0 (dom). Los tiempos siguen siendo estimados sin medir." },
+    { fecha: "2026-11-25", hora: "23:55", decision: "Pendiente: el prototipo se recorre una semana y el Rule Tile pasa a la semana 12", porque: "Propuesta hasta el replanteo del dom 29: como la semana 2 ahora es del movimiento, el sintonizador v0 pasa a la 3 (7 dic.) y el primer puzzle con la prueba de diversión a la 4 (14 dic.); la fecha del prototipo sigue en el 20 de dic., pero la semana 4 queda apretada (puzzle y una persona que lo pruebe en la misma semana). La plataforma de cuerda sale de la 3 y va a la 5. El Rule Tile va en la semana 12, cuando armo las 8 a 10 salas: si lo pongo antes, ahorro tiempo que todavía no gasto. La sala de estilo queda sin fecha (antes, 14 dic.) y sin «pulida al máximo» hasta fechar sus pasos el domingo.", pendiente: true },
     { fecha: "2026-11-25", hora: "23:35", decision: "Primero lo funcional; lo visual se pule al final", porque: "El arte va a seguir cambiando y nunca será lo prioritario: primero tiene que haber algo que se juegue (movimiento, sintonizador, puzzles) y cuando eso esté se pule lo visual. Por eso el Rule Tile ya no va antes del movimiento: pintar una sala a mano me toma minutos y el Rule Tile solo ahorra tiempo cuando arme salas en serie. La semana del 30 de nov. es de collider y movimiento con un rectángulo; la luz 2D queda como opcional el sábado." },
     { fecha: "2026-11-25", hora: "21:40", decision: "Cámara Pixel Perfect con Windowbox y Upscale Render Texture", porque: "Con Windowbox, si la ventana no es múltiplo de 480×270 salen barras en vez de estirar o mostrar más mundo, así cada sala se ve siempre igual (30×17 tiles). Con Upscale Render Texture todo se dibuja a 480×270 y se amplía, así que lo que gira con la animación procedural se queda en la rejilla. El costo es que la cámara se mueve a saltos de un píxel (1/16 de unidad); se juzga cuando la cámara siga al personaje. Lo aprobé después de probarla en 1:1, 2:1 y 4:1." },
     { fecha: "2026-11-20", decision: "Motor: Unity", porque: "Ya lo domino por ECHO y trae Tilemap, 2D Animation, Pixel Perfect Camera y ScriptableObjects. Lo propio se programa donde se nota: sintetizador, animación procedural y ecosistema." },

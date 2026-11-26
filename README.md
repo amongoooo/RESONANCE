@@ -45,6 +45,6 @@ El historial de commits más la bitácora son la evidencia de desarrollo por eta
 ## Fechas clave
 
 - Decidido el 23 de noviembre de 2026: 2D lateral en pixel art.
-- Sala de estilo de la zona 1 (Ritmo): 14 de diciembre de 2026.
+- Prototipo del sintonizador y prueba de diversión: 20 de diciembre de 2026.
 - Congelamiento de funciones: 1 de mayo de 2027.
 - Versión 1.0: principios de julio de 2027.
