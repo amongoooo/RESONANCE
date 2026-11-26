@@ -12,6 +12,7 @@ Plataformero donde el jugador repara un mundo silenciado afinando ondas con un s
 - Sistemas: animación procedural de criaturas, ecosistema que reacciona al sonido, todo por datos (ScriptableObjects), skins intercambiables (2D Animation: Sprite Library + Sprite Resolver).
 - Validación: examen pre/post con estudiantes reales + telemetría del juego.
 - Congelamiento de funciones: 1 de mayo de 2027. Después solo se pule, se arregla y se valida.
+- Primero lo funcional, lo visual al final: lo jugable (movimiento, sintonizador, puzzles) va antes que el arte, que seguirá cambiando y nunca es lo prioritario. El Rule Tile espera a que haya que armar salas en serie (decidido el 25 de noviembre de 2026).
 - Estilo: 2D lateral en pixel art, Unity 6000.4.2f1 con URP 2D, Pixel Perfect a 480×270 y 16 PPU con escalado entero, tiles de 16×16. Animación procedural (sin cuadros). Lo grave abajo y lo agudo arriba. Mundo gris y silencioso que gana color cuando suena (decidido el 23 de noviembre de 2026).
 - Zonas: cada zona es una tribu musical: 1 Ritmo (África occidental), 2 Melodía, 3 Armonía, 4 La mezcla (Latinoamérica y México), más el caracol central.
 - Referencias vivas: dirección visual https://claude.ai/artifact/L9tEwrZ3Aygsxr2YmmKchH e historia y bestiario https://claude.ai/artifact/EYGJrP2Z6kRUfM7fMsZnY2.

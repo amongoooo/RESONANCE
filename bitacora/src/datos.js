@@ -57,17 +57,19 @@ export default {
             ramas: [
               { titulo: "Tamaño de tile: 16×16 (un tile = una unidad de Unity).", hecho: true },
               { titulo: "Plantilla de tiles con marcas de conexión (arte/plantillas).", hecho: true },
-              { titulo: "Estudiar tiles en Shovel Knight, Celeste, Terraria y Animal Well.", hecho: false },
+              { titulo: "Estudiar tiles en Shovel Knight, Celeste, Terraria y Animal Well.", hecho: true },
               { titulo: "Cerrar la paleta: casillas por material y hora del día (23 casillas, abierta a cambios).", hecho: true },
               { titulo: "Plantilla propia de 38 tiles con leyenda, revisor y orden de trabajo (arte/plantillas).", hecho: true },
-              { titulo: "Proyecto base en Unity (URP 2D, Pixel Perfect 480×270, 16 PPU, Git LFS), 25 a 29 nov.", hecho: false },
-              { titulo: "Tilemap con Rule Tile del terreno desde la plantilla (con collider) y cámara Pixel Perfect, 30 nov a 4 dic.", hecho: false },
-              { titulo: "Primeros tiles de arte del material de la zona 1 (bloque base), dibujados con Unity abierto, 10 a 13 dic.", hecho: false },
+              { titulo: "Proyecto base en Unity (URP 2D, Pixel Perfect 480×270, 16 PPU, Git LFS), 25 a 29 nov.", hecho: true },
+              { titulo: "Cámara Pixel Perfect y sala de prueba pintada a mano (25 nov).", hecho: true },
+              { titulo: "Collider sobre la sala pintada a mano, para mover al personaje (30 nov).", hecho: false },
+              { titulo: "Rule Tile del terreno desde la plantilla, justo antes de armar salas en serie.", hecho: false },
+              { titulo: "Primeros tiles de arte del material de la zona 1 (bloque base), cuando lo jugable funcione.", hecho: false },
             ],
           },
           {
             titulo: "Paso 2: Luz 2D estilo t3ssel8r y paso de gris a color",
-            nota: "Empieza el 5 de dic. sobre el Tilemap de la plantilla, antes de tener arte.",
+            nota: "Después del movimiento; se fecha al rehacer las 32 semanas. Se prueba sobre la sala de la plantilla, antes de tener arte.",
             ramas: [
               { titulo: "Shader de paleta por casillas: fila de silencio a fila de color.", hecho: false },
               { titulo: "Luz 2D sobre los tiles sin ensuciar el pixel art.", hecho: false },
@@ -173,6 +175,39 @@ export default {
   bitacora: [
     {
       fecha: "2026-11-25",
+      hora: "23:35",
+      titulo: "Primero lo que se juega",
+      texto:
+        "Reordené lo que sigue. La ruta ponía toda la semana del 30 de noviembre en el Rule Tile y después luces, shader y tiles de arte, y el movimiento y el sintonizador quedaban para después. Pero el arte va a seguir cambiando hasta el final y no es lo prioritario: primero quiero algo que se juegue y luego pulirlo. Pintar la sala a mano me tomó 5 minutos, así que el Rule Tile puede esperar a cuando arme salas en serie. La semana nueva: collider sobre la sala pintada a mano, un rectángulo con física que camina, corre, hace salto variable, coyote time y buffer, y la cámara siguiéndolo para ver si se mantiene estable. El sábado, si me sobra, una primera luz 2D, y el domingo planeo el sintonizador v0. Las 32 semanas se rehacen el domingo con este orden.",
+      etiquetas: ["planeación"],
+    },
+    {
+      fecha: "2026-11-25",
+      hora: "23:18",
+      titulo: "Estudio de tiles de cuatro juegos, sin elegir todavía",
+      texto:
+        "Adelanté lo del viernes. Con Claude revisé capturas a tamaño real de Shovel Knight (tiles de 16), Celeste, Terraria y Animal Well (tiles de 8, así que una celda mía de 16 son 2×2 de los suyos), con la rejilla encima. Comparé seis cosas: cómo esconden la repetición del relleno, el borde que da al aire, las esquinas interiores, el final de las plataformas delgadas, la decoración que sale de la celda y la luz. Lo que más me sirvió: Shovel Knight acepta celdas idénticas y dibuja las piezas delgadas más chicas que la celda; Celeste deja el relleno casi liso y pone la textura solo en la orilla; Terraria usa 1 px casi negro hacia el aire con el pasto dentro del tile; y en Animal Well la luz hace que bloques iguales se vean distintos. Salieron tres trucos candidatos por juego, pero no elegí ninguno: la plantilla de 38 tiles no cambia y el estudio solo dice cómo pintarla, algo que importa hasta que empiece a dibujar. Lo decido el 10 de diciembre, al empezar el arte del bloque base, viendo la sala en Unity. Lo primero a decidir ese día es si el contorno es de sombra (como dice la paleta) o de luz, y si el relleno lleva variantes o va casi liso, porque eso cambia cuánto dibujo. Las capturas no se suben al repo.",
+      etiquetas: ["arte"],
+    },
+    {
+      fecha: "2026-11-25",
+      hora: "21:55",
+      titulo: "Primera sala pintada con la plantilla",
+      texto:
+        "Me sobró tiempo y adelanté lo del jueves. Corté la plantilla del terreno en la rejilla de 16×16 con el Sprite Editor y salieron los 38 tiles; las celdas vacías no se crean. Hice la paleta de tiles Terreno_Zona1: al arrastrar el PNG cortado, Unity crea un tile por sprite (los guardé en Assets/Arte/Tiles/Terreno) y el PNG se queda en Plantillas. Después creé un Tilemap llamado Terreno y pinté a mano una sala simple con un solo bloque, todavía sin Rule Tile ni collider. Cortar y pintar me tomó unos 5 minutos. Moví la cámara a mano en la vista Scene mirando el resultado en Game y no vi rayitas entre tiles ni nada raro. Así ya tengo una sala vista por la cámara Pixel Perfect; lo siguiente es que el Rule Tile ponga solo cada pieza.",
+      enlace: { texto: "Ver el PR de Unity", url: "https://github.com/amongoooo/RESONANCE/pull/13" },
+      etiquetas: ["herramientas", "arte"],
+    },
+    {
+      fecha: "2026-11-25",
+      hora: "21:40",
+      titulo: "La cámara Pixel Perfect ya está en la escena",
+      texto:
+        "Puse la Pixel Perfect Camera de URP en la cámara principal: 16 píxeles por unidad y resolución de referencia de 480×270. Para tener algo que mirar copié la plantilla del terreno a Assets/Arte/Plantillas (filtro Point, sin compresión, 16 PPU) y la puse en el centro. Elegí Windowbox: si la ventana no es múltiplo exacto de 480×270 salen barras negras en vez de estirar la imagen o mostrar más mundo, así una sala siempre mide 30×17 tiles a la vista. También Upscale Render Texture: todo se dibuja a 480×270 y luego se amplía, para que lo que gire siga pegado a la rejilla. Lo probé en la vista Game: a 480×270, 960×540 y 1920×1080 la escala fue 1, 2 y 4, sin barras, y a 1280×720 se quedó en 2 con barras alrededor; al arrastrar la ventana solo salta de entero en entero. En todos los tamaños los píxeles miden lo mismo y nada se ve borroso. En esta versión del componente ya no existen las casillas «Run In Edit Mode» ni «Filter Mode» (esta solo aparece con Stretch Fill): siempre funciona en el editor. Trabajo en la rama unity-camara.",
+      etiquetas: ["herramientas", "arte"],
+    },
+    {
+      fecha: "2026-11-25",
       hora: "11:30",
       titulo: "Metas diarias en la Ruta",
       texto:
@@ -261,6 +296,8 @@ export default {
 
   // Decisiones importantes y por qué se tomaron.
   decisiones: [
+    { fecha: "2026-11-25", hora: "23:35", decision: "Primero lo funcional; lo visual se pule al final", porque: "El arte va a seguir cambiando y nunca será lo prioritario: primero tiene que haber algo que se juegue (movimiento, sintonizador, puzzles) y cuando eso esté se pule lo visual. Por eso el Rule Tile ya no va antes del movimiento: pintar una sala a mano me toma minutos y el Rule Tile solo ahorra tiempo cuando arme salas en serie. La semana del 30 de nov. es de collider y movimiento con un rectángulo; la luz 2D queda como opcional el sábado." },
+    { fecha: "2026-11-25", hora: "21:40", decision: "Cámara Pixel Perfect con Windowbox y Upscale Render Texture", porque: "Con Windowbox, si la ventana no es múltiplo de 480×270 salen barras en vez de estirar o mostrar más mundo, así cada sala se ve siempre igual (30×17 tiles). Con Upscale Render Texture todo se dibuja a 480×270 y se amplía, así que lo que gira con la animación procedural se queda en la rejilla. El costo es que la cámara se mueve a saltos de un píxel (1/16 de unidad); se juzga cuando la cámara siga al personaje. Lo aprobé después de probarla en 1:1, 2:1 y 4:1." },
     { fecha: "2026-11-20", decision: "Motor: Unity", porque: "Ya lo domino por ECHO y trae Tilemap, 2D Animation, Pixel Perfect Camera y ScriptableObjects. Lo propio se programa donde se nota: sintetizador, animación procedural y ecosistema." },
     { fecha: "2026-11-20", decision: "Audio: sintetizador propio + FMOD + música propia", porque: "Lo que el jugador manipula debe sonar exactamente como se ve; FMOD da capas y música adaptativa; la música por capas la produzco yo." },
     { fecha: "2026-11-20", decision: "Validación con examen pre/post y telemetría", porque: "Demostrar con datos que el juego enseña, no solo mostrarlo." },
