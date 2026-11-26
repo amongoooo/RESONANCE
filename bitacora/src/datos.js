@@ -211,6 +211,15 @@ export default {
   bitacora: [
     {
       fecha: "2026-11-26",
+      hora: "17:30",
+      titulo: "Música para entrenar el oído del ritmo",
+      texto:
+        "Le pedí a Claude música para escuchar el ritmo y quedó en Juego > Música, en «Para escuchar: el ritmo», con fuentes. Va de la raíz a los descendientes: Olatunji, Mamady Keïta, King Sunny Adé, Fela Kuti con Tony Allen y los tambores ewe de Ghana; Steve Reich para la polirritmia; y después rumba, salsa, samba-reggae, funk, la 808, rap, dembow y son jarocho, que son las ramas del árbol de los ritmos. Lo más útil es la forma de escuchar: una pieza a la vez y en el orden de los minijuegos (pulso, el «1», lo que le contesta, lo que parte el pulso y el patrón disparejo). Si a mí me cuesta encontrar una pieza en una canción, a un estudiante también, y ese minijuego necesita más ayuda. Antes también hice un boceto jugable de los 7 minijuegos, que se queda como artefacto hasta que lo apruebe.",
+      enlace: { texto: "Ver el boceto de los minijuegos", url: "https://claude.ai/artifact/ER1um4oRxjfqZKyU2RhRZN" },
+      etiquetas: ["música", "investigación"],
+    },
+    {
+      fecha: "2026-11-26",
       hora: "02:15",
       titulo: "Aprobadas las 32 semanas y el alcance",
       texto:
@@ -364,6 +373,7 @@ export default {
 
   // Decisiones importantes y por qué se tomaron.
   decisiones: [
+    { fecha: "2026-11-26", hora: "17:30", decision: "Pendiente: un apartado «Apuntes» en Registro para lo que aprendo", porque: "Propuesta: hoy la página tiene dónde va lo que hice (Bitácora, por fecha) y lo que decidí (Decisiones), pero no lo que aprendí, que se queda regado en entradas, decisiones y documentos aparte. «Apuntes» sería la tercera pestaña de Registro: un archivo .md por tema en contenido/apuntes/ (por ejemplo, los 5 bloques de una mecánica, el estudio de tiles de cuatro juegos, la música para escuchar o lo que aprendo de Unity), cada uno como tarjeta con su fecha de última edición y etiquetas, y un buscador sencillo. Se escribe como musica.md, así que no pide nada nuevo para editarlo desde el teléfono. No va en una página propia porque la barra de abajo ya tiene 5 y una sexta la aprieta. La lista para escuchar se queda en Juego > Música hasta que exista el apartado, y ahí se decide si se muda. Pide tocar el código de la página, por eso espera mi OK.", pendiente: true },
     { fecha: "2026-11-26", hora: "02:15", decision: "Las 32 semanas con la historia nueva y lo jugable primero", reemplaza: "Pendiente: las 32 semanas rehechas con la historia nueva y lo jugable primero", porque: "Aprobé la propuesta tal cual: sintonizador v0 en la semana 3 y puzzle con prueba de diversión en la 4; zona 1 jugable en gris en las semanas 5 a 11; cuerpo procedural en la 13; shader de paleta, luz y skins en la 14; tiles de arte en la 24, después del congelamiento; Rule Tile en la 9 con las salas; sin jefes (cada zona cierra con su maestro); la cuerda en la zona 2; nada de funciones nuevas después del 1 de mayo; margen en las semanas 12, 22, 23 y 28, y si se gasta, se recorta primero la zona 4 (queda el caracol) y luego la zona 3 baja a 3 salas. Incluye las fechas del examen y de los pasos de la sala de estilo." },
     { fecha: "2026-11-26", hora: "02:15", decision: "Lo que cabe hasta el 1 de mayo: zona 1 completa, zonas 2 a 4 cortas y el modo director después de la 1.0", reemplaza: "Pendiente: lo que cabe hasta el 1 de mayo es la zona 1 completa y las zonas 2 a 4 cortas; el modo director va después de la 1.0", porque: "Con 1 h al día no caben 4 zonas de 8 a 10 salas: la zona 1 queda completa (8 a 10 salas), las zonas 2 y 3 con 4 a 5, la zona 4 con 3 que mezclan lo aprendido, más el caracol con la Gran Canción. El modo director libre va después de la 1.0. El arte de las zonas 2 a 4 usa otra fila de la paleta y solo se dibujan props nuevos." },
     { fecha: "2026-11-26", hora: "02:15", decision: "Los minijuegos del ritmo se diseñan primero en un documento aparte y pasan a la página cuando queden bien", porque: "Es diseño que va a cambiar mucho mientras lo platico con Claude. En un documento aparte (como el de historia y bestiario) se puede editar y comentar sin llenar la página de decisiones a medias; cuando quede bien, lo que se decidió pasa a decisiones, metas y semanas." },
