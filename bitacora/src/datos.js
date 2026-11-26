@@ -57,17 +57,19 @@ export default {
             ramas: [
               { titulo: "Tamaño de tile: 16×16 (un tile = una unidad de Unity).", hecho: true },
               { titulo: "Plantilla de tiles con marcas de conexión (arte/plantillas).", hecho: true },
-              { titulo: "Estudiar tiles en Shovel Knight, Celeste, Terraria y Animal Well.", hecho: false },
+              { titulo: "Estudiar tiles en Shovel Knight, Celeste, Terraria y Animal Well.", hecho: true },
               { titulo: "Cerrar la paleta: casillas por material y hora del día (23 casillas, abierta a cambios).", hecho: true },
               { titulo: "Plantilla propia de 38 tiles con leyenda, revisor y orden de trabajo (arte/plantillas).", hecho: true },
               { titulo: "Proyecto base en Unity (URP 2D, Pixel Perfect 480×270, 16 PPU, Git LFS), 25 a 29 nov.", hecho: true },
-              { titulo: "Tilemap con Rule Tile del terreno desde la plantilla (con collider) y cámara Pixel Perfect, 30 nov a 4 dic.", hecho: false },
-              { titulo: "Primeros tiles de arte del material de la zona 1 (bloque base), dibujados con Unity abierto, 10 a 13 dic.", hecho: false },
+              { titulo: "Cámara Pixel Perfect y sala de prueba pintada a mano (25 nov).", hecho: true },
+              { titulo: "Collider sobre la sala pintada a mano, para mover al personaje (30 nov).", hecho: false },
+              { titulo: "Rule Tile del terreno desde la plantilla, justo antes de armar salas en serie.", hecho: false },
+              { titulo: "Primeros tiles de arte del material de la zona 1 (bloque base), cuando lo jugable funcione.", hecho: false },
             ],
           },
           {
             titulo: "Paso 2: Luz 2D estilo t3ssel8r y paso de gris a color",
-            nota: "Empieza el 5 de dic. sobre el Tilemap de la plantilla, antes de tener arte.",
+            nota: "Después del movimiento; se fecha al rehacer las 32 semanas. Se prueba sobre la sala de la plantilla, antes de tener arte.",
             ramas: [
               { titulo: "Shader de paleta por casillas: fila de silencio a fila de color.", hecho: false },
               { titulo: "Luz 2D sobre los tiles sin ensuciar el pixel art.", hecho: false },
@@ -171,6 +173,14 @@ export default {
   // Campos opcionales: imagen (ruta dentro del repo, p. ej. "img/semana1.gif"),
   // enlace: { texto: "Ver video", url: "https://..." }
   bitacora: [
+    {
+      fecha: "2026-11-25",
+      hora: "23:35",
+      titulo: "Primero lo que se juega",
+      texto:
+        "Reordené lo que sigue. La ruta ponía toda la semana del 30 de noviembre en el Rule Tile y después luces, shader y tiles de arte, y el movimiento y el sintonizador quedaban para después. Pero el arte va a seguir cambiando hasta el final y no es lo prioritario: primero quiero algo que se juegue y luego pulirlo. Pintar la sala a mano me tomó 5 minutos, así que el Rule Tile puede esperar a cuando arme salas en serie. La semana nueva: collider sobre la sala pintada a mano, un rectángulo con física que camina, corre, hace salto variable, coyote time y buffer, y la cámara siguiéndolo para ver si se mantiene estable. El sábado, si me sobra, una primera luz 2D, y el domingo planeo el sintonizador v0. Las 32 semanas se rehacen el domingo con este orden.",
+      etiquetas: ["planeación"],
+    },
     {
       fecha: "2026-11-25",
       hora: "23:18",
@@ -286,6 +296,7 @@ export default {
 
   // Decisiones importantes y por qué se tomaron.
   decisiones: [
+    { fecha: "2026-11-25", hora: "23:35", decision: "Primero lo funcional; lo visual se pule al final", porque: "El arte va a seguir cambiando y nunca será lo prioritario: primero tiene que haber algo que se juegue (movimiento, sintonizador, puzzles) y cuando eso esté se pule lo visual. Por eso el Rule Tile ya no va antes del movimiento: pintar una sala a mano me toma minutos y el Rule Tile solo ahorra tiempo cuando arme salas en serie. La semana del 30 de nov. es de collider y movimiento con un rectángulo; la luz 2D queda como opcional el sábado." },
     { fecha: "2026-11-25", hora: "21:40", decision: "Cámara Pixel Perfect con Windowbox y Upscale Render Texture", porque: "Con Windowbox, si la ventana no es múltiplo de 480×270 salen barras en vez de estirar o mostrar más mundo, así cada sala se ve siempre igual (30×17 tiles). Con Upscale Render Texture todo se dibuja a 480×270 y se amplía, así que lo que gira con la animación procedural se queda en la rejilla. El costo es que la cámara se mueve a saltos de un píxel (1/16 de unidad); se juzga cuando la cámara siga al personaje. Lo aprobé después de probarla en 1:1, 2:1 y 4:1." },
     { fecha: "2026-11-20", decision: "Motor: Unity", porque: "Ya lo domino por ECHO y trae Tilemap, 2D Animation, Pixel Perfect Camera y ScriptableObjects. Lo propio se programa donde se nota: sintetizador, animación procedural y ecosistema." },
     { fecha: "2026-11-20", decision: "Audio: sintetizador propio + FMOD + música propia", porque: "Lo que el jugador manipula debe sonar exactamente como se ve; FMOD da capas y música adaptativa; la música por capas la produzco yo." },

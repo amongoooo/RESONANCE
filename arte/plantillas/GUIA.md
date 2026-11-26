@@ -11,10 +11,13 @@ El arte se dibuja y se actualiza con Unity corriendo, no antes: primero se juega
 
 ## Orden
 
-1. Proyecto base de Unity (URP 2D, Pixel Perfect 480×270, 16 PPU, Git LFS).
-2. Tilemap con Rule Tile del terreno desde la plantilla, con collider y la cámara Pixel Perfect.
-3. Luz 2D y shader de paleta sobre ese Tilemap.
-4. Arte del primer material de la zona 1, un tile a la vez y viéndolo en la sala. Orden de dibujo:
+Primero lo funcional y después lo visual: el arte va a seguir cambiando, así que no se adelanta a lo jugable.
+
+1. Proyecto base de Unity (URP 2D, Pixel Perfect 480×270, 16 PPU, Git LFS). Hecho el 25 de nov., con una sala pintada a mano.
+2. Collider sobre la sala pintada a mano, sin Rule Tile, para mover al personaje (un rectángulo) con física.
+3. Luz 2D y shader de paleta sobre esa sala, cuando lo jugable ya funcione.
+4. Rule Tile del terreno desde la plantilla, justo antes de armar salas en serie: pintar a mano una sala toma minutos.
+5. Arte del primer material de la zona 1, un tile a la vez y viéndolo en la sala. Orden de dibujo:
    - **Bloque base:** B6 (relleno), luego B5, B8, B2 y B14 (bordes), luego B1, B4, B13 y B16 (esquinas).
    - **Esquinas y delgado:** I1 a I4, U1 a U7.
    - **Conectores y variedad:** L1 a L4, X1 a X5 y las variantes (B3 B7 B9 B10 B11 B12 B15 U8 U9).
@@ -28,11 +31,8 @@ El arte se dibuja y se actualiza con Unity corriendo, no antes: primero se juega
 
 Las celdas vacías cuentan como pendientes, así que el revisor sirve a medio dibujar. Todavía no distingue «pendiente» de «esta hoja no la usa».
 
-## Fechas tentativas (supuesto, se recalcula con lo que tardes)
+## Fechas
 
-- 25 a 29 nov: proyecto base de Unity.
-- 30 nov a 4 dic: Rule Tile del terreno y cámara Pixel Perfect.
-- 5 a 9 dic: luces y shader sobre el terreno.
-- 10 a 13 dic: primeros tiles de arte (bloque base).
-
-Los pasos 3 y 4 de la sala (protagonista y bombo) no caben en estas fechas sin mover algo; se decide con cifras cuando termine el Rule Tile.
+- 25 nov: proyecto base de Unity, cámara Pixel Perfect y sala pintada a mano (hecho).
+- 30 nov a 6 dic: collider y movimiento del personaje (ver `bitacora/contenido/tareas/2026-S49.md`).
+- Lo demás (sintonizador, luz y shader, Rule Tile, arte) se fecha al rehacer las 32 semanas el 29 de nov.
