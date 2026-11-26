@@ -173,6 +173,14 @@ export default {
   bitacora: [
     {
       fecha: "2026-11-25",
+      hora: "21:40",
+      titulo: "La cámara Pixel Perfect ya está en la escena",
+      texto:
+        "Puse la Pixel Perfect Camera de URP en la cámara principal: 16 píxeles por unidad y resolución de referencia de 480×270. Para tener algo que mirar copié la plantilla del terreno a Assets/Arte/Plantillas (filtro Point, sin compresión, 16 PPU) y la puse en el centro. Elegí Windowbox: si la ventana no es múltiplo exacto de 480×270 salen barras negras en vez de estirar la imagen o mostrar más mundo, así una sala siempre mide 30×17 tiles a la vista. También Upscale Render Texture: todo se dibuja a 480×270 y luego se amplía, para que lo que gire siga pegado a la rejilla. Lo probé en la vista Game: a 480×270, 960×540 y 1920×1080 la escala fue 1, 2 y 4, sin barras, y a 1280×720 se quedó en 2 con barras alrededor; al arrastrar la ventana solo salta de entero en entero. En todos los tamaños los píxeles miden lo mismo y nada se ve borroso. En esta versión del componente ya no existen las casillas «Run In Edit Mode» ni «Filter Mode» (esta solo aparece con Stretch Fill): siempre funciona en el editor. Trabajo en la rama unity-camara.",
+      etiquetas: ["herramientas", "arte"],
+    },
+    {
+      fecha: "2026-11-25",
       hora: "11:30",
       titulo: "Metas diarias en la Ruta",
       texto:
@@ -261,6 +269,7 @@ export default {
 
   // Decisiones importantes y por qué se tomaron.
   decisiones: [
+    { fecha: "2026-11-25", hora: "21:40", decision: "Pendiente: cámara Pixel Perfect con Windowbox y Upscale Render Texture", porque: "Propuesta: con Windowbox, si la ventana no es múltiplo de 480×270 salen barras en vez de estirar o mostrar más mundo, así cada sala se ve siempre igual (30×17 tiles). Con Upscale Render Texture todo se dibuja a 480×270 y se amplía, así que lo que gira con la animación procedural se queda en la rejilla. El costo es que la cámara se mueve a saltos de un píxel (1/16 de unidad); se juzga cuando la cámara siga al personaje.", pendiente: true },
     { fecha: "2026-11-20", decision: "Motor: Unity", porque: "Ya lo domino por ECHO y trae Tilemap, 2D Animation, Pixel Perfect Camera y ScriptableObjects. Lo propio se programa donde se nota: sintetizador, animación procedural y ecosistema." },
     { fecha: "2026-11-20", decision: "Audio: sintetizador propio + FMOD + música propia", porque: "Lo que el jugador manipula debe sonar exactamente como se ve; FMOD da capas y música adaptativa; la música por capas la produzco yo." },
     { fecha: "2026-11-20", decision: "Validación con examen pre/post y telemetría", porque: "Demostrar con datos que el juego enseña, no solo mostrarlo." },
