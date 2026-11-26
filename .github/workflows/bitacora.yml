@@ -22,9 +22,14 @@ permissions:
   contents: write
   pull-requests: write
 
-# Una publicación a la vez, para que dos no escriban gh-pages al mismo tiempo.
+# Una fila por destino: main por un lado y cada PR por el suyo.
+# GitHub deja una sola ejecución en espera por fila y cancela la que esperaba si llega otra.
+# Con una sola fila para todo, la limpieza de una PR cerrada cancelaba la publicación de main
+# (pasó el 25 de nov. al fusionar #11, #12 y #13 seguidas). Así una ejecución solo reemplaza
+# a otra del mismo destino, que trae lo más nuevo. Si dos filas escriben gh-pages a la vez,
+# las dos acciones de publicar reintentan sobre lo más reciente (attempt-limit, 3 por omisión).
 concurrency:
-  group: gh-pages
+  group: gh-pages-${{ github.event.pull_request.number || 'main' }}
   cancel-in-progress: false
 
 jobs:
