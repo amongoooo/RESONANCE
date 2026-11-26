@@ -173,6 +173,14 @@ export default {
   bitacora: [
     {
       fecha: "2026-11-25",
+      hora: "23:18",
+      titulo: "Estudio de tiles de cuatro juegos, sin elegir todavía",
+      texto:
+        "Adelanté lo del viernes. Con Claude revisé capturas a tamaño real de Shovel Knight (tiles de 16), Celeste, Terraria y Animal Well (tiles de 8, así que una celda mía de 16 son 2×2 de los suyos), con la rejilla encima. Comparé seis cosas: cómo esconden la repetición del relleno, el borde que da al aire, las esquinas interiores, el final de las plataformas delgadas, la decoración que sale de la celda y la luz. Lo que más me sirvió: Shovel Knight acepta celdas idénticas y dibuja las piezas delgadas más chicas que la celda; Celeste deja el relleno casi liso y pone la textura solo en la orilla; Terraria usa 1 px casi negro hacia el aire con el pasto dentro del tile; y en Animal Well la luz hace que bloques iguales se vean distintos. Salieron tres trucos candidatos por juego, pero no elegí ninguno: la plantilla de 38 tiles no cambia y el estudio solo dice cómo pintarla, algo que importa hasta que empiece a dibujar. Lo decido el 10 de diciembre, al empezar el arte del bloque base, viendo la sala en Unity. Lo primero a decidir ese día es si el contorno es de sombra (como dice la paleta) o de luz, y si el relleno lleva variantes o va casi liso, porque eso cambia cuánto dibujo. Las capturas no se suben al repo.",
+      etiquetas: ["arte"],
+    },
+    {
+      fecha: "2026-11-25",
       hora: "21:55",
       titulo: "Primera sala pintada con la plantilla",
       texto:
