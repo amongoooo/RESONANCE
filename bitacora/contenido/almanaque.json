@@ -168,7 +168,7 @@
     }
    ],
    "nombre": "El protagonista",
-   "notas": "Perilla del pulso aprobada el 27 nov. Brillo con tecla y dirigir con luz aprobados el 27 nov.",
+   "notas": "Perilla del pulso aprobada el 27 nov. Brillo con tecla y dirigir con luz aprobados el 27 nov.\nRevisado el 27 nov.: lo del mundo real es cierto; lo del juego no tiene que ser igual al animal real, solo tener sentido dentro del mundo.",
    "orden": 10,
    "real": "- Pájaro indicador de miel (África): guía a las personas hasta las colmenas con un canto especial y ellas le dejan la cera. Así guía el protagonista a las tribus hacia los pulsos, a cambio de protección.\n- Luciérnagas y coros de ranas: cada individuo ajusta su destello o su canto al de sus vecinos hasta que todos van a tiempo, sin que nadie dirija.\n- Las presas pequeñas sobreviven escondiéndose, quedándose quietas o en grupo, no peleando.",
    "resumen": "Una presa sin voz que no ataca: toca con su luz, siente el pulso del mundo y dirige a las tribus. Todas las demás especies reaccionan a él.",
@@ -176,7 +176,7 @@
    "semana": "Semanas 2 (movimiento), 5 (perilla) y 13 (cuerpo)",
    "tipo": "Protagonista",
    "vida": {
-    "alimento": "Néctar de flores que solo abren cuando hay música cerca. Base real (por verificar): la onagra hace su néctar más dulce en pocos minutos cuando oye el zumbido de una abeja. Por eso su especie casi desaparece cuando el mundo se queda en silencio: sin música no hay flores abiertas. En el juego el néctar recarga su vida.",
+    "alimento": "Néctar de flores que solo abren cuando hay música cerca. Base real (verificada): la onagra de playa (Oenothera drummondii) hace su néctar más dulce en unos 3 minutos cuando oye el zumbido de una abeja; sus pétalos vibran con los sonidos graves (Veits y otros, Ecology Letters, 2019; hay quien lo discute). Por eso su especie casi desaparece cuando el mundo se queda en silencio: sin música no hay flores abiertas. En el juego el néctar recarga su vida.",
     "crias": "Las crías nacen cuando suena la Gran Canción. Nacen sin luz propia y la ganan al escuchar su primera música, como si «se afinaran».",
     "dia": "Activo al atardecer y de noche, cuando su luz se ve mejor.",
     "habitat": "No tiene territorio: va de una tribu a otra. Duerme en huecos que resuenan (troncos, conchas, grietas), porque ahí siente mejor el pulso del mundo.",
@@ -275,7 +275,7 @@
     }
    ],
    "nombre": "El bombo",
-   "notas": "Aquí nace el aviso «sonó algo» que usan todas las demás especies.",
+   "notas": "Aquí nace el aviso «sonó algo» que usan todas las demás especies.\nRevisado el 27 nov.: lo del mundo real es cierto; lo del juego no tiene que ser igual al animal real, solo tener sentido dentro del mundo.",
    "orden": 20,
    "real": "- Ratas canguro (desiertos de Norteamérica): tamborilean el suelo con las patas traseras. Cada una tiene su propio patrón, como una firma, para marcar territorio y avisar a sus vecinas.\n- También tamborilean frente a una serpiente: le dicen «ya te vi», y la serpiente suele irse.\n- Los golpes viajan por el suelo y los vecinos los sienten con las patas.",
    "resumen": "El miembro grave de la tribu: grande y pesado, vive abajo y golpea el suelo en el «1». Primera pieza que se aprende y cebo del que siente el suelo.",
@@ -284,7 +284,7 @@
    "tipo": "Tribu",
    "vida": {
     "alimento": "Semillas que junta y guarda en bolsas de las mejillas. Base real: las ratas canguro casi no beben agua; la sacan de las semillas que comen.",
-    "crias": "La madre cría en la madriguera. Las crías aprenden a tamborilear imitando a su madre antes de tener patrón propio (por verificar en ratas canguro reales).",
+    "crias": "La madre cría en la madriguera. En el juego, las crías aprenden a tamborilear imitando a su madre antes de tener patrón propio. Base real: en las ratas canguro no está comprobado (solo se propuso como hipótesis); sí se sabe que cada una cambia su firma para distinguirse de sus vecinas.",
     "dia": "Sale al atardecer. De día se queda en la madriguera, donde el suelo está fresco.",
     "habitat": "Abajo, en madrigueras cavadas en el suelo de laterita. Cada madriguera tiene un montículo encima que usa de escenario para tamborilear.",
     "relaciones": "Tamborilea frente a los depredadores para decirles «ya te vi» (las ratas canguro reales lo hacen con las serpientes). El que siente el suelo lo sigue, pero no lo caza: es demasiado grande y no es su presa.",
@@ -370,7 +370,7 @@
     }
    ],
    "nombre": "La caja",
-   "notas": "",
+   "notas": "Revisado el 27 nov.: lo del mundo real es cierto; lo del juego no tiene que ser igual al animal real, solo tener sentido dentro del mundo.",
    "orden": 30,
    "real": "- Gorilas: los machos se golpean el pecho con las manos ahuecadas y el sonido se oye a más de un kilómetro. Si el gorila es más grande, el golpe suena más grave.\n- Pájaros carpinteros: tamborilean troncos huecos (y hasta postes de metal) para marcar territorio y buscar pareja. Eligen lo que más resuena.\n- En los dos casos lo hueco amplifica el golpe.",
    "resumen": "El miembro mediano de la tribu: cuerpo hueco, vive a media altura y contesta al bombo en el 2 y el 4. Enseña la llamada y respuesta.",
@@ -505,7 +505,7 @@
     }
    ],
    "nombre": "El hi-hat",
-   "notas": "27 nov.: el favor del «lugar tibio» (llevar al coro a otro lado) se cambió por la temperatura del lugar: los insectos reaccionan al calor de donde están y el jugador lo ajusta con fogatas (idea del autor).\nAprobado el 27 nov.: por su favor, el hi-hat da la perilla del pulso. En los aparatos las perillas siguen siendo perillas, pero llevan el símbolo del insecto que las dio. Antes de tenerla, el pulso de la zona 1 es fijo o solo cambia con el calor.",
+   "notas": "27 nov.: el favor del «lugar tibio» (llevar al coro a otro lado) se cambió por la temperatura del lugar: los insectos reaccionan al calor de donde están y el jugador lo ajusta con fogatas (idea del autor).\nAprobado el 27 nov.: por su favor, el hi-hat da la perilla del pulso. En los aparatos las perillas siguen siendo perillas, pero llevan el símbolo del insecto que las dio. Antes de tenerla, el pulso de la zona 1 es fijo o solo cambia con el calor.\nRevisado el 27 nov.: lo del mundo real es cierto; lo del juego no tiene que ser igual al animal real, solo tener sentido dentro del mundo.",
    "orden": 40,
    "real": "- Grillos: el macho frota una orilla dura de un ala contra una fila de dientecitos de la otra, como pasar una uña por un peine.\n- Si hace más calor, cantan más rápido; con frío, más lento. Es tan parejo que contando sus cantos se puede calcular la temperatura (ley de Dolbear, 1897).\n- Su sonido es agudo y no viaja por el suelo.",
    "resumen": "Los miembros agudos de la tribu: insectos pequeños que viven arriba y frotan su cuerpo. Parten el pulso en pedazos más chicos.",
@@ -615,7 +615,7 @@
     }
    ],
    "nombre": "El enjambre",
-   "notas": "27 nov.: vive en los caminos que salen de la guarida de la zona 1, no en la guarida (ver «Caminos entre guaridas»).",
+   "notas": "27 nov.: vive en los caminos que salen de la guarida de la zona 1, no en la guarida (ver «Caminos entre guaridas»).\nRevisado el 27 nov.: lo del mundo real es cierto; lo del juego no tiene que ser igual al animal real, solo tener sentido dentro del mundo.",
    "orden": 50,
    "real": "- Luciérnagas sincronizadas: en las Great Smoky Mountains (Estados Unidos) y en manglares del sureste de Asia, miles destellan al mismo tiempo. Cada una adelanta o atrasa un poco su destello para acercarse al de sus vecinas.\n- La que va a destiempo se nota de inmediato.\n- Lo de depredador es inventado.",
    "resumen": "Una nube de insectos que destellan juntos a su propio pulso. Si igualas su ritmo te deja pasar; si vas a destiempo, te caza.",
@@ -719,7 +719,7 @@
     }
    ],
    "nombre": "El que siente el suelo",
-   "notas": "27 nov.: vive en los caminos que salen de la guarida de la zona 1, no en la guarida (ver «Caminos entre guaridas»).",
+   "notas": "27 nov.: vive en los caminos que salen de la guarida de la zona 1, no en la guarida (ver «Caminos entre guaridas»).\nRevisado el 27 nov.: lo del mundo real es cierto; lo del juego no tiene que ser igual al animal real, solo tener sentido dentro del mundo.",
    "orden": 60,
    "real": "- Escorpiones de arena: sienten con sensores en las patas las vibraciones de un insecto en la arena y saben hacia dónde está.\n- Topos dorados (Namibia): meten la cabeza en la arena para sentir el zumbido de las termitas.\n- Las vibraciones graves viajan bien por el suelo y las agudas se apagan pronto.",
    "resumen": "Un cazador bajo tierra que sigue las vibraciones graves. Lo atraen los golpes del bombo y no le importa el hi-hat.",
