@@ -43,7 +43,14 @@ export default {
         ramas: [
           { titulo: "Prueba de capas 2D en Unity: pixel perfect a 480×270, cuatro planos y paso de gris a color.", hecho: true },
           { titulo: "Decidir: 2D lateral, casi todo procedural.", hecho: true },
-          { titulo: "Cerrar la historia hasta enemigos y puzzles (obstáculos, mapa, enemigos y puzzles).", hecho: false },
+          {
+            titulo: "Cerrar la historia hasta enemigos y puzzles",
+            ramas: [
+              { titulo: "Lista de especies, enemigos y obstáculos de la zona 1, en el almanaque (propuesta del 26 nov.).", hecho: true },
+              { titulo: "Definir las especies en el almanaque (mecánicas y datos) y darles el OK.", hecho: false },
+              { titulo: "Diseñar los puzzles de la zona 1 con las especies ya definidas.", hecho: false },
+            ],
+          },
           { titulo: "Rehacer las 32 semanas con la historia nueva (tribus y música), en 2D y con lo jugable antes que lo visual (aprobadas el 26 nov.).", hecho: true },
           { titulo: "Primeras 5 preguntas conceptuales del examen pre/post (vie 4 dic.).", hecho: false },
         ],
@@ -209,6 +216,15 @@ export default {
   // Campos opcionales: imagen (ruta dentro del repo, p. ej. "img/semana1.gif"),
   // enlace: { texto: "Ver video", url: "https://..." }
   bitacora: [
+    {
+      fecha: "2026-11-27",
+      hora: "00:15",
+      titulo: "Mecánicas globales y respuestas a las propuestas",
+      texto:
+        "El almanaque ya tiene dos apartados: el Bestiario y las Mecánicas globales, donde viven las reglas que usan varias criaturas (el reloj musical, el aviso «sonó algo», la perilla del pulso, ser presa, la sala sin sonido, la confianza de la tribu y las tribus que se tapan). Cada mecánica de una criatura marca qué globales usa, y cada global dice quién la usa. Contesté las propuestas pendientes: los puzzles se diseñan cuando las especies estén definidas, así que el enjambre no se adelanta; se planea por hitos con una lista de lo que sigue en vez de semanas; y la zona 1 se juega con el pulso. Lo de las vidas lo quiero debatir: sin vidas, varias vidas o una vida por salida con mejores checkpoints.",
+      enlace: { texto: "Abrir el almanaque", url: "https://claude.ai/artifact/6AAnoQvQ6wnz2gt2Q3qKrg" },
+      etiquetas: ["diseño", "planeación"],
+    },
     {
       fecha: "2026-11-26",
       hora: "23:10",
@@ -391,6 +407,11 @@ export default {
 
   // Decisiones importantes y por qué se tomaron.
   decisiones: [
+    { fecha: "2026-11-27", hora: "00:15", decision: "Las mecánicas globales van en un apartado propio del almanaque, aparte del bestiario", reemplaza: "Pendiente: las mecánicas globales van en un apartado propio del almanaque, aparte del bestiario", porque: "Aprobé la propuesta. El almanaque tiene dos apartados: Bestiario (protagonista, tribu, depredadores y fauna neutra) y Mecánicas globales (sistemas, reglas y obstáculos que usan varias criaturas). Ahí quedaron el reloj musical, el aviso «sonó algo», la perilla del pulso, ser presa, la sala donde el sonido no viaja, la confianza de la tribu y las tribus que se tapan. Cada mecánica de una criatura marca qué globales usa, y cada global muestra qué criaturas la usan. La perilla del pulso salió de la ficha del protagonista." },
+    { fecha: "2026-11-27", hora: "00:15", decision: "Los puzzles se diseñan después de tener definidas las especies; el enjambre no se adelanta a la semana 4", reemplaza: "Pendiente: el primer puzzle (semana 4) es el enjambre en vez de la puerta", porque: "Primero se terminan de definir los personajes en el almanaque y después se diseñan los puzzles, que dependen de cómo se comporta cada uno. La semana 4 sigue con el puzzle de prueba del prototipo (la puerta) hasta que se diseñen los puzzles." },
+    { fecha: "2026-11-27", hora: "00:15", decision: "Se planea por hitos con una lista de lo que sigue, en vez de semanas", reemplaza: "Pendiente: planear por hitos y una lista de lo que sigue, en vez de semanas", porque: "Aprobado: me gusta ir cambiando de foco. Se quedan fijas las fechas que no dependen de mí (congelamiento el 1 de mayo, examen con la escuela, playtest) y el hito de cada fase (prototipo el 20 dic., zona 1 en gris el 7 feb.). La semana deja de ser compromiso: hay una lista de lo que sigue, ordenada por qué depende de qué, y cada día elijo de lo que ya esté desbloqueado. El domingo, 15 minutos para ver si voy bien para el siguiente hito. Lo adelantado se tacha. Falta cambiar cómo se ve la Ruta en la página: primero Claude propone cómo se vería y después se programa." },
+    { fecha: "2026-11-27", hora: "00:15", decision: "La zona 1 se juega con el pulso y la perilla de frecuencia es de la zona 2", reemplaza: "Pendiente: la zona 1 se juega con el pulso y la perilla de frecuencia es de la zona 2", porque: "Aprobada el 27 nov. El sintonizador v0 del prototipo sigue con la perilla de frecuencia porque es lo más rápido de probar, pero en el juego la zona 1 ajusta el tiempo: si el pulso va más rápido, los golpes se juntan; si va más lento, se separan. En el almanaque es la mecánica global «Perilla del pulso»." },
+    { fecha: "2026-11-27", hora: "00:15", decision: "Pendiente: debatir vidas y checkpoints (sin vidas, varias vidas o una vida por salida con mejores checkpoints)", reemplaza: "Pendiente: sin vidas ni daño; si un depredador te atrapa, vuelves a la entrada de la sala", porque: "Quiero debatir antes de decidir si el protagonista tiene varias vidas o una por cada vez que sale, con mejores checkpoints. La pregunta de fondo es dónde reaparece al caer y qué pierde. En el almanaque, «Ser presa» quedó como «volver al último punto seguro» mientras se decide.", pendiente: true },
     { fecha: "2026-11-27", hora: "00:05", decision: "En el almanaque, cada criatura tiene una lista de mecánicas y cada mecánica usa solo los bloques que necesite", porque: "Una mecánica va desde un botón que se presiona hasta un superpoder del jugador, así que una criatura casi nunca tiene una sola. Cada ficha conserva sus mismos datos, pero en vez de un solo juego de 5 bloques tiene mecánicas que puedo agregar, ordenar y quitar, cada una con nombre, qué hace y los 5 bloques posibles, sin obligación de llenarlos todos; la ficha dice cuáles no usa. Ya se separaron las de las 6 especies; por ejemplo, el protagonista tiene correr, salto variable, coyote time y buffer, perilla del pulso, brillo al pulso, aterrizaje fuerte y volver a la entrada." },
     { fecha: "2026-11-27", hora: "00:05", decision: "Pendiente: las mecánicas globales van en un apartado propio del almanaque, aparte del bestiario", porque: "Propuesta de Claude: el reloj musical, la perilla del pulso, el aviso «sonó algo», ser presa, la sala donde el sonido no viaja y la confianza de la tribu no son de una criatura: las usan varias. En el bestiario se repetirían o quedarían en la ficha de quien no les toca. En un apartado propio cada una se escribe una vez, con sus 5 bloques, y las mecánicas de cada criatura solo dicen cuál usan. Las del protagonista se quedan en su ficha, porque son suyas. Hoy esas reglas están en el bestiario como entradas de tipo Regla y Obstáculo; se mudarían.", pendiente: true },
     { fecha: "2026-11-26", hora: "23:55", decision: "Las especies, reglas y obstáculos se escriben en el almanaque técnico", porque: "Lo pedí así: un almanaque con una rejilla de retratos y una ficha por entrada que puedo editar y que se guarda sola. Cada ficha tiene tipo, zona, estado (idea, propuesta, aprobada, en Unity, hecha o fuera de la 1.0), altura, qué enseña, en qué se inspira, cuándo, el mundo real, cómo funciona en el juego, los 5 bloques, los estados, los datos de su ScriptableObject (campo, valor, unidad y nota), los avisos que manda y escucha, riesgos y notas. Es la fuente de verdad del diseño de cada criatura; lo que se apruebe ahí pasa a esta página como decisión. El documento y la página jugable del 26 nov. se quedan como estaban. https://claude.ai/artifact/6AAnoQvQ6wnz2gt2Q3qKrg" },
