@@ -19,7 +19,7 @@ Plataformero donde el jugador repara un mundo silenciado afinando ondas con un s
 
 ## Estructura
 
-- `bitacora/` es la página de registro (React + Vite + Tailwind + Motion), publicada con GitHub Pages por `.github/workflows/bitacora.yml`. El contenido vive en `bitacora/src/datos.js` (árbol de metas, semanas, bitácora, decisiones); el resto del código de la página solo se toca si lo pido. Su estilo sale de mi repo teoria-musical y es solo de la página, no del juego.
+- `bitacora/` es la página de registro (React + Vite + Tailwind + Motion), publicada con GitHub Pages por `.github/workflows/bitacora.yml`. El contenido vive en `bitacora/src/datos.js` (árbol de metas, semanas, bitácora, decisiones) y en `bitacora/contenido/` (textos largos en .md; lo que aprendo va como un apunte por tema en `contenido/apuntes/`); el resto del código de la página solo se toca si lo pido. Su estilo sale de mi repo teoria-musical y es solo de la página, no del juego.
 - `docs/` es la página anterior en HTML; se borra cuando la nueva esté publicada. No se actualiza: las entradas de bitácora van en `bitacora/src/datos.js`.
 - `arte/` guarda plantillas y archivos fuente de arte (Aseprite) fuera del proyecto de Unity.
 - La raíz es para el proyecto de Unity. Cuando se agregue, configurar Git LFS para archivos pesados (texturas, audio, modelos).

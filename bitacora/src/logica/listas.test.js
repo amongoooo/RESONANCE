@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { contarEtiquetas, idDecision, porMes, separarDecisiones } from './listas.js'
-import { hashDe, rutaDeHash, vistaDe } from './rutas.js'
+import { hashDe, PAGINAS, rutaDeHash, vistaDe } from './rutas.js'
 
 describe('páginas', () => {
   it('elige página y apartado por la dirección', () => {
@@ -22,6 +22,10 @@ describe('páginas', () => {
   it('arma direcciones', () => {
     expect(hashDe('inicio')).toBe('#/')
     expect(hashDe('registro', 'bitacora')).toBe('#/registro/bitacora')
+  })
+  it('Registro tiene tres vistas y Apuntes acepta qué abrir', () => {
+    expect(PAGINAS.find((p) => p.id === 'registro').vistas.map((v) => v.id)).toEqual(['bitacora', 'decisiones', 'apuntes'])
+    expect(rutaDeHash('#/registro/apuntes?abrir=cinco-bloques')).toEqual({ pagina: 'registro', vista: 'apuntes' })
   })
 })
 

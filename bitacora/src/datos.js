@@ -211,6 +211,15 @@ export default {
   bitacora: [
     {
       fecha: "2026-11-26",
+      hora: "22:20",
+      titulo: "Apuntes: un lugar para lo que aprendo",
+      texto:
+        "Registro ya tiene su tercera vista, Apuntes, junto a Bitácora y Decisiones. Cada tema es un archivo .md en contenido/apuntes/ y sale como tarjeta con su título, la fecha de la última vez que lo edité, sus etiquetas y el primer párrafo; al tocarla se abre completa. Arriba hay un buscador que no se fija en acentos ni mayúsculas y pide que estén todas las palabras, y debajo las etiquetas para filtrar. Los primeros tres apuntes salen de lo que ya tenía regado: los 5 bloques de una mecánica con el bombo de ejemplo, el estudio de tiles de Shovel Knight, Celeste, Terraria y Animal Well, y «Para escuchar: el ritmo», que se mudó de Juego > Música porque es algo que estudio yo, no un dato del juego; en Música queda un enlace que lo abre directo. El prompt de NotebookLM de la historia del ritmo no entra. Para agregar uno desde el teléfono hay un LEEME en la misma carpeta con una plantilla; lo único que hay que recordar es cambiar la fecha de «editado:» cada vez.",
+      enlace: { texto: "Ver los apuntes", url: "#/registro/apuntes" },
+      etiquetas: ["herramientas"],
+    },
+    {
+      fecha: "2026-11-26",
       hora: "17:30",
       titulo: "Música para entrenar el oído del ritmo",
       texto:
@@ -373,6 +382,7 @@ export default {
 
   // Decisiones importantes y por qué se tomaron.
   decisiones: [
+    { fecha: "2026-11-26", hora: "22:20", decision: "«Para escuchar: el ritmo» se muda de Juego > Música a Registro > Apuntes", porque: "Es música que escucho yo para entrenar el oído, no un dato que vaya a contar el juego; Juego > Música se queda con la historia real que cuentan los pulsos y deja un enlace al apunte. El prompt de NotebookLM de la historia del ritmo no se guarda en los apuntes." },
     { fecha: "2026-11-26", hora: "22:11", decision: "Un apartado «Apuntes» en Registro para lo que aprendo", reemplaza: "Pendiente: un apartado «Apuntes» en Registro para lo que aprendo", porque: "Aprobé la propuesta: Registro tendrá tres vistas, Bitácora (lo que hice), Decisiones (lo que decidí) y Apuntes (lo que aprendí). Un archivo .md por tema en contenido/apuntes/, cada uno como tarjeta con fecha de última edición y etiquetas, y un buscador sencillo; se edita igual que musica.md, también desde el teléfono. Va en Registro y no en una página propia porque la barra de abajo ya tiene 5. Se construye en otro chat; ahí se decide si «Para escuchar» se muda de Juego > Música y se guarda el prompt de NotebookLM de la historia del ritmo." },
     { fecha: "2026-11-26", hora: "17:30", decision: "Pendiente: un apartado «Apuntes» en Registro para lo que aprendo", porque: "Propuesta: hoy la página tiene dónde va lo que hice (Bitácora, por fecha) y lo que decidí (Decisiones), pero no lo que aprendí, que se queda regado en entradas, decisiones y documentos aparte. «Apuntes» sería la tercera pestaña de Registro: un archivo .md por tema en contenido/apuntes/ (por ejemplo, los 5 bloques de una mecánica, el estudio de tiles de cuatro juegos, la música para escuchar o lo que aprendo de Unity), cada uno como tarjeta con su fecha de última edición y etiquetas, y un buscador sencillo. Se escribe como musica.md, así que no pide nada nuevo para editarlo desde el teléfono. No va en una página propia porque la barra de abajo ya tiene 5 y una sexta la aprieta. La lista para escuchar se queda en Juego > Música hasta que exista el apartado, y ahí se decide si se muda. Pide tocar el código de la página, por eso espera mi OK.", pendiente: true },
     { fecha: "2026-11-26", hora: "02:15", decision: "Las 32 semanas con la historia nueva y lo jugable primero", reemplaza: "Pendiente: las 32 semanas rehechas con la historia nueva y lo jugable primero", porque: "Aprobé la propuesta tal cual: sintonizador v0 en la semana 3 y puzzle con prueba de diversión en la 4; zona 1 jugable en gris en las semanas 5 a 11; cuerpo procedural en la 13; shader de paleta, luz y skins en la 14; tiles de arte en la 24, después del congelamiento; Rule Tile en la 9 con las salas; sin jefes (cada zona cierra con su maestro); la cuerda en la zona 2; nada de funciones nuevas después del 1 de mayo; margen en las semanas 12, 22, 23 y 28, y si se gasta, se recorta primero la zona 4 (queda el caracol) y luego la zona 3 baja a 3 salas. Incluye las fechas del examen y de los pasos de la sala de estilo." },

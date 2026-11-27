@@ -35,10 +35,11 @@ const bloques = (lineas) => {
       i++
       continue
     }
-    if (l.startsWith('## ')) {
+    // «## Subtítulo» (y cualquier otro «#», «###»… que llegue aquí, para no atorarse).
+    if (/^#+\s/.test(l)) {
       salida.push(
         <h3 key={i} className="mt-2 font-titulo text-lg font-bold tracking-tight">
-          {enLinea(l.slice(3), `h${i}`)}
+          {enLinea(l.replace(/^#+\s+/, ''), `h${i}`)}
         </h3>,
       )
       i++
@@ -77,7 +78,7 @@ const bloques = (lineas) => {
       continue
     }
     const parrafo = []
-    while (i < lineas.length && lineas[i].trim() && !lineas[i].startsWith('#') && !lista.test(lineas[i])) parrafo.push(lineas[i++].trim())
+    while (i < lineas.length && lineas[i].trim() && !/^#+\s/.test(lineas[i]) && !lista.test(lineas[i])) parrafo.push(lineas[i++].trim())
     salida.push(
       <p key={i} className="text-lg leading-relaxed text-zinc-700">
         {enLinea(parrafo.join(' '), `p${i}`)}
@@ -95,6 +96,11 @@ export const secciones = (texto) => {
     else (partes[partes.length - 1] ?? partes[partes.push({ titulo: null, lineas: [] }) - 1]).lineas.push(l)
   }
   return partes.map((p) => ({ titulo: p.titulo, contenido: bloques(p.lineas) }))
+}
+
+/** Un texto en Markdown sin partirlo en tarjetas (para meterlo en una tarjeta propia, como en Apuntes). */
+export function Contenido({ texto }) {
+  return <div className="flex flex-col gap-3">{bloques(texto.replace(/\r/g, '').split('\n'))}</div>
 }
 
 /** Un texto en Markdown como tarjetas, una por «# Título». */
