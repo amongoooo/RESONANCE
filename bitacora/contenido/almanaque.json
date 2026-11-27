@@ -1404,6 +1404,75 @@
    "zona": "Todas"
   },
   {
+   "id": "instrumentos",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "- «sonó algo» (los power-ups que suenan).",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Que el sonido depende de la forma y el material",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "Los instrumentos de África occidental hechos de calabaza, semillas y madera",
+   "juego": "- Se hacen con materiales (cosas huecas, fibras, mudas de insecto, semillas) y una receta que da el árbol de los ritmos.\n- Para el protagonista: se gastan y son los power-ups para escapar en los caminos. Ejemplos por probar: una sonaja de semillas que se lanza lejos y atrae al que siente el suelo hacia allá; un zumbador que confunde al enjambre.\n- Para las tribus: le das a un miembro un instrumento nuevo y con él toca algo más complejo; así se desbloquea un ritmo. Encaja con la idea pendiente de que los miembros solo tocan cosas simples y el jugador desbloquea y mezcla ritmos.\n- Lo grave es grande y hueco; lo agudo, chico y duro: si el hueco es más grande, suena más grave.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Avisa al guardado y a la telemetría.",
+      "deteccion": "Si carga los materiales que pide.",
+      "entrada": "El jugador elige una receta que ya tiene.",
+      "estado": "Recetas conocidas y materiales que cargas (datos).",
+      "transformacion": "Los materiales se vuelven el instrumento."
+     },
+     "descripcion": "Con la receta y los materiales, se hace el instrumento.",
+     "nombre": "Hacer un instrumento",
+     "usa": [
+      "arbol-de-los-ritmos",
+      "caminos"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "Manda «sonó algo» si suena (por ejemplo, la sonaja lanzada).",
+      "deteccion": "",
+      "entrada": "Botón de usar.",
+      "estado": "Cuántos le quedan.",
+      "transformacion": "Hace su efecto y se gasta."
+     },
+     "descripcion": "El protagonista usa un instrumento que se gasta para escapar.",
+     "nombre": "Usar un power-up",
+     "usa": [
+      "aviso-sono-algo",
+      "ser-presa"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "Avisa al árbol de los ritmos (ritmo desbloqueado).",
+      "deteccion": "El miembro ya confía.",
+      "entrada": "Entregarlo al miembro.",
+      "estado": "",
+      "transformacion": "El miembro toca un ritmo nuevo."
+     },
+     "descripcion": "Un miembro recibe un instrumento y toca algo más complejo.",
+     "nombre": "Dar un instrumento a la tribu",
+     "usa": [
+      "regalos-de-la-tribu",
+      "orgullo-de-la-tribu"
+     ]
+    }
+   ],
+   "nombre": "Instrumentos",
+   "notas": "Aprobado el 27 nov. Los ejemplos de power-ups están por probar.",
+   "orden": 115,
+   "real": "- Shekere: calabaza seca cubierta con una red de semillas o cuentas; suena al sacudirla o golpearla (África occidental).\n- Balafón: teclas de madera con calabazas huecas debajo de cada una, que hacen que suenen más fuerte; las calabazas más grandes van con las teclas más graves (África occidental).\n- Djembé: tambor de madera hueca con piel tensada.",
+   "resumen": "Con materiales de los caminos y una receta del árbol de los ritmos se hacen instrumentos: para el protagonista, que se gastan y son los power-ups; y para las tribus, que tocan algo más complejo y desbloquean un ritmo.",
+   "riesgos": "- Que los power-ups hagan fácil escapar: se gastan y se hacen con materiales de los caminos, así que cuestan salir a buscarlos.",
+   "semana": "",
+   "tipo": "Progresión",
+   "zona": "Todas"
+  },
+  {
    "id": "la-cosecha",
    "altura": "—",
    "avisosEscucha": "",
@@ -1516,7 +1585,7 @@
    "estado": "aprobada",
    "estados": "",
    "inspira": "",
-   "juego": "- Las guaridas son casi seguras; el riesgo está en los caminos, donde viven los depredadores (el enjambre, el que siente el suelo y los que vengan).\n- Los puzzles diseñados se hacen en las guaridas con los miembros de la tribu: ahí se aprenden los conceptos y se practica lo básico. Al explorar los caminos y las otras zonas se desbloquean ritmos más interesantes.\n- En los caminos también hay retos pequeños, pero no son puzzles diseñados: son mecánicas de caza, de movimiento y así, para pasar las salas.\n- Se sale a los caminos por objetos o comida para el jugador o para las tribus.\n- Sirven para ganar la confianza de las tribus, tradear y hacer instrumentos.\n- Qué se junta (27 nov.): comida para las tribus (lo que cada especie come de verdad: semillas para el bombo, insectos de corteza y fruta para la caja, hojas tiernas y néctar para el hi-hat), materiales (cosas huecas, fibras, mudas de insecto) para instrumentos y para los huecos de las piezas para llevar, y néctar para el protagonista, que recarga su vida (sale de flores cerradas que abren si tocas cerca).\n- Falta decidir: cómo se tradea, cómo se hacen los instrumentos y qué hacen los depredadores en los caminos.",
+   "juego": "- Las guaridas son casi seguras; el riesgo está en los caminos, donde viven los depredadores (el enjambre, el que siente el suelo y los que vengan).\n- Los puzzles diseñados se hacen en las guaridas con los miembros de la tribu: ahí se aprenden los conceptos y se practica lo básico. Al explorar los caminos y las otras zonas se desbloquean ritmos más interesantes.\n- En los caminos también hay retos pequeños, pero no son puzzles diseñados: son mecánicas de caza, de movimiento y así, para pasar las salas.\n- Se sale a los caminos por objetos o comida para el jugador o para las tribus.\n- Sirven para ganar la confianza de las tribus, tradear y hacer instrumentos.\n- Qué se junta (27 nov.): comida para las tribus (lo que cada especie come de verdad: semillas para el bombo, insectos de corteza y fruta para la caja, hojas tiernas y néctar para el hi-hat), materiales (cosas huecas, fibras, mudas de insecto) para instrumentos y para los huecos de las piezas para llevar, y néctar para el protagonista, que recarga su vida (sale de flores cerradas que abren si tocas cerca).\n- Cómo se tradea (27 nov.): con cada tribu en su guarida, con lo de esa tribu, y en el mercado del caracol, donde se encuentra de todo (ver «Mercado del caracol»).\n- Instrumentos (27 nov.): con materiales y una receta del árbol de los ritmos se hacen instrumentos para el protagonista (se gastan y son los power-ups para escapar) y para las tribus (un miembro toca algo más complejo y se desbloquea un ritmo). Ver «Instrumentos».\n- Retos de los caminos (27 nov.), los cuatro:\n  1. Escabullirse: pasar sin que te sientan (caminar despacio sobre el que siente el suelo, esconderte en huecos o pasto, esperar a que el enjambre se aleje).\n  2. Huir: un depredador te persigue y escapas hasta un escondite o un hueco, con power-ups si hace falta.\n  3. Buscar comida como lo hace cada especie: golpear troncos y escuchar dónde suena hueco, tocar junto a flores para que abran, sacudir árboles al ritmo.\n  4. Pasar con el sonido: ramas que se mecen al pulso, hongos que rebotan con un golpe grave, suelo frágil que se rompe con el Pisotón.",
    "mecanicas": [
     {
      "bloques": {
@@ -1526,20 +1595,82 @@
       "estado": "",
       "transformacion": ""
      },
-     "descripcion": "Recorrer un camino para traer objetos o comida a la guarida.",
+     "descripcion": "Recorrer un camino para traer comida, materiales o néctar.",
      "nombre": "Salir por algo",
      "usa": [
       "ser-presa",
-      "orgullo-de-la-tribu"
+      "orgullo-de-la-tribu",
+      "instrumentos",
+      "mercado-del-caracol"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "Los depredadores escuchan «sonó algo»; un escondite tapa al protagonista.",
+      "entrada": "Caminar despacio o entrar a un escondite.",
+      "estado": "Escondido o a la vista.",
+      "transformacion": ""
+     },
+     "descripcion": "Pasar sin que te sientan, o esconderte cuando se acerca un depredador.",
+     "nombre": "Escabullirse",
+     "usa": [
+      "aviso-sono-algo"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "El depredador persigue mientras te siente.",
+      "transformacion": ""
+     },
+     "descripcion": "Escapar de un depredador que te persigue hasta un escondite o un hueco.",
+     "nombre": "Huir",
+     "usa": [
+      "ser-presa",
+      "instrumentos",
+      "checkpoint"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "",
+      "transformacion": ""
+     },
+     "descripcion": "Juntar como lo hace cada especie: escuchar troncos huecos, abrir flores tocando, sacudir árboles al ritmo.",
+     "nombre": "Buscar comida",
+     "usa": [
+      "la-cosecha",
+      "dirigir-con-luz"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "",
+      "transformacion": ""
+     },
+     "descripcion": "Ramas que se mecen al pulso, hongos que rebotan con un golpe grave y suelo frágil que rompe el Pisotón.",
+     "nombre": "Pasar con el sonido",
+     "usa": [
+      "reloj-musical",
+      "habilidades"
      ]
     }
    ],
    "nombre": "Caminos entre guaridas",
-   "notas": "Aprobado el 27 nov. (idea mía). Lo de juntar, tradear y hacer instrumentos está por diseñar.\n27 nov.: la semana 4 no prueba al enjambre; prueba el sintonizador con una puerta de guarida (un tronco hueco que se abre al igualar su nota).",
+   "notas": "Aprobado el 27 nov. (idea mía). El 27 nov. se decidió qué se junta, cómo se tradea, los instrumentos y los cuatro retos.\n27 nov.: la semana 4 no prueba al enjambre; prueba el sintonizador con una puerta de guarida (un tronco hueco que se abre al igualar su nota).",
    "orden": 132,
    "real": "",
    "resumen": "Las líneas del mapa: zonas que se exploran entre una guarida y otra, con la fauna depredadora. Ahí se sale por objetos o comida para el jugador o las tribus.",
-   "riesgos": "",
+   "riesgos": "- Hay mucho que hacer en los caminos: con el equipo de dos desde diciembre cabe más, pero la zona 1 entra primero con escabullirse y huir (los depredadores de la semana 8); los demás retos se agregan sala por sala.",
    "semana": "",
    "tipo": "Mundo",
    "zona": "Todas"
@@ -1581,6 +1712,45 @@
    "semana": "",
    "tipo": "Mundo",
    "zona": "Todas"
+  },
+  {
+   "id": "mercado-del-caracol",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Que la música y las cosas viajan juntas entre pueblos",
+   "estado": "aprobada",
+   "estados": "- Puesto pequeño (siempre).\n- Mercado lleno (luna llena, con la Gran Canción).",
+   "inspira": "Los mercados y ferias que se hacen el día de una fiesta",
+   "juego": "- Siempre hay un puesto pequeño en el caracol para cambiar lo que juntas.\n- Cada luna llena, el día de la Gran Canción, las tribus migran juntas al caracol y el mercado crece: ahí se encuentra de todo, también cosas raras de otras zonas.\n- Viajan siempre en grupo porque, aunque son especies neutras, si fueran solas o pocas habría criaturas que se arriesgarían a saquear lo que llevan para cambiar. Por eso ese día pasa todo.\n- Fuera del mercado también se tradea con cada tribu en su guarida, con lo de esa tribu.\n- Para esperar la luna llena se duerme en los huecos (ver «Hora del día»).",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Avisa al guardado y a la telemetría.",
+      "deteccion": "Si es luna llena.",
+      "entrada": "El jugador elige qué dar y qué recibir.",
+      "estado": "Qué hay hoy en el mercado (datos): el puesto de siempre y, con luna llena, lo de las caravanas.",
+      "transformacion": "Cambian los objetos que cargas."
+     },
+     "descripcion": "Cambias lo que juntaste por otras cosas; con luna llena hay más.",
+     "nombre": "Cambiar en el mercado",
+     "usa": [
+      "caminos",
+      "hora-del-dia"
+     ]
+    }
+   ],
+   "nombre": "Mercado del caracol",
+   "notas": "Aprobado el 27 nov. (idea mía).",
+   "orden": 135,
+   "real": "- Muchos animales viajan en grupo para protegerse: en grupo es más difícil que un depredador elija a uno (efecto de dilución).\n- Las grandes ferias y mercados de muchos pueblos se hacen el día de una fiesta, cuando todos llegan al mismo lugar.",
+   "resumen": "En el caracol siempre hay un puesto pequeño, y cada luna llena llegan las tribus en caravana para la Gran Canción y el mercado se llena de cosas raras.",
+   "riesgos": "- Tener que esperar la luna llena no debe frenar el camino principal: lo indispensable se consigue en las guaridas o en el puesto de siempre.",
+   "semana": "",
+   "tipo": "Mundo",
+   "zona": "Caracol"
   },
   {
    "id": "mensajero",
