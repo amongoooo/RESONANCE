@@ -1371,7 +1371,7 @@
    "estado": "aprobada",
    "estados": "",
    "inspira": "",
-   "juego": "- El mundo tiene tres piezas: el caracol al centro, las guaridas (las zonas de cada tribu) y los caminos entre ellas (ver «Caminos»). Las guaridas se exploran y casi no tienen depredadores; los depredadores viven en los caminos.\n- El camino principal va en orden (ritmo, melodía, armonía, mezcla) porque cada concepto se apoya en el anterior.\n- Hay atajos escondidos entre zonas vecinas que solo se abren con lo aprendido en otra, y salas grises opcionales por todos lados.\n- Lo que abre caminos: una habilidad (Pisotón, Eco hueco), más oído (oír lo escondido), dirigir con luz lo que ya hay en la sala o llevar una pieza a otra tribu.\n- La hora del día cambia qué hay en cada sala (ver «Hora del día»).\n- Ya está en la historia, «guiar sin presionar»: el camino principal suena y tiene color; los opcionales están grises y en silencio. La música detrás de las paredes jala a explorar.",
+   "juego": "- El mundo tiene tres piezas: el caracol al centro, las guaridas (las zonas de cada tribu) y los caminos entre ellas (ver «Caminos entre guaridas»). Las guaridas se exploran y casi no tienen depredadores; los depredadores viven en los caminos.\n- Los puzzles se hacen en las guaridas con los miembros de la tribu (aprender conceptos y práctica básica). Explorar los caminos y las otras zonas desbloquea ritmos más interesantes.\n- El camino principal va en orden (ritmo, melodía, armonía, mezcla) porque cada concepto se apoya en el anterior.\n- Hay atajos escondidos entre zonas vecinas que solo se abren con lo aprendido en otra, y salas grises opcionales por todos lados.\n- Lo que abre caminos: una habilidad (Pisotón, Eco hueco), más oído (oír lo escondido), dirigir con luz lo que ya hay en la sala o llevar una pieza a otra tribu.\n- La hora del día cambia qué hay en cada sala (ver «Hora del día»).\n- Ya está en la historia, «guiar sin presionar»: el camino principal suena y tiene color; los opcionales están grises y en silencio. La música detrás de las paredes jala a explorar.",
    "mecanicas": [
     {
      "bloques": {
@@ -1412,7 +1412,7 @@
    "estado": "aprobada",
    "estados": "",
    "inspira": "",
-   "juego": "- Las guaridas son casi seguras; el riesgo está en los caminos, donde viven los depredadores (el enjambre, el que siente el suelo y los que vengan).\n- Se sale a los caminos por objetos o comida para el jugador o para las tribus.\n- Sirven para ganar la confianza de las tribus, tradear y hacer instrumentos.\n- Falta decidir: qué se junta, cómo se tradea y cómo se hacen los instrumentos.",
+   "juego": "- Las guaridas son casi seguras; el riesgo está en los caminos, donde viven los depredadores (el enjambre, el que siente el suelo y los que vengan).\n- Los puzzles se hacen en las guaridas con los miembros de la tribu: ahí se aprenden los conceptos y se practica lo básico. Al explorar los caminos y las otras zonas se desbloquean ritmos más interesantes.\n- Se sale a los caminos por objetos o comida para el jugador o para las tribus.\n- Sirven para ganar la confianza de las tribus, tradear y hacer instrumentos.\n- Falta decidir: qué se junta, cómo se tradea, cómo se hacen los instrumentos y qué hacen los depredadores en los caminos.",
    "mecanicas": [
     {
      "bloques": {
@@ -1435,7 +1435,7 @@
    "orden": 132,
    "real": "",
    "resumen": "Las líneas del mapa: zonas que se exploran entre una guarida y otra, con la fauna depredadora. Ahí se sale por objetos o comida para el jugador o las tribus.",
-   "riesgos": "- Si los depredadores solo viven en los caminos, el primer puzzle con el enjambre (semana 4) pasa a estar en un camino y no en la guarida.",
+   "riesgos": "- El primer puzzle de la semana 4 era el enjambre. Como los puzzles van en la guarida con la tribu y los depredadores viven en los caminos, hay que revisar qué se prueba en la semana 4.",
    "semana": "",
    "tipo": "Mundo",
    "zona": "Todas"
