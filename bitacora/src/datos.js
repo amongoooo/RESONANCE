@@ -218,6 +218,15 @@ export default {
   bitacora: [
     {
       fecha: "2026-11-27",
+      hora: "03:05",
+      titulo: "El almanaque ya está en la página",
+      texto:
+        "Paré el diseño por hoy. Antes de seguir con el regalo del hi-hat, pasé el almanaque a la página como un apartado nuevo en Juego: cada especie y cada mecánica global en su tarjeta, con su vida, lo real en que se basa y en qué estado va. Es una copia: el almanaque sigue siendo la fuente de verdad y la copia se vuelve a sacar con un script cuando cambia. Queda pendiente qué da el hi-hat por su favor, qué sale de cada mezcla al llevar música, el mapa que se dibuja y revisar la vida de cada especie.",
+      enlace: { texto: "Ver el almanaque", url: "#/juego/almanaque" },
+      etiquetas: ["diseño"],
+    },
+    {
+      fecha: "2026-11-27",
       hora: "02:55",
       titulo: "Cómo se progresa: oído, regalos y una luz que dirige",
       texto:
