@@ -142,7 +142,7 @@ export default function App() {
       {!vista && <Cabecera nombre={p.nombre} />}
       <Barras ruta={ruta} />
 
-      <main ref={principal} tabIndex={-1} aria-label={vista?.nombre ?? info.nombre} className="mx-auto max-w-2xl px-4 pt-4 pb-36 outline-none sm:px-5">
+      <main ref={principal} tabIndex={-1} aria-label={vista?.nombre ?? info.nombre} className={`mx-auto max-w-2xl px-4 pt-4 pb-36 outline-none sm:px-5 ${vista?.id === 'almanaque' ? 'lg:max-w-7xl lg:pb-0' : ''}`}>
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={clave}

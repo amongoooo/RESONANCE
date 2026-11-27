@@ -218,6 +218,15 @@ export default {
   bitacora: [
     {
       fecha: "2026-11-27",
+      hora: "13:18",
+      titulo: "El almanaque se lee sin perderse",
+      texto:
+        "Al bajar por una ficha larga se perdía qué personaje estaba viendo y en qué parte iba. Ahora la ficha tiene una barra fija arriba con el nombre, el tipo y el estado, y una fila de apartados (Real, Vida, Juego, Mecánicas, Datos y Avisos) que marca dónde voy y lleva a cada uno. Cada apartado de la vida y cada mecánica es un bloque que se abre y se cierra: cerrado deja ver una línea de adelanto (o el nombre y la descripción de la mecánica) y hay un botón para abrir o cerrar todo. Quedó claro que «añadir o quitar mecánicas» en la página es solo abrirlas y cerrarlas; editar sigue siendo en el almanaque. En la computadora hay dos paneles a la par, cada uno con su Bestiario y sus Globales: si toco una mecánica global que usa una criatura, se abre en el otro panel sin perder el primero, así puedo comparar. En el teléfono es un solo panel con un botón para volver a donde estaba. Solo esta vista se hizo más ancha; el resto de la página queda igual.",
+      enlace: { texto: "Ver el almanaque", url: "#/juego/almanaque" },
+      etiquetas: ["diseño"],
+    },
+    {
+      fecha: "2026-11-27",
       hora: "03:13",
       titulo: "El almanaque en la página, con su misma organización",
       texto:

@@ -65,3 +65,46 @@ export const entradaPedida = (hash = '') => {
 }
 
 export const hashEntrada = (seccion, id) => `#/juego/almanaque?${seccion === 'globales' ? 'g' : 'e'}=${encodeURIComponent(id)}`
+
+/**
+ * Los apartados de la ficha que van en la fila de la barra fija, en orden. Cada uno marca dónde empieza;
+ * lo que va entre dos (Estados, Riesgos, Notas…) cuenta como parte del anterior.
+ */
+export const apartadosDe = (esGlobal) =>
+  esGlobal
+    ? [['real', 'Real'], ['juego', 'Juego'], ['mecanicas', 'Mecánicas'], ['usos', 'Usos'], ['datos', 'Datos'], ['avisos', 'Avisos']]
+    : [['real', 'Real'], ['vida', 'Vida'], ['juego', 'Juego'], ['mecanicas', 'Mecánicas'], ['datos', 'Datos'], ['avisos', 'Avisos']]
+
+/**
+ * En qué apartado vas: el último cuyo comienzo ya pasó por debajo de la barra fija.
+ * `tops` son las posiciones de cada apartado en pantalla (null si no está); antes del primero, el primero.
+ */
+export const apartadoActual = (tops, limite) => {
+  let actual = 0
+  tops.forEach((top, i) => {
+    if (top != null && top <= limite) actual = i
+  })
+  return actual
+}
+
+/** Una línea de adelanto para un bloque cerrado: el texto sin viñetas ni saltos, cortado en una palabra. */
+export const adelanto = (texto, max = 90) => {
+  const plano1 = t(texto)
+    .split('\n')
+    .map((l) => l.trim().replace(/^[-*]\s+/, ''))
+    .filter(Boolean)
+    .join(' · ')
+    .replace(/\*\*|__|`/g, '')
+  if (plano1.length <= max) return plano1
+  const corte = plano1.slice(0, max)
+  const espacio = corte.lastIndexOf(' ')
+  return `${(espacio > max * 0.6 ? corte.slice(0, espacio) : corte).replace(/[\s·,;:.]+$/, '')}…`
+}
+
+/** Abrir o cerrar todos: si ya están todos abiertos, se cierran; si falta alguno, se abren todos. */
+export const alternarTodos = (abiertos, claves) => {
+  const todos = claves.length > 0 && claves.every((k) => abiertos.has(k))
+  const nuevo = new Set(abiertos)
+  claves.forEach((k) => (todos ? nuevo.delete(k) : nuevo.add(k)))
+  return nuevo
+}
