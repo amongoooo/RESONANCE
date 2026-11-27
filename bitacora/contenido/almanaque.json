@@ -54,12 +54,18 @@
      "nota": "",
      "unidad": "ppm",
      "valor": "160"
+    },
+    {
+     "campo": "vidaMax",
+     "nota": "ver «Ser presa»",
+     "unidad": "puntos",
+     "valor": "100"
     }
    ],
    "editado": "2026-11-27",
    "ensena": "Sentir el pulso",
    "estado": "propuesta",
-   "estados": "- Libre: se mueve y salta.\n- Atrapado: la pantalla se apaga a gris y vuelve a la entrada de la sala; no recibe controles mientras tanto.",
+   "estados": "- Libre: se mueve y salta.\n- Herido: con poca vida va más lento (hasta la mitad) y su luz se ve tenue.\n- Atrapado: la vida se acabó; la pantalla se apaga a gris y vuelve al último checkpoint; no recibe controles mientras tanto.",
    "inspira": "Pájaro indicador de miel y coros de ranas",
    "juego": "Se mueve, salta y brilla con una tecla en cada golpe: así toca los ritmos. La perilla da la velocidad del pulso. Con las piezas que aprende dirige a la tribu con su luz. Si su luz y la de otra criatura destellan juntas, van a tiempo. Si cae desde alto, el golpe suena grave.",
    "mecanicas": [
@@ -133,16 +139,31 @@
     {
      "bloques": {
       "comunicacion": "Manda «regresó» a la telemetría.",
-      "deteccion": "Escucha «te atrapó».",
+      "deteccion": "Su vida llega a 0.",
       "entrada": "",
-      "estado": "Atrapado: sin controles por medio segundo. Una sola vida, sin barra de daño.",
+      "estado": "Atrapado: sin controles por medio segundo.",
       "transformacion": "La pantalla se apaga a gris y aparece en el último hueco que tocó."
      },
-     "descripcion": "Si lo atrapan, reaparece en el último checkpoint que tocó (ver «Ser presa»).",
+     "descripcion": "Si se acaba su vida, reaparece en el último checkpoint que tocó (ver «Ser presa»).",
      "nombre": "Volver al último checkpoint",
      "usa": [
       "ser-presa",
       "checkpoint"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "La flor escucha música cerca.",
+      "entrada": "Tocar con la luz junto a la flor.",
+      "estado": "La flor: cerrada, abierta o vacía.",
+      "transformacion": "La flor abre y gana color; al comerla, la luz del protagonista sube."
+     },
+     "descripcion": "Toca junto a una flor cerrada para que abra y come su néctar: recarga la vida.",
+     "nombre": "Comer néctar",
+     "usa": [
+      "ser-presa",
+      "caminos"
      ]
     }
    ],
@@ -155,7 +176,7 @@
    "semana": "Semanas 2 (movimiento), 5 (perilla) y 13 (cuerpo)",
    "tipo": "Protagonista",
    "vida": {
-    "alimento": "Néctar de flores que solo abren cuando hay música cerca. Base real (por verificar): la onagra hace su néctar más dulce en pocos minutos cuando oye el zumbido de una abeja. Por eso su especie casi desaparece cuando el mundo se queda en silencio: sin música no hay flores abiertas.",
+    "alimento": "Néctar de flores que solo abren cuando hay música cerca. Base real (por verificar): la onagra hace su néctar más dulce en pocos minutos cuando oye el zumbido de una abeja. Por eso su especie casi desaparece cuando el mundo se queda en silencio: sin música no hay flores abiertas. En el juego el néctar recarga su vida.",
     "crias": "Las crías nacen cuando suena la Gran Canción. Nacen sin luz propia y la ganan al escuchar su primera música, como si «se afinaran».",
     "dia": "Activo al atardecer y de noche, cuando su luz se ve mejor.",
     "habitat": "No tiene territorio: va de una tribu a otra. Duerme en huecos que resuenan (troncos, conchas, grietas), porque ahí siente mejor el pulso del mundo.",
@@ -506,7 +527,7 @@
    "id": "enjambre",
    "altura": "—",
    "avisosEscucha": "- El pulso del protagonista.",
-   "avisosManda": "- «enjambre calmado» (abre el camino; telemetría).\n- «te atrapó».",
+   "avisosManda": "- «enjambre calmado» (abre el camino; telemetría).\n- «te golpeó» (con su daño).",
    "datos": [
     {
      "campo": "ppmPropio",
@@ -580,13 +601,13 @@
     },
     {
      "bloques": {
-      "comunicacion": "Manda «te atrapó».",
+      "comunicacion": "Manda «te golpeó» con su daño.",
       "deteccion": "El jugador entra a su área.",
       "entrada": "",
       "estado": "",
       "transformacion": ""
      },
-     "descripcion": "Si el jugador entra sin que esté calmado, lo atrapa.",
+     "descripcion": "Si el jugador entra sin que esté calmado, le pega (le quita vida).",
      "nombre": "Atrapar",
      "usa": [
       "ser-presa"
@@ -599,7 +620,7 @@
    "real": "- Luciérnagas sincronizadas: en las Great Smoky Mountains (Estados Unidos) y en manglares del sureste de Asia, miles destellan al mismo tiempo. Cada una adelanta o atrasa un poco su destello para acercarse al de sus vecinas.\n- La que va a destiempo se nota de inmediato.\n- Lo de depredador es inventado.",
    "resumen": "Una nube de insectos que destellan juntos a su propio pulso. Si igualas su ritmo te deja pasar; si vas a destiempo, te caza.",
    "riesgos": "- Que igualar el ritmo se sienta como adivinar. Ayudan las dos luces a la vista y una barra de «qué tan cerca».",
-   "semana": "Semana 8 (o primer puzzle de la semana 4, pendiente)",
+   "semana": "Semana 8",
    "tipo": "Depredador",
    "vida": {
     "alimento": "Carnívoro. Base real: las larvas de luciérnaga comen caracoles y babosas. Los adultos de esta especie cazan a la especie del protagonista: la reconocen porque su luz va a otro ritmo.",
@@ -616,7 +637,7 @@
    "id": "el-que-siente-el-suelo",
    "altura": "grave",
    "avisosEscucha": "- «sonó algo» de cualquiera; ignora medio y agudo.",
-   "avisosManda": "- «salió» (la cámara tiembla).\n- «te atrapó».",
+   "avisosManda": "- «salió» (la cámara tiembla).\n- «te golpeó» (con su daño).",
    "datos": [
     {
      "campo": "alcancePorFuerza",
@@ -684,7 +705,7 @@
     },
     {
      "bloques": {
-      "comunicacion": "Manda «salió» y «te atrapó».",
+      "comunicacion": "Manda «salió» y «te golpeó» con su daño.",
       "deteccion": "El aviso dice que fue del jugador; distancia de mordida.",
       "entrada": "",
       "estado": "Cazando hasta morder o perderlo.",
@@ -1037,7 +1058,7 @@
   {
    "id": "ser-presa",
    "altura": "—",
-   "avisosEscucha": "- «te atrapó».",
+   "avisosEscucha": "- «te golpeó» (con el daño).",
    "avisosManda": "- «regresó» a la telemetría: cuántas veces y en qué sala.",
    "datos": [
     {
@@ -1045,6 +1066,18 @@
      "nota": "",
      "unidad": "s",
      "valor": "0.5"
+    },
+    {
+     "campo": "vidaMax",
+     "nota": "",
+     "unidad": "puntos",
+     "valor": "100"
+    },
+    {
+     "campo": "velocidadConVidaMinima",
+     "nota": "de la velocidad normal; baja poco a poco, no 1 a 1",
+     "unidad": "%",
+     "valor": "50"
     }
    ],
    "editado": "2026-11-27",
@@ -1052,17 +1085,31 @@
    "estado": "aprobada",
    "estados": "",
    "inspira": "",
-   "juego": "El protagonista no se defiende ni tiene barra de vida. Si lo atrapan, la pantalla se apaga a gris un momento y aparece en el último checkpoint que tocó. La dificultad se ajusta con la distancia entre checkpoints: lejos es más difícil, cerca es más fácil. Al caer se rompen las piezas para llevar que no estén a salvo (las que no has llevado a un hueco ni entregado). Lo aprendido y el oído nunca se pierden.",
+   "juego": "- El protagonista no se defiende. Cada depredador hace su propio daño (dato) y le quita vida.\n- La vida se ve dos veces: su luz se apaga un poco con cada golpe y una barra pequeña lo confirma.\n- Con poca vida va más lento, hasta la mitad de su velocidad con la vida casi vacía (no 1 a 1), y la música pierde los agudos. Es a propósito: en la vida real un animal herido es presa más fácil. La ayuda son los escondites en las salas y los power-ups para escapar.\n- Recibir golpe y tener poca vida se ven con efectos: destellos blancos, pantalla borrosa como lluvia, sacudidas, estrellitas o alucinaciones. Todo se puede apagar en Ajustes; el diseño es para la versión completa con todo activado.\n- El néctar recarga la vida; tocar un hueco (checkpoint) la llena.\n- Si se acaba la vida, la pantalla se apaga a gris un momento y aparece en el último checkpoint que tocó. Se rompen las piezas para llevar que no estén a salvo. Lo aprendido y el oído nunca se pierden.\n- La dificultad se ajusta con la distancia entre checkpoints y con el nivel de dificultad (ver «Dificultad»).",
    "mecanicas": [
     {
      "bloques": {
+      "comunicacion": "Manda «golpe» a la telemetría: qué lo golpeó y en qué sala.",
+      "deteccion": "Escucha «te golpeó» de cualquier depredador, con su daño.",
+      "entrada": "",
+      "estado": "La vida (0 a 100). La velocidad baja con la vida, hasta el 50 %.",
+      "transformacion": "Su luz se apaga un poco y la barra baja; efecto de golpe (destellos blancos, pantalla borrosa como lluvia, sacudidas, estrellitas o alucinaciones). Con poca vida, la música pierde los agudos."
+     },
+     "descripcion": "Un depredador le quita vida; con menos vida va más lento y se oye apagado.",
+     "nombre": "Recibir golpe",
+     "usa": [
+      "dificultad"
+     ]
+    },
+    {
+     "bloques": {
       "comunicacion": "Manda «regresó» a la telemetría: cuántas veces, en qué sala y qué lo atrapó.",
-      "deteccion": "Escucha «te atrapó» de cualquier depredador.",
+      "deteccion": "La vida llega a 0.",
       "entrada": "",
       "estado": "Atrapado: sin controles por medio segundo.",
-      "transformacion": "La pantalla se apaga a gris y el protagonista aparece en el checkpoint."
+      "transformacion": "La pantalla se apaga a gris y el protagonista aparece en el checkpoint con la vida llena."
      },
-     "descripcion": "Si lo atrapan, reaparece en el último checkpoint que tocó.",
+     "descripcion": "Si se acaba la vida, reaparece en el último checkpoint que tocó.",
      "nombre": "Volver al último checkpoint",
      "usa": [
       "checkpoint"
@@ -1070,11 +1117,11 @@
     }
    ],
    "nombre": "Ser presa",
-   "notas": "Decidido el 27 nov. (opción C del debate). Qué se pierde al caer: las piezas para llevar que no estén a salvo (27 nov.).",
+   "notas": "Decidido el 27 nov. (opción C del debate). Qué se pierde al caer: las piezas para llevar que no estén a salvo (27 nov.).\n27 nov., 14:37: aclaré que «una vida» era una barra de vida que, al acabarse, te manda al checkpoint; no morir al primer golpe.",
    "orden": 40,
    "real": "",
-   "resumen": "Una vida, sin daño: si un depredador atrapa al protagonista, vuelve al último checkpoint. Caer debe dar ganas de volver a intentar, no miedo.",
-   "riesgos": "",
+   "resumen": "El protagonista tiene una barra de vida y su luz. Cada golpe de un depredador le quita vida; si se acaba, vuelve al último checkpoint. Caer debe dar ganas de volver a intentar, no miedo.",
+   "riesgos": "- Ir más lento con poca vida puede romper saltos diseñados para la velocidad completa. Se acepta: la ayuda son escondites y power-ups, y en las salas con saltos justos conviene un hueco cerca.\n- Los efectos de pantalla son visuales: van con lo visual (fase 2 o pulido), no antes.",
    "semana": "Semana 8",
    "tipo": "Regla",
    "zona": "Todas"
@@ -1090,7 +1137,7 @@
    "estado": "aprobada",
    "estados": "- Inactivo (gris).\n- Activo: es el punto de regreso.",
    "inspira": "La vida del protagonista: duerme en huecos que resuenan",
-   "juego": "Son los huecos donde duerme el protagonista (troncos, conchas y grietas que resuenan), porque ahí siente mejor el pulso del mundo. Al pasar junto a uno se vuelve el punto de regreso y las piezas para llevar que cargas quedan a salvo. Si duermes ahí, eliges a qué hora despertar. Se colocan a mano en cada sala: lejos entre sí para lo difícil, cerca para lo fácil.",
+   "juego": "Son los huecos donde duerme el protagonista (troncos, conchas y grietas que resuenan), porque ahí siente mejor el pulso del mundo. Al pasar junto a uno se vuelve el punto de regreso y las piezas para llevar que cargas quedan a salvo y la vida se llena. Si duermes ahí, eliges a qué hora despertar. Se colocan a mano en cada sala: lejos entre sí para lo difícil, cerca para lo fácil.",
    "mecanicas": [
     {
      "bloques": {
@@ -1129,6 +1176,63 @@
    "riesgos": "- Colocarlos bien pide probar cada sala; se hace en la semana 9, junto con las salas.",
    "semana": "Semana 8 (con ser presa); se guarda en la semana 11",
    "tipo": "Sistema",
+   "zona": "Todas"
+  },
+  {
+   "id": "dificultad",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "- «nivel» a la telemetría.",
+   "datos": [
+    {
+     "campo": "multiplicadorDano",
+     "nota": "por nivel",
+     "unidad": "×",
+     "valor": "por definir"
+    },
+    {
+     "campo": "multiplicadorAparicion",
+     "nota": "cuántos depredadores aparecen, por nivel",
+     "unidad": "×",
+     "valor": "por definir"
+    },
+    {
+     "campo": "tolerancia",
+     "nota": "a tiempo, por nivel",
+     "unidad": "s",
+     "valor": "por definir"
+    }
+   ],
+   "editado": "2026-11-27",
+   "ensena": "Que cada quien juegue a su ritmo",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "",
+   "juego": "- 2 o 3 niveles. Solo cambian números, no el diseño: daño de cada depredador, cuántos aparecen y la tolerancia de tiempo.\n- Se elige al empezar y se puede cambiar en Ajustes.\n- La telemetría guarda con qué nivel se jugó; el playtest y el examen se juegan en el mismo nivel.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Avisa a la telemetría.",
+      "deteccion": "",
+      "entrada": "El jugador elige el nivel al empezar o en Ajustes.",
+      "estado": "El nivel actual.",
+      "transformacion": "Multiplica los datos de cada depredador y la tolerancia."
+     },
+     "descripcion": "El nivel cambia los datos de daño, aparición y tolerancia.",
+     "nombre": "Elegir dificultad",
+     "usa": [
+      "ser-presa"
+     ]
+    }
+   ],
+   "nombre": "Dificultad",
+   "notas": "Aprobado el 27 nov.",
+   "orden": 45,
+   "real": "",
+   "resumen": "Niveles de dificultad que solo cambian datos: el daño de los depredadores, cuántos aparecen y la tolerancia de tiempo.",
+   "riesgos": "- Si la tolerancia cambia por nivel, el examen debe jugarse en un solo nivel para comparar.",
+   "semana": "",
+   "tipo": "Regla",
    "zona": "Todas"
   },
   {
@@ -1412,7 +1516,7 @@
    "estado": "aprobada",
    "estados": "",
    "inspira": "",
-   "juego": "- Las guaridas son casi seguras; el riesgo está en los caminos, donde viven los depredadores (el enjambre, el que siente el suelo y los que vengan).\n- Los puzzles diseñados se hacen en las guaridas con los miembros de la tribu: ahí se aprenden los conceptos y se practica lo básico. Al explorar los caminos y las otras zonas se desbloquean ritmos más interesantes.\n- En los caminos también hay retos pequeños, pero no son puzzles diseñados: son mecánicas de caza, de movimiento y así, para pasar las salas.\n- Se sale a los caminos por objetos o comida para el jugador o para las tribus.\n- Sirven para ganar la confianza de las tribus, tradear y hacer instrumentos.\n- Falta decidir: qué se junta, cómo se tradea, cómo se hacen los instrumentos y qué hacen los depredadores en los caminos.",
+   "juego": "- Las guaridas son casi seguras; el riesgo está en los caminos, donde viven los depredadores (el enjambre, el que siente el suelo y los que vengan).\n- Los puzzles diseñados se hacen en las guaridas con los miembros de la tribu: ahí se aprenden los conceptos y se practica lo básico. Al explorar los caminos y las otras zonas se desbloquean ritmos más interesantes.\n- En los caminos también hay retos pequeños, pero no son puzzles diseñados: son mecánicas de caza, de movimiento y así, para pasar las salas.\n- Se sale a los caminos por objetos o comida para el jugador o para las tribus.\n- Sirven para ganar la confianza de las tribus, tradear y hacer instrumentos.\n- Qué se junta (27 nov.): comida para las tribus (lo que cada especie come de verdad: semillas para el bombo, insectos de corteza y fruta para la caja, hojas tiernas y néctar para el hi-hat), materiales (cosas huecas, fibras, mudas de insecto) para instrumentos y para los huecos de las piezas para llevar, y néctar para el protagonista, que recarga su vida (sale de flores cerradas que abren si tocas cerca).\n- Falta decidir: cómo se tradea, cómo se hacen los instrumentos y qué hacen los depredadores en los caminos.",
    "mecanicas": [
     {
      "bloques": {
@@ -1431,11 +1535,11 @@
     }
    ],
    "nombre": "Caminos entre guaridas",
-   "notas": "Aprobado el 27 nov. (idea mía). Lo de juntar, tradear y hacer instrumentos está por diseñar.",
+   "notas": "Aprobado el 27 nov. (idea mía). Lo de juntar, tradear y hacer instrumentos está por diseñar.\n27 nov.: la semana 4 no prueba al enjambre; prueba el sintonizador con una puerta de guarida (un tronco hueco que se abre al igualar su nota).",
    "orden": 132,
    "real": "",
    "resumen": "Las líneas del mapa: zonas que se exploran entre una guarida y otra, con la fauna depredadora. Ahí se sale por objetos o comida para el jugador o las tribus.",
-   "riesgos": "- El primer puzzle de la semana 4 era el enjambre. Como los puzzles diseñados van en la guarida con la tribu y el enjambre vive en los caminos (donde los retos son de caza y movimiento), hay que revisar qué se prueba en la semana 4.",
+   "riesgos": "",
    "semana": "",
    "tipo": "Mundo",
    "zona": "Todas"
