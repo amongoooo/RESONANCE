@@ -7,6 +7,7 @@ import { separarDecisiones } from './logica/listas.js'
 import { guardarUltima } from './logica/opciones.js'
 import { hashDe, PAGINAS, vistaDe } from './logica/rutas.js'
 import Ajustes from './secciones/Ajustes.jsx'
+import Apuntes from './secciones/Apuntes.jsx'
 import ArbolMetas from './secciones/ArbolMetas.jsx'
 import Bitacora from './secciones/Bitacora.jsx'
 import Decisiones from './secciones/Decisiones.jsx'
@@ -122,7 +123,14 @@ export default function App() {
   const contenido = {
     inicio: () => <Inicio fase={fase} enCurso={enCurso} proxima={proxima} entradas={entradas} />,
     plan: () => (vista.id === 'ruta' ? <Ruta D={D} fase={fase} enCurso={enCurso} /> : <ArbolMetas raiz={raiz} proxima={proxima} />),
-    registro: () => (vista.id === 'decisiones' ? <Decisiones decisiones={D.decisiones} /> : <Bitacora entradas={entradas} decisiones={D.decisiones} desde={p.inicio} />),
+    registro: () =>
+      vista.id === 'decisiones' ? (
+        <Decisiones decisiones={D.decisiones} />
+      ) : vista.id === 'apuntes' ? (
+        <Apuntes />
+      ) : (
+        <Bitacora entradas={entradas} decisiones={D.decisiones} desde={p.inicio} />
+      ),
     juego: () => (
       <Juego vista={vista.id} juego={D.juego} zonas={D.zonas} zonasNota={D.zonasNota} validacion={D.validacion} decisiones={D.decisiones} fases={D.fases} semanas={D.semanas} />
     ),

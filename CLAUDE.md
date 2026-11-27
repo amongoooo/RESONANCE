@@ -19,7 +19,7 @@ Plataformero donde el jugador repara un mundo silenciado afinando ondas con un s
 
 ## Estructura
 
-- `bitacora/` es la página de registro (React + Vite + Tailwind + Motion), publicada con GitHub Pages por `.github/workflows/bitacora.yml`. El contenido vive en `bitacora/src/datos.js` (árbol de metas, semanas, bitácora, decisiones); el resto del código de la página solo se toca si lo pido. Su estilo sale de mi repo teoria-musical y es solo de la página, no del juego.
+- `bitacora/` es la página de registro (React + Vite + Tailwind + Motion), publicada con GitHub Pages por `.github/workflows/bitacora.yml`. El contenido vive en `bitacora/src/datos.js` (árbol de metas, semanas, bitácora, decisiones) y en `bitacora/contenido/` (textos largos en .md; lo que aprendo va como un apunte por tema en `contenido/apuntes/`); el resto del código de la página solo se toca si lo pido. Su estilo sale de mi repo teoria-musical y es solo de la página, no del juego.
 - `docs/` es la página anterior en HTML; se borra cuando la nueva esté publicada. No se actualiza: las entradas de bitácora van en `bitacora/src/datos.js`.
 - `arte/` guarda plantillas y archivos fuente de arte (Aseprite) fuera del proyecto de Unity.
 - La raíz es para el proyecto de Unity. Cuando se agregue, configurar Git LFS para archivos pesados (texturas, audio, modelos).
@@ -29,7 +29,9 @@ Plataformero donde el jugador repara un mundo silenciado afinando ondas con un s
 - Sé honesto si algo no cabe en el tiempo; protege el alcance y el calendario.
 - Explica con relaciones intuitivas ("si X sube, Y baja"), no con fórmulas.
 - Todo lo que hablemos va a la página: decisiones, entradas de bitácora, metas y tareas de la semana (`bitacora/contenido/tareas/`). Si algo es solo una propuesta sin mi OK, va como decisión con `pendiente: true`.
+- Se trabaja en GitHub (sesiones en la nube) y no en mi computadora siempre que se pueda, porque cambio entre teléfono y computadora; la computadora es solo para Unity. Lo que se haga en local se sube al terminar.
 - Los cambios van siempre en un PR desde la rama de trabajo. Nunca hagas push ni merge a `main` hasta que yo lo diga.
 - Pásame el enlace del PR siempre que puedas, en cada mensaje donde haya uno abierto o cambios nuevos en él.
+- Junto al PR, pásame siempre el enlace de la vista previa de la página: https://amongoooo.github.io/RESONANCE/pr-preview/pr-N/ (N = número del PR). La publica sola la acción `bitacora.yml` en cada push que toque `bitacora/`; antes de mandarlo, confirma que esa corrida terminó bien. Si el push no toca `bitacora/`, la vista previa no cambia: dilo.
 - Al final de cada mensaje dame también el prompt listo para copiar y abrir el siguiente chat: autocontenido, con la tarea que sigue, qué leer primero (este archivo, los documentos de referencia, el PR abierto) y qué ya está decidido.
 - Al final de cada mensaje dime: (1) si seguimos en este chat o conviene abrir otro por el contexto, y (2) qué modelo de Claude y qué nivel de esfuerzo recomiendas para la tarea que sigue.

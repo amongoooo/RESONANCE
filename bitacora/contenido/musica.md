@@ -45,3 +45,7 @@ Cada zona del juego se inspira en una parte real de la historia de la música. E
 - **1983:** MIDI, el idioma con el que los instrumentos y las computadoras se pasan notas.
 - De ahí vienen el piano roll y la caja de ritmos del modo director.
 - Fuentes: [Library of Congress](https://www.loc.gov/item/today-in-history/august-12/), [Wikipedia: Timeline of music technology](https://en.wikipedia.org/wiki/Timeline_of_music_technology), [Roland](https://www.roland.com/uk/roland-50th-anniversary/1980s/)
+
+# Para escuchar
+
+La música para entrenar el oído del ritmo (y la forma de escucharla, una pieza a la vez) se mudó a Registro > Apuntes: [Para escuchar: el ritmo](#/registro/apuntes?abrir=para-escuchar-el-ritmo).

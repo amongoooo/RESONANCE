@@ -15,8 +15,8 @@ Primero lo funcional y después lo visual: el arte va a seguir cambiando, así q
 
 1. Proyecto base de Unity (URP 2D, Pixel Perfect 480×270, 16 PPU, Git LFS). Hecho el 25 de nov., con una sala pintada a mano.
 2. Collider sobre la sala pintada a mano, sin Rule Tile, para mover al personaje (un rectángulo) con física.
-3. Luz 2D y shader de paleta sobre esa sala, cuando lo jugable ya funcione.
-4. Rule Tile del terreno desde la plantilla, justo antes de armar salas en serie: pintar a mano una sala toma minutos.
+3. Rule Tile del terreno desde la plantilla, justo antes de armar salas en serie: pintar a mano una sala toma minutos.
+4. Luz 2D y shader de paleta sobre las salas en gris, cuando lo jugable ya funcione.
 5. Arte del primer material de la zona 1, un tile a la vez y viéndolo en la sala. Orden de dibujo:
    - **Bloque base:** B6 (relleno), luego B5, B8, B2 y B14 (bordes), luego B1, B4, B13 y B16 (esquinas).
    - **Esquinas y delgado:** I1 a I4, U1 a U7.
@@ -35,4 +35,7 @@ Las celdas vacías cuentan como pendientes, así que el revisor sirve a medio di
 
 - 25 nov: proyecto base de Unity, cámara Pixel Perfect y sala pintada a mano (hecho).
 - 30 nov a 6 dic: collider y movimiento del personaje (ver `bitacora/contenido/tareas/2026-S49.md`).
-- Lo demás (sintonizador, luz y shader, Rule Tile, arte) se fecha al rehacer las 32 semanas el 29 de nov.
+- Aprobado el 26 de nov.:
+  - 18 a 24 ene. (semana 9): Rule Tile del terreno, junto con las 8 a 10 salas de la zona 1.
+  - 22 a 28 feb. (semana 14): luz 2D y shader de paleta (de gris a color) sobre las salas en gris.
+  - 3 a 9 may. (semana 24, ya congelado): arte del primer material de la zona 1, tile por tile en la sala. Ese día se eligen los trucos del estudio de tiles.

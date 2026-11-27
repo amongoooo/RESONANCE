@@ -21,6 +21,7 @@ const TODAS = [
     vistas: [
       { id: 'bitacora', nombre: 'Bitácora', bajada: 'Lo que hice y aprendí, con fecha y hora.' },
       { id: 'decisiones', nombre: 'Decisiones', bajada: 'Qué decidí y por qué. Si algo cambia, la vieja se queda para ver el camino.' },
+      { id: 'apuntes', nombre: 'Apuntes', bajada: 'Lo que aprendí, un tema por tarjeta. Se busca por palabra o por etiqueta.' },
     ],
   },
   {
