@@ -594,7 +594,7 @@
     }
    ],
    "nombre": "El enjambre",
-   "notas": "",
+   "notas": "27 nov.: vive en los caminos que salen de la guarida de la zona 1, no en la guarida (ver «Caminos entre guaridas»).",
    "orden": 50,
    "real": "- Luciérnagas sincronizadas: en las Great Smoky Mountains (Estados Unidos) y en manglares del sureste de Asia, miles destellan al mismo tiempo. Cada una adelanta o atrasa un poco su destello para acercarse al de sus vecinas.\n- La que va a destiempo se nota de inmediato.\n- Lo de depredador es inventado.",
    "resumen": "Una nube de insectos que destellan juntos a su propio pulso. Si igualas su ritmo te deja pasar; si vas a destiempo, te caza.",
@@ -698,7 +698,7 @@
     }
    ],
    "nombre": "El que siente el suelo",
-   "notas": "",
+   "notas": "27 nov.: vive en los caminos que salen de la guarida de la zona 1, no en la guarida (ver «Caminos entre guaridas»).",
    "orden": 60,
    "real": "- Escorpiones de arena: sienten con sensores en las patas las vibraciones de un insecto en la arena y saben hacia dónde está.\n- Topos dorados (Namibia): meten la cabeza en la arena para sentir el zumbido de las termitas.\n- Las vibraciones graves viajan bien por el suelo y las agudas se apagan pronto.",
    "resumen": "Un cazador bajo tierra que sigue las vibraciones graves. Lo atraen los golpes del bombo y no le importa el hi-hat.",
@@ -1371,7 +1371,7 @@
    "estado": "aprobada",
    "estados": "",
    "inspira": "",
-   "juego": "- El camino principal va en orden (ritmo, melodía, armonía, mezcla) porque cada concepto se apoya en el anterior.\n- Hay atajos escondidos entre zonas vecinas que solo se abren con lo aprendido en otra, y salas grises opcionales por todos lados.\n- Lo que abre caminos: una habilidad (Pisotón, Eco hueco), más oído (oír lo escondido), dirigir con luz lo que ya hay en la sala o llevar una pieza a otra tribu.\n- La hora del día cambia qué hay en cada sala (ver «Hora del día»).\n- Ya está en la historia, «guiar sin presionar»: el camino principal suena y tiene color; los opcionales están grises y en silencio. La música detrás de las paredes jala a explorar.",
+   "juego": "- El mundo tiene tres piezas: el caracol al centro, las guaridas (las zonas de cada tribu) y los caminos entre ellas (ver «Caminos»). Las guaridas se exploran y casi no tienen depredadores; los depredadores viven en los caminos.\n- El camino principal va en orden (ritmo, melodía, armonía, mezcla) porque cada concepto se apoya en el anterior.\n- Hay atajos escondidos entre zonas vecinas que solo se abren con lo aprendido en otra, y salas grises opcionales por todos lados.\n- Lo que abre caminos: una habilidad (Pisotón, Eco hueco), más oído (oír lo escondido), dirigir con luz lo que ya hay en la sala o llevar una pieza a otra tribu.\n- La hora del día cambia qué hay en cada sala (ver «Hora del día»).\n- Ya está en la historia, «guiar sin presionar»: el camino principal suena y tiene color; los opcionales están grises y en silencio. La música detrás de las paredes jala a explorar.",
    "mecanicas": [
     {
      "bloques": {
@@ -1392,11 +1392,50 @@
     }
    ],
    "nombre": "Explorar el mundo",
-   "notas": "Aprobado el 27 nov.",
+   "notas": "Aprobado el 27 nov. También el 27 nov.: el mundo se divide en caracol, guaridas y caminos.",
    "orden": 130,
    "real": "",
    "resumen": "El caracol está al centro y cada zona sale de él. El camino principal va en orden, pero hay atajos entre zonas y salas grises que se abren al volver con algo nuevo.",
    "riesgos": "",
+   "semana": "",
+   "tipo": "Mundo",
+   "zona": "Todas"
+  },
+  {
+   "id": "caminos",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Salir a buscar lo que la tribu necesita",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "",
+   "juego": "- Las guaridas son casi seguras; el riesgo está en los caminos, donde viven los depredadores (el enjambre, el que siente el suelo y los que vengan).\n- Se sale a los caminos por objetos o comida para el jugador o para las tribus.\n- Sirven para ganar la confianza de las tribus, tradear y hacer instrumentos.\n- Falta decidir: qué se junta, cómo se tradea y cómo se hacen los instrumentos.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "",
+      "transformacion": ""
+     },
+     "descripcion": "Recorrer un camino para traer objetos o comida a la guarida.",
+     "nombre": "Salir por algo",
+     "usa": [
+      "ser-presa",
+      "orgullo-de-la-tribu"
+     ]
+    }
+   ],
+   "nombre": "Caminos entre guaridas",
+   "notas": "Aprobado el 27 nov. (idea mía). Lo de juntar, tradear y hacer instrumentos está por diseñar.",
+   "orden": 132,
+   "real": "",
+   "resumen": "Las líneas del mapa: zonas que se exploran entre una guarida y otra, con la fauna depredadora. Ahí se sale por objetos o comida para el jugador o las tribus.",
+   "riesgos": "- Si los depredadores solo viven en los caminos, el primer puzzle con el enjambre (semana 4) pasa a estar en un camino y no en la guarida.",
    "semana": "",
    "tipo": "Mundo",
    "zona": "Todas"
@@ -1532,16 +1571,33 @@
    "datos": [],
    "editado": "2026-11-27",
    "ensena": "Orientarse por el sonido",
-   "estado": "idea",
+   "estado": "aprobada",
    "estados": "",
    "inspira": "",
-   "juego": "Idea de la historia («ideas para después»). Las salas con música aparecen con color; las grises, como bocetos.",
-   "mecanicas": [],
+   "juego": "- Cada lugar tiene tres estados: vacío (no se dibuja: no sabes que existe), por explorar (sabes que existe, en gris como boceto) y explorado (completado, a color). Es el mismo «mundo gris que gana color».\n- Al inicio solo se ve la zona 1. Al desbloquear sonidos aparecen otras zonas y caminos por explorar; al terminar de aprender todo lo de un lugar, sale completado.\n- Con el tiempo pueden aparecer más islas en el mismo mapa.\n- Se revela con lo que se junta para el árbol de los ritmos (los pulsos). El árbol dice qué aprendiste (piezas, habilidades, recetas) y el mapa dónde está; se llenan con lo mismo, pero no llevan la misma cuenta dos veces.\n- Los dibujos de pasto, agua y biomas solo dan una idea de cómo se ve cada zona.\n- Por ahora el mapa es solo de zonas; un mapa sala por sala va después del 1 de mayo.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Avisa al árbol de los ritmos y al guardado.",
+      "deteccion": "Qué lugares pide cada desbloqueo (datos).",
+      "entrada": "Juntar un pulso, desbloquear un sonido o terminar de aprender lo de un lugar.",
+      "estado": "Cada lugar: vacío, por explorar o explorado.",
+      "transformacion": "El lugar aparece en gris, o gana color."
+     },
+     "descripcion": "Un lugar pasa de vacío a por explorar, y de por explorar a explorado.",
+     "nombre": "Revelar en el mapa",
+     "usa": [
+      "pulsos",
+      "arbol-de-los-ritmos",
+      "exploracion"
+     ]
+    }
+   ],
    "nombre": "Mapa que se dibuja",
-   "notas": "",
+   "notas": "Aprobado el 27 nov. a partir de un dibujo mío: el caracol al centro, un camino rojo explorado a la zona 1, uno azul por explorar y uno rosa con dos lugares que salen de la zona 1.",
    "orden": 170,
    "real": "",
-   "resumen": "El mapa se va dibujando conforme exploras; es un premio, no algo que se da al inicio.",
+   "resumen": "Un mapa del mundo por zonas, no sala por sala: el caracol al centro, las guaridas de cada tribu y los caminos entre ellas. Se va revelando con lo que juntas para el árbol de los ritmos.",
    "riesgos": "",
    "semana": "",
    "tipo": "Mundo",
