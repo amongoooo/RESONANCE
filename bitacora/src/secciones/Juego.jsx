@@ -2,11 +2,11 @@ import { corta } from '../logica/fechas.js'
 import { separarDecisiones } from '../logica/listas.js'
 import { useEffect, useState } from 'react'
 import diseno from '../../contenido/diseno.md?raw'
-import almanaque from '../../contenido/almanaque.md?raw'
 import musica from '../../contenido/musica.md?raw'
 import historiaCifrada from '../../contenido/historia.cifrada.json'
 import { descifrar } from '../logica/cifrado.js'
 import Pulsable from '../ui/Pulsable.jsx'
+import Almanaque from './Almanaque.jsx'
 import { Bombilla, Flecha } from '../ui/Iconos.jsx'
 import Markdown from '../ui/Markdown.jsx'
 
@@ -14,7 +14,7 @@ import Markdown from '../ui/Markdown.jsx'
 export default function Juego({ vista, juego, zonas, zonasNota, validacion, decisiones, fases, semanas }) {
   if (vista === 'historia') return <Historia />
   if (vista === 'musica') return <Markdown texto={musica} />
-  if (vista === 'almanaque') return <Markdown texto={almanaque} />
+  if (vista === 'almanaque') return <Almanaque />
   if (vista === 'diseno') return <Markdown texto={diseno} />
   if (vista === 'validacion') return <Validacion validacion={validacion} fases={fases} semanas={semanas} />
   return <Idea juego={juego} decisiones={decisiones} zonas={zonas} zonasNota={zonasNota} />

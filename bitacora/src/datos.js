@@ -218,6 +218,15 @@ export default {
   bitacora: [
     {
       fecha: "2026-11-27",
+      hora: "03:13",
+      titulo: "El almanaque en la página, con su misma organización",
+      texto:
+        "La primera copia del almanaque era una lista de tarjetas y no se parecía al original. Ahora tiene la misma organización: Bestiario y Mecánicas globales, búsqueda, filtro por tipo, un índice y la ficha completa de cada entrada. Cada mecánica muestra sus cinco bloques (entrada, detección, estado y lógica, transformación y comunicación) y marca los que no usa. Además salen la vida, los datos del ScriptableObject, los avisos y qué criaturas usan cada mecánica global, con enlaces entre ellas. Sigue siendo una copia de solo lectura: el almanaque es la fuente de verdad.",
+      enlace: { texto: "Ver el almanaque", url: "#/juego/almanaque" },
+      etiquetas: ["diseño"],
+    },
+    {
+      fecha: "2026-11-27",
       hora: "03:05",
       titulo: "El almanaque ya está en la página",
       texto:
