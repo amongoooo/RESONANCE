@@ -218,6 +218,15 @@ export default {
   bitacora: [
     {
       fecha: "2026-11-27",
+      hora: "01:53",
+      titulo: "La vida de cada especie y cómo se progresa",
+      texto:
+        "El juego va a ser más complejo de lo que planeaba: en unas dos semanas seremos dos en el equipo, varias horas al día. Por ahora no se programa nada: se diseña. Cada especie del almanaque tiene una sección «Vida» con su lore basado en animales reales: el bombo junta semillas en las mejillas y casi no bebe agua, como las ratas canguro; la caja busca insectos golpeando la corteza y escuchando dónde suena hueco; el que siente el suelo brilla bajo la luna, como los escorpiones bajo luz ultravioleta; y el protagonista come néctar de flores que solo abren con música, por eso su especie casi desaparece con el silencio. En Mecánicas globales hay ideas de progresión: oído (experiencia por concepto), regalos de cada miembro de la tribu que se vuelven habilidades (Pisotón, Eco hueco, Salto en pedazos), un mundo conectado para explorar y volver, llevar música entre tribus y un mapa que se dibuja al explorar.",
+      enlace: { texto: "Abrir el almanaque", url: "https://claude.ai/artifact/6AAnoQvQ6wnz2gt2Q3qKrg" },
+      etiquetas: ["diseño"],
+    },
+    {
+      fecha: "2026-11-27",
       hora: "00:15",
       titulo: "Mecánicas globales, respuestas y checkpoints",
       texto:
@@ -407,6 +416,9 @@ export default {
 
   // Decisiones importantes y por qué se tomaron.
   decisiones: [
+    { fecha: "2026-11-27", hora: "01:53", decision: "Desde mediados de diciembre somos dos en el equipo, varias horas al día", porque: "En unas dos semanas se suma otra persona y vamos a trabajar varias horas diarias. Por eso ya no hay que recortar el diseño pensando en una hora al día: el juego puede ser más complejo. El congelamiento del 1 de mayo sigue; con el equipo nuevo se rehace el plan por hitos." },
+    { fecha: "2026-11-27", hora: "01:53", decision: "Ahora se diseña sin programar: mecánicas del juego y la vida de cada especie, como un lore técnicamente correcto", porque: "No se programa ni se planea lógica por ahora. Se piensa cómo vive cada especie (dónde vive, qué come, su día, su vida social, sus crías, cómo usa el sonido y con quién se relaciona), con base en animales reales, para que al construir el mundo todo tenga esa temática. En el almanaque cada especie tiene una sección «Vida», y las mecánicas de progresión y exploración están en Mecánicas globales." },
+    { fecha: "2026-11-27", hora: "01:53", decision: "Pendiente: progresión con oído (experiencia), regalos de la tribu, habilidades y un mundo para explorar", pendiente: true, porque: "Ideas en el almanaque, en estado «idea». (1) Oído: cada desafío da experiencia en el concepto practicado (ritmo, melodía, armonía); con más oído, el protagonista distingue más y las tribus le confían piezas más difíciles. (2) Regalos de la tribu: cuando un miembro confía por completo, regala algo de su especie: el bombo, el Pisotón (golpe grave al caer); la caja, el Eco hueco (hacer resonar lo hueco); el hi-hat, el Salto en pedazos (saltar otra vez a tiempo con los pedazos del pulso). (3) Exploración: el mundo está conectado y hay salas grises que solo se abren al volver con una habilidad de otra zona. (4) Llevar música entre tribus, el árbol de los ritmos, los pulsos y un mapa que se dibuja al explorar. La telemetría puede comparar el oído ganado con el examen." },
     { fecha: "2026-11-27", hora: "00:27", decision: "Una vida y checkpoints: si un depredador te atrapa, vuelves al último checkpoint", reemplaza: "Pendiente: debatir vidas y checkpoints (sin vidas, varias vidas o una vida por salida con mejores checkpoints)", porque: "Elegí la opción C del debate. Al caer, el jugador debe sentir ganas de volver a intentar, no miedo, y aprender escuchando pide probar mucho. No hay barra de vida ni pantalla de fin: la pantalla se apaga a gris y reapareces en el último checkpoint que tocaste. La dificultad se ajusta con la distancia entre checkpoints: lejos es más difícil, cerca es más fácil. Cada caída va a la telemetría (cuántas, en qué sala y qué te atrapó). Va en la semana 8 con los depredadores y se guarda con el guardado de la semana 11. Si al caer se pierde algo además del camino lo pensamos después. En el almanaque: «Ser presa» y la nueva mecánica global «Checkpoint»." },
     { fecha: "2026-11-27", hora: "00:27", decision: "Pendiente: los checkpoints son miembros de la tribu que ya confían en ti", pendiente: true, porque: "Propuesta de Claude: la historia dice que las tribus protegen al protagonista, así que reaparecer junto a un tambor amigo tiene sentido, y premia aprender: más piezas aprendidas, más lugares seguros. Si no se aprueba, los checkpoints son objetos neutros del mundo." },
     { fecha: "2026-11-27", hora: "00:27", decision: "Pendiente: qué se pierde al caer, además del camino", pendiente: true, porque: "Lo pensamos después. Una idea: perder lo que juntaste desde el último checkpoint hasta que lo «entregues» en uno." },
