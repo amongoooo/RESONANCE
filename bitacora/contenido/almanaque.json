@@ -1585,7 +1585,7 @@
    "estado": "aprobada",
    "estados": "",
    "inspira": "",
-   "juego": "- Las guaridas son casi seguras; el riesgo está en los caminos, donde viven los depredadores (el enjambre, el que siente el suelo y los que vengan).\n- Los puzzles diseñados se hacen en las guaridas con los miembros de la tribu: ahí se aprenden los conceptos y se practica lo básico. Al explorar los caminos y las otras zonas se desbloquean ritmos más interesantes.\n- En los caminos también hay retos pequeños, pero no son puzzles diseñados: son mecánicas de caza, de movimiento y así, para pasar las salas.\n- Se sale a los caminos por objetos o comida para el jugador o para las tribus.\n- Sirven para ganar la confianza de las tribus, tradear y hacer instrumentos.\n- Qué se junta (27 nov.): comida para las tribus (lo que cada especie come de verdad: semillas para el bombo, insectos de corteza y fruta para la caja, hojas tiernas y néctar para el hi-hat), materiales (cosas huecas, fibras, mudas de insecto) para instrumentos y para los huecos de las piezas para llevar, y néctar para el protagonista, que recarga su vida (sale de flores cerradas que abren si tocas cerca).\n- Cómo se tradea (27 nov.): con cada tribu en su guarida, con lo de esa tribu, y en el mercado del caracol, donde se encuentra de todo (ver «Mercado del caracol»).\n- Instrumentos (27 nov.): con materiales y una receta del árbol de los ritmos se hacen instrumentos para el protagonista (se gastan y son los power-ups para escapar) y para las tribus (un miembro toca algo más complejo y se desbloquea un ritmo). Ver «Instrumentos».\n- Retos de los caminos (27 nov.), los cuatro:\n  1. Escabullirse: pasar sin que te sientan (caminar despacio sobre el que siente el suelo, esconderte en huecos o pasto, esperar a que el enjambre se aleje).\n  2. Huir: un depredador te persigue y escapas hasta un escondite o un hueco, con power-ups si hace falta.\n  3. Buscar comida como lo hace cada especie: golpear troncos y escuchar dónde suena hueco, tocar junto a flores para que abran, sacudir árboles al ritmo.\n  4. Pasar con el sonido: ramas que se mecen al pulso, hongos que rebotan con un golpe grave, suelo frágil que se rompe con el Pisotón.",
+   "juego": "- Las guaridas son casi seguras; el riesgo está en los caminos, donde viven los depredadores (el enjambre, el que siente el suelo y los que vengan).\n- Los caminos se ponen difíciles poco a poco: los primeros no tienen depredadores, luego aparecen pocos y después más. Hay depredadores, pero no tantos: si ya entiendes el juego, es fácil escapar.\n- Aparte están las zonas de alto riesgo, llenas de depredadores y con muy buenas recompensas (ver «Zonas de alto riesgo»).\n- Los puzzles diseñados se hacen en las guaridas con los miembros de la tribu: ahí se aprenden los conceptos y se practica lo básico. Al explorar los caminos y las otras zonas se desbloquean ritmos más interesantes.\n- En los caminos también hay retos pequeños, pero no son puzzles diseñados: son mecánicas de caza, de movimiento y así, para pasar las salas.\n- Se sale a los caminos por objetos o comida para el jugador o para las tribus.\n- Sirven para ganar la confianza de las tribus, tradear y hacer instrumentos.\n- Qué se junta (27 nov.): comida para las tribus (lo que cada especie come de verdad: semillas para el bombo, insectos de corteza y fruta para la caja, hojas tiernas y néctar para el hi-hat), materiales (cosas huecas, fibras, mudas de insecto) para instrumentos y para los huecos de las piezas para llevar, y néctar para el protagonista, que recarga su vida (sale de flores cerradas que abren si tocas cerca).\n- Cómo se tradea (27 nov.): con cada tribu en su guarida, con lo de esa tribu, y en el mercado del caracol, donde se encuentra de todo (ver «Mercado del caracol»).\n- Instrumentos (27 nov.): con materiales y una receta del árbol de los ritmos se hacen instrumentos para el protagonista (se gastan y son los power-ups para escapar) y para las tribus (un miembro toca algo más complejo y se desbloquea un ritmo). Ver «Instrumentos».\n- Retos de los caminos (27 nov.), los cuatro:\n  1. Escabullirse: pasar sin que te sientan (caminar despacio sobre el que siente el suelo, esconderte en huecos o pasto, esperar a que el enjambre se aleje).\n  2. Huir: un depredador te persigue y escapas hasta un escondite o un hueco, con power-ups si hace falta.\n  3. Buscar comida como lo hace cada especie: golpear troncos y escuchar dónde suena hueco, tocar junto a flores para que abran, sacudir árboles al ritmo.\n  4. Pasar con el sonido: ramas que se mecen al pulso, hongos que rebotan con un golpe grave, suelo frágil que se rompe con el Pisotón.",
    "mecanicas": [
     {
      "bloques": {
@@ -1676,6 +1676,44 @@
    "zona": "Todas"
   },
   {
+   "id": "zonas-de-alto-riesgo",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Medir el riesgo escuchando",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "",
+   "juego": "- Son lugares aparte de los caminos normales, con muchos depredadores.\n- Dan cosas muy buenas: materiales raros, recetas, ritmos difíciles de encontrar.\n- El juego avisa que son muy peligrosas antes de entrar: las tribus lo dicen o hay señales en el camino. Así, perder ahí se siente justificado.\n- En cambio, los caminos normales tienen pocos depredadores y se ponen difíciles poco a poco (ver «Caminos entre guaridas»).",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Avisa a la telemetría si entra después del aviso.",
+      "deteccion": "",
+      "entrada": "El jugador se acerca a la entrada.",
+      "estado": "",
+      "transformacion": "Un miembro de la tribu advierte o se ve la señal."
+     },
+     "descripcion": "Antes de entrar, una tribu o una señal avisa que la zona es muy peligrosa.",
+     "nombre": "Avisar el peligro",
+     "usa": [
+      "ser-presa"
+     ]
+    }
+   ],
+   "nombre": "Zonas de alto riesgo",
+   "notas": "Aprobado el 27 nov. (idea mía).",
+   "orden": 133,
+   "real": "- Muchos animales dejan señales que otros entienden: marcas de olor, rasguños en los árboles, huesos cerca de una guarida.\n- Las presas reconocen las alarmas de otras especies: hay aves y monos que entienden los gritos de alarma de otras especies.",
+   "resumen": "Lugares llenos de depredadores, con recompensas muy buenas. El juego avisa antes de entrar, así que perder ahí se siente justo.",
+   "riesgos": "- Las señales tienen que entenderse sin texto: se prueba en el playtest.",
+   "semana": "",
+   "tipo": "Mundo",
+   "zona": "Todas"
+  },
+  {
    "id": "hora-del-dia",
    "altura": "—",
    "avisosEscucha": "",
@@ -1760,13 +1798,30 @@
    "datos": [],
    "editado": "2026-11-27",
    "ensena": "Así nacen los géneros: mezclando piezas",
-   "estado": "idea",
+   "estado": "aprobada",
    "estados": "",
    "inspira": "",
-   "juego": "Ya está en la historia: la especie del protagonista lleva y trae música entre tribus para que siga viva. Si llevas una pieza de una zona a otra, aparece algo nuevo: una criatura, un camino o un ritmo. Así el jugador hace las mezclas en vez de solo verlas.\nAprobado el 27 nov.:\n- La pieza aprendida es conocimiento: nunca se pierde y siempre la puedes tocar con tu luz.\n- La pieza para llevar es un objeto: la tribu te da su sonido guardado en algo hueco que resuena (una concha, una semilla hueca).\n- Puedes cargar varias a la vez.\n- Al tocar un hueco (checkpoint) quedan a salvo, aunque sigues cargándolas; se entregan de verdad con la tribu que las mezcla.\n- Si te atrapan, se rompen las que no estén a salvo y vuelves por otras.",
-   "mecanicas": [],
+   "juego": "Ya está en la historia: la especie del protagonista lleva y trae música entre tribus para que siga viva. Si llevas una pieza de una zona a otra, aparece algo nuevo: una criatura, un camino o un ritmo. Así el jugador hace las mezclas en vez de solo verlas.\nAprobado el 27 nov.:\n- La pieza aprendida es conocimiento: nunca se pierde y siempre la puedes tocar con tu luz.\n- La pieza para llevar es un objeto: la tribu te da su sonido guardado en algo hueco que resuena (una concha, una semilla hueca).\n- Puedes cargar varias a la vez.\n- Al tocar un hueco (checkpoint) quedan a salvo, aunque sigues cargándolas; se entregan de verdad con la tribu que las mezcla.\n- Si te atrapan, se rompen las que no estén a salvo y vuelves por otras.\nAprobado el 27 nov., qué sale de cada mezcla:\n- Un género real en el árbol de los ritmos, con su historia (por ejemplo, el ritmo de África occidental con una melodía lleva hacia el son).\n- Y un cambio en el mundo: un camino nuevo, una isla en el mapa o una criatura que llega por la música.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Avisa al árbol de los ritmos (género nuevo), al mapa y a la telemetría.",
+      "deteccion": "Qué pieza es y qué tribu la recibe (datos: la receta de la mezcla).",
+      "entrada": "Entregar la pieza a la tribu que la mezcla.",
+      "estado": "Mezclas hechas.",
+      "transformacion": "La tribu toca la mezcla; aparece el cambio en el mundo (camino, isla o criatura)."
+     },
+     "descripcion": "Entregas una pieza para llevar a otra tribu; la mezcla da un género real y cambia algo del mundo.",
+     "nombre": "Mezclar una pieza",
+     "usa": [
+      "arbol-de-los-ritmos",
+      "mapa",
+      "checkpoint"
+     ]
+    }
+   ],
    "nombre": "Llevar música entre tribus",
-   "notas": "Falta decidir qué sale de cada mezcla. Relacionada con la decisión pendiente del 26 nov. sobre los géneros como recetas de piezas.",
+   "notas": "Aprobado el 27 nov.: cada mezcla da un género real y un cambio en el mundo.",
    "orden": 140,
    "real": "- El canto de las ballenas jorobadas pasa de una población a otra: en pocos años cruza el Pacífico sur de oeste a este.",
    "resumen": "El protagonista lleva un ritmo de una tribu a otra; la tribu lo mezcla con lo suyo y aparece algo nuevo.",
@@ -1795,6 +1850,60 @@
    "resumen": "En el caracol crece un árbol que se llena con cada pieza y cada receta de género que encuentras.",
    "riesgos": "",
    "semana": "Semana 11, con el guardado",
+   "tipo": "Progresión",
+   "zona": "Todas"
+  },
+  {
+   "id": "desbloquear-ritmos",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Que los ritmos salen de escuchar el mundo",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "Patrones de la naturaleza: ranas que se turnan, el pájaro carpintero, lluvia en hojas",
+   "juego": "1. Oírlo: en los caminos la naturaleza toca patrones. Con suficiente oído se oyen; con poco, se pierden en el ruido.\n2. Aprenderlo: el protagonista lo copia con su luz y queda aprendido (es conocimiento: nunca se pierde).\n3. Darlo: en la guarida, un miembro lo toca si ya tiene el instrumento que pide; si no, hay que hacerlo.\nAsí se juntan explorar, el oído y los instrumentos. Los ritmos más interesantes están en los caminos lejanos y en las zonas de alto riesgo.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Avisa al árbol de los ritmos y a la telemetría.",
+      "deteccion": "Si el oído alcanza para oírlo.",
+      "entrada": "La tecla de brillo.",
+      "estado": "Cuánto del patrón va bien.",
+      "transformacion": "El patrón gana color al aprenderlo."
+     },
+     "descripcion": "Oír un patrón en los caminos y copiarlo con la luz.",
+     "nombre": "Aprender un ritmo del mundo",
+     "usa": [
+      "experiencia",
+      "dirigir-con-luz",
+      "arbol-de-los-ritmos"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "Si el miembro tiene el instrumento que pide.",
+      "entrada": "Dirigirlo con la luz.",
+      "estado": "",
+      "transformacion": "El miembro toca el ritmo y se suma a la música."
+     },
+     "descripcion": "Un miembro toca el ritmo nuevo si tiene el instrumento.",
+     "nombre": "Que la tribu lo toque",
+     "usa": [
+      "instrumentos"
+     ]
+    }
+   ],
+   "nombre": "Desbloquear ritmos",
+   "notas": "Aprobado el 27 nov.",
+   "orden": 152,
+   "real": "- Algunas ranas se turnan para cantar y no taparse entre ellas (por verificar la especie).\n- El pájaro carpintero tamborilea en troncos huecos para marcar territorio; cada especie tiene su ritmo.",
+   "resumen": "Los ritmos nuevos se oyen en los caminos, se aprenden copiándolos con la luz y la tribu los toca cuando tiene el instrumento que piden.",
+   "riesgos": "",
+   "semana": "",
    "tipo": "Progresión",
    "zona": "Todas"
   },
