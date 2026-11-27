@@ -396,6 +396,12 @@
      "nota": "",
      "unidad": "0 a 1",
      "valor": "0.3"
+    },
+    {
+     "campo": "pulsoSegunCalor",
+     "nota": "cuánto cambia su pulso por cada paso de temperatura; sin medir",
+     "unidad": "ppm",
+     "valor": "por definir"
     }
    ],
    "editado": "2026-11-27",
@@ -403,7 +409,7 @@
    "estado": "propuesta",
    "estados": "- En silencio.\n- Sonando: va encendiendo hojas.\n- Escalera completa: espera al «1» para apagarse.",
    "inspira": "Grillos que frotan las alas",
-   "juego": "Propuesta sin probar: cada pedazo del pulso enciende una hoja y la escalera se arma hacia arriba; se apaga en el «1» cada dos compases. Si partes el pulso en más pedazos, se arma más rápido.",
+   "juego": "Su pulso depende del calor del lugar: con calor cantan más rápido y con frío más lento. Los miembros de la tribu los usan como hi-hat, pero tienen que tocar siempre al ritmo de los insectos. Propuesta sin probar: cada pedazo del pulso enciende una hoja y la escalera se arma hacia arriba; se apaga en el «1» cada dos compases. Si partes el pulso en más pedazos, se arma más rápido.",
    "mecanicas": [
     {
      "bloques": {
@@ -434,16 +440,32 @@
     },
     {
      "bloques": {
-      "comunicacion": "",
-      "deteccion": "",
-      "entrada": "",
-      "estado": "",
-      "transformacion": ""
+      "comunicacion": "La tribu escucha su pulso y toca a ese ritmo.",
+      "deteccion": "Sabe qué tan caliente está su lugar.",
+      "entrada": "La temperatura de la sala: la hora del día y lo que dé calor o frío (por ejemplo, fogatas).",
+      "estado": "Su pulso sale de la temperatura (datos).",
+      "transformacion": "Frota más rápido con calor y más lento con frío."
      },
-     "descripcion": "El protagonista guía al coro a un lugar tibio para que cante (los grillos cantan más rápido con calor). Qué da a cambio está por decidir; no da habilidad.",
-     "nombre": "Favor: el lugar tibio",
+     "descripcion": "Su pulso sigue la temperatura del lugar: con calor más rápido, con frío más lento. La tribu toca siempre a su ritmo.",
+     "nombre": "Cantar según el calor",
      "usa": [
-      "regalos-de-la-tribu"
+      "hora-del-dia"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "Avisa a «Regalos de la tribu» y a la perilla del pulso, que se enciende.",
+      "deteccion": "El coro llega al ritmo que pide la tribu.",
+      "entrada": "El jugador sube o baja el calor del lugar (fogatas u otra cosa).",
+      "estado": "",
+      "transformacion": "La perilla del pulso aparece en el sintonizador con el símbolo del grillo."
+     },
+     "descripcion": "En un atardecer el jugador descubre que cantan más lento cuando baja la temperatura. Después, con la tribu, pone fogatas (u otra cosa) para subir o bajar la temperatura y que los insectos lleguen al ritmo que la tribu necesita. A cambio dan la perilla del pulso: con ella el jugador controla el ritmo de la canción.",
+     "nombre": "Favor: ajustar el calor (da la perilla del pulso)",
+     "usa": [
+      "regalos-de-la-tribu",
+      "hora-del-dia",
+      "perilla-del-pulso"
      ]
     },
     {
@@ -462,9 +484,9 @@
     }
    ],
    "nombre": "El hi-hat",
-   "notas": "",
+   "notas": "27 nov.: el favor del «lugar tibio» (llevar al coro a otro lado) se cambió por la temperatura del lugar: los insectos reaccionan al calor de donde están y el jugador lo ajusta con fogatas (idea del autor).\nAprobado el 27 nov.: por su favor, el hi-hat da la perilla del pulso. En los aparatos las perillas siguen siendo perillas, pero llevan el símbolo del insecto que las dio. Antes de tenerla, el pulso de la zona 1 es fijo o solo cambia con el calor.",
    "orden": 40,
-   "real": "- Grillos: el macho frota una orilla dura de un ala contra una fila de dientecitos de la otra, como pasar una uña por un peine.\n- Si hace más calor, cantan más rápido; con frío, más lento.\n- Su sonido es agudo y no viaja por el suelo.",
+   "real": "- Grillos: el macho frota una orilla dura de un ala contra una fila de dientecitos de la otra, como pasar una uña por un peine.\n- Si hace más calor, cantan más rápido; con frío, más lento. Es tan parejo que contando sus cantos se puede calcular la temperatura (ley de Dolbear, 1897).\n- Su sonido es agudo y no viaja por el suelo.",
    "resumen": "Los miembros agudos de la tribu: insectos pequeños que viven arriba y frotan su cuerpo. Parten el pulso en pedazos más chicos.",
    "riesgos": "- Pide que el reloj de la semana 5 avise también los pedazos del pulso, no solo el golpe entero.",
    "semana": "Semana 7 (4 a 10 ene.)",
@@ -933,8 +955,8 @@
    "ensena": "Tempo",
    "estado": "aprobada",
    "estados": "",
-   "inspira": "",
-   "juego": "El protagonista siente el pulso del mundo y lo devuelve a la tribu girando esta perilla. La perilla de frecuencia es de la zona 2.",
+   "inspira": "Los grillos cantan más rápido con calor y más lento con frío (ley de Dolbear)",
+   "juego": "El protagonista siente el pulso del mundo y lo devuelve a la tribu girando esta perilla. No la tiene desde el inicio: es el regalo del hi-hat por su favor (ajustar el calor del lugar). Antes de tenerla, el pulso de la zona 1 es fijo o solo cambia con el calor de los insectos. En el sintonizador se ve como una perilla con el símbolo del grillo: las perillas de los aparatos llevan el símbolo del insecto que las dio. La perilla de frecuencia es de la zona 2.",
    "mecanicas": [
     {
      "bloques": {
@@ -950,7 +972,7 @@
     }
    ],
    "nombre": "Perilla del pulso",
-   "notas": "Aprobada el 27 nov.: la zona 1 se juega con el pulso y la frecuencia es de la zona 2.",
+   "notas": "Aprobada el 27 nov.: la zona 1 se juega con el pulso y la frecuencia es de la zona 2. También el 27 nov.: se desbloquea con el favor del hi-hat y lleva el símbolo del grillo. Se programa igual en la semana 5; solo se activa más tarde.",
    "orden": 30,
    "real": "",
    "resumen": "En la zona 1 el sintonizador ajusta el pulso: si va más rápido, los golpes se juntan; si va más lento, se separan.",
@@ -1249,7 +1271,7 @@
    "estado": "aprobada",
    "estados": "",
    "inspira": "",
-   "juego": "La escalera de cada miembro:\n1. Al aprender su pieza (su minijuego) confía en ti y te llevas su pieza para llevar a otras tribus.\n2. Al hacerle un favor que sale de cómo vive, te da su regalo.\n3. Cuando toda la tribu confía, cambia el mundo: se muda a un lugar nuevo, abre un atajo o llena un lugar de música.\n4. La apariencia (piel o adorno, con las skins) es un premio opcional por tocar su pieza casi perfecta.\nRegla: el favor da lo que tenga sentido para la especie. Solo da habilidad si sale de cómo se mueve; no todos regalan una. Pocas habilidades, pero que sirvan en todo el mundo.\nFavores de la zona 1: el bombo y la caja comparten «La cosecha»; el hi-hat pide que lleves al coro a un lugar tibio para cantar.",
+   "juego": "La escalera de cada miembro:\n1. Al aprender su pieza (su minijuego) confía en ti y te llevas su pieza para llevar a otras tribus.\n2. Al hacerle un favor que sale de cómo vive, te da su regalo.\n3. Cuando toda la tribu confía, cambia el mundo: se muda a un lugar nuevo, abre un atajo o llena un lugar de música.\n4. La apariencia (piel o adorno, con las skins) es un premio opcional por tocar su pieza casi perfecta.\nRegla: el favor da lo que tenga sentido para la especie. Solo da habilidad si sale de cómo se mueve; no todos regalan una. Pocas habilidades, pero que sirvan en todo el mundo.\nFavores de la zona 1: el bombo y la caja comparten «La cosecha»; con el hi-hat, el jugador sube o baja el calor del lugar (por ejemplo, con fogatas) para que los insectos canten al ritmo que la tribu necesita.",
    "mecanicas": [
     {
      "bloques": {
@@ -1268,7 +1290,7 @@
     }
    ],
    "nombre": "Regalos de la tribu",
-   "notas": "Aprobado el 27 nov. Falta decidir qué da el hi-hat por su favor (no da habilidad).",
+   "notas": "Aprobado el 27 nov. El hi-hat da la perilla del pulso por su favor (ajustar el calor del lugar para que los insectos lleguen al ritmo de la tribu); antes su favor era «llevarlos a un lugar tibio».",
    "orden": 110,
    "real": "- Mutualismo: el pájaro indicador de miel guía a las personas a la colmena y ellas le dejan la cera; cada uno da algo a cambio.",
    "resumen": "Cada miembro de la tribu da algo en escalera: su pieza al confiar, su regalo al hacerle un favor, un cambio en el mundo cuando confía toda la tribu y un adorno por un reto difícil.",
