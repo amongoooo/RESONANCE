@@ -1,5 +1,5 @@
 {
- "tomado": "2026-11-27",
+ "tomado": "2026-11-28",
  "bestiario": [
   {
    "id": "protagonista",
@@ -738,6 +738,294 @@
    "zona": "1 · Ritmo"
   },
   {
+   "id": "ranas-que-se-turnan",
+   "altura": "medio",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Llamada y respuesta, y escuchar el silencio",
+   "estado": "propuesta",
+   "estados": "- Cantando por turnos.\n- Calladas (hay un depredador cerca).\n- Alarmadas (gritan).",
+   "inspira": "El coquí y la rana túngara",
+   "juego": "Viven en charcos y hojas de los caminos. Cantan por turnos, y ese patrón se aprende con la luz. Si un depredador se acerca se callan; si pasas corriendo o caes fuerte junto a ellas, gritan y lo delatan. Saltan de hoja en hoja al ritmo: si saltas cuando aterrizan, te sostienen.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "Su patrón (datos).",
+      "transformacion": ""
+     },
+     "descripcion": "Dos o más ranas cantan en los silencios de la otra.",
+     "nombre": "Turnarse",
+     "usa": [
+      "reloj-musical",
+      "desbloquear-ritmos"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "",
+      "transformacion": ""
+     },
+     "descripcion": "Ver «Fauna de los caminos».",
+     "nombre": "Callarse y delatar",
+     "usa": [
+      "fauna-de-los-caminos"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "",
+      "transformacion": ""
+     },
+     "descripcion": "Saltan de hoja en hoja al ritmo; al aterrizar sostienen al protagonista.",
+     "nombre": "Ser plataforma",
+     "usa": [
+      "reloj-musical"
+     ]
+    }
+   ],
+   "nombre": "Ranas que se turnan",
+   "notas": "Su papel se aprobó el 27 nov. (ver «Fauna de los caminos»); la vida es propuesta de Claude.",
+   "orden": 70,
+   "real": "- El coquí (Puerto Rico) acomoda su canto en los silencios de su vecino para no taparse.\n- La rana túngara (Centroamérica) se calla cuando se acerca el murciélago que la caza guiándose por su canto.\n- Que sirvan de plataforma es inventado.",
+   "resumen": "Cantan por turnos para no taparse. Se callan si hay un depredador y gritan si pasas brusco. Saltan entre hojas al ritmo y sirven de plataforma.",
+   "riesgos": "",
+   "semana": "",
+   "tipo": "Neutra",
+   "vida": {
+    "alimento": "Insectos.",
+    "crias": "Huevos en el agua o en hojas húmedas.",
+    "dia": "Cantan al atardecer y de noche.",
+    "habitat": "Charcos y hojas cerca del agua en los caminos.",
+    "relaciones": "Presa de los depredadores; avisan a todos sin querer al callarse.",
+    "social": "Coros: cada macho canta en los silencios de su vecino.",
+    "sonido": "Cantos cortos por turnos, en tonos medios."
+   },
+   "zona": "Todas"
+  },
+  {
+   "id": "pajaro-carpintero",
+   "altura": "medio",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Ritmos con aceleración y lo hueco que resuena",
+   "estado": "propuesta",
+   "estados": "",
+   "inspira": "El tamborileo territorial de los pájaros carpinteros",
+   "juego": "Tamborilea en troncos que resuenan; su ritmo se aprende con la luz. Donde tamborilea hay madera hueca (lo que busca la caja). Deja huecos en los troncos que el protagonista usa de escondite al escabullirse o huir. Se calla si hay un depredador.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "Su ritmo (datos).",
+      "transformacion": ""
+     },
+     "descripcion": "Toca su ritmo en un tronco hueco.",
+     "nombre": "Tamborilear",
+     "usa": [
+      "desbloquear-ritmos",
+      "reloj-musical"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "",
+      "transformacion": ""
+     },
+     "descripcion": "Sus huecos sirven de escondite.",
+     "nombre": "Dejar escondites",
+     "usa": [
+      "caminos"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "",
+      "transformacion": ""
+     },
+     "descripcion": "Ver «Fauna de los caminos».",
+     "nombre": "Callarse",
+     "usa": [
+      "fauna-de-los-caminos"
+     ]
+    }
+   ],
+   "nombre": "Pájaro carpintero",
+   "notas": "Su papel se aprobó el 27 nov. (ver «Fauna de los caminos»); la vida es propuesta de Claude.",
+   "orden": 72,
+   "real": "- Los pájaros carpinteros tamborilean en madera que resuena (a veces hasta en metal) para marcar territorio; cada especie tiene su ritmo y velocidad.\n- Sus huecos viejos los usan muchos otros animales para vivir o esconderse.\n- En África occidental viven varios carpinteros del género Campethera.",
+   "resumen": "Tamborilea en troncos huecos con un ritmo propio que se puede aprender. Sus huecos viejos sirven de escondite.",
+   "riesgos": "",
+   "semana": "",
+   "tipo": "Neutra",
+   "vida": {
+    "alimento": "Insectos y larvas bajo la corteza.",
+    "crias": "En un hueco que cava en un tronco.",
+    "dia": "De día; tamborilea sobre todo al amanecer.",
+    "habitat": "Árboles de los caminos.",
+    "relaciones": "Comparte la comida con la caja, pero no compite: busca en otros troncos.",
+    "social": "Solo o en pareja; defiende su territorio tamborileando.",
+    "sonido": "Ráfagas de golpes en madera que resuena."
+   },
+   "zona": "Todas"
+  },
+  {
+   "id": "flor-de-nectar",
+   "altura": "agudo",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [
+    {
+     "campo": "notaPropia",
+     "nota": "solo desde la zona 2",
+     "unidad": "Hz",
+     "valor": "—"
+    },
+    {
+     "campo": "tolerancia",
+     "nota": "la dificultad",
+     "unidad": "Hz",
+     "valor": "—"
+    },
+    {
+     "campo": "vidaQueRecarga",
+     "nota": "",
+     "unidad": "",
+     "valor": "—"
+    }
+   ],
+   "editado": "2026-11-27",
+   "ensena": "Frecuencia: cada flor responde a su nota",
+   "estado": "aprobada",
+   "estados": "- Cerrada.\n- Abierta (con néctar).\n- Vacía (vuelve a llenarse con el tiempo o al dormir).",
+   "inspira": "La onagra de playa y la polinización por zumbido",
+   "juego": "- Están cerradas. En la zona 1 abren con cualquier zumbido cerca, porque todavía no hay perilla de frecuencia.\n- En las zonas siguientes cada flor pide su nota, y se usa la perilla.\n- Al abrir dan néctar: recarga la vida del protagonista y es comida del hi-hat.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "Escucha «sonó algo» cerca; desde la zona 2 compara la altura con su nota.",
+      "entrada": "",
+      "estado": "Cerrada, abierta o vacía.",
+      "transformacion": "Se abre y muestra el néctar."
+     },
+     "descripcion": "Abre si suena un zumbido cerca; desde la zona 2, solo con su nota.",
+     "nombre": "Abrir con un zumbido",
+     "usa": [
+      "aviso-sono-algo"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "",
+      "transformacion": ""
+     },
+     "descripcion": "Recarga la vida.",
+     "nombre": "Dar néctar",
+     "usa": [
+      "ser-presa",
+      "caminos"
+     ]
+    }
+   ],
+   "nombre": "Flor de néctar",
+   "notas": "Aprobado el 27 nov.: crece con el juego (cualquier zumbido en la zona 1, su nota después).",
+   "orden": 74,
+   "real": "- La onagra de playa hace su néctar más dulce en unos 3 minutos cuando oye el zumbido de una abeja: responde a esa frecuencia, no a cualquier ruido.\n- Las flores del tomate y del arándano solo sueltan su polen cuando el abejorro vibra a cierta frecuencia (polinización por zumbido).\n- Que abran es inventado: la onagra no se abre, cambia su néctar.",
+   "resumen": "Flores cerradas que abren con un zumbido cerca y dan néctar, que recarga la vida. En la zona 1 abren con cualquier zumbido; después cada una pide su nota.",
+   "riesgos": "- En la zona 2 se puede usar como práctica suave de afinar antes de los puzzles.",
+   "semana": "",
+   "tipo": "Neutra",
+   "zona": "Todas"
+  },
+  {
+   "id": "saqueador",
+   "altura": "medio",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Distinguir una alarma real de una falsa",
+   "estado": "aprobada",
+   "estados": "- Mirando desde arriba.\n- Alarma falsa.\n- Robando (baja por lo que soltaste).",
+   "inspira": "El drongo de cola ahorquillada",
+   "juego": "- Imita la alarma de los caminos: un grito, o que las ranas se callen de mentira.\n- Si el jugador huye o se esconde y suelta lo que carga, baja y se lo lleva.\n- La alarma falsa se distingue porque falta el resto: no hay otras señales del depredador (la cámara no tiembla, ningún destello, la música no cambia igual).\n- No quita vida. Por él las tribus viajan juntas al mercado del caracol.\n- Distinto del Imitador (zona 2): el imitador copia algo para atraerte y cazarte; el saqueador da miedo para robarte.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Manda una alarma falsa.",
+      "deteccion": "Ve si el jugador carga algo.",
+      "entrada": "",
+      "estado": "Cuántas alarmas falsas ha dado (para cambiar de grito).",
+      "transformacion": ""
+     },
+     "descripcion": "Imita la alarma para que huyas y sueltes lo que cargas.",
+     "nombre": "Alarma falsa",
+     "usa": [
+      "aviso-sono-algo",
+      "fauna-de-los-caminos",
+      "paisaje-del-peligro"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "Avisa a la telemetría qué se robó.",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "",
+      "transformacion": ""
+     },
+     "descripcion": "Baja por lo que soltaste y se lo lleva.",
+     "nombre": "Robar",
+     "usa": [
+      "mercado-del-caracol",
+      "caminos"
+     ]
+    }
+   ],
+   "nombre": "Saqueador",
+   "notas": "Aprobado el 27 nov. Por decidir: si se puede recuperar lo robado (seguirlo hasta su nido).",
+   "orden": 76,
+   "real": "- El drongo de cola ahorquillada (Kalahari) imita los gritos de alarma de suricatas y aves; cuando huyen, se lleva la comida que soltaron. También da alarmas verdaderas, por eso le creen, y cambia de grito para que no se acostumbren.\n- Aves como el págalo persiguen a otras hasta que sueltan lo que cargan.\n- Muchos animales viajan en grupo porque así es más difícil que elijan a uno.",
+   "resumen": "No quita vida, quita cosas: da una alarma falsa y, si huyes y sueltas lo que cargas, se lo lleva. Por él las tribus viajan en caravana.",
+   "riesgos": "- Se parece al Imitador de la zona 2: la diferencia es que este asusta para robar y el imitador atrae para cazar.\n- Que una alarma falsa se sienta como trampa injusta: debe haber una pista que el oído atento note.",
+   "semana": "",
+   "tipo": "Depredador",
+   "vida": {
+    "alimento": "Lo que otros sueltan; también insectos.",
+    "crias": "",
+    "dia": "De día.",
+    "habitat": "Ramas altas sobre los caminos.",
+    "relaciones": "Vive de las tribus y del protagonista cuando viajan solos. No se atreve con las caravanas.",
+    "social": "Solo; vigila desde lo alto.",
+    "sonido": "Imita alarmas de otros."
+   },
+   "zona": "Todas"
+  },
+  {
    "id": "cazador-de-oido",
    "altura": "—",
    "avisosEscucha": "",
@@ -767,18 +1055,49 @@
    "avisosManda": "",
    "bloques": {},
    "datos": [],
-   "editado": "2026-11-26",
-   "ensena": "Entrenar el oído",
-   "estado": "idea",
-   "estados": "",
+   "editado": "2026-11-27",
+   "ensena": "Afinar y tocar a tiempo: notar lo que está casi bien",
+   "estado": "aprobada",
+   "estados": "- Escondido, tocando su copia.\n- Atrayendo (el jugador se acerca).\n- Atrapar (el jugador llega sin notarlo).\n- Descubierto (el jugador igualó la nota o el pulso verdaderos y lo delató).",
    "inspira": "Luciérnagas impostoras y ave lira",
-   "juego": "",
+   "juego": "- Copia melodías de las tribus un poco desafinadas y ritmos un poco a destiempo.\n- Suena casi igual que una tribu de verdad para que vayas hacia él.\n- Se descubre comparando: su nota contra la perilla de frecuencia y su ritmo contra el pulso. Con más oído se nota antes.\n- Distinto del saqueador: el saqueador asusta para robar; el imitador atrae para cazar.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "Qué tan desafinado y qué tan a destiempo (datos; la dificultad).",
+      "transformacion": ""
+     },
+     "descripcion": "Toca una melodía un poco desafinada o un ritmo un poco a destiempo.",
+     "nombre": "Copiar mal",
+     "usa": [
+      "reloj-musical",
+      "aviso-sono-algo"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "Manda «te golpeó» con su daño.",
+      "deteccion": "El jugador entra a su área.",
+      "entrada": "",
+      "estado": "",
+      "transformacion": ""
+     },
+     "descripcion": "Si te acercas sin notarlo, te ataca.",
+     "nombre": "Atraer y atrapar",
+     "usa": [
+      "ser-presa"
+     ]
+    }
+   ],
    "nombre": "Imitador",
-   "notas": "",
+   "notas": "Aprobado el 27 nov.: copia melodías desafinadas y ritmos a destiempo.",
    "orden": 210,
-   "real": "",
-   "resumen": "Copia el brillo de tu especie o el ritmo de una tribu para atraerte, un poco fuera de tiempo o desafinado.",
-   "riesgos": "",
+   "real": "- Las luciérnagas Photuris copian el destello de las hembras de otra especie para atraer a los machos y comérselos.\n- El ave lira copia casi cualquier sonido del bosque.\n- Que copie la música de una tribu es inventado.",
+   "resumen": "Copia la melodía o el ritmo de una tribu, un poco desafinado o a destiempo, para atraerte a su trampa.",
+   "riesgos": "- La diferencia tiene que oírse sin ser obvia: se ajusta con datos y el oído del jugador.",
    "semana": "Semana 18",
    "tipo": "Depredador",
    "zona": "2 · Melodía"
@@ -789,17 +1108,30 @@
    "avisosEscucha": "",
    "avisosManda": "",
    "bloques": {},
-   "datos": [],
-   "editado": "2026-11-26",
-   "ensena": "No saturar",
-   "estado": "idea",
+   "datos": [
+    {
+     "campo": "limiteLleno",
+     "nota": "qué tan lleno puede ir un golpe en promedio",
+     "unidad": "",
+     "valor": "—"
+    },
+    {
+     "campo": "compasesParaIrse",
+     "nota": "",
+     "unidad": "compases",
+     "valor": "—"
+    }
+   ],
+   "editado": "2026-11-27",
+   "ensena": "No saturar: volumen y dejar espacio",
+   "estado": "propuesta",
    "estados": "",
    "inspira": "Depredadores que espían el canto",
-   "juego": "",
+   "juego": "- Se mide qué tan lleno va cada golpe: en cada golpe del reloj se suma lo fuerte de todas las capas que suenan juntas y se promedia por compás. Las capas que se turnan casi no suman.\n- Si la mezcla pasa de un límite, llega y va hacia la capa más fuerte.\n- Se va si la mezcla baja del límite unos compases.\n- Qué animal es y qué le hace a un músico: por decidir (lo platico con un amigo; ideas: murciélago, mosca parásita).",
    "nombre": "El que llega con el escándalo",
-   "notas": "",
+   "notas": "27 nov.: decidí que llega a lo que más suena y que se mide por qué tan lleno va cada golpe. El animal está por decidir.",
    "orden": 220,
-   "real": "",
+   "real": "- El murciélago de labios con flecos caza ranas túngara guiado por su canto y prefiere los cantos más complejos.\n- La mosca Ormia oye el canto de los grillos y deja sus larvas encima; en Hawái los grillos machos dejaron de cantar en pocos años.\n- En la mezcla de música, si todo suena fuerte a la vez se satura; se deja espacio para que cada parte se oiga.",
    "resumen": "Solo aparece cuando hay demasiadas capas fuertes a la vez.",
    "riesgos": "",
    "semana": "Semana 19",
@@ -950,6 +1282,46 @@
    "resumen": "Un solo aviso que manda todo lo que suena y que cualquier criatura puede escuchar. Así un depredador nuevo es casi solo datos.",
    "riesgos": "",
    "semana": "Semana 6, con el bombo",
+   "tipo": "Sistema",
+   "zona": "Todas"
+  },
+  {
+   "id": "paisaje-del-peligro",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Que el sonido cuenta lo que pasa",
+   "estado": "aprobada",
+   "estados": "- Calma.\n- Te buscan (silencio).\n- Te persiguen (caos y graves).",
+   "inspira": "",
+   "juego": "- El juego es muy visual y auditivo, y el sonido del lugar cambia con el peligro.\n- Calma: la fauna toca sus patrones y suena la música de la zona.\n- Te buscan: si un depredador te busca y no haces ruido, casi todo se calla. Da emoción y avisa.\n- Te persiguen: las criaturas alrededor suenan a la vez creando caos, y entran bombos o graves que dan ritmo y sensación de prisa.\n- Con poca vida, además, la música pierde los agudos (ver «Ser presa»).",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "Escucha a los depredadores: si buscan, si persiguen y qué tan cerca están.",
+      "entrada": "",
+      "estado": "Calma, te buscan o te persiguen.",
+      "transformacion": "Calla la fauna y la música o suma capas de caos y graves (capas de mi música en FMOD)."
+     },
+     "descripcion": "Cambia lo que suena según si hay calma, te buscan o te persiguen.",
+     "nombre": "Seguir el peligro",
+     "usa": [
+      "aviso-sono-algo",
+      "ser-presa",
+      "fauna-de-los-caminos"
+     ]
+    }
+   ],
+   "nombre": "Paisaje del peligro",
+   "notas": "Idea mía del 27 nov., al decidir la fauna de los caminos.",
+   "orden": 25,
+   "real": "- Muchas ranas e insectos se callan cuando sienten un depredador; la rana túngara calla cuando pasa el murciélago que la caza.\n- En el cine y los videojuegos, la música de persecución suele usar percusión grave y rápida para dar prisa.",
+   "resumen": "Lo que suena alrededor sigue al peligro: si te buscan y no haces ruido, casi todo se calla; si te persiguen, las criaturas suenan a la vez y entran graves y bombos que dan prisa.",
+   "riesgos": "- Va con la música por capas: lo jugable funciona sin esto, así que se puede dejar para cuando exista la música (no bloquea la semana 8).",
+   "semana": "",
    "tipo": "Sistema",
    "zona": "Todas"
   },
@@ -1414,7 +1786,7 @@
    "estado": "aprobada",
    "estados": "",
    "inspira": "Los instrumentos de África occidental hechos de calabaza, semillas y madera",
-   "juego": "- Se hacen con materiales (cosas huecas, fibras, mudas de insecto, semillas) y una receta que da el árbol de los ritmos.\n- Para el protagonista: se gastan y son los power-ups para escapar en los caminos. Ejemplos por probar: una sonaja de semillas que se lanza lejos y atrae al que siente el suelo hacia allá; un zumbador que confunde al enjambre.\n- Para las tribus: le das a un miembro un instrumento nuevo y con él toca algo más complejo; así se desbloquea un ritmo. Encaja con la idea pendiente de que los miembros solo tocan cosas simples y el jugador desbloquea y mezcla ritmos.\n- Lo grave es grande y hueco; lo agudo, chico y duro: si el hueco es más grande, suena más grave.",
+   "juego": "- Se hacen con materiales (cosas huecas, fibras, mudas de insecto, semillas) y una receta que da el árbol de los ritmos.\n- Para el protagonista: se gastan y son los power-ups para escapar en los caminos. En la zona 1 (27 nov.): sonaja pesada (cae con un golpe grave y lleva al que siente el suelo hacia allá), zumbador (confunde al enjambre) y néctar guardado (recarga la vida); se eligen en una rueda y rinden más a tiempo. Ver «Power-ups».\n- Para las tribus: le das a un miembro un instrumento nuevo y con él toca algo más complejo; así se desbloquea un ritmo. Encaja con la idea pendiente de que los miembros solo tocan cosas simples y el jugador desbloquea y mezcla ritmos.\n- Lo grave es grande y hueco; lo agudo, chico y duro: si el hueco es más grande, suena más grave.",
    "mecanicas": [
     {
      "bloques": {
@@ -1435,7 +1807,7 @@
      "bloques": {
       "comunicacion": "Manda «sonó algo» si suena (por ejemplo, la sonaja lanzada).",
       "deteccion": "",
-      "entrada": "Botón de usar.",
+      "entrada": "Se elige en la rueda y se usa a tiempo con el pulso.",
       "estado": "Cuántos le quedan.",
       "transformacion": "Hace su efecto y se gasta."
      },
@@ -1443,7 +1815,8 @@
      "nombre": "Usar un power-up",
      "usa": [
       "aviso-sono-algo",
-      "ser-presa"
+      "ser-presa",
+      "power-ups"
      ]
     },
     {
@@ -1463,7 +1836,7 @@
     }
    ],
    "nombre": "Instrumentos",
-   "notas": "Aprobado el 27 nov. Los ejemplos de power-ups están por probar.",
+   "notas": "Aprobado el 27 nov. Los ejemplos de power-ups están por probar.\n27 nov.: elegidos los power-ups de la zona 1 (ver «Power-ups»).",
    "orden": 115,
    "real": "- Shekere: calabaza seca cubierta con una red de semillas o cuentas; suena al sacudirla o golpearla (África occidental).\n- Balafón: teclas de madera con calabazas huecas debajo de cada una, que hacen que suenen más fuerte; las calabazas más grandes van con las teclas más graves (África occidental).\n- Djembé: tambor de madera hueca con piel tensada.",
    "resumen": "Con materiales de los caminos y una receta del árbol de los ritmos se hacen instrumentos: para el protagonista, que se gastan y son los power-ups; y para las tribus, que tocan algo más complejo y desbloquean un ritmo.",
@@ -1491,6 +1864,71 @@
    "real": "- Las aceitunas y las almendras se cosechan con máquinas que sacuden el tronco; los elefantes sacuden árboles para tirar la fruta.\n- Cada árbol se mece a su propio ritmo; empujones chicos a ese ritmo se suman (resonancia).\n- El aye-aye golpea la madera y escucha el eco para encontrar larvas; los pájaros carpinteros también.\n- Un sonido fuerte tapa a uno suave mientras suena y hasta un momento después (enmascaramiento).\n- En la música, el bombo y la caja se alternan para que se oigan los dos.",
    "resumen": "El favor que comparten el bombo y la caja: el bombo sacude un árbol a su ritmo para que caiga la fruta y la caja escucha en el 2 y el 4 dónde hay insectos.",
    "riesgos": "",
+   "semana": "",
+   "tipo": "Progresión",
+   "zona": "1 · Ritmo"
+  },
+  {
+   "id": "power-ups",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [
+    {
+     "campo": "cuantosCargas",
+     "nota": "propuesta, por probar",
+     "unidad": "de cada uno",
+     "valor": "3"
+    },
+    {
+     "campo": "bonoATiempo",
+     "nota": "cuánto más rinde a tiempo",
+     "unidad": "",
+     "valor": "—"
+    }
+   ],
+   "editado": "2026-11-27",
+   "ensena": "Graves contra agudos y tocar a tiempo",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "Instrumentos de África occidental y cómo guardan comida los animales",
+   "juego": "- Zona 1, uno por depredador y uno de vida:\n  1. Sonaja pesada: una calabaza con semillas que se lanza y cae con un golpe grave; lleva al que siente el suelo hacia allá. (Una sonaja normal suena aguda y él solo siente lo grave.)\n  2. Zumbador: se gira y hace un zumbido parejo, sin golpes; el enjambre pierde la cuenta unos segundos.\n  3. Néctar guardado: una semilla hueca con néctar que recarga la vida lejos de las flores.\n- Cómo se usan: se eligen en una rueda y se usan a tiempo con el pulso; a tiempo rinden más (la sonaja llega más lejos, el zumbador dura más), como las habilidades.\n- Se hacen con materiales de los caminos y una receta del árbol de los ritmos (ver «Instrumentos»).",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "Botón de la rueda y dirección.",
+      "estado": "Cuántos quedan de cada uno.",
+      "transformacion": ""
+     },
+     "descripcion": "Se abre una rueda con los power-ups que cargas y se elige uno.",
+     "nombre": "Elegir en la rueda",
+     "usa": []
+    },
+    {
+     "bloques": {
+      "comunicacion": "La sonaja manda «sonó algo» grave donde cae; el zumbador, un zumbido parejo.",
+      "deteccion": "Qué tan cerca del pulso se usó.",
+      "entrada": "Botón de usar.",
+      "estado": "",
+      "transformacion": "Hace su efecto y se gasta."
+     },
+     "descripcion": "Se usa con el pulso; a tiempo rinde más.",
+     "nombre": "Usar a tiempo",
+     "usa": [
+      "reloj-musical",
+      "instrumentos",
+      "aviso-sono-algo"
+     ]
+    }
+   ],
+   "nombre": "Power-ups",
+   "notas": "Aprobado el 27 nov.: elegí sonaja pesada, zumbador y néctar guardado, en una rueda y a tiempo. Por probar: si la rueda frena el tiempo y cuántos se cargan.",
+   "orden": 116,
+   "real": "- El zumbador existe: una tablita atada a una cuerda que, al girarla, hace un zumbido grave. En el pueblo yoruba lo usa la sociedad Oro, y también se usa en Australia y otras partes.\n- El shekere es una calabaza seca con una red de semillas (África occidental). Lo grave es grande y hueco.\n- Las abejas guardan el néctar convertido en miel para cuando no hay flores.",
+   "resumen": "Instrumentos que se gastan para escapar. En la zona 1: sonaja pesada, zumbador y néctar guardado. Se eligen en una rueda y rinden más si se usan a tiempo.",
+   "riesgos": "- Que hagan fácil escapar: se gastan y cuestan materiales.\n- La rueda en plena huida: probar si frena el tiempo o no.",
    "semana": "",
    "tipo": "Progresión",
    "zona": "1 · Ritmo"
@@ -1585,7 +2023,7 @@
    "estado": "aprobada",
    "estados": "",
    "inspira": "",
-   "juego": "- Las guaridas son casi seguras; el riesgo está en los caminos, donde viven los depredadores (el enjambre, el que siente el suelo y los que vengan).\n- Los caminos se ponen difíciles poco a poco: los primeros no tienen depredadores, luego aparecen pocos y después más. Hay depredadores, pero no tantos: si ya entiendes el juego, es fácil escapar.\n- Aparte están las zonas de alto riesgo, llenas de depredadores y con muy buenas recompensas (ver «Zonas de alto riesgo»).\n- Los puzzles diseñados se hacen en las guaridas con los miembros de la tribu: ahí se aprenden los conceptos y se practica lo básico. Al explorar los caminos y las otras zonas se desbloquean ritmos más interesantes.\n- En los caminos también hay retos pequeños, pero no son puzzles diseñados: son mecánicas de caza, de movimiento y así, para pasar las salas.\n- Se sale a los caminos por objetos o comida para el jugador o para las tribus.\n- Sirven para ganar la confianza de las tribus, tradear y hacer instrumentos.\n- Qué se junta (27 nov.): comida para las tribus (lo que cada especie come de verdad: semillas para el bombo, insectos de corteza y fruta para la caja, hojas tiernas y néctar para el hi-hat), materiales (cosas huecas, fibras, mudas de insecto) para instrumentos y para los huecos de las piezas para llevar, y néctar para el protagonista, que recarga su vida (sale de flores cerradas que abren si tocas cerca).\n- Cómo se tradea (27 nov.): con cada tribu en su guarida, con lo de esa tribu, y en el mercado del caracol, donde se encuentra de todo (ver «Mercado del caracol»).\n- Instrumentos (27 nov.): con materiales y una receta del árbol de los ritmos se hacen instrumentos para el protagonista (se gastan y son los power-ups para escapar) y para las tribus (un miembro toca algo más complejo y se desbloquea un ritmo). Ver «Instrumentos».\n- Retos de los caminos (27 nov.), los cuatro:\n  1. Escabullirse: pasar sin que te sientan (caminar despacio sobre el que siente el suelo, esconderte en huecos o pasto, esperar a que el enjambre se aleje).\n  2. Huir: un depredador te persigue y escapas hasta un escondite o un hueco, con power-ups si hace falta.\n  3. Buscar comida como lo hace cada especie: golpear troncos y escuchar dónde suena hueco, tocar junto a flores para que abran, sacudir árboles al ritmo.\n  4. Pasar con el sonido: ramas que se mecen al pulso, hongos que rebotan con un golpe grave, suelo frágil que se rompe con el Pisotón.",
+   "juego": "- Las guaridas son casi seguras; el riesgo está en los caminos, donde viven los depredadores (el enjambre, el que siente el suelo y los que vengan).\n- Los caminos se ponen difíciles poco a poco: los primeros no tienen depredadores, luego aparecen pocos y después más. Hay depredadores, pero no tantos: si ya entiendes el juego, es fácil escapar.\n- Aparte están las zonas de alto riesgo, llenas de depredadores y con muy buenas recompensas (ver «Zonas de alto riesgo»).\n- Los puzzles diseñados se hacen en las guaridas con los miembros de la tribu: ahí se aprenden los conceptos y se practica lo básico. Al explorar los caminos y las otras zonas se desbloquean ritmos más interesantes.\n- En los caminos también hay retos pequeños, pero no son puzzles diseñados: son mecánicas de caza, de movimiento y así, para pasar las salas.\n- Fauna (27 nov.): criaturas neutras que tocan patrones (dan ritmos, avisan callándose, te delatan si pasas brusco y ayudan a pasar), flores de néctar y el saqueador, que roba con alarmas falsas. Ver «Fauna de los caminos».\n- Se sale a los caminos por objetos o comida para el jugador o para las tribus.\n- Sirven para ganar la confianza de las tribus, tradear y hacer instrumentos.\n- Qué se junta (27 nov.): comida para las tribus (lo que cada especie come de verdad: semillas para el bombo, insectos de corteza y fruta para la caja, hojas tiernas y néctar para el hi-hat), materiales (cosas huecas, fibras, mudas de insecto) para instrumentos y para los huecos de las piezas para llevar, y néctar para el protagonista, que recarga su vida (sale de flores cerradas que abren si tocas cerca).\n- Cómo se tradea (27 nov.): con cada tribu en su guarida, con lo de esa tribu, y en el mercado del caracol, donde se encuentra de todo (ver «Mercado del caracol»).\n- Instrumentos (27 nov.): con materiales y una receta del árbol de los ritmos se hacen instrumentos para el protagonista (se gastan y son los power-ups para escapar) y para las tribus (un miembro toca algo más complejo y se desbloquea un ritmo). Ver «Instrumentos».\n- Retos de los caminos (27 nov.), los cuatro:\n  1. Escabullirse: pasar sin que te sientan (caminar despacio sobre el que siente el suelo, esconderte en huecos o pasto, esperar a que el enjambre se aleje).\n  2. Huir: un depredador te persigue y escapas hasta un escondite o un hueco, con power-ups si hace falta.\n  3. Buscar comida como lo hace cada especie: golpear troncos y escuchar dónde suena hueco, tocar junto a flores para que abran, sacudir árboles al ritmo.\n  4. Pasar con el sonido: ramas que se mecen al pulso, hongos que rebotan con un golpe grave, suelo frágil que se rompe con el Pisotón.",
    "mecanicas": [
     {
      "bloques": {
@@ -1709,6 +2147,90 @@
    "real": "- Muchos animales dejan señales que otros entienden: marcas de olor, rasguños en los árboles, huesos cerca de una guarida.\n- Las presas reconocen las alarmas de otras especies: hay aves y monos que entienden los gritos de alarma de otras especies.",
    "resumen": "Lugares llenos de depredadores, con recompensas muy buenas. El juego avisa antes de entrar, así que perder ahí se siente justo.",
    "riesgos": "- Las señales tienen que entenderse sin texto: se prueba en el playtest.",
+   "semana": "",
+   "tipo": "Mundo",
+   "zona": "Todas"
+  },
+  {
+   "id": "fauna-de-los-caminos",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Escuchar el lugar para saber qué pasa",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "Coros de ranas, el tamborileo del pájaro carpintero y la lluvia en las hojas",
+   "juego": "- Son neutras: no atacan ni se dirigen como la tribu. Tocan patrones: ranas que se turnan, el pájaro carpintero, lluvia en hojas (ver sus fichas).\n- Dan ritmos: con suficiente oído se oyen sus patrones y se aprenden con la luz (ver «Desbloquear ritmos»).\n- Avisan: si un depredador se acerca, se callan. El jugador aprende a medir el riesgo escuchando.\n- Te delatan: si pasas brusco junto a ellas (corriendo, cayendo fuerte), se callan de golpe o dan un grito, y los depredadores cercanos lo notan.\n- Ayudan a pasar: el carpintero deja huecos en los troncos que sirven de escondite y las ranas saltan entre hojas al ritmo y sirven de plataforma.\n- Su sonido sigue al peligro: calladas cuando te buscan, en caos cuando te persiguen (ver «Paisaje del peligro»).",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "Escuchan dónde está el depredador más cercano.",
+      "entrada": "",
+      "estado": "Cantando o calladas.",
+      "transformacion": "Se callan de golpe y vuelven poco a poco cuando se va."
+     },
+     "descripcion": "Si un depredador se acerca, las criaturas cercanas se callan.",
+     "nombre": "Callarse",
+     "usa": [
+      "aviso-sono-algo",
+      "paisaje-del-peligro"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "Mandan «sonó algo» fuerte desde donde están.",
+      "deteccion": "Escuchan los pasos y las caídas del protagonista.",
+      "entrada": "",
+      "estado": "",
+      "transformacion": "Un grito o un silencio de golpe."
+     },
+     "descripcion": "Si pasas brusco junto a ellas, se callan de golpe o gritan y los depredadores cercanos lo oyen.",
+     "nombre": "Delatar",
+     "usa": [
+      "aviso-sono-algo"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "",
+      "transformacion": ""
+     },
+     "descripcion": "Su patrón se oye con suficiente oído y se aprende con la luz.",
+     "nombre": "Dar un ritmo",
+     "usa": [
+      "desbloquear-ritmos",
+      "experiencia",
+      "dirigir-con-luz"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "",
+      "transformacion": ""
+     },
+     "descripcion": "Huecos del carpintero como escondite y ranas que sirven de plataforma al ritmo.",
+     "nombre": "Ayudar a pasar",
+     "usa": [
+      "reloj-musical",
+      "caminos"
+     ]
+    }
+   ],
+   "nombre": "Fauna de los caminos",
+   "notas": "Aprobado el 27 nov.: elegí que avisan, que delatan y que ayudan a pasar, además de dar ritmos.",
+   "orden": 134,
+   "real": "- La rana túngara (Centroamérica) se calla cuando se acerca el murciélago que la caza guiándose por su canto.\n- Muchas ranas e insectos dejan de cantar cuando sienten un depredador cerca.\n- El coquí (Puerto Rico) acomoda su canto en los silencios de su vecino para no taparse.\n- Los pájaros carpinteros tamborilean en madera que resuena para marcar territorio; cada especie tiene su ritmo. Sus huecos viejos los usan muchos otros animales para vivir o esconderse.",
+   "resumen": "Las criaturas neutras de los caminos tocan patrones: de ellas salen los ritmos, avisan del peligro callándose, te pueden delatar y ayudan a pasar.",
+   "riesgos": "- Son cuatro papeles y muchas criaturas. La zona 1 puede entrar con callarse (casi solo datos sobre «sonó algo»); delatar y ayudar a pasar se agregan sala por sala.\n- Que el jugador note el silencio: hay que probar en el playtest si se entiende sin texto.",
    "semana": "",
    "tipo": "Mundo",
    "zona": "Todas"
@@ -1900,7 +2422,7 @@
    "nombre": "Desbloquear ritmos",
    "notas": "Aprobado el 27 nov.",
    "orden": 152,
-   "real": "- Algunas ranas se turnan para cantar y no taparse entre ellas (por verificar la especie).\n- El pájaro carpintero tamborilea en troncos huecos para marcar territorio; cada especie tiene su ritmo.",
+   "real": "- Algunas ranas se turnan para cantar y no taparse entre ellas: el coquí (Puerto Rico) acomoda su canto en los silencios de su vecino.\n- El pájaro carpintero tamborilea en troncos huecos para marcar territorio; cada especie tiene su ritmo.",
    "resumen": "Los ritmos nuevos se oyen en los caminos, se aprenden copiándolos con la luz y la tribu los toca cuando tiene el instrumento que piden.",
    "riesgos": "",
    "semana": "",
