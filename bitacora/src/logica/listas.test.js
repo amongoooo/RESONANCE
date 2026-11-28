@@ -55,6 +55,15 @@ describe('listas', () => {
     expect(vigentes.map((d) => d.decision)).toEqual(['Audio sin FMOD'])
     expect(cambiadas[0].reemplazadaPor.decision).toBe('Audio sin FMOD')
   })
+  it('una pendiente que ya se decidió sale de «Por decidir» y pasa a las que cambiaron', () => {
+    const { pendientes, vigentes, cambiadas } = separarDecisiones([
+      { fecha: '2026-11-20', decision: 'Pendiente: 2D o 2.5D', pendiente: true },
+      { fecha: '2026-11-25', decision: '2D lateral', reemplaza: 'Pendiente: 2D o 2.5D' },
+    ])
+    expect(pendientes).toEqual([])
+    expect(vigentes.map((d) => d.decision)).toEqual(['2D lateral'])
+    expect(cambiadas.map((d) => d.reemplazadaPor.decision)).toEqual(['2D lateral'])
+  })
   it('hace ids limpios', () => {
     expect(idDecision({ decision: 'Música: el MIDI' })).toBe('d-musica-el-midi')
   })
