@@ -1104,7 +1104,7 @@
   },
   {
    "id": "el-que-llega-con-el-escandalo",
-   "altura": "—",
+   "altura": "agudo",
    "avisosEscucha": "",
    "avisosManda": "",
    "bloques": {},
@@ -1122,20 +1122,135 @@
      "valor": "—"
     }
    ],
-   "editado": "2026-11-27",
+   "editado": "2026-11-28",
    "ensena": "No saturar: volumen y dejar espacio",
-   "estado": "propuesta",
-   "estados": "",
-   "inspira": "Depredadores que espían el canto",
-   "juego": "- Se mide qué tan lleno va cada golpe: en cada golpe del reloj se suma lo fuerte de todas las capas que suenan juntas y se promedia por compás. Las capas que se turnan casi no suman.\n- Si la mezcla pasa de un límite, llega y va hacia la capa más fuerte.\n- Se va si la mezcla baja del límite unos compases.\n- Qué animal es y qué le hace a un músico: por decidir (lo platico con un amigo; ideas: murciélago, mosca parásita).",
-   "nombre": "El que llega con el escándalo",
-   "notas": "27 nov.: decidí que llega a lo que más suena y que se mide por qué tan lleno va cada golpe. El animal está por decidir.",
+   "estado": "aprobada",
+   "estados": "- Escondidas.\n- Filtrándose (el escándalo pasó del límite).\n- Encima de la capa más fuerte.\n- Se van (la mezcla bajó unos compases).",
+   "inspira": "La mosca Ormia, que caza grillos por su canto",
+   "juego": "- Viven escondidas en las guaridas.\n- Si el escándalo pasa del límite, reaccionan a la frecuencia de tanto ruido y se filtran decenas.\n- Van hacia la capa más fuerte y hacen muy difícil seguir tocando.\n- Se van si la mezcla baja del límite unos compases.\n- Por afinar: cómo estorban exactamente (tapar la vista, sacar de tiempo a los músicos o las dos cosas).",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "Escuchan «escándalo» y la frecuencia de lo que suena.",
+      "entrada": "",
+      "estado": "Cuántas hay (datos: la dificultad).",
+      "transformacion": "Una nube que crece sobre la capa más fuerte."
+     },
+     "descripcion": "Con el escándalo, entran decenas y van a la capa más fuerte.",
+     "nombre": "Filtrarse",
+     "usa": [
+      "medidor-del-escandalo"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "",
+      "transformacion": ""
+     },
+     "descripcion": "Hacen muy difícil seguir tocando.",
+     "nombre": "Estorbar",
+     "usa": [
+      "dirigir-con-luz"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "",
+      "transformacion": ""
+     },
+     "descripcion": "Si la mezcla baja unos compases, se van.",
+     "nombre": "Irse",
+     "usa": [
+      "medidor-del-escandalo"
+     ]
+    }
+   ],
+   "nombre": "Moscas del escándalo",
+   "notas": "Decidido el 28 nov.: la mosca para las guaridas y las aves para afuera (ver «Lechuza y aves rivales»). La vida es propuesta de Claude.",
    "orden": 220,
-   "real": "- El murciélago de labios con flecos caza ranas túngara guiado por su canto y prefiere los cantos más complejos.\n- La mosca Ormia oye el canto de los grillos y deja sus larvas encima; en Hawái los grillos machos dejaron de cantar en pocos años.\n- En la mezcla de música, si todo suena fuerte a la vez se satura; se deja espacio para que cada parte se oiga.",
-   "resumen": "Solo aparece cuando hay demasiadas capas fuertes a la vez.",
+   "real": "- La mosca Ormia oye el canto de los grillos (su oído está afinado a esa frecuencia), los encuentra y deja sus larvas encima.\n- En Hawái, en pocos años la mayoría de los grillos machos de una isla dejaron de cantar: les nació un ala que no suena.\n- Que lleguen en decenas a una mezcla es inventado.",
+   "resumen": "Dentro de las guaridas: con tanto ruido reaccionan a su frecuencia y se filtran decenas, y se vuelve muy difícil seguir tocando.",
+   "riesgos": "- Ahora son dos criaturas en la semana 19 (moscas y aves); con el equipo de dos puede caber, pero hay que revisarlo al rehacer el plan.",
+   "semana": "Semana 19",
+   "tipo": "Depredador",
+   "vida": {
+    "alimento": "Las larvas viven dentro de otros insectos; los adultos, néctar.",
+    "crias": "Deja larvas encima de los que hacen mucho ruido.",
+    "dia": "Al atardecer, como la Ormia, que busca grillos cuando empiezan a cantar.",
+    "habitat": "Rincones de las guaridas.",
+    "relaciones": "Parásita de los músicos ruidosos.",
+    "social": "Llegan muchas a la vez.",
+    "sonido": "Un zumbido agudo; oyen muy bien la frecuencia de lo que buscan."
+   },
+   "zona": "3 · Armonía"
+  },
+  {
+   "id": "lechuza-y-aves",
+   "altura": "grave",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-28",
+   "ensena": "No saturar: volumen y dejar espacio",
+   "estado": "aprobada",
+   "estados": "- Posadas lejos.\n- Atentas (el escándalo sube).\n- En picada.\n- Se van.",
+   "inspira": "La lechuza, que caza por oído, y las aves que atacan a un rival que canta en su territorio",
+   "juego": "- Están en los exteriores: cuando la tribu toca afuera o en guaridas abiertas.\n- Si el escándalo pasa del límite, oyen la mezcla como el canto de aves rivales y bajan.\n- Caen en picada hacia la capa más fuerte y ahuyentan a la tribu.\n- Por decidir: si te hacen daño a ti y cómo vuelve la tribu.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "Escuchan «escándalo».",
+      "entrada": "",
+      "estado": "",
+      "transformacion": "Bajan y dan vueltas antes de lanzarse."
+     },
+     "descripcion": "Con el escándalo, oyen la mezcla como un ave rival y bajan.",
+     "nombre": "Confundir con un rival",
+     "usa": [
+      "medidor-del-escandalo",
+      "aviso-sono-algo"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "Avisa a la telemetría qué capa ahuyentó.",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "",
+      "transformacion": "Los músicos huyen y dejan de tocar."
+     },
+     "descripcion": "Se lanzan a la capa más fuerte y ahuyentan a la tribu.",
+     "nombre": "Caer en picada",
+     "usa": [
+      "paisaje-del-peligro"
+     ]
+    }
+   ],
+   "nombre": "Lechuza y aves rivales",
+   "notas": "Decidido el 28 nov. (idea mía). La vida es propuesta de Claude.",
+   "orden": 222,
+   "real": "- La lechuza de campanario caza por oído: puede atrapar a un ratón en la oscuridad total solo por cómo suena.\n- Muchas aves defienden su territorio: si oyen el canto de un rival (aunque salga de una bocina), llegan y lo atacan. Así cuentan aves los científicos.\n- Algunas aves bajan en picada para espantar a quien se acerca a su nido.",
+   "resumen": "Afuera: con tanto ruido, bajan como si fueran cantos de aves rivales, caen en picada y ahuyentan a la tribu.",
    "riesgos": "",
    "semana": "Semana 19",
    "tipo": "Depredador",
+   "vida": {
+    "alimento": "La lechuza, ratones e insectos grandes.",
+    "crias": "En huecos de árboles o rocas.",
+    "dia": "La lechuza, de noche; otras aves territoriales, de día.",
+    "habitat": "Ramas altas y riscos fuera de las guaridas.",
+    "relaciones": "Defienden su territorio de cualquier canto que parezca de un rival.",
+    "social": "Solas o en pareja.",
+    "sonido": "La lechuza oye muy bien: caza por el sonido."
+   },
    "zona": "3 · Armonía"
   },
   {
@@ -1324,6 +1439,58 @@
    "semana": "",
    "tipo": "Sistema",
    "zona": "Todas"
+  },
+  {
+   "id": "medidor-del-escandalo",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [
+    {
+     "campo": "limiteLleno",
+     "nota": "la dificultad",
+     "unidad": "",
+     "valor": "—"
+    },
+    {
+     "campo": "compasesParaIrse",
+     "nota": "",
+     "unidad": "compases",
+     "valor": "—"
+    }
+   ],
+   "editado": "2026-11-28",
+   "ensena": "No saturar: volumen y dejar espacio",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "",
+   "juego": "- En cada golpe del reloj se suma lo fuerte de todas las capas que suenan juntas, y se promedia por compás.\n- Si suben las capas o el volumen, sube el escándalo; si se turnan, casi no suma.\n- Si pasa de un límite: dentro de las guaridas llegan las moscas del escándalo; afuera, las aves.\n- Si la mezcla baja del límite unos compases, se van.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Manda «escándalo» con dónde y qué capa suena más.",
+      "deteccion": "Escucha las capas de la mezcla en cada golpe.",
+      "entrada": "",
+      "estado": "El promedio del compás y si pasó del límite.",
+      "transformacion": ""
+     },
+     "descripcion": "Suma lo fuerte de las capas que suenan en el mismo golpe y promedia por compás.",
+     "nombre": "Medir qué tan lleno va",
+     "usa": [
+      "reloj-musical",
+      "aviso-sono-algo"
+     ]
+    }
+   ],
+   "nombre": "Medidor del escándalo",
+   "notas": "Decidido el 28 nov., 00:10 (cómo se mide) y 00:36 (quién llega: moscas adentro, aves afuera).",
+   "orden": 27,
+   "real": "- En la mezcla de música, si todo suena fuerte a la vez se satura; los ingenieros miran un medidor y dejan espacio para que cada parte se oiga.\n- Cuando dos sonidos suenan al mismo tiempo, se suman.",
+   "resumen": "Mide qué tan lleno va cada golpe de la mezcla. Si pasa de un límite, llegan las moscas (en las guaridas) o las aves (afuera).",
+   "riesgos": "",
+   "semana": "",
+   "tipo": "Sistema",
+   "zona": "3 · Armonía"
   },
   {
    "id": "perilla-del-pulso",

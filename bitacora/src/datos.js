@@ -218,6 +218,15 @@ export default {
   bitacora: [
     {
       fecha: "2026-11-28",
+      hora: "00:36",
+      titulo: "Moscas adentro y aves afuera cuando hay escándalo",
+      texto:
+        "Lo platiqué con un amigo y lo decidí: si la mezcla de la tribu hace demasiado escándalo, en las guaridas se filtran decenas de moscas que reaccionan a la frecuencia del ruido y no dejan seguir tocando; afuera, la lechuza y otras aves lo oyen como el canto de un rival, caen en picada y ahuyentan a la tribu. El escándalo se mide por qué tan lleno va cada golpe, así que la salida es la misma: bajar capas o dejarles espacio.",
+      enlace: { texto: "Ver las moscas en el almanaque", url: "#/juego/almanaque?e=el-que-llega-con-el-escandalo" },
+      etiquetas: ["diseño"],
+    },
+    {
+      fecha: "2026-11-28",
       hora: "00:14",
       titulo: "La fauna de los caminos, los power-ups y dos depredadores nuevos",
       texto:
@@ -497,6 +506,7 @@ export default {
 
   // Decisiones importantes y por qué se tomaron.
   decisiones: [
+    { fecha: "2026-11-28", hora: "00:36", decision: "Con el escándalo llegan moscas dentro de las guaridas y aves afuera", reemplaza: "Pendiente: qué animal llega con el escándalo (zona 3)", porque: "Lo decidí después de platicarlo con un amigo. Dentro de las guaridas, las moscas reaccionan a la frecuencia de tanto ruido y se filtran decenas, y se vuelve muy difícil seguir tocando. Cuando la tribu toca afuera o en guaridas abiertas, la lechuza u otras aves oyen la mezcla como el canto de aves rivales, bajan, caen en picada y ahuyentan a la tribu. Base real: la mosca Ormia tiene el oído afinado al canto de los grillos y deja sus larvas encima (en Hawái los grillos de una isla dejaron de cantar en pocos años); la lechuza de campanario caza solo por oído, y muchas aves atacan a un rival que canta en su territorio, aunque salga de una bocina. Por decidir: cómo estorban exactamente las moscas, si las aves te hacen daño a ti y cómo vuelve la tribu. Claude advirtió que ahora son dos criaturas en la semana 19; con el equipo de dos puede caber, pero hay que revisarlo al rehacer el plan. En el almanaque: «Moscas del escándalo», «Lechuza y aves rivales» y la global «Medidor del escándalo»." },
     { fecha: "2026-11-28", hora: "00:10", decision: "Pendiente: qué animal llega con el escándalo (zona 3)", pendiente: true, porque: "Ya está decidido cómo se comporta: llega a la capa que más suena y se va si la mezcla baja unos compases. Falta el animal y qué le hace a un músico. Ideas de Claude: un murciélago (el de labios con flecos caza ranas túngara por su canto y prefiere los cantos más complejos) que se lanza a la capa más fuerte, o una mosca parásita (la Ormia oye a los grillos y deja sus larvas encima; en Hawái los grillos dejaron de cantar) que se posa en el músico más fuerte y lo calla. Lo voy a platicar con un amigo." },
     { fecha: "2026-11-28", hora: "00:10", decision: "El escándalo se mide por qué tan lleno va cada golpe, y el depredador llega a lo que más suena", porque: "Pregunté cómo se mide que una melodía toca mucho o poco. En cada golpe del reloj se suma lo fuerte de todas las capas que suenan juntas y se promedia por compás: si suben las capas o el volumen, sube el escándalo; si se turnan, casi no suma. Así enseña volumen y dejar espacio a la vez, como un ingeniero de mezcla que mira el medidor. Si la mezcla pasa de un límite, llega el depredador y va hacia la capa más fuerte; se va si baja del límite unos compases. En el almanaque: «El que llega con el escándalo»." },
     { fecha: "2026-11-28", hora: "00:10", decision: "El imitador copia melodías desafinadas y ritmos a destiempo", porque: "Lo elegí: copia la música de una tribu casi igual, para atraerte a su trampa. Se descubre comparando su nota con la perilla de frecuencia y su ritmo con el pulso; con más oído se nota antes. Es distinto del saqueador: el imitador atrae para cazar y el saqueador asusta para robar. Base real: las luciérnagas Photuris copian el destello de otra especie para cazar y el ave lira copia casi cualquier sonido. En el almanaque: «Imitador»." },
