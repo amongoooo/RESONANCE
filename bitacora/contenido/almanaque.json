@@ -1032,14 +1032,14 @@
    "avisosManda": "",
    "bloques": {},
    "datos": [],
-   "editado": "2026-11-26",
+   "editado": "2026-11-28",
    "ensena": "Volumen",
    "estado": "fuera de la 1.0",
    "estados": "",
    "inspira": "Murciélagos y búhos",
-   "juego": "",
+   "juego": "- Diferencia con las aves de la zona 3: ellas llegan solo si la mezcla de la tribu se satura, atacan a la capa más fuerte y no te hacen daño. El cazador te caza a ti.\n- Aparece en lugares oscuros y oye tu volumen: cada golpe fuerte lo acerca.\n- Te quita vida. Lo esquivas tocando suave o haciendo sonar a una tribu en otro lado para desviarlo.",
    "nombre": "Cazador de oído",
-   "notas": "Pide sonar más o menos fuerte; la zona 1 se juega con el pulso.",
+   "notas": "Pide sonar más o menos fuerte; la zona 1 se juega con el pulso. El 28 nov., 01:59: queda sin animal real ni vida hasta después de la 1.0 (la lechuza ya la usan las aves de la zona 3; una idea para entonces es el murciélago guanero de México).",
    "orden": 200,
    "real": "",
    "resumen": "Es ciego y caza por sonido. Hay que tocar suave o hacer que una tribu suene en otro lado.",
@@ -1120,14 +1120,20 @@
      "nota": "",
      "unidad": "compases",
      "valor": "—"
+    },
+    {
+     "campo": "compasesParaPosarse",
+     "nota": "cuánto escándalo seguido antes de sacar de tiempo al músico",
+     "unidad": "compases",
+     "valor": "—"
     }
    ],
    "editado": "2026-11-28",
    "ensena": "No saturar: volumen y dejar espacio",
    "estado": "aprobada",
-   "estados": "- Escondidas.\n- Filtrándose (el escándalo pasó del límite).\n- Encima de la capa más fuerte.\n- Se van (la mezcla bajó unos compases).",
+   "estados": "- Escondidas.\n- Filtrándose (el escándalo pasó del límite).\n- Nube encima de la capa más fuerte (tapan la vista).\n- Posadas en el músico (lo sacan de tiempo).\n- Se van (la mezcla bajó unos compases).",
    "inspira": "La mosca Ormia, que caza grillos por su canto",
-   "juego": "- Viven escondidas en las guaridas.\n- Si el escándalo pasa del límite, reaccionan a la frecuencia de tanto ruido y se filtran decenas.\n- Van hacia la capa más fuerte y hacen muy difícil seguir tocando.\n- Se van si la mezcla baja del límite unos compases.\n- Por afinar: cómo estorban exactamente (tapar la vista, sacar de tiempo a los músicos o las dos cosas).",
+   "juego": "- Viven escondidas en las guaridas.\n- Si el escándalo pasa del límite, reaccionan a la frecuencia de tanto ruido y se filtran decenas.\n- Van hacia la capa más fuerte. Primero tapan la vista: la nube crece sobre ese músico y cuesta apuntarle con la luz.\n- Si la mezcla sigue fuerte, se posan en el músico y lo sacan de tiempo: toca a destiempo y ensucia la mezcla.\n- Se van si la mezcla baja del límite unos compases (bajar o quitar esa capa).",
    "mecanicas": [
     {
      "bloques": {
@@ -1146,15 +1152,16 @@
     {
      "bloques": {
       "comunicacion": "",
-      "deteccion": "",
+      "deteccion": "Siguen escuchando «escándalo».",
       "entrada": "",
-      "estado": "",
-      "transformacion": ""
+      "estado": "Nube o posadas, según cuánto dure el escándalo.",
+      "transformacion": "La nube tapa la vista sobre la capa más fuerte; posadas, el músico toca a destiempo."
      },
-     "descripcion": "Hacen muy difícil seguir tocando.",
+     "descripcion": "Primero tapan la vista sobre la capa más fuerte; si sigue el escándalo, sacan de tiempo al músico.",
      "nombre": "Estorbar",
      "usa": [
-      "dirigir-con-luz"
+      "dirigir-con-luz",
+      "reloj-musical"
      ]
     },
     {
@@ -1173,11 +1180,11 @@
     }
    ],
    "nombre": "Moscas del escándalo",
-   "notas": "Decidido el 28 nov.: la mosca para las guaridas y las aves para afuera (ver «Lechuza y aves rivales»). La vida es propuesta de Claude.",
+   "notas": "Decidido el 28 nov.: la mosca para las guaridas y las aves para afuera (ver «Lechuza y aves rivales»). Cómo estorban, decidido el 28 nov., 01:59: las dos cosas, primero tapan la vista y luego sacan de tiempo. La vida es propuesta de Claude.",
    "orden": 220,
    "real": "- La mosca Ormia oye el canto de los grillos (su oído está afinado a esa frecuencia), los encuentra y deja sus larvas encima.\n- En Hawái, en pocos años la mayoría de los grillos machos de una isla dejaron de cantar: les nació un ala que no suena.\n- Que lleguen en decenas a una mezcla es inventado.",
    "resumen": "Dentro de las guaridas: con tanto ruido reaccionan a su frecuencia y se filtran decenas, y se vuelve muy difícil seguir tocando.",
-   "riesgos": "- Ahora son dos criaturas en la semana 19 (moscas y aves); con el equipo de dos puede caber, pero hay que revisarlo al rehacer el plan.",
+   "riesgos": "- Ahora son dos criaturas en la semana 19 (moscas y aves) y las moscas estorban de dos formas; con el equipo de dos puede caber, pero hay que revisarlo al rehacer el plan. Si no cabe, primero sale «tapar la vista».",
    "semana": "Semana 19",
    "tipo": "Depredador",
    "vida": {
@@ -1200,9 +1207,9 @@
    "editado": "2026-11-28",
    "ensena": "No saturar: volumen y dejar espacio",
    "estado": "aprobada",
-   "estados": "- Posadas lejos.\n- Atentas (el escándalo sube).\n- En picada.\n- Se van.",
+   "estados": "- Posadas lejos.\n- Atentas (el escándalo sube).\n- Dando vueltas (aviso).\n- En picada.\n- Se van.",
    "inspira": "La lechuza, que caza por oído, y las aves que atacan a un rival que canta en su territorio",
-   "juego": "- Están en los exteriores: cuando la tribu toca afuera o en guaridas abiertas.\n- Si el escándalo pasa del límite, oyen la mezcla como el canto de aves rivales y bajan.\n- Caen en picada hacia la capa más fuerte y ahuyentan a la tribu.\n- Por decidir: si te hacen daño a ti y cómo vuelve la tribu.",
+   "juego": "- Están en los exteriores: cuando la tribu toca afuera o en guaridas abiertas.\n- Si el escándalo pasa del límite, oyen la mezcla como el canto de aves rivales y bajan.\n- Dan vueltas (el aviso) y caen en picada hacia la capa más fuerte. Ahuyentan a la tribu; al protagonista no le hacen daño.\n- Los músicos huyen a un escondite cercano. Cuando las aves se van, vuelven a su lugar en silencio y hay que volver a dirigirlos con la luz para que retomen su capa. Lo aprendido no se pierde.",
    "mecanicas": [
     {
      "bloques": {
@@ -1232,10 +1239,24 @@
      "usa": [
       "paisaje-del-peligro"
      ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "Ven que las aves se fueron.",
+      "entrada": "",
+      "estado": "Escondidos, luego en su lugar sin tocar.",
+      "transformacion": "Vuelven en silencio; la capa se pierde hasta que los diriges otra vez."
+     },
+     "descripcion": "Los músicos se esconden cerca y vuelven en silencio: hay que volver a dirigirlos.",
+     "nombre": "Volver la tribu",
+     "usa": [
+      "dirigir-con-luz"
+     ]
     }
    ],
    "nombre": "Lechuza y aves rivales",
-   "notas": "Decidido el 28 nov. (idea mía). La vida es propuesta de Claude.",
+   "notas": "Decidido el 28 nov. (idea mía). El 28 nov., 01:59: no le hacen daño al protagonista, solo ahuyentan; la tribu se esconde cerca y vuelve en silencio hasta que la re-diriges. La vida es propuesta de Claude.",
    "orden": 222,
    "real": "- La lechuza de campanario caza por oído: puede atrapar a un ratón en la oscuridad total solo por cómo suena.\n- Muchas aves defienden su territorio: si oyen el canto de un rival (aunque salga de una bocina), llegan y lo atacan. Así cuentan aves los científicos.\n- Algunas aves bajan en picada para espantar a quien se acerca a su nido.",
    "resumen": "Afuera: con tanto ruido, bajan como si fueran cantos de aves rivales, caen en picada y ahuyentan a la tribu.",
@@ -1260,14 +1281,14 @@
    "avisosManda": "",
    "bloques": {},
    "datos": [],
-   "editado": "2026-11-26",
+   "editado": "2026-11-28",
    "ensena": "Cómo viaja el sonido",
    "estado": "fuera de la 1.0",
    "estados": "",
    "inspira": "Superficies que reflejan el sonido",
    "juego": "",
    "nombre": "Fauna del eco",
-   "notas": "La frontera de tierra muerta hacia la zona 2 va como pasillo corto en la semana 17, sin esta fauna.",
+   "notas": "La frontera de tierra muerta hacia la zona 2 va como pasillo corto en la semana 17, sin esta fauna. El 28 nov., 01:59: su animal real y su vida quedan para después de la 1.0.",
    "orden": 240,
    "real": "",
    "resumen": "Criaturas con caparazón que rebotan el sonido hacia donde no viaja.",
@@ -1370,9 +1391,9 @@
      "valor": "sí / no"
     }
    ],
-   "editado": "2026-11-27",
+   "editado": "2026-11-28",
    "ensena": "Cómo se comunican las cosas",
-   "estado": "propuesta",
+   "estado": "aprobada",
    "estados": "",
    "inspira": "",
    "juego": "Cada vez que algo suena manda un aviso con dónde, qué tan grave o agudo y qué tan fuerte. Cada criatura decide si le importa.",
@@ -1391,7 +1412,7 @@
     }
    ],
    "nombre": "Aviso «sonó algo»",
-   "notas": "La sala sin sonido es una regla de este aviso, no de cada criatura.",
+   "notas": "La sala sin sonido es una regla de este aviso, no de cada criatura. Aprobado el 28 nov., 01:59.",
    "orden": 20,
    "real": "",
    "resumen": "Un solo aviso que manda todo lo que suena y que cualquier criatura puede escuchar. Así un depredador nuevo es casi solo datos.",
