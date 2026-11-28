@@ -30,9 +30,9 @@ export const contarEtiquetas = (entradas) => {
 
 /**
  * Separa las decisiones en tres montones:
- *  - pendientes: las que tienen  pendiente: true
+ *  - pendientes: las que tienen  pendiente: true  y ninguna otra decisión reemplazó
  *  - vigentes: las que valen hoy
- *  - cambiadas: las que otra decisión reemplazó (la nueva dice  reemplaza: "<texto de la vieja>")
+ *  - cambiadas: las que otra decisión reemplazó (la nueva dice  reemplaza: "<texto de la vieja>"), pendientes o no
  * A cada cambiada le pega `reemplazadaPor` (la decisión nueva) para poder enlazarla.
  */
 export const separarDecisiones = (decisiones) => {
@@ -40,9 +40,9 @@ export const separarDecisiones = (decisiones) => {
   for (const d of decisiones) if (d.reemplaza) nuevaDe.set(d.reemplaza, d)
   const orden = [...decisiones].sort(masNuevoPrimero)
   return {
-    pendientes: orden.filter((d) => d.pendiente),
+    pendientes: orden.filter((d) => d.pendiente && !nuevaDe.has(d.decision)),
     vigentes: orden.filter((d) => !d.pendiente && !nuevaDe.has(d.decision)),
-    cambiadas: orden.filter((d) => !d.pendiente && nuevaDe.has(d.decision)).map((d) => ({ ...d, reemplazadaPor: nuevaDe.get(d.decision) })),
+    cambiadas: orden.filter((d) => nuevaDe.has(d.decision)).map((d) => ({ ...d, reemplazadaPor: nuevaDe.get(d.decision) })),
   }
 }
 

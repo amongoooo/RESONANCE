@@ -1,0 +1,2723 @@
+{
+ "tomado": "2026-11-28",
+ "bestiario": [
+  {
+   "id": "protagonista",
+   "altura": "—",
+   "avisosEscucha": "- «te atrapó», de cualquier depredador.\n- «llegó un pulso», del reloj (para brillar).",
+   "avisosManda": "- Su pulso (el de la perilla), cada vez que cambia.\n- «sonó algo»: grave, fuerza 0.35, al aterrizar fuerte.\n- «sonó algo»: grave, fuerza 0.08, por cada paso al correr.",
+   "datos": [
+    {
+     "campo": "velocidadCorrer",
+     "nota": "de la prueba, sin medir en Unity",
+     "unidad": "tiles/s",
+     "valor": "6.9"
+    },
+    {
+     "campo": "velocidadDespacio",
+     "nota": "no hace ruido al caminar",
+     "unidad": "tiles/s",
+     "valor": "2.6"
+    },
+    {
+     "campo": "alturaSalto",
+     "nota": "con el botón sostenido",
+     "unidad": "tiles",
+     "valor": "3"
+    },
+    {
+     "campo": "coyoteTime",
+     "nota": "",
+     "unidad": "s",
+     "valor": "0.10"
+    },
+    {
+     "campo": "bufferSalto",
+     "nota": "",
+     "unidad": "s",
+     "valor": "0.12"
+    },
+    {
+     "campo": "umbralAterrizajeFuerte",
+     "nota": "a partir de aquí suena grave",
+     "unidad": "tiles/s",
+     "valor": "20.6"
+    },
+    {
+     "campo": "perillaPulsoMin",
+     "nota": "",
+     "unidad": "ppm",
+     "valor": "60"
+    },
+    {
+     "campo": "perillaPulsoMax",
+     "nota": "",
+     "unidad": "ppm",
+     "valor": "160"
+    },
+    {
+     "campo": "vidaMax",
+     "nota": "ver «Ser presa»",
+     "unidad": "puntos",
+     "valor": "100"
+    }
+   ],
+   "editado": "2026-11-27",
+   "ensena": "Sentir el pulso",
+   "estado": "propuesta",
+   "estados": "- Libre: se mueve y salta.\n- Herido: con poca vida va más lento (hasta la mitad) y su luz se ve tenue.\n- Atrapado: la vida se acabó; la pantalla se apaga a gris y vuelve al último checkpoint; no recibe controles mientras tanto.",
+   "inspira": "Pájaro indicador de miel y coros de ranas",
+   "juego": "Se mueve, salta y brilla con una tecla en cada golpe: así toca los ritmos. La perilla da la velocidad del pulso. Con las piezas que aprende dirige a la tribu con su luz. Si su luz y la de otra criatura destellan juntas, van a tiempo. Si cae desde alto, el golpe suena grave.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Al correr manda «sonó algo» grave y muy suave por cada paso.",
+      "deteccion": "Su collider choca con paredes y suelo.",
+      "entrada": "Botones izquierda y derecha (o el stick).",
+      "estado": "",
+      "transformacion": "Se desplaza a velocidad fija; con «despacio», más lento y sin hacer ruido."
+     },
+     "descripcion": "Se mueve a los lados.",
+     "nombre": "Correr",
+     "usa": [
+      "aviso-sono-algo"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "Sabe si está en el suelo.",
+      "entrada": "Botón de salto: presionar y sostener.",
+      "estado": "En el suelo, subiendo o cayendo. Si suelta el botón subiendo, corta el salto.",
+      "transformacion": "Sube con fuerza inicial y la gravedad lo frena."
+     },
+     "descripcion": "Salta más alto mientras se sostiene el botón.",
+     "nombre": "Salto variable",
+     "usa": []
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "Cuánto hace que dejó el suelo y cuánto hace que se presionó el botón.",
+      "entrada": "Botón de salto.",
+      "estado": "Recuerda dos temporizadores cortos: 0.10 s después de salir del borde y 0.12 s antes de tocar el suelo.",
+      "transformacion": ""
+     },
+     "descripcion": "Perdona saltos que llegan un poco tarde o un poco antes.",
+     "nombre": "Coyote time y buffer",
+     "usa": []
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "Escucha «llegó un pulso» del reloj para saber si fue a tiempo.",
+      "entrada": "Una tecla.",
+      "estado": "",
+      "transformacion": "Se ilumina y se desvanece; gana color cuando va a tiempo con otra criatura."
+     },
+     "descripcion": "Brilla en cada golpe que el jugador presiona; así se juegan los minijuegos y se dirige a la tribu (ver «Brillar y dirigir con luz»).",
+     "nombre": "Brillo con la tecla",
+     "usa": [
+      "dirigir-con-luz",
+      "reloj-musical"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "Manda «sonó algo» grave, fuerza 0.35.",
+      "deteccion": "La velocidad con que toca el suelo.",
+      "entrada": "",
+      "estado": "Si pasa del umbral, cuenta como golpe fuerte.",
+      "transformacion": "Sacudida chica de cámara."
+     },
+     "descripcion": "Caer desde alto suena grave y lo pueden sentir.",
+     "nombre": "Aterrizaje fuerte",
+     "usa": [
+      "aviso-sono-algo"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "Manda «regresó» a la telemetría.",
+      "deteccion": "Su vida llega a 0.",
+      "entrada": "",
+      "estado": "Atrapado: sin controles por medio segundo.",
+      "transformacion": "La pantalla se apaga a gris y aparece en el último hueco que tocó."
+     },
+     "descripcion": "Si se acaba su vida, reaparece en el último checkpoint que tocó (ver «Ser presa»).",
+     "nombre": "Volver al último checkpoint",
+     "usa": [
+      "ser-presa",
+      "checkpoint"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "La flor escucha música cerca.",
+      "entrada": "Tocar con la luz junto a la flor.",
+      "estado": "La flor: cerrada, abierta o vacía.",
+      "transformacion": "La flor abre y gana color; al comerla, la luz del protagonista sube."
+     },
+     "descripcion": "Toca junto a una flor cerrada para que abra y come su néctar: recarga la vida.",
+     "nombre": "Comer néctar",
+     "usa": [
+      "ser-presa",
+      "caminos"
+     ]
+    }
+   ],
+   "nombre": "El protagonista",
+   "notas": "Perilla del pulso aprobada el 27 nov. Brillo con tecla y dirigir con luz aprobados el 27 nov.\nRevisado el 27 nov.: lo del mundo real es cierto; lo del juego no tiene que ser igual al animal real, solo tener sentido dentro del mundo.",
+   "orden": 10,
+   "real": "- Pájaro indicador de miel (África): guía a las personas hasta las colmenas con un canto especial y ellas le dejan la cera. Así guía el protagonista a las tribus hacia los pulsos, a cambio de protección.\n- Luciérnagas y coros de ranas: cada individuo ajusta su destello o su canto al de sus vecinos hasta que todos van a tiempo, sin que nadie dirija.\n- Las presas pequeñas sobreviven escondiéndose, quedándose quietas o en grupo, no peleando.",
+   "resumen": "Una presa sin voz que no ataca: toca con su luz, siente el pulso del mundo y dirige a las tribus. Todas las demás especies reaccionan a él.",
+   "riesgos": "- El cuerpo procedural (semana 13) puede pedir ajustar la hitbox del rectángulo.",
+   "semana": "Semanas 2 (movimiento), 5 (perilla) y 13 (cuerpo)",
+   "tipo": "Protagonista",
+   "vida": {
+    "alimento": "Néctar de flores que solo abren cuando hay música cerca. Base real (verificada): la onagra de playa (Oenothera drummondii) hace su néctar más dulce en unos 3 minutos cuando oye el zumbido de una abeja; sus pétalos vibran con los sonidos graves (Veits y otros, Ecology Letters, 2019; hay quien lo discute). Por eso su especie casi desaparece cuando el mundo se queda en silencio: sin música no hay flores abiertas. En el juego el néctar recarga su vida.",
+    "crias": "Las crías nacen cuando suena la Gran Canción. Nacen sin luz propia y la ganan al escuchar su primera música, como si «se afinaran».",
+    "dia": "Activo al atardecer y de noche, cuando su luz se ve mejor.",
+    "habitat": "No tiene territorio: va de una tribu a otra. Duerme en huecos que resuenan (troncos, conchas, grietas), porque ahí siente mejor el pulso del mundo.",
+    "relaciones": "Presa del enjambre y del que siente el suelo. Mutualismo con las tribus: las guía hacia los pulsos y lleva música de una a otra (como el pájaro indicador de miel), y ellas lo protegen.",
+    "social": "Adulto solitario. Su especie solo se junta para la Gran Canción, como las cigarras periódicas o los corales que desovan la misma noche.",
+    "sonido": "No tiene voz. Siente las vibraciones con todo el cuerpo, como la línea lateral de los peces, que sienten el movimiento del agua a su alrededor. Se comunica con luz: destella al ritmo de lo que escucha, como las luciérnagas."
+   },
+   "zona": "Todas"
+  },
+  {
+   "id": "bombo",
+   "altura": "grave",
+   "avisosEscucha": "- «llegó un pulso», del reloj.",
+   "avisosManda": "- «sonó algo»: grave, fuerza 1.0, en su posición, en cada golpe.\n- «el bombo lanzó al jugador» (telemetría).",
+   "datos": [
+    {
+     "campo": "golpeaEn",
+     "nota": "sale de los datos del ritmo",
+     "unidad": "pulsos del compás",
+     "valor": "[1]"
+    },
+    {
+     "campo": "alturaLanzamiento",
+     "nota": "",
+     "unidad": "tiles",
+     "valor": "7.6"
+    },
+    {
+     "campo": "fuerzaAviso",
+     "nota": "",
+     "unidad": "0 a 1",
+     "valor": "1.0"
+    },
+    {
+     "campo": "sacudidaCamara",
+     "nota": "",
+     "unidad": "px",
+     "valor": "2"
+    },
+    {
+     "campo": "tamaño",
+     "nota": "",
+     "unidad": "tiles",
+     "valor": "3 × 1"
+    }
+   ],
+   "editado": "2026-11-27",
+   "ensena": "El «1» del compás",
+   "estado": "propuesta",
+   "estados": "- En silencio: gris, no golpea.\n- Sonando: golpea en los pulsos de su patrón.",
+   "inspira": "Ratas canguro que tamborilean con las patas",
+   "juego": "En silencio está gris y quieto. Con el pulso golpea el suelo en el «1», y si el jugador está encima en ese momento lo lanza hacia arriba: una plataforma que salta a tiempo.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Manda «sonó algo» grave, fuerza 1.0.",
+      "deteccion": "Escucha «llegó un pulso».",
+      "entrada": "Lo dispara el reloj, no un botón.",
+      "estado": "En silencio o sonando; en qué pulso del compás va; golpea en los de su patrón (datos).",
+      "transformacion": "Se aplasta y rebota; el suelo tiembla y gana color."
+     },
+     "descripcion": "Golpea el suelo en los pulsos de su patrón.",
+     "nombre": "Golpe en el «1»",
+     "usa": [
+      "reloj-musical",
+      "aviso-sono-algo"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "Manda «el bombo lanzó al jugador» a la telemetría.",
+      "deteccion": "Un área encima del bombo.",
+      "entrada": "El jugador se para encima.",
+      "estado": "Solo en el cuadro del golpe.",
+      "transformacion": "Empuja al jugador hacia arriba (unos 7.6 tiles)."
+     },
+     "descripcion": "Si el jugador está encima en el golpe, lo lanza hacia arriba.",
+     "nombre": "Lanzar al jugador",
+     "usa": []
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "",
+      "transformacion": "El protagonista gana la habilidad Pisotón."
+     },
+     "descripcion": "Con el protagonista, sacude un árbol a su ritmo hasta que cae la fruta; al terminar le regala el Pisotón.",
+     "nombre": "Favor: la cosecha",
+     "usa": [
+      "la-cosecha",
+      "regalos-de-la-tribu",
+      "habilidades"
+     ]
+    }
+   ],
+   "nombre": "El bombo",
+   "notas": "Aquí nace el aviso «sonó algo» que usan todas las demás especies.\nRevisado el 27 nov.: lo del mundo real es cierto; lo del juego no tiene que ser igual al animal real, solo tener sentido dentro del mundo.",
+   "orden": 20,
+   "real": "- Ratas canguro (desiertos de Norteamérica): tamborilean el suelo con las patas traseras. Cada una tiene su propio patrón, como una firma, para marcar territorio y avisar a sus vecinas.\n- También tamborilean frente a una serpiente: le dicen «ya te vi», y la serpiente suele irse.\n- Los golpes viajan por el suelo y los vecinos los sienten con las patas.",
+   "resumen": "El miembro grave de la tribu: grande y pesado, vive abajo y golpea el suelo en el «1». Primera pieza que se aprende y cebo del que siente el suelo.",
+   "riesgos": "- Si el lanzamiento depende del cuadro exacto, puede fallar a veces: dar una ventana de unos milisegundos.",
+   "semana": "Semana 6 (28 dic. a 3 ene.)",
+   "tipo": "Tribu",
+   "vida": {
+    "alimento": "Semillas que junta y guarda en bolsas de las mejillas. Base real: las ratas canguro casi no beben agua; la sacan de las semillas que comen.",
+    "crias": "La madre cría en la madriguera. En el juego, las crías aprenden a tamborilear imitando a su madre antes de tener patrón propio. Base real: en las ratas canguro no está comprobado (solo se propuso como hipótesis); sí se sabe que cada una cambia su firma para distinguirse de sus vecinas.",
+    "dia": "Sale al atardecer. De día se queda en la madriguera, donde el suelo está fresco.",
+    "habitat": "Abajo, en madrigueras cavadas en el suelo de laterita. Cada madriguera tiene un montículo encima que usa de escenario para tamborilear.",
+    "relaciones": "Tamborilea frente a los depredadores para decirles «ya te vi» (las ratas canguro reales lo hacen con las serpientes). El que siente el suelo lo sigue, pero no lo caza: es demasiado grande y no es su presa.",
+    "social": "Solitario y territorial. Cada uno tiene su propio patrón de golpes, como una firma; los vecinos se reconocen sin verse.",
+    "sonido": "Golpea el suelo con las patas traseras. Los golpes viajan por el suelo y los vecinos los sienten con las patas. Si el patrón es más lento, el golpe suena más grave y más grande."
+   },
+   "zona": "1 · Ritmo"
+  },
+  {
+   "id": "caja",
+   "altura": "medio",
+   "avisosEscucha": "- «llegó un pulso», del reloj.\n- «sonó algo» del bombo (para saber que le toca contestar).",
+   "avisosManda": "- «sonó algo»: medio, fuerza 0.7, en cada golpe.",
+   "datos": [
+    {
+     "campo": "contestaEn",
+     "nota": "",
+     "unidad": "pulsos del compás",
+     "valor": "[2, 4]"
+    },
+    {
+     "campo": "graciaSolido",
+     "nota": "cuánto sigue sólido después de su pulso",
+     "unidad": "pulsos",
+     "valor": "0.25"
+    },
+    {
+     "campo": "fuerzaAviso",
+     "nota": "",
+     "unidad": "0 a 1",
+     "valor": "0.7"
+    }
+   ],
+   "editado": "2026-11-27",
+   "ensena": "Contestar al bombo",
+   "estado": "propuesta",
+   "estados": "- En silencio.\n- Sonando.\n- Tronco: resonando (sólido) o quieto (sin collider).",
+   "inspira": "Gorilas y pájaros carpinteros",
+   "juego": "Propuesta sin probar: cuando la caja suena, los troncos huecos de su sala resuenan y son sólidos solo en su pulso (el 2 y el 4, con un cuarto de pulso de gracia). Si saltas en la respuesta, hay suelo.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Manda «sonó algo» medio, fuerza 0.7.",
+      "deteccion": "Escucha «llegó un pulso» y el golpe del bombo.",
+      "entrada": "Lo dispara el reloj.",
+      "estado": "En silencio o sonando; en qué pulsos contesta (datos).",
+      "transformacion": "Se golpea el cuerpo y se infla un poco."
+     },
+     "descripcion": "Responde al bombo en los pulsos de su patrón.",
+     "nombre": "Contestar en el 2 y el 4",
+     "usa": [
+      "reloj-musical",
+      "aviso-sono-algo"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "Cada tronco conoce a su caja por referencia directa.",
+      "deteccion": "Cada tronco escucha a su caja.",
+      "entrada": "",
+      "estado": "Resonando (sólido) o quieto, con un cuarto de pulso de gracia.",
+      "transformacion": "Vibran, ganan color y prenden su collider."
+     },
+     "descripcion": "Los troncos huecos son sólidos solo en el pulso de la caja (sin probar).",
+     "nombre": "Troncos que resuenan",
+     "usa": []
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "",
+      "transformacion": "El protagonista gana la habilidad Eco hueco: revelar lo hueco."
+     },
+     "descripcion": "Golpea el tronco en el 2 y el 4, entre los golpes del bombo, para oír dónde hay insectos; al terminar le regala el Eco hueco.",
+     "nombre": "Favor: la cosecha",
+     "usa": [
+      "la-cosecha",
+      "regalos-de-la-tribu",
+      "habilidades"
+     ]
+    }
+   ],
+   "nombre": "La caja",
+   "notas": "Revisado el 27 nov.: lo del mundo real es cierto; lo del juego no tiene que ser igual al animal real, solo tener sentido dentro del mundo.",
+   "orden": 30,
+   "real": "- Gorilas: los machos se golpean el pecho con las manos ahuecadas y el sonido se oye a más de un kilómetro. Si el gorila es más grande, el golpe suena más grave.\n- Pájaros carpinteros: tamborilean troncos huecos (y hasta postes de metal) para marcar territorio y buscar pareja. Eligen lo que más resuena.\n- En los dos casos lo hueco amplifica el golpe.",
+   "resumen": "El miembro mediano de la tribu: cuerpo hueco, vive a media altura y contesta al bombo en el 2 y el 4. Enseña la llamada y respuesta.",
+   "riesgos": "- La idea de los troncos no está probada. Si no divierte, la caja queda solo como pieza del minijuego.",
+   "semana": "Semana 7 (4 a 10 ene.)",
+   "tipo": "Tribu",
+   "vida": {
+    "alimento": "Insectos que viven dentro de la corteza: golpea el tronco y escucha dónde suena hueco, porque ahí hay túneles. También fruta.",
+    "crias": "Las crías practican golpeando ramas delgadas que suenan agudo; al crecer pasan a troncos más gruesos y graves.",
+    "dia": "Activo de día y al atardecer.",
+    "habitat": "A media altura, en troncos huecos y ramas gruesas. Elige siempre los troncos que más resuenan y los defiende.",
+    "relaciones": "Le contesta al bombo: el bombo llama desde abajo y la caja responde desde en medio. Comparte troncos con el hi-hat, que vive en sus hojas.",
+    "social": "Grupos familiares. El más grande lleva el ritmo del grupo; su golpe es el más grave (base real: el golpe de pecho de los gorilas más grandes suena más grave).",
+    "sonido": "Se golpea el cuerpo hueco o el tronco. Lo hueco amplifica el golpe: mientras más grande el hueco, más grave y más lejos se oye."
+   },
+   "zona": "1 · Ritmo"
+  },
+  {
+   "id": "hihat",
+   "altura": "agudo",
+   "avisosEscucha": "- Los pedazos del pulso, del reloj.",
+   "avisosManda": "- «sonó algo»: agudo, fuerza 0.3, por cada hoja que enciende.",
+   "datos": [
+    {
+     "campo": "pedazosPorPulso",
+     "nota": "",
+     "unidad": "",
+     "valor": "2 o 4"
+    },
+    {
+     "campo": "hojas",
+     "nota": "",
+     "unidad": "",
+     "valor": "6"
+    },
+    {
+     "campo": "apagaCada",
+     "nota": "",
+     "unidad": "compases",
+     "valor": "2"
+    },
+    {
+     "campo": "fuerzaAviso",
+     "nota": "",
+     "unidad": "0 a 1",
+     "valor": "0.3"
+    },
+    {
+     "campo": "pulsoSegunCalor",
+     "nota": "cuánto cambia su pulso por cada paso de temperatura; sin medir",
+     "unidad": "ppm",
+     "valor": "por definir"
+    }
+   ],
+   "editado": "2026-11-27",
+   "ensena": "Partir el pulso en pedazos",
+   "estado": "propuesta",
+   "estados": "- En silencio.\n- Sonando: va encendiendo hojas.\n- Escalera completa: espera al «1» para apagarse.",
+   "inspira": "Grillos que frotan las alas",
+   "juego": "Su pulso depende del calor del lugar: con calor cantan más rápido y con frío más lento. Los miembros de la tribu los usan como hi-hat, pero tienen que tocar siempre al ritmo de los insectos. Propuesta sin probar: cada pedazo del pulso enciende una hoja y la escalera se arma hacia arriba; se apaga en el «1» cada dos compases. Si partes el pulso en más pedazos, se arma más rápido.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Manda «sonó algo» agudo, fuerza 0.3.",
+      "deteccion": "Escucha los pedazos del pulso.",
+      "entrada": "Lo dispara el reloj.",
+      "estado": "Cuántos pedazos por pulso (datos).",
+      "transformacion": "El insecto frota y brilla."
+     },
+     "descripcion": "Toca 2 o 4 veces por cada pulso.",
+     "nombre": "Partir el pulso",
+     "usa": [
+      "reloj-musical",
+      "aviso-sono-algo"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "El jugador sube saltando.",
+      "estado": "Cuántas hojas lleva encendidas.",
+      "transformacion": "La hoja gana color y prende su collider."
+     },
+     "descripcion": "Cada pedazo enciende una hoja sólida; se apaga en el «1» cada dos compases (sin probar).",
+     "nombre": "Escalera de hojas",
+     "usa": []
+    },
+    {
+     "bloques": {
+      "comunicacion": "La tribu escucha su pulso y toca a ese ritmo.",
+      "deteccion": "Sabe qué tan caliente está su lugar.",
+      "entrada": "La temperatura de la sala: la hora del día y lo que dé calor o frío (por ejemplo, fogatas).",
+      "estado": "Su pulso sale de la temperatura (datos).",
+      "transformacion": "Frota más rápido con calor y más lento con frío."
+     },
+     "descripcion": "Su pulso sigue la temperatura del lugar: con calor más rápido, con frío más lento. La tribu toca siempre a su ritmo.",
+     "nombre": "Cantar según el calor",
+     "usa": [
+      "hora-del-dia"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "Avisa a «Regalos de la tribu» y a la perilla del pulso, que se enciende.",
+      "deteccion": "El coro llega al ritmo que pide la tribu.",
+      "entrada": "El jugador sube o baja el calor del lugar (fogatas u otra cosa).",
+      "estado": "",
+      "transformacion": "La perilla del pulso aparece en el sintonizador con el símbolo del grillo."
+     },
+     "descripcion": "En un atardecer el jugador descubre que cantan más lento cuando baja la temperatura. Después, con la tribu, pone fogatas (u otra cosa) para subir o bajar la temperatura y que los insectos lleguen al ritmo que la tribu necesita. A cambio dan la perilla del pulso: con ella el jugador controla el ritmo de la canción.",
+     "nombre": "Favor: ajustar el calor (da la perilla del pulso)",
+     "usa": [
+      "regalos-de-la-tribu",
+      "hora-del-dia",
+      "perilla-del-pulso"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "Tapa los avisos «sonó algo» del protagonista para quien caza por oído; no afecta al que siente el suelo.",
+      "deteccion": "Si la capa va al pulso del protagonista o a destiempo.",
+      "entrada": "El protagonista los dirige con su luz.",
+      "estado": "",
+      "transformacion": "A tiempo: el coro canta alrededor y tapa sus sonidos. A destiempo: todos saltan a la vez."
+     },
+     "descripcion": "De noche, dirigido con la luz del protagonista: a su pulso lo esconde; a destiempo salta todo el coro y confunde al depredador.",
+     "nombre": "Esconder o confundir (dirigido)",
+     "usa": [
+      "dirigir-con-luz"
+     ]
+    }
+   ],
+   "nombre": "El hi-hat",
+   "notas": "27 nov.: el favor del «lugar tibio» (llevar al coro a otro lado) se cambió por la temperatura del lugar: los insectos reaccionan al calor de donde están y el jugador lo ajusta con fogatas (idea del autor).\nAprobado el 27 nov.: por su favor, el hi-hat da la perilla del pulso. En los aparatos las perillas siguen siendo perillas, pero llevan el símbolo del insecto que las dio. Antes de tenerla, el pulso de la zona 1 es fijo o solo cambia con el calor.\nRevisado el 27 nov.: lo del mundo real es cierto; lo del juego no tiene que ser igual al animal real, solo tener sentido dentro del mundo.",
+   "orden": 40,
+   "real": "- Grillos: el macho frota una orilla dura de un ala contra una fila de dientecitos de la otra, como pasar una uña por un peine.\n- Si hace más calor, cantan más rápido; con frío, más lento. Es tan parejo que contando sus cantos se puede calcular la temperatura (ley de Dolbear, 1897).\n- Su sonido es agudo y no viaja por el suelo.",
+   "resumen": "Los miembros agudos de la tribu: insectos pequeños que viven arriba y frotan su cuerpo. Parten el pulso en pedazos más chicos.",
+   "riesgos": "- Pide que el reloj de la semana 5 avise también los pedazos del pulso, no solo el golpe entero.",
+   "semana": "Semana 7 (4 a 10 ene.)",
+   "tipo": "Tribu",
+   "vida": {
+    "alimento": "Hojas tiernas y néctar.",
+    "crias": "Las crías (ninfas) se parecen a los adultos pero sin alas, y mudan varias veces. No cantan hasta tener alas, porque cantan con ellas.",
+    "dia": "De noche y al atardecer. Base real: los grillos cantan más rápido cuando hace calor y más lento con frío; en el mundo del juego, aceleran cuando el día está más caliente.",
+    "habitat": "Arriba, en las hojas y en las puntas de las ramas.",
+    "relaciones": "Viven en las hojas de los troncos de la caja. El que siente el suelo no los oye.",
+    "social": "Coros. Solo los machos cantan; las hembras eligen pareja por el canto.",
+    "sonido": "Frotan una orilla dura de un ala contra una fila de dientecitos de la otra: cada diente es un clic. Su sonido es agudo y se apaga pronto, así que no viaja por el suelo."
+   },
+   "zona": "1 · Ritmo"
+  },
+  {
+   "id": "enjambre",
+   "altura": "—",
+   "avisosEscucha": "- El pulso del protagonista.",
+   "avisosManda": "- «enjambre calmado» (abre el camino; telemetría).\n- «te golpeó» (con su daño).",
+   "datos": [
+    {
+     "campo": "ppmPropio",
+     "nota": "uno por enjambre",
+     "unidad": "ppm",
+     "valor": "72 a 132"
+    },
+    {
+     "campo": "tolerancia",
+     "nota": "la dificultad",
+     "unidad": "ppm",
+     "valor": "±4"
+    },
+    {
+     "campo": "compasesParaCalmarse",
+     "nota": "",
+     "unidad": "compases",
+     "valor": "2"
+    },
+    {
+     "campo": "radioAlboroto",
+     "nota": "",
+     "unidad": "tiles",
+     "valor": "4.4"
+    }
+   ],
+   "editado": "2026-11-27",
+   "ensena": "Igualar un ritmo",
+   "estado": "propuesta",
+   "estados": "- A su pulso (el jugador lejos).\n- Alborotado (el jugador cerca y a destiempo).\n- Calmado (dos compases a tiempo): abre el paso.",
+   "inspira": "Luciérnagas que destellan al mismo tiempo",
+   "juego": "Tapa un paso angosto y destella a su pulso. El protagonista brilla al pulso de la perilla: si van juntos durante dos compases, la nube se calma y sube. Si entra a destiempo, lo atrapa.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "Su pulso propio (datos).",
+      "transformacion": "Todos los puntos se encienden a la vez."
+     },
+     "descripcion": "La nube destella junta a un pulso propio.",
+     "nombre": "Destellar a su pulso",
+     "usa": []
+    },
+    {
+     "bloques": {
+      "comunicacion": "Manda «enjambre calmado».",
+      "deteccion": "Escucha el pulso del protagonista.",
+      "entrada": "El jugador gira la perilla del pulso.",
+      "estado": "Cuenta el tiempo a tiempo; tolerancia y compases son datos.",
+      "transformacion": "Sube y deja un hueco abajo."
+     },
+     "descripcion": "Si el pulso del jugador se parece al suyo por dos compases, se calma y abre el paso.",
+     "nombre": "Calmarse al igualar",
+     "usa": [
+      "perilla-del-pulso"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "Un área alrededor del paso.",
+      "entrada": "",
+      "estado": "Alborotado mientras el jugador esté cerca y fuera de tiempo.",
+      "transformacion": "Se agita y se pone rojizo."
+     },
+     "descripcion": "Si el jugador se acerca a destiempo, se agita.",
+     "nombre": "Alborotarse",
+     "usa": []
+    },
+    {
+     "bloques": {
+      "comunicacion": "Manda «te golpeó» con su daño.",
+      "deteccion": "El jugador entra a su área.",
+      "entrada": "",
+      "estado": "",
+      "transformacion": ""
+     },
+     "descripcion": "Si el jugador entra sin que esté calmado, le pega (le quita vida).",
+     "nombre": "Atrapar",
+     "usa": [
+      "ser-presa"
+     ]
+    }
+   ],
+   "nombre": "El enjambre",
+   "notas": "27 nov.: vive en los caminos que salen de la guarida de la zona 1, no en la guarida (ver «Caminos entre guaridas»).\nRevisado el 27 nov.: lo del mundo real es cierto; lo del juego no tiene que ser igual al animal real, solo tener sentido dentro del mundo.",
+   "orden": 50,
+   "real": "- Luciérnagas sincronizadas: en las Great Smoky Mountains (Estados Unidos) y en manglares del sureste de Asia, miles destellan al mismo tiempo. Cada una adelanta o atrasa un poco su destello para acercarse al de sus vecinas.\n- La que va a destiempo se nota de inmediato.\n- Lo de depredador es inventado.",
+   "resumen": "Una nube de insectos que destellan juntos a su propio pulso. Si igualas su ritmo te deja pasar; si vas a destiempo, te caza.",
+   "riesgos": "- Que igualar el ritmo se sienta como adivinar. Ayudan las dos luces a la vista y una barra de «qué tan cerca».",
+   "semana": "Semana 8",
+   "tipo": "Depredador",
+   "vida": {
+    "alimento": "Carnívoro. Base real: las larvas de luciérnaga comen caracoles y babosas. Los adultos de esta especie cazan a la especie del protagonista: la reconocen porque su luz va a otro ritmo.",
+    "crias": "Larva bajo tierra la mayor parte de su vida; de adulto vive poco y casi solo para reproducirse.",
+    "dia": "Solo al atardecer y de noche.",
+    "habitat": "Zonas húmedas y pasos angostos donde el aire está quieto. Las larvas viven bajo tierra.",
+    "relaciones": "Depredador especialista del protagonista. A las tribus no las toca, por eso pueden hacer ruido sin peligro.",
+    "social": "Enjambre: miles de individuos que destellan juntos. Ninguno manda; cada uno se ajusta a sus vecinos.",
+    "sonido": "No hace sonido: se comunica con luz. Detecta lo que va fuera de ritmo, venga de donde venga."
+   },
+   "zona": "1 · Ritmo"
+  },
+  {
+   "id": "el-que-siente-el-suelo",
+   "altura": "grave",
+   "avisosEscucha": "- «sonó algo» de cualquiera; ignora medio y agudo.",
+   "avisosManda": "- «salió» (la cámara tiembla).\n- «te golpeó» (con su daño).",
+   "datos": [
+    {
+     "campo": "alcancePorFuerza",
+     "nota": "un golpe de fuerza 1 se siente a 25 tiles",
+     "unidad": "tiles × fuerza",
+     "valor": "25"
+    },
+    {
+     "campo": "velocidad",
+     "nota": "",
+     "unidad": "tiles/s",
+     "valor": "4.5"
+    },
+    {
+     "campo": "distanciaMordida",
+     "nota": "",
+     "unidad": "tiles",
+     "valor": "0.4"
+    },
+    {
+     "campo": "tiempoParaDormir",
+     "nota": "",
+     "unidad": "s",
+     "valor": "1.4"
+    },
+    {
+     "campo": "soloOye",
+     "nota": "",
+     "unidad": "",
+     "valor": "grave"
+    }
+   ],
+   "editado": "2026-11-27",
+   "ensena": "Graves contra agudos",
+   "estado": "propuesta",
+   "estados": "- Dormido.\n- Buscando: va hacia el último golpe grave; se duerme si no oye nada en 1.4 s.\n- Cazando: sigue al jugador.\n- Sale: muerde.",
+   "inspira": "Escorpiones de arena y topos dorados",
+   "juego": "Duerme bajo el camino. Si pasas corriendo cerca, siente tus pasos y te caza; caminando despacio, no. Un golpe grave lejos lo lleva hacia allá.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "Escucha todos los «sonó algo» y compara distancia con alcance × fuerza.",
+      "entrada": "",
+      "estado": "Ignora medio y agudo.",
+      "transformacion": ""
+     },
+     "descripcion": "Solo hace caso a los avisos graves; mientras más fuerte, desde más lejos.",
+     "nombre": "Sentir lo grave",
+     "usa": [
+      "aviso-sono-algo"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "Buscando; se duerme si no oye nada en 1.4 s.",
+      "transformacion": "El suelo se levanta donde pasa."
+     },
+     "descripcion": "Va bajo tierra hacia el último golpe grave.",
+     "nombre": "Ir al golpe",
+     "usa": []
+    },
+    {
+     "bloques": {
+      "comunicacion": "Manda «salió» y «te golpeó» con su daño.",
+      "deteccion": "El aviso dice que fue del jugador; distancia de mordida.",
+      "entrada": "",
+      "estado": "Cazando hasta morder o perderlo.",
+      "transformacion": "Sale, muerde y se hunde."
+     },
+     "descripcion": "Si el golpe fue del jugador, lo sigue y muerde.",
+     "nombre": "Cazar y morder",
+     "usa": [
+      "ser-presa"
+     ]
+    }
+   ],
+   "nombre": "El que siente el suelo",
+   "notas": "27 nov.: vive en los caminos que salen de la guarida de la zona 1, no en la guarida (ver «Caminos entre guaridas»).\nRevisado el 27 nov.: lo del mundo real es cierto; lo del juego no tiene que ser igual al animal real, solo tener sentido dentro del mundo.",
+   "orden": 60,
+   "real": "- Escorpiones de arena: sienten con sensores en las patas las vibraciones de un insecto en la arena y saben hacia dónde está.\n- Topos dorados (Namibia): meten la cabeza en la arena para sentir el zumbido de las termitas.\n- Las vibraciones graves viajan bien por el suelo y las agudas se apagan pronto.",
+   "resumen": "Un cazador bajo tierra que sigue las vibraciones graves. Lo atraen los golpes del bombo y no le importa el hi-hat.",
+   "riesgos": "- La semana 8 queda apretada. Si se atrasa, solo sigue al bombo (sin pasos) o pasa al margen de la semana 12.",
+   "semana": "Semana 8 (11 a 17 ene.)",
+   "tipo": "Depredador",
+   "vida": {
+    "alimento": "Cazador de lo que se mueve en el suelo. Base real: los escorpiones de arena encuentran insectos por la vibración en la arena, sin verlos.",
+    "crias": "Base real: las crías de escorpión viajan en la espalda de la madre hasta su primera muda.",
+    "dia": "Nocturno. Base real: los escorpiones brillan bajo la luz ultravioleta; en el juego brilla bajo la luna, y mientras más crece la luna, más se le ve.",
+    "habitat": "Bajo tierra, en suelos de arena y laterita suelta, cerca de las madrigueras del bombo.",
+    "relaciones": "Sigue los golpes del bombo, pero el bombo no es su presa. Caza a la especie del protagonista.",
+    "social": "Solitario y territorial.",
+    "sonido": "No oye por el aire: siente las vibraciones del suelo con sensores en las patas. Sabe hacia dónde vino el golpe y qué tan fuerte fue."
+   },
+   "zona": "1 · Ritmo"
+  },
+  {
+   "id": "ranas-que-se-turnan",
+   "altura": "medio",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Llamada y respuesta, y escuchar el silencio",
+   "estado": "propuesta",
+   "estados": "- Cantando por turnos.\n- Calladas (hay un depredador cerca).\n- Alarmadas (gritan).",
+   "inspira": "El coquí y la rana túngara",
+   "juego": "Viven en charcos y hojas de los caminos. Cantan por turnos, y ese patrón se aprende con la luz. Si un depredador se acerca se callan; si pasas corriendo o caes fuerte junto a ellas, gritan y lo delatan. Saltan de hoja en hoja al ritmo: si saltas cuando aterrizan, te sostienen.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "Su patrón (datos).",
+      "transformacion": ""
+     },
+     "descripcion": "Dos o más ranas cantan en los silencios de la otra.",
+     "nombre": "Turnarse",
+     "usa": [
+      "reloj-musical",
+      "desbloquear-ritmos"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "",
+      "transformacion": ""
+     },
+     "descripcion": "Ver «Fauna de los caminos».",
+     "nombre": "Callarse y delatar",
+     "usa": [
+      "fauna-de-los-caminos"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "",
+      "transformacion": ""
+     },
+     "descripcion": "Saltan de hoja en hoja al ritmo; al aterrizar sostienen al protagonista.",
+     "nombre": "Ser plataforma",
+     "usa": [
+      "reloj-musical"
+     ]
+    }
+   ],
+   "nombre": "Ranas que se turnan",
+   "notas": "Su papel se aprobó el 27 nov. (ver «Fauna de los caminos»); la vida es propuesta de Claude.",
+   "orden": 70,
+   "real": "- El coquí (Puerto Rico) acomoda su canto en los silencios de su vecino para no taparse.\n- La rana túngara (Centroamérica) se calla cuando se acerca el murciélago que la caza guiándose por su canto.\n- Que sirvan de plataforma es inventado.",
+   "resumen": "Cantan por turnos para no taparse. Se callan si hay un depredador y gritan si pasas brusco. Saltan entre hojas al ritmo y sirven de plataforma.",
+   "riesgos": "",
+   "semana": "",
+   "tipo": "Neutra",
+   "vida": {
+    "alimento": "Insectos.",
+    "crias": "Huevos en el agua o en hojas húmedas.",
+    "dia": "Cantan al atardecer y de noche.",
+    "habitat": "Charcos y hojas cerca del agua en los caminos.",
+    "relaciones": "Presa de los depredadores; avisan a todos sin querer al callarse.",
+    "social": "Coros: cada macho canta en los silencios de su vecino.",
+    "sonido": "Cantos cortos por turnos, en tonos medios."
+   },
+   "zona": "Todas"
+  },
+  {
+   "id": "pajaro-carpintero",
+   "altura": "medio",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Ritmos con aceleración y lo hueco que resuena",
+   "estado": "propuesta",
+   "estados": "",
+   "inspira": "El tamborileo territorial de los pájaros carpinteros",
+   "juego": "Tamborilea en troncos que resuenan; su ritmo se aprende con la luz. Donde tamborilea hay madera hueca (lo que busca la caja). Deja huecos en los troncos que el protagonista usa de escondite al escabullirse o huir. Se calla si hay un depredador.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "Su ritmo (datos).",
+      "transformacion": ""
+     },
+     "descripcion": "Toca su ritmo en un tronco hueco.",
+     "nombre": "Tamborilear",
+     "usa": [
+      "desbloquear-ritmos",
+      "reloj-musical"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "",
+      "transformacion": ""
+     },
+     "descripcion": "Sus huecos sirven de escondite.",
+     "nombre": "Dejar escondites",
+     "usa": [
+      "caminos"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "",
+      "transformacion": ""
+     },
+     "descripcion": "Ver «Fauna de los caminos».",
+     "nombre": "Callarse",
+     "usa": [
+      "fauna-de-los-caminos"
+     ]
+    }
+   ],
+   "nombre": "Pájaro carpintero",
+   "notas": "Su papel se aprobó el 27 nov. (ver «Fauna de los caminos»); la vida es propuesta de Claude.",
+   "orden": 72,
+   "real": "- Los pájaros carpinteros tamborilean en madera que resuena (a veces hasta en metal) para marcar territorio; cada especie tiene su ritmo y velocidad.\n- Sus huecos viejos los usan muchos otros animales para vivir o esconderse.\n- En África occidental viven varios carpinteros del género Campethera.",
+   "resumen": "Tamborilea en troncos huecos con un ritmo propio que se puede aprender. Sus huecos viejos sirven de escondite.",
+   "riesgos": "",
+   "semana": "",
+   "tipo": "Neutra",
+   "vida": {
+    "alimento": "Insectos y larvas bajo la corteza.",
+    "crias": "En un hueco que cava en un tronco.",
+    "dia": "De día; tamborilea sobre todo al amanecer.",
+    "habitat": "Árboles de los caminos.",
+    "relaciones": "Comparte la comida con la caja, pero no compite: busca en otros troncos.",
+    "social": "Solo o en pareja; defiende su territorio tamborileando.",
+    "sonido": "Ráfagas de golpes en madera que resuena."
+   },
+   "zona": "Todas"
+  },
+  {
+   "id": "flor-de-nectar",
+   "altura": "agudo",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [
+    {
+     "campo": "notaPropia",
+     "nota": "solo desde la zona 2",
+     "unidad": "Hz",
+     "valor": "—"
+    },
+    {
+     "campo": "tolerancia",
+     "nota": "la dificultad",
+     "unidad": "Hz",
+     "valor": "—"
+    },
+    {
+     "campo": "vidaQueRecarga",
+     "nota": "",
+     "unidad": "",
+     "valor": "—"
+    }
+   ],
+   "editado": "2026-11-27",
+   "ensena": "Frecuencia: cada flor responde a su nota",
+   "estado": "aprobada",
+   "estados": "- Cerrada.\n- Abierta (con néctar).\n- Vacía (vuelve a llenarse con el tiempo o al dormir).",
+   "inspira": "La onagra de playa y la polinización por zumbido",
+   "juego": "- Están cerradas. En la zona 1 abren con cualquier zumbido cerca, porque todavía no hay perilla de frecuencia.\n- En las zonas siguientes cada flor pide su nota, y se usa la perilla.\n- Al abrir dan néctar: recarga la vida del protagonista y es comida del hi-hat.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "Escucha «sonó algo» cerca; desde la zona 2 compara la altura con su nota.",
+      "entrada": "",
+      "estado": "Cerrada, abierta o vacía.",
+      "transformacion": "Se abre y muestra el néctar."
+     },
+     "descripcion": "Abre si suena un zumbido cerca; desde la zona 2, solo con su nota.",
+     "nombre": "Abrir con un zumbido",
+     "usa": [
+      "aviso-sono-algo"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "",
+      "transformacion": ""
+     },
+     "descripcion": "Recarga la vida.",
+     "nombre": "Dar néctar",
+     "usa": [
+      "ser-presa",
+      "caminos"
+     ]
+    }
+   ],
+   "nombre": "Flor de néctar",
+   "notas": "Aprobado el 27 nov.: crece con el juego (cualquier zumbido en la zona 1, su nota después).",
+   "orden": 74,
+   "real": "- La onagra de playa hace su néctar más dulce en unos 3 minutos cuando oye el zumbido de una abeja: responde a esa frecuencia, no a cualquier ruido.\n- Las flores del tomate y del arándano solo sueltan su polen cuando el abejorro vibra a cierta frecuencia (polinización por zumbido).\n- Que abran es inventado: la onagra no se abre, cambia su néctar.",
+   "resumen": "Flores cerradas que abren con un zumbido cerca y dan néctar, que recarga la vida. En la zona 1 abren con cualquier zumbido; después cada una pide su nota.",
+   "riesgos": "- En la zona 2 se puede usar como práctica suave de afinar antes de los puzzles.",
+   "semana": "",
+   "tipo": "Neutra",
+   "zona": "Todas"
+  },
+  {
+   "id": "saqueador",
+   "altura": "medio",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Distinguir una alarma real de una falsa",
+   "estado": "aprobada",
+   "estados": "- Mirando desde arriba.\n- Alarma falsa.\n- Robando (baja por lo que soltaste).",
+   "inspira": "El drongo de cola ahorquillada",
+   "juego": "- Imita la alarma de los caminos: un grito, o que las ranas se callen de mentira.\n- Si el jugador huye o se esconde y suelta lo que carga, baja y se lo lleva.\n- La alarma falsa se distingue porque falta el resto: no hay otras señales del depredador (la cámara no tiembla, ningún destello, la música no cambia igual).\n- No quita vida. Por él las tribus viajan juntas al mercado del caracol.\n- Distinto del Imitador (zona 2): el imitador copia algo para atraerte y cazarte; el saqueador da miedo para robarte.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Manda una alarma falsa.",
+      "deteccion": "Ve si el jugador carga algo.",
+      "entrada": "",
+      "estado": "Cuántas alarmas falsas ha dado (para cambiar de grito).",
+      "transformacion": ""
+     },
+     "descripcion": "Imita la alarma para que huyas y sueltes lo que cargas.",
+     "nombre": "Alarma falsa",
+     "usa": [
+      "aviso-sono-algo",
+      "fauna-de-los-caminos",
+      "paisaje-del-peligro"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "Avisa a la telemetría qué se robó.",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "",
+      "transformacion": ""
+     },
+     "descripcion": "Baja por lo que soltaste y se lo lleva.",
+     "nombre": "Robar",
+     "usa": [
+      "mercado-del-caracol",
+      "caminos"
+     ]
+    }
+   ],
+   "nombre": "Saqueador",
+   "notas": "Aprobado el 27 nov. Por decidir: si se puede recuperar lo robado (seguirlo hasta su nido).",
+   "orden": 76,
+   "real": "- El drongo de cola ahorquillada (Kalahari) imita los gritos de alarma de suricatas y aves; cuando huyen, se lleva la comida que soltaron. También da alarmas verdaderas, por eso le creen, y cambia de grito para que no se acostumbren.\n- Aves como el págalo persiguen a otras hasta que sueltan lo que cargan.\n- Muchos animales viajan en grupo porque así es más difícil que elijan a uno.",
+   "resumen": "No quita vida, quita cosas: da una alarma falsa y, si huyes y sueltas lo que cargas, se lo lleva. Por él las tribus viajan en caravana.",
+   "riesgos": "- Se parece al Imitador de la zona 2: la diferencia es que este asusta para robar y el imitador atrae para cazar.\n- Que una alarma falsa se sienta como trampa injusta: debe haber una pista que el oído atento note.",
+   "semana": "",
+   "tipo": "Depredador",
+   "vida": {
+    "alimento": "Lo que otros sueltan; también insectos.",
+    "crias": "",
+    "dia": "De día.",
+    "habitat": "Ramas altas sobre los caminos.",
+    "relaciones": "Vive de las tribus y del protagonista cuando viajan solos. No se atreve con las caravanas.",
+    "social": "Solo; vigila desde lo alto.",
+    "sonido": "Imita alarmas de otros."
+   },
+   "zona": "Todas"
+  },
+  {
+   "id": "cazador-de-oido",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "bloques": {},
+   "datos": [],
+   "editado": "2026-11-28",
+   "ensena": "Volumen",
+   "estado": "fuera de la 1.0",
+   "estados": "",
+   "inspira": "Murciélagos y búhos",
+   "juego": "- Diferencia con las aves de la zona 3: ellas llegan solo si la mezcla de la tribu se satura, atacan a la capa más fuerte y no te hacen daño. El cazador te caza a ti.\n- Aparece en lugares oscuros y oye tu volumen: cada golpe fuerte lo acerca.\n- Te quita vida. Lo esquivas tocando suave o haciendo sonar a una tribu en otro lado para desviarlo.",
+   "nombre": "Cazador de oído",
+   "notas": "Pide sonar más o menos fuerte; la zona 1 se juega con el pulso. El 28 nov., 01:59: queda sin animal real ni vida hasta después de la 1.0 (la lechuza ya la usan las aves de la zona 3; una idea para entonces es el murciélago guanero de México).",
+   "orden": 200,
+   "real": "",
+   "resumen": "Es ciego y caza por sonido. Hay que tocar suave o hacer que una tribu suene en otro lado.",
+   "riesgos": "",
+   "semana": "Después de la 1.0 (o zona 4 si sobra el margen de la semana 22)",
+   "tipo": "Depredador",
+   "zona": "4 · La mezcla"
+  },
+  {
+   "id": "imitador",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "bloques": {},
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Afinar y tocar a tiempo: notar lo que está casi bien",
+   "estado": "aprobada",
+   "estados": "- Escondido, tocando su copia.\n- Atrayendo (el jugador se acerca).\n- Atrapar (el jugador llega sin notarlo).\n- Descubierto (el jugador igualó la nota o el pulso verdaderos y lo delató).",
+   "inspira": "Luciérnagas impostoras y ave lira",
+   "juego": "- Copia melodías de las tribus un poco desafinadas y ritmos un poco a destiempo.\n- Suena casi igual que una tribu de verdad para que vayas hacia él.\n- Se descubre comparando: su nota contra la perilla de frecuencia y su ritmo contra el pulso. Con más oído se nota antes.\n- Distinto del saqueador: el saqueador asusta para robar; el imitador atrae para cazar.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "Qué tan desafinado y qué tan a destiempo (datos; la dificultad).",
+      "transformacion": ""
+     },
+     "descripcion": "Toca una melodía un poco desafinada o un ritmo un poco a destiempo.",
+     "nombre": "Copiar mal",
+     "usa": [
+      "reloj-musical",
+      "aviso-sono-algo"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "Manda «te golpeó» con su daño.",
+      "deteccion": "El jugador entra a su área.",
+      "entrada": "",
+      "estado": "",
+      "transformacion": ""
+     },
+     "descripcion": "Si te acercas sin notarlo, te ataca.",
+     "nombre": "Atraer y atrapar",
+     "usa": [
+      "ser-presa"
+     ]
+    }
+   ],
+   "nombre": "Imitador",
+   "notas": "Aprobado el 27 nov.: copia melodías desafinadas y ritmos a destiempo.",
+   "orden": 210,
+   "real": "- Las luciérnagas Photuris copian el destello de las hembras de otra especie para atraer a los machos y comérselos.\n- El ave lira copia casi cualquier sonido del bosque.\n- Que copie la música de una tribu es inventado.",
+   "resumen": "Copia la melodía o el ritmo de una tribu, un poco desafinado o a destiempo, para atraerte a su trampa.",
+   "riesgos": "- La diferencia tiene que oírse sin ser obvia: se ajusta con datos y el oído del jugador.",
+   "semana": "Semana 18",
+   "tipo": "Depredador",
+   "zona": "2 · Melodía"
+  },
+  {
+   "id": "el-que-llega-con-el-escandalo",
+   "altura": "agudo",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "bloques": {},
+   "datos": [
+    {
+     "campo": "limiteLleno",
+     "nota": "qué tan lleno puede ir un golpe en promedio",
+     "unidad": "",
+     "valor": "—"
+    },
+    {
+     "campo": "compasesParaIrse",
+     "nota": "",
+     "unidad": "compases",
+     "valor": "—"
+    },
+    {
+     "campo": "compasesParaPosarse",
+     "nota": "cuánto escándalo seguido antes de sacar de tiempo al músico",
+     "unidad": "compases",
+     "valor": "—"
+    }
+   ],
+   "editado": "2026-11-28",
+   "ensena": "No saturar: volumen y dejar espacio",
+   "estado": "aprobada",
+   "estados": "- Escondidas.\n- Filtrándose (el escándalo pasó del límite).\n- Nube encima de la capa más fuerte (tapan la vista).\n- Posadas en el músico (lo sacan de tiempo).\n- Se van (la mezcla bajó unos compases).",
+   "inspira": "La mosca Ormia, que caza grillos por su canto",
+   "juego": "- Viven escondidas en las guaridas.\n- Si el escándalo pasa del límite, reaccionan a la frecuencia de tanto ruido y se filtran decenas.\n- Van hacia la capa más fuerte. Primero tapan la vista: la nube crece sobre ese músico y cuesta apuntarle con la luz.\n- Si la mezcla sigue fuerte, se posan en el músico y lo sacan de tiempo: toca a destiempo y ensucia la mezcla.\n- Se van si la mezcla baja del límite unos compases (bajar o quitar esa capa).",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "Escuchan «escándalo» y la frecuencia de lo que suena.",
+      "entrada": "",
+      "estado": "Cuántas hay (datos: la dificultad).",
+      "transformacion": "Una nube que crece sobre la capa más fuerte."
+     },
+     "descripcion": "Con el escándalo, entran decenas y van a la capa más fuerte.",
+     "nombre": "Filtrarse",
+     "usa": [
+      "medidor-del-escandalo"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "Siguen escuchando «escándalo».",
+      "entrada": "",
+      "estado": "Nube o posadas, según cuánto dure el escándalo.",
+      "transformacion": "La nube tapa la vista sobre la capa más fuerte; posadas, el músico toca a destiempo."
+     },
+     "descripcion": "Primero tapan la vista sobre la capa más fuerte; si sigue el escándalo, sacan de tiempo al músico.",
+     "nombre": "Estorbar",
+     "usa": [
+      "dirigir-con-luz",
+      "reloj-musical"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "",
+      "transformacion": ""
+     },
+     "descripcion": "Si la mezcla baja unos compases, se van.",
+     "nombre": "Irse",
+     "usa": [
+      "medidor-del-escandalo"
+     ]
+    }
+   ],
+   "nombre": "Moscas del escándalo",
+   "notas": "Decidido el 28 nov.: la mosca para las guaridas y las aves para afuera (ver «Lechuza y aves rivales»). Cómo estorban, decidido el 28 nov., 01:59: las dos cosas, primero tapan la vista y luego sacan de tiempo. La vida es propuesta de Claude.",
+   "orden": 220,
+   "real": "- La mosca Ormia oye el canto de los grillos (su oído está afinado a esa frecuencia), los encuentra y deja sus larvas encima.\n- En Hawái, en pocos años la mayoría de los grillos machos de una isla dejaron de cantar: les nació un ala que no suena.\n- Que lleguen en decenas a una mezcla es inventado.",
+   "resumen": "Dentro de las guaridas: con tanto ruido reaccionan a su frecuencia y se filtran decenas, y se vuelve muy difícil seguir tocando.",
+   "riesgos": "- Ahora son dos criaturas en la semana 19 (moscas y aves) y las moscas estorban de dos formas; con el equipo de dos puede caber, pero hay que revisarlo al rehacer el plan. Si no cabe, primero sale «tapar la vista».",
+   "semana": "Semana 19",
+   "tipo": "Depredador",
+   "vida": {
+    "alimento": "Las larvas viven dentro de otros insectos; los adultos, néctar.",
+    "crias": "Deja larvas encima de los que hacen mucho ruido.",
+    "dia": "Al atardecer, como la Ormia, que busca grillos cuando empiezan a cantar.",
+    "habitat": "Rincones de las guaridas.",
+    "relaciones": "Parásita de los músicos ruidosos.",
+    "social": "Llegan muchas a la vez.",
+    "sonido": "Un zumbido agudo; oyen muy bien la frecuencia de lo que buscan."
+   },
+   "zona": "3 · Armonía"
+  },
+  {
+   "id": "lechuza-y-aves",
+   "altura": "grave",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-28",
+   "ensena": "No saturar: volumen y dejar espacio",
+   "estado": "aprobada",
+   "estados": "- Posadas lejos.\n- Atentas (el escándalo sube).\n- Dando vueltas (aviso).\n- En picada.\n- Se van.",
+   "inspira": "La lechuza, que caza por oído, y las aves que atacan a un rival que canta en su territorio",
+   "juego": "- Están en los exteriores: cuando la tribu toca afuera o en guaridas abiertas.\n- Si el escándalo pasa del límite, oyen la mezcla como el canto de aves rivales y bajan.\n- Dan vueltas (el aviso) y caen en picada hacia la capa más fuerte. Ahuyentan a la tribu; al protagonista no le hacen daño.\n- Los músicos huyen a un escondite cercano. Cuando las aves se van, vuelven a su lugar en silencio y hay que volver a dirigirlos con la luz para que retomen su capa. Lo aprendido no se pierde.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "Escuchan «escándalo».",
+      "entrada": "",
+      "estado": "",
+      "transformacion": "Bajan y dan vueltas antes de lanzarse."
+     },
+     "descripcion": "Con el escándalo, oyen la mezcla como un ave rival y bajan.",
+     "nombre": "Confundir con un rival",
+     "usa": [
+      "medidor-del-escandalo",
+      "aviso-sono-algo"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "Avisa a la telemetría qué capa ahuyentó.",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "",
+      "transformacion": "Los músicos huyen y dejan de tocar."
+     },
+     "descripcion": "Se lanzan a la capa más fuerte y ahuyentan a la tribu.",
+     "nombre": "Caer en picada",
+     "usa": [
+      "paisaje-del-peligro"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "Ven que las aves se fueron.",
+      "entrada": "",
+      "estado": "Escondidos, luego en su lugar sin tocar.",
+      "transformacion": "Vuelven en silencio; la capa se pierde hasta que los diriges otra vez."
+     },
+     "descripcion": "Los músicos se esconden cerca y vuelven en silencio: hay que volver a dirigirlos.",
+     "nombre": "Volver la tribu",
+     "usa": [
+      "dirigir-con-luz"
+     ]
+    }
+   ],
+   "nombre": "Lechuza y aves rivales",
+   "notas": "Decidido el 28 nov. (idea mía). El 28 nov., 01:59: no le hacen daño al protagonista, solo ahuyentan; la tribu se esconde cerca y vuelve en silencio hasta que la re-diriges. La vida es propuesta de Claude.",
+   "orden": 222,
+   "real": "- La lechuza de campanario caza por oído: puede atrapar a un ratón en la oscuridad total solo por cómo suena.\n- Muchas aves defienden su territorio: si oyen el canto de un rival (aunque salga de una bocina), llegan y lo atacan. Así cuentan aves los científicos.\n- Algunas aves bajan en picada para espantar a quien se acerca a su nido.",
+   "resumen": "Afuera: con tanto ruido, bajan como si fueran cantos de aves rivales, caen en picada y ahuyentan a la tribu.",
+   "riesgos": "",
+   "semana": "Semana 19",
+   "tipo": "Depredador",
+   "vida": {
+    "alimento": "La lechuza, ratones e insectos grandes.",
+    "crias": "En huecos de árboles o rocas.",
+    "dia": "La lechuza, de noche; otras aves territoriales, de día.",
+    "habitat": "Ramas altas y riscos fuera de las guaridas.",
+    "relaciones": "Defienden su territorio de cualquier canto que parezca de un rival.",
+    "social": "Solas o en pareja.",
+    "sonido": "La lechuza oye muy bien: caza por el sonido."
+   },
+   "zona": "3 · Armonía"
+  },
+  {
+   "id": "fauna-del-eco",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "bloques": {},
+   "datos": [],
+   "editado": "2026-11-28",
+   "ensena": "Cómo viaja el sonido",
+   "estado": "fuera de la 1.0",
+   "estados": "",
+   "inspira": "Superficies que reflejan el sonido",
+   "juego": "",
+   "nombre": "Fauna del eco",
+   "notas": "La frontera de tierra muerta hacia la zona 2 va como pasillo corto en la semana 17, sin esta fauna. El 28 nov., 01:59: su animal real y su vida quedan para después de la 1.0.",
+   "orden": 240,
+   "real": "",
+   "resumen": "Criaturas con caparazón que rebotan el sonido hacia donde no viaja.",
+   "riesgos": "",
+   "semana": "Después de la 1.0",
+   "tipo": "Neutra",
+   "zona": "Todas"
+  }
+ ],
+ "globales": [
+  {
+   "id": "reloj-musical",
+   "altura": "—",
+   "avisosEscucha": "- El pulso de la perilla.",
+   "avisosManda": "- «llegó un pulso».\n- «llegó un pedazo».",
+   "datos": [
+    {
+     "campo": "ppm",
+     "nota": "lo cambia la perilla del pulso",
+     "unidad": "ppm",
+     "valor": "96"
+    },
+    {
+     "campo": "pulsosPorCompas",
+     "nota": "",
+     "unidad": "",
+     "valor": "4"
+    },
+    {
+     "campo": "pedazosPorPulso",
+     "nota": "los avisa todos; cada criatura escucha los que usa",
+     "unidad": "",
+     "valor": "4"
+    }
+   ],
+   "editado": "2026-11-27",
+   "ensena": "El pulso",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "",
+   "juego": "Avisa cada pulso y cada pedazo del pulso. Todo lo que se mueve a tiempo lo escucha, así nada se desfasa.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Manda «llegó un pulso» y «llegó un pedazo» (para el hi-hat).",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "Pulsos por minuto, en qué pulso del compás va y en qué pedazo.",
+      "transformacion": ""
+     },
+     "descripcion": "Avisa cada pulso y cada pedazo del pulso.",
+     "nombre": "Marcar el pulso",
+     "usa": []
+    }
+   ],
+   "nombre": "Reloj musical",
+   "notas": "Decidido el 23 nov.: un solo reloj musical mueve el sonido, las luces y las partículas.",
+   "orden": 10,
+   "real": "",
+   "resumen": "Un solo reloj marca el pulso de todo el juego: el sonido, las criaturas, las luces y las partículas.",
+   "riesgos": "",
+   "semana": "Semana 5 (21 a 27 dic.)",
+   "tipo": "Sistema",
+   "zona": "Todas"
+  },
+  {
+   "id": "aviso-sono-algo",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [
+    {
+     "campo": "posicion",
+     "nota": "",
+     "unidad": "tiles",
+     "valor": "Vector2"
+    },
+    {
+     "campo": "altura",
+     "nota": "",
+     "unidad": "",
+     "valor": "grave | medio | agudo"
+    },
+    {
+     "campo": "fuerza",
+     "nota": "",
+     "unidad": "",
+     "valor": "0 a 1"
+    },
+    {
+     "campo": "fuente",
+     "nota": "",
+     "unidad": "",
+     "valor": "texto"
+    },
+    {
+     "campo": "esDelJugador",
+     "nota": "",
+     "unidad": "",
+     "valor": "sí / no"
+    }
+   ],
+   "editado": "2026-11-28",
+   "ensena": "Cómo se comunican las cosas",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "",
+   "juego": "Cada vez que algo suena manda un aviso con dónde, qué tan grave o agudo y qué tan fuerte. Cada criatura decide si le importa.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Una señal que cualquiera puede escuchar (un evento), no una referencia directa.",
+      "deteccion": "",
+      "entrada": "Lo dispara quien suena: el bombo, la caja, el hi-hat, el protagonista al aterrizar.",
+      "estado": "No recuerda nada: es un mensaje.",
+      "transformacion": ""
+     },
+     "descripcion": "Todo lo que suena manda un aviso; cada criatura decide si le importa.",
+     "nombre": "Mandar y escuchar el aviso",
+     "usa": []
+    }
+   ],
+   "nombre": "Aviso «sonó algo»",
+   "notas": "La sala sin sonido es una regla de este aviso, no de cada criatura. Aprobado el 28 nov., 01:59.",
+   "orden": 20,
+   "real": "",
+   "resumen": "Un solo aviso que manda todo lo que suena y que cualquier criatura puede escuchar. Así un depredador nuevo es casi solo datos.",
+   "riesgos": "",
+   "semana": "Semana 6, con el bombo",
+   "tipo": "Sistema",
+   "zona": "Todas"
+  },
+  {
+   "id": "paisaje-del-peligro",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Que el sonido cuenta lo que pasa",
+   "estado": "aprobada",
+   "estados": "- Calma.\n- Te buscan (silencio).\n- Te persiguen (caos y graves).",
+   "inspira": "",
+   "juego": "- El juego es muy visual y auditivo, y el sonido del lugar cambia con el peligro.\n- Calma: la fauna toca sus patrones y suena la música de la zona.\n- Te buscan: si un depredador te busca y no haces ruido, casi todo se calla. Da emoción y avisa.\n- Te persiguen: las criaturas alrededor suenan a la vez creando caos, y entran bombos o graves que dan ritmo y sensación de prisa.\n- Con poca vida, además, la música pierde los agudos (ver «Ser presa»).",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "Escucha a los depredadores: si buscan, si persiguen y qué tan cerca están.",
+      "entrada": "",
+      "estado": "Calma, te buscan o te persiguen.",
+      "transformacion": "Calla la fauna y la música o suma capas de caos y graves (capas de mi música en FMOD)."
+     },
+     "descripcion": "Cambia lo que suena según si hay calma, te buscan o te persiguen.",
+     "nombre": "Seguir el peligro",
+     "usa": [
+      "aviso-sono-algo",
+      "ser-presa",
+      "fauna-de-los-caminos"
+     ]
+    }
+   ],
+   "nombre": "Paisaje del peligro",
+   "notas": "Idea mía del 27 nov., al decidir la fauna de los caminos.",
+   "orden": 25,
+   "real": "- Muchas ranas e insectos se callan cuando sienten un depredador; la rana túngara calla cuando pasa el murciélago que la caza.\n- En el cine y los videojuegos, la música de persecución suele usar percusión grave y rápida para dar prisa.",
+   "resumen": "Lo que suena alrededor sigue al peligro: si te buscan y no haces ruido, casi todo se calla; si te persiguen, las criaturas suenan a la vez y entran graves y bombos que dan prisa.",
+   "riesgos": "- Va con la música por capas: lo jugable funciona sin esto, así que se puede dejar para cuando exista la música (no bloquea la semana 8).",
+   "semana": "",
+   "tipo": "Sistema",
+   "zona": "Todas"
+  },
+  {
+   "id": "medidor-del-escandalo",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [
+    {
+     "campo": "limiteLleno",
+     "nota": "la dificultad",
+     "unidad": "",
+     "valor": "—"
+    },
+    {
+     "campo": "compasesParaIrse",
+     "nota": "",
+     "unidad": "compases",
+     "valor": "—"
+    }
+   ],
+   "editado": "2026-11-28",
+   "ensena": "No saturar: volumen y dejar espacio",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "",
+   "juego": "- En cada golpe del reloj se suma lo fuerte de todas las capas que suenan juntas, y se promedia por compás.\n- Si suben las capas o el volumen, sube el escándalo; si se turnan, casi no suma.\n- Si pasa de un límite: dentro de las guaridas llegan las moscas del escándalo; afuera, las aves.\n- Si la mezcla baja del límite unos compases, se van.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Manda «escándalo» con dónde y qué capa suena más.",
+      "deteccion": "Escucha las capas de la mezcla en cada golpe.",
+      "entrada": "",
+      "estado": "El promedio del compás y si pasó del límite.",
+      "transformacion": ""
+     },
+     "descripcion": "Suma lo fuerte de las capas que suenan en el mismo golpe y promedia por compás.",
+     "nombre": "Medir qué tan lleno va",
+     "usa": [
+      "reloj-musical",
+      "aviso-sono-algo"
+     ]
+    }
+   ],
+   "nombre": "Medidor del escándalo",
+   "notas": "Decidido el 28 nov., 00:10 (cómo se mide) y 00:36 (quién llega: moscas adentro, aves afuera).",
+   "orden": 27,
+   "real": "- En la mezcla de música, si todo suena fuerte a la vez se satura; los ingenieros miran un medidor y dejan espacio para que cada parte se oiga.\n- Cuando dos sonidos suenan al mismo tiempo, se suman.",
+   "resumen": "Mide qué tan lleno va cada golpe de la mezcla. Si pasa de un límite, llegan las moscas (en las guaridas) o las aves (afuera).",
+   "riesgos": "",
+   "semana": "",
+   "tipo": "Sistema",
+   "zona": "3 · Armonía"
+  },
+  {
+   "id": "perilla-del-pulso",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "- El pulso nuevo, cada vez que cambia.",
+   "datos": [
+    {
+     "campo": "ppmMin",
+     "nota": "",
+     "unidad": "ppm",
+     "valor": "60"
+    },
+    {
+     "campo": "ppmMax",
+     "nota": "",
+     "unidad": "ppm",
+     "valor": "160"
+    }
+   ],
+   "editado": "2026-11-27",
+   "ensena": "Tempo",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "Los grillos cantan más rápido con calor y más lento con frío (ley de Dolbear)",
+   "juego": "El protagonista siente el pulso del mundo y lo devuelve a la tribu girando esta perilla. No la tiene desde el inicio: es el regalo del hi-hat por su favor (ajustar el calor del lugar). Antes de tenerla, el pulso de la zona 1 es fijo o solo cambia con el calor de los insectos. En el sintonizador se ve como una perilla con el símbolo del grillo: las perillas de los aparatos llevan el símbolo del insecto que las dio. La perilla de frecuencia es de la zona 2.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Manda el pulso nuevo al reloj, al enjambre y a la tribu.",
+      "deteccion": "",
+      "entrada": "Perilla del sintonizador.",
+      "estado": "El pulso puesto, de 60 a 160 ppm.",
+      "transformacion": "El brillo del protagonista y el reloj cambian de ritmo."
+     },
+     "descripcion": "El jugador sube o baja los pulsos por minuto.",
+     "nombre": "Girar el pulso",
+     "usa": []
+    }
+   ],
+   "nombre": "Perilla del pulso",
+   "notas": "Aprobada el 27 nov.: la zona 1 se juega con el pulso y la frecuencia es de la zona 2. También el 27 nov.: se desbloquea con el favor del hi-hat y lleva el símbolo del grillo. Se programa igual en la semana 5; solo se activa más tarde.",
+   "orden": 30,
+   "real": "",
+   "resumen": "En la zona 1 el sintonizador ajusta el pulso: si va más rápido, los golpes se juntan; si va más lento, se separan.",
+   "riesgos": "",
+   "semana": "Semana 5, con el reloj",
+   "tipo": "Sistema",
+   "zona": "1 · Ritmo"
+  },
+  {
+   "id": "dirigir-con-luz",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Tocar a tiempo y armar una pieza por capas",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "La historia: el protagonista no tiene voz, se comunica destellando y dirige a las tribus",
+   "juego": "- La tecla toca: el protagonista brilla en cada golpe que presiona el jugador. La perilla del pulso da la velocidad del mundo. Como en una banda: el baterista toca y el director marca la velocidad.\n- Dirigir: apunta su luz a un miembro y toca su pieza con la tecla; el miembro la repite en bucle y se suma a la música. Luego otro y otra capa: bombo, caja, hi-hat. Si una capa está mal, la quita y la vuelve a tocar.\n- Solo puede dirigir piezas que ya aprendió, y a criaturas que ya están en el mundo: no llama a nadie.\n- Sirve en todo el mundo. De noche, los hi-hats que viven ahí, dirigidos a tu pulso, te esconden; dirigidos a destiempo, saltan todos a la vez y confunden al depredador. No sirve contra el que siente el suelo, porque lo agudo no viaja por la tierra. De día, diriges al bombo de una madriguera cercana para que golpee lejos y el que siente el suelo se vaya hacia allá.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Manda el golpe a los minijuegos y a quien esté dirigiendo.",
+      "deteccion": "Qué tan cerca del pulso o del pedazo cayó el golpe.",
+      "entrada": "Una tecla.",
+      "estado": "",
+      "transformacion": "Destello; gana color si va a tiempo."
+     },
+     "descripcion": "El protagonista brilla en cada golpe que el jugador presiona.",
+     "nombre": "Brillar con la tecla",
+     "usa": [
+      "reloj-musical",
+      "perilla-del-pulso"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "Avisa a la música y al «sonó algo» de cada golpe de la capa.",
+      "deteccion": "La pieza ya está aprendida y el miembro está en la sala.",
+      "entrada": "Apuntar la luz a un miembro y tocar su pieza con la tecla.",
+      "estado": "Las capas que suenan y la pieza de cada una.",
+      "transformacion": "El miembro toca la pieza en bucle; la sala gana color."
+     },
+     "descripcion": "Apunta a un miembro, toca su pieza y la repite en bucle.",
+     "nombre": "Dirigir una capa",
+     "usa": [
+      "orgullo-de-la-tribu"
+     ]
+    }
+   ],
+   "nombre": "Brillar y dirigir con luz",
+   "notas": "Aprobado el 27 nov.",
+   "orden": 35,
+   "real": "- En los ensambles de tambores de África occidental, el tambor guía toca una «llamada» para que el grupo entre, cambie o pare.\n- Los pedales de loop de los músicos graban una frase y la repiten en bucle para tocar encima.\n- Un coro de grillos tapa los sonidos chicos de alrededor (enmascaramiento).\n- Efecto de confusión: cuando muchos se mueven a la vez, el depredador no logra fijarse en uno (cardúmenes, parvadas).",
+   "resumen": "El protagonista brilla con una tecla en cada golpe: así se juegan los minijuegos. Con las piezas que aprende puede dirigir con su luz a la tribu para armar piezas por capas.",
+   "riesgos": "",
+   "semana": "",
+   "tipo": "Sistema",
+   "zona": "Todas"
+  },
+  {
+   "id": "ser-presa",
+   "altura": "—",
+   "avisosEscucha": "- «te golpeó» (con el daño).",
+   "avisosManda": "- «regresó» a la telemetría: cuántas veces y en qué sala.",
+   "datos": [
+    {
+     "campo": "tiempoRegreso",
+     "nota": "",
+     "unidad": "s",
+     "valor": "0.5"
+    },
+    {
+     "campo": "vidaMax",
+     "nota": "",
+     "unidad": "puntos",
+     "valor": "100"
+    },
+    {
+     "campo": "velocidadConVidaMinima",
+     "nota": "de la velocidad normal; baja poco a poco, no 1 a 1",
+     "unidad": "%",
+     "valor": "50"
+    }
+   ],
+   "editado": "2026-11-27",
+   "ensena": "Volver a intentar con lo que oíste",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "",
+   "juego": "- El protagonista no se defiende. Cada depredador hace su propio daño (dato) y le quita vida.\n- La vida se ve dos veces: su luz se apaga un poco con cada golpe y una barra pequeña lo confirma.\n- Con poca vida va más lento, hasta la mitad de su velocidad con la vida casi vacía (no 1 a 1), y la música pierde los agudos. Es a propósito: en la vida real un animal herido es presa más fácil. La ayuda son los escondites en las salas y los power-ups para escapar.\n- Recibir golpe y tener poca vida se ven con efectos: destellos blancos, pantalla borrosa como lluvia, sacudidas, estrellitas o alucinaciones. Todo se puede apagar en Ajustes; el diseño es para la versión completa con todo activado.\n- El néctar recarga la vida; tocar un hueco (checkpoint) la llena.\n- Si se acaba la vida, la pantalla se apaga a gris un momento y aparece en el último checkpoint que tocó. Se rompen las piezas para llevar que no estén a salvo. Lo aprendido y el oído nunca se pierden.\n- La dificultad se ajusta con la distancia entre checkpoints y con el nivel de dificultad (ver «Dificultad»).",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Manda «golpe» a la telemetría: qué lo golpeó y en qué sala.",
+      "deteccion": "Escucha «te golpeó» de cualquier depredador, con su daño.",
+      "entrada": "",
+      "estado": "La vida (0 a 100). La velocidad baja con la vida, hasta el 50 %.",
+      "transformacion": "Su luz se apaga un poco y la barra baja; efecto de golpe (destellos blancos, pantalla borrosa como lluvia, sacudidas, estrellitas o alucinaciones). Con poca vida, la música pierde los agudos."
+     },
+     "descripcion": "Un depredador le quita vida; con menos vida va más lento y se oye apagado.",
+     "nombre": "Recibir golpe",
+     "usa": [
+      "dificultad"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "Manda «regresó» a la telemetría: cuántas veces, en qué sala y qué lo atrapó.",
+      "deteccion": "La vida llega a 0.",
+      "entrada": "",
+      "estado": "Atrapado: sin controles por medio segundo.",
+      "transformacion": "La pantalla se apaga a gris y el protagonista aparece en el checkpoint con la vida llena."
+     },
+     "descripcion": "Si se acaba la vida, reaparece en el último checkpoint que tocó.",
+     "nombre": "Volver al último checkpoint",
+     "usa": [
+      "checkpoint"
+     ]
+    }
+   ],
+   "nombre": "Ser presa",
+   "notas": "Decidido el 27 nov. (opción C del debate). Qué se pierde al caer: las piezas para llevar que no estén a salvo (27 nov.).\n27 nov., 14:37: aclaré que «una vida» era una barra de vida que, al acabarse, te manda al checkpoint; no morir al primer golpe.",
+   "orden": 40,
+   "real": "",
+   "resumen": "El protagonista tiene una barra de vida y su luz. Cada golpe de un depredador le quita vida; si se acaba, vuelve al último checkpoint. Caer debe dar ganas de volver a intentar, no miedo.",
+   "riesgos": "- Ir más lento con poca vida puede romper saltos diseñados para la velocidad completa. Se acepta: la ayuda son escondites y power-ups, y en las salas con saltos justos conviene un hueco cerca.\n- Los efectos de pantalla son visuales: van con lo visual (fase 2 o pulido), no antes.",
+   "semana": "Semana 8",
+   "tipo": "Regla",
+   "zona": "Todas"
+  },
+  {
+   "id": "checkpoint",
+   "altura": "—",
+   "avisosEscucha": "- Que el jugador pase cerca.",
+   "avisosManda": "- «checkpoint activo» (guardado y telemetría).",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Volver a intentar",
+   "estado": "aprobada",
+   "estados": "- Inactivo (gris).\n- Activo: es el punto de regreso.",
+   "inspira": "La vida del protagonista: duerme en huecos que resuenan",
+   "juego": "Son los huecos donde duerme el protagonista (troncos, conchas y grietas que resuenan), porque ahí siente mejor el pulso del mundo. Al pasar junto a uno se vuelve el punto de regreso y las piezas para llevar que cargas quedan a salvo y la vida se llena. Si duermes ahí, eliges a qué hora despertar. Se colocan a mano en cada sala: lejos entre sí para lo difícil, cerca para lo fácil.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Avisa al guardado, a la telemetría y a las piezas para llevar («a salvo»).",
+      "deteccion": "Un área alrededor del hueco.",
+      "entrada": "El jugador pasa junto a él.",
+      "estado": "Cuál es el último checkpoint activo.",
+      "transformacion": "El hueco resuena, gana color y suena una nota corta."
+     },
+     "descripcion": "Tocarlo lo vuelve el punto de regreso y pone a salvo lo que cargas.",
+     "nombre": "Activar checkpoint",
+     "usa": [
+      "mensajero"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "Avisa a la hora del día.",
+      "deteccion": "",
+      "entrada": "El jugador elige dormir y a qué hora despertar.",
+      "estado": "",
+      "transformacion": "La pantalla se oscurece y despierta a la hora elegida."
+     },
+     "descripcion": "Dormir en el hueco cambia la hora del día.",
+     "nombre": "Dormir",
+     "usa": [
+      "hora-del-dia"
+     ]
+    }
+   ],
+   "nombre": "Checkpoint",
+   "notas": "Aprobado el 27 nov.: huecos que resuenan en vez de miembros de la tribu.",
+   "orden": 45,
+   "real": "",
+   "resumen": "Los checkpoints son huecos que resuenan, donde duerme el protagonista. Al tocar uno se vuelve tu punto de regreso; dormir ahí cambia la hora del día.",
+   "riesgos": "- Colocarlos bien pide probar cada sala; se hace en la semana 9, junto con las salas.",
+   "semana": "Semana 8 (con ser presa); se guarda en la semana 11",
+   "tipo": "Sistema",
+   "zona": "Todas"
+  },
+  {
+   "id": "dificultad",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "- «nivel» a la telemetría.",
+   "datos": [
+    {
+     "campo": "multiplicadorDano",
+     "nota": "por nivel",
+     "unidad": "×",
+     "valor": "por definir"
+    },
+    {
+     "campo": "multiplicadorAparicion",
+     "nota": "cuántos depredadores aparecen, por nivel",
+     "unidad": "×",
+     "valor": "por definir"
+    },
+    {
+     "campo": "tolerancia",
+     "nota": "a tiempo, por nivel",
+     "unidad": "s",
+     "valor": "por definir"
+    }
+   ],
+   "editado": "2026-11-27",
+   "ensena": "Que cada quien juegue a su ritmo",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "",
+   "juego": "- 2 o 3 niveles. Solo cambian números, no el diseño: daño de cada depredador, cuántos aparecen y la tolerancia de tiempo.\n- Se elige al empezar y se puede cambiar en Ajustes.\n- La telemetría guarda con qué nivel se jugó; el playtest y el examen se juegan en el mismo nivel.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Avisa a la telemetría.",
+      "deteccion": "",
+      "entrada": "El jugador elige el nivel al empezar o en Ajustes.",
+      "estado": "El nivel actual.",
+      "transformacion": "Multiplica los datos de cada depredador y la tolerancia."
+     },
+     "descripcion": "El nivel cambia los datos de daño, aparición y tolerancia.",
+     "nombre": "Elegir dificultad",
+     "usa": [
+      "ser-presa"
+     ]
+    }
+   ],
+   "nombre": "Dificultad",
+   "notas": "Aprobado el 27 nov.",
+   "orden": 45,
+   "real": "",
+   "resumen": "Niveles de dificultad que solo cambian datos: el daño de los depredadores, cuántos aparecen y la tolerancia de tiempo.",
+   "riesgos": "- Si la tolerancia cambia por nivel, el examen debe jugarse en un solo nivel para comparar.",
+   "semana": "",
+   "tipo": "Regla",
+   "zona": "Todas"
+  },
+  {
+   "id": "sala-sin-sonido",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "El sonido necesita algo por donde viajar",
+   "estado": "propuesta",
+   "estados": "",
+   "inspira": "",
+   "juego": "Adentro no oyes al bombo de afuera, y el que siente el suelo no te oye a ti. La sala queda gris y apagada. Una o dos salas en la semana 9.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Es una regla del aviso «sonó algo»: el aviso pregunta al área si puede pasar.",
+      "deteccion": "Un área que marca la sala.",
+      "entrada": "",
+      "estado": "Adentro o afuera.",
+      "transformacion": "La sala queda gris y se oye apagada."
+     },
+     "descripcion": "Dentro del área los avisos no entran ni salen.",
+     "nombre": "Cortar los avisos",
+     "usa": []
+    }
+   ],
+   "nombre": "Sala donde el sonido no viaja",
+   "notas": "",
+   "orden": 50,
+   "real": "- El sonido necesita aire, agua o algo sólido para viajar; en el vacío no se oye nada.\n- Hay cuevas y cuartos que se «tragan» el eco porque sus paredes absorben el sonido.",
+   "resumen": "Un área donde los avisos no entran ni salen. Refugio y obstáculo a la vez.",
+   "riesgos": "",
+   "semana": "Semana 9 (una o dos salas)",
+   "tipo": "Obstáculo",
+   "zona": "1 · Ritmo"
+  },
+  {
+   "id": "orgullo-de-la-tribu",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "- «pieza aprendida» (cuál): la oyen el camino, la música, el árbol de los ritmos y la telemetría.",
+   "datos": [
+    {
+     "campo": "confianza",
+     "nota": "",
+     "unidad": "piezas aprendidas",
+     "valor": "0 a 3"
+    }
+   ],
+   "editado": "2026-11-27",
+   "ensena": "Las piezas del ritmo",
+   "estado": "propuesta",
+   "estados": "",
+   "inspira": "",
+   "juego": "Cada miembro te enseña su pieza con un minijuego. Mientras no confían, tapan el camino; cuando confían, se hacen a un lado y su pieza se une a la música.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Manda «pieza aprendida»: la oyen el camino, la música, el árbol de los ritmos y la telemetría.",
+      "deteccion": "",
+      "entrada": "El jugador completa el minijuego de una pieza.",
+      "estado": "Confianza: cuántas piezas aprendió (0 a 3).",
+      "transformacion": "El miembro que tapaba el camino se hace a un lado; su pieza se une a la música."
+     },
+     "descripcion": "Por cada pieza aprendida en un minijuego, la tribu confía más.",
+     "nombre": "Ganar confianza",
+     "usa": []
+    }
+   ],
+   "nombre": "Confianza de la tribu",
+   "notas": "",
+   "orden": 60,
+   "real": "",
+   "resumen": "No confían en un extraño sin voz. Se supera aprendiendo sus piezas.",
+   "riesgos": "",
+   "semana": "Semana 7",
+   "tipo": "Sistema",
+   "zona": "1 · Ritmo"
+  },
+  {
+   "id": "experiencia",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Que practicar mejora el oído",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "",
+   "juego": "No es un número de nivel: es el oído del protagonista.\n- Se gana por precisión: hacerlo limpio da mucho; repetir algo fácil casi no da. Nunca baja.\n- Con más oído oye más: ritmos escondidos en salas grises, música lejana detrás de las paredes, el pulso propio de un enjambre.\n- Con más oído ve menos ayuda: las ayudas visuales del pulso se van apagando, porque el juego confía en que ya escuchas. El oído crece y las muletas se van.\n- No hay números en pantalla: la luz del protagonista gana anillos o capas, y en el caracol cada concepto tiene una raíz del árbol de los ritmos que crece.\n- Un oído por zona: ritmo (zona 1), melodía (zona 2) y armonía (zona 3). La zona 4, la mezcla, sube los tres.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Avisa al árbol de los ritmos y a la telemetría.",
+      "deteccion": "",
+      "entrada": "Completar un desafío, un minijuego o un favor, o encontrar un pulso.",
+      "estado": "Oído por concepto (ritmo, melodía y armonía). Solo sube.",
+      "transformacion": "La luz del protagonista gana anillos; crece la raíz del concepto en el árbol de los ritmos."
+     },
+     "descripcion": "Completar un desafío sube el oído del concepto que se practicó, según la precisión.",
+     "nombre": "Ganar oído",
+     "usa": [
+      "arbol-de-los-ritmos"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "Cada sonido escondido y cada ayuda visual saben a partir de cuánto oído se oyen o se apagan.",
+      "entrada": "",
+      "estado": "",
+      "transformacion": "Se oyen ritmos escondidos y música lejana; las ayudas del pulso se desvanecen."
+     },
+     "descripcion": "Con más oído aparecen sonidos escondidos y se apagan las ayudas visuales del pulso.",
+     "nombre": "Oír más, ver menos ayuda",
+     "usa": []
+    }
+   ],
+   "nombre": "Oído (experiencia)",
+   "notas": "Aprobado el 27 nov. Base para la validación: la telemetría compara el oído de cada concepto con su parte del examen.",
+   "orden": 100,
+   "real": "- Practicar entrena el oído: los músicos distinguen diferencias de tiempo y de tono que otras personas no notan.",
+   "resumen": "El oído del protagonista en ritmo, melodía y armonía. Sube según qué tan a tiempo o afinado lo hiciste, no por terminar, y nunca baja.",
+   "riesgos": "",
+   "semana": "",
+   "tipo": "Progresión",
+   "zona": "Todas"
+  },
+  {
+   "id": "regalos-de-la-tribu",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Que cada pieza del ritmo hace algo distinto",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "",
+   "juego": "La escalera de cada miembro:\n1. Al aprender su pieza (su minijuego) confía en ti y te llevas su pieza para llevar a otras tribus.\n2. Al hacerle un favor que sale de cómo vive, te da su regalo.\n3. Cuando toda la tribu confía, cambia el mundo: se muda a un lugar nuevo, abre un atajo o llena un lugar de música.\n4. La apariencia (piel o adorno, con las skins) es un premio opcional por tocar su pieza casi perfecta.\nRegla: el favor da lo que tenga sentido para la especie. Solo da habilidad si sale de cómo se mueve; no todos regalan una. Pocas habilidades, pero que sirvan en todo el mundo.\nFavores de la zona 1: el bombo y la caja comparten «La cosecha»; con el hi-hat, el jugador sube o baja el calor del lugar (por ejemplo, con fogatas) para que los insectos canten al ritmo que la tribu necesita.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Avisa a las habilidades, al guardado y a la telemetría.",
+      "deteccion": "El miembro ya confía (aprendiste su pieza).",
+      "entrada": "Completar el favor de ese miembro.",
+      "estado": "",
+      "transformacion": "El protagonista gana el regalo; la especie hace una pequeña ceremonia con su sonido."
+     },
+     "descripcion": "Al hacerle su favor a un miembro que ya confía, te da su regalo.",
+     "nombre": "Recibir un regalo",
+     "usa": [
+      "orgullo-de-la-tribu",
+      "habilidades"
+     ]
+    }
+   ],
+   "nombre": "Regalos de la tribu",
+   "notas": "Aprobado el 27 nov. El hi-hat da la perilla del pulso por su favor (ajustar el calor del lugar para que los insectos lleguen al ritmo de la tribu); antes su favor era «llevarlos a un lugar tibio».",
+   "orden": 110,
+   "real": "- Mutualismo: el pájaro indicador de miel guía a las personas a la colmena y ellas le dejan la cera; cada uno da algo a cambio.",
+   "resumen": "Cada miembro de la tribu da algo en escalera: su pieza al confiar, su regalo al hacerle un favor, un cambio en el mundo cuando confía toda la tribu y un adorno por un reto difícil.",
+   "riesgos": "",
+   "semana": "",
+   "tipo": "Progresión",
+   "zona": "Todas"
+  },
+  {
+   "id": "instrumentos",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "- «sonó algo» (los power-ups que suenan).",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Que el sonido depende de la forma y el material",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "Los instrumentos de África occidental hechos de calabaza, semillas y madera",
+   "juego": "- Se hacen con materiales (cosas huecas, fibras, mudas de insecto, semillas) y una receta que da el árbol de los ritmos.\n- Para el protagonista: se gastan y son los power-ups para escapar en los caminos. En la zona 1 (27 nov.): sonaja pesada (cae con un golpe grave y lleva al que siente el suelo hacia allá), zumbador (confunde al enjambre) y néctar guardado (recarga la vida); se eligen en una rueda y rinden más a tiempo. Ver «Power-ups».\n- Para las tribus: le das a un miembro un instrumento nuevo y con él toca algo más complejo; así se desbloquea un ritmo. Encaja con la idea pendiente de que los miembros solo tocan cosas simples y el jugador desbloquea y mezcla ritmos.\n- Lo grave es grande y hueco; lo agudo, chico y duro: si el hueco es más grande, suena más grave.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Avisa al guardado y a la telemetría.",
+      "deteccion": "Si carga los materiales que pide.",
+      "entrada": "El jugador elige una receta que ya tiene.",
+      "estado": "Recetas conocidas y materiales que cargas (datos).",
+      "transformacion": "Los materiales se vuelven el instrumento."
+     },
+     "descripcion": "Con la receta y los materiales, se hace el instrumento.",
+     "nombre": "Hacer un instrumento",
+     "usa": [
+      "arbol-de-los-ritmos",
+      "caminos"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "Manda «sonó algo» si suena (por ejemplo, la sonaja lanzada).",
+      "deteccion": "",
+      "entrada": "Se elige en la rueda y se usa a tiempo con el pulso.",
+      "estado": "Cuántos le quedan.",
+      "transformacion": "Hace su efecto y se gasta."
+     },
+     "descripcion": "El protagonista usa un instrumento que se gasta para escapar.",
+     "nombre": "Usar un power-up",
+     "usa": [
+      "aviso-sono-algo",
+      "ser-presa",
+      "power-ups"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "Avisa al árbol de los ritmos (ritmo desbloqueado).",
+      "deteccion": "El miembro ya confía.",
+      "entrada": "Entregarlo al miembro.",
+      "estado": "",
+      "transformacion": "El miembro toca un ritmo nuevo."
+     },
+     "descripcion": "Un miembro recibe un instrumento y toca algo más complejo.",
+     "nombre": "Dar un instrumento a la tribu",
+     "usa": [
+      "regalos-de-la-tribu",
+      "orgullo-de-la-tribu"
+     ]
+    }
+   ],
+   "nombre": "Instrumentos",
+   "notas": "Aprobado el 27 nov. Los ejemplos de power-ups están por probar.\n27 nov.: elegidos los power-ups de la zona 1 (ver «Power-ups»).",
+   "orden": 115,
+   "real": "- Shekere: calabaza seca cubierta con una red de semillas o cuentas; suena al sacudirla o golpearla (África occidental).\n- Balafón: teclas de madera con calabazas huecas debajo de cada una, que hacen que suenen más fuerte; las calabazas más grandes van con las teclas más graves (África occidental).\n- Djembé: tambor de madera hueca con piel tensada.",
+   "resumen": "Con materiales de los caminos y una receta del árbol de los ritmos se hacen instrumentos: para el protagonista, que se gastan y son los power-ups; y para las tribus, que tocan algo más complejo y desbloquean un ritmo.",
+   "riesgos": "- Que los power-ups hagan fácil escapar: se gastan y se hacen con materiales de los caminos, así que cuestan salir a buscarlos.",
+   "semana": "",
+   "tipo": "Progresión",
+   "zona": "Todas"
+  },
+  {
+   "id": "la-cosecha",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Resonancia, y por qué el bombo y la caja se alternan",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "La vida del bombo (come semillas) y de la caja (busca insectos en la corteza)",
+   "juego": "- Bombo: golpea las raíces al ritmo propio de cada árbol. Si el árbol es grueso y bajo, se mece rápido; si es alto y delgado, lento. Si los golpes van a su ritmo, se suman como empujar un columpio y caen los frutos; si van a otro ritmo, se estorban y el árbol ni se mueve. El bombo no encuentra solo el ritmo del árbol: el protagonista se lo da con la perilla del pulso.\n- Caja: golpea el tronco en el 2 y el 4 y escucha. Un tronco hueco contesta con un eco que dura un ratito (ahí hay túneles con insectos); uno sólido solo hace «tok». Temprano, el bum del bombo todavía suena y tapa tu golpe. Tarde, tu golpe se oye, pero el siguiente bombo cae encima del eco y no sabes si hay insectos. En el 2 y el 4 caben tu golpe y el eco.\n- Al terminar, el bombo te da el Pisotón y la caja el Eco hueco.",
+   "mecanicas": [],
+   "nombre": "La cosecha",
+   "notas": "Aprobado el 27 nov. como base; se afina al diseñar los puzzles.",
+   "orden": 115,
+   "real": "- Las aceitunas y las almendras se cosechan con máquinas que sacuden el tronco; los elefantes sacuden árboles para tirar la fruta.\n- Cada árbol se mece a su propio ritmo; empujones chicos a ese ritmo se suman (resonancia).\n- El aye-aye golpea la madera y escucha el eco para encontrar larvas; los pájaros carpinteros también.\n- Un sonido fuerte tapa a uno suave mientras suena y hasta un momento después (enmascaramiento).\n- En la música, el bombo y la caja se alternan para que se oigan los dos.",
+   "resumen": "El favor que comparten el bombo y la caja: el bombo sacude un árbol a su ritmo para que caiga la fruta y la caja escucha en el 2 y el 4 dónde hay insectos.",
+   "riesgos": "",
+   "semana": "",
+   "tipo": "Progresión",
+   "zona": "1 · Ritmo"
+  },
+  {
+   "id": "power-ups",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [
+    {
+     "campo": "cuantosCargas",
+     "nota": "propuesta, por probar",
+     "unidad": "de cada uno",
+     "valor": "3"
+    },
+    {
+     "campo": "bonoATiempo",
+     "nota": "cuánto más rinde a tiempo",
+     "unidad": "",
+     "valor": "—"
+    }
+   ],
+   "editado": "2026-11-27",
+   "ensena": "Graves contra agudos y tocar a tiempo",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "Instrumentos de África occidental y cómo guardan comida los animales",
+   "juego": "- Zona 1, uno por depredador y uno de vida:\n  1. Sonaja pesada: una calabaza con semillas que se lanza y cae con un golpe grave; lleva al que siente el suelo hacia allá. (Una sonaja normal suena aguda y él solo siente lo grave.)\n  2. Zumbador: se gira y hace un zumbido parejo, sin golpes; el enjambre pierde la cuenta unos segundos.\n  3. Néctar guardado: una semilla hueca con néctar que recarga la vida lejos de las flores.\n- Cómo se usan: se eligen en una rueda y se usan a tiempo con el pulso; a tiempo rinden más (la sonaja llega más lejos, el zumbador dura más), como las habilidades.\n- Se hacen con materiales de los caminos y una receta del árbol de los ritmos (ver «Instrumentos»).",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "Botón de la rueda y dirección.",
+      "estado": "Cuántos quedan de cada uno.",
+      "transformacion": ""
+     },
+     "descripcion": "Se abre una rueda con los power-ups que cargas y se elige uno.",
+     "nombre": "Elegir en la rueda",
+     "usa": []
+    },
+    {
+     "bloques": {
+      "comunicacion": "La sonaja manda «sonó algo» grave donde cae; el zumbador, un zumbido parejo.",
+      "deteccion": "Qué tan cerca del pulso se usó.",
+      "entrada": "Botón de usar.",
+      "estado": "",
+      "transformacion": "Hace su efecto y se gasta."
+     },
+     "descripcion": "Se usa con el pulso; a tiempo rinde más.",
+     "nombre": "Usar a tiempo",
+     "usa": [
+      "reloj-musical",
+      "instrumentos",
+      "aviso-sono-algo"
+     ]
+    }
+   ],
+   "nombre": "Power-ups",
+   "notas": "Aprobado el 27 nov.: elegí sonaja pesada, zumbador y néctar guardado, en una rueda y a tiempo. Por probar: si la rueda frena el tiempo y cuántos se cargan.",
+   "orden": 116,
+   "real": "- El zumbador existe: una tablita atada a una cuerda que, al girarla, hace un zumbido grave. En el pueblo yoruba lo usa la sociedad Oro, y también se usa en Australia y otras partes.\n- El shekere es una calabaza seca con una red de semillas (África occidental). Lo grave es grande y hueco.\n- Las abejas guardan el néctar convertido en miel para cuando no hay flores.",
+   "resumen": "Instrumentos que se gastan para escapar. En la zona 1: sonaja pesada, zumbador y néctar guardado. Se eligen en una rueda y rinden más si se usan a tiempo.",
+   "riesgos": "- Que hagan fácil escapar: se gastan y cuestan materiales.\n- La rueda en plena huida: probar si frena el tiempo o no.",
+   "semana": "",
+   "tipo": "Progresión",
+   "zona": "1 · Ritmo"
+  },
+  {
+   "id": "habilidades",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Cada concepto musical es una forma de moverse",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "",
+   "juego": "Regla: fuera de tiempo funcionan poquito; a tiempo, completas. Moverse bien es tocar bien, y la precisión da oído.\nZona 1:\n- Pisotón (regalo del bombo): golpe grave al caer. Activa plataformas de bombo, atrae al que siente el suelo y rompe suelo frágil. A tiempo suena más grave y rompe más.\n- Eco hueco (regalo de la caja): golpeas una pared o un tronco; si está hueco suena un eco largo, el hueco se ilumina un momento con la forma del túnel y se puede abrir. Si es sólido, solo suena «tok». Sirve para encontrar salas escondidas al volver a zonas viejas. A tiempo se oye más lejos.\nEl hi-hat no da habilidad. Referencia: los juegos de explorar tienen unas 8 a 12 habilidades en todo el juego.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "Qué tan cerca del pulso se usó.",
+      "entrada": "Su botón.",
+      "estado": "",
+      "transformacion": "A tiempo, efecto completo; fuera de tiempo, poquito."
+     },
+     "descripcion": "Cada habilidad es una mecánica del protagonista que se agrega a su ficha al recibirla.",
+     "nombre": "Usar una habilidad",
+     "usa": [
+      "reloj-musical"
+     ]
+    }
+   ],
+   "nombre": "Habilidades del protagonista",
+   "notas": "Aprobado el 27 nov. El Salto en pedazos se quitó: el hi-hat no da habilidad. El Eco hueco ya no vuelve sólido lo hueco: lo revela.",
+   "orden": 120,
+   "real": "",
+   "resumen": "Las formas nuevas de moverse que dan algunos miembros de la tribu. Pocas, y cada una sirve en todo el mundo. Todas rinden más a tiempo con el pulso.",
+   "riesgos": "- Cada habilidad pide salas pensadas para ella; se diseña junto con los puzzles.",
+   "semana": "",
+   "tipo": "Progresión",
+   "zona": "Todas"
+  },
+  {
+   "id": "exploracion",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Curiosidad: que se oiga antes de verse",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "",
+   "juego": "- El mundo tiene tres piezas: el caracol al centro, las guaridas (las zonas de cada tribu) y los caminos entre ellas (ver «Caminos entre guaridas»). Las guaridas se exploran y casi no tienen depredadores; los depredadores viven en los caminos.\n- Los puzzles diseñados se hacen en las guaridas con los miembros de la tribu (aprender conceptos y práctica básica). En los caminos hay retos pequeños de caza y de movimiento para pasar las salas. Explorar los caminos y las otras zonas desbloquea ritmos más interesantes.\n- El camino principal va en orden (ritmo, melodía, armonía, mezcla) porque cada concepto se apoya en el anterior.\n- Hay atajos escondidos entre zonas vecinas que solo se abren con lo aprendido en otra, y salas grises opcionales por todos lados.\n- Lo que abre caminos: una habilidad (Pisotón, Eco hueco), más oído (oír lo escondido), dirigir con luz lo que ya hay en la sala o llevar una pieza a otra tribu.\n- La hora del día cambia qué hay en cada sala (ver «Hora del día»).\n- Ya está en la historia, «guiar sin presionar»: el camino principal suena y tiene color; los opcionales están grises y en silencio. La música detrás de las paredes jala a explorar.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "El camino sabe qué lo abre: una habilidad, cierto oído, dirigir algo o una pieza entregada.",
+      "entrada": "",
+      "estado": "",
+      "transformacion": "Gana color y sonido al abrirse."
+     },
+     "descripcion": "Un camino cerrado se abre al volver con lo que pide.",
+     "nombre": "Volver con algo nuevo",
+     "usa": [
+      "habilidades",
+      "experiencia",
+      "dirigir-con-luz",
+      "mensajero"
+     ]
+    }
+   ],
+   "nombre": "Explorar el mundo",
+   "notas": "Aprobado el 27 nov. También el 27 nov.: el mundo se divide en caracol, guaridas y caminos.",
+   "orden": 130,
+   "real": "",
+   "resumen": "El caracol está al centro y cada zona sale de él. El camino principal va en orden, pero hay atajos entre zonas y salas grises que se abren al volver con algo nuevo.",
+   "riesgos": "",
+   "semana": "",
+   "tipo": "Mundo",
+   "zona": "Todas"
+  },
+  {
+   "id": "caminos",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Salir a buscar lo que la tribu necesita",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "",
+   "juego": "- Las guaridas son casi seguras; el riesgo está en los caminos, donde viven los depredadores (el enjambre, el que siente el suelo y los que vengan).\n- Los caminos se ponen difíciles poco a poco: los primeros no tienen depredadores, luego aparecen pocos y después más. Hay depredadores, pero no tantos: si ya entiendes el juego, es fácil escapar.\n- Aparte están las zonas de alto riesgo, llenas de depredadores y con muy buenas recompensas (ver «Zonas de alto riesgo»).\n- Los puzzles diseñados se hacen en las guaridas con los miembros de la tribu: ahí se aprenden los conceptos y se practica lo básico. Al explorar los caminos y las otras zonas se desbloquean ritmos más interesantes.\n- En los caminos también hay retos pequeños, pero no son puzzles diseñados: son mecánicas de caza, de movimiento y así, para pasar las salas.\n- Fauna (27 nov.): criaturas neutras que tocan patrones (dan ritmos, avisan callándose, te delatan si pasas brusco y ayudan a pasar), flores de néctar y el saqueador, que roba con alarmas falsas. Ver «Fauna de los caminos».\n- Se sale a los caminos por objetos o comida para el jugador o para las tribus.\n- Sirven para ganar la confianza de las tribus, tradear y hacer instrumentos.\n- Qué se junta (27 nov.): comida para las tribus (lo que cada especie come de verdad: semillas para el bombo, insectos de corteza y fruta para la caja, hojas tiernas y néctar para el hi-hat), materiales (cosas huecas, fibras, mudas de insecto) para instrumentos y para los huecos de las piezas para llevar, y néctar para el protagonista, que recarga su vida (sale de flores cerradas que abren si tocas cerca).\n- Cómo se tradea (27 nov.): con cada tribu en su guarida, con lo de esa tribu, y en el mercado del caracol, donde se encuentra de todo (ver «Mercado del caracol»).\n- Instrumentos (27 nov.): con materiales y una receta del árbol de los ritmos se hacen instrumentos para el protagonista (se gastan y son los power-ups para escapar) y para las tribus (un miembro toca algo más complejo y se desbloquea un ritmo). Ver «Instrumentos».\n- Retos de los caminos (27 nov.), los cuatro:\n  1. Escabullirse: pasar sin que te sientan (caminar despacio sobre el que siente el suelo, esconderte en huecos o pasto, esperar a que el enjambre se aleje).\n  2. Huir: un depredador te persigue y escapas hasta un escondite o un hueco, con power-ups si hace falta.\n  3. Buscar comida como lo hace cada especie: golpear troncos y escuchar dónde suena hueco, tocar junto a flores para que abran, sacudir árboles al ritmo.\n  4. Pasar con el sonido: ramas que se mecen al pulso, hongos que rebotan con un golpe grave, suelo frágil que se rompe con el Pisotón.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "",
+      "transformacion": ""
+     },
+     "descripcion": "Recorrer un camino para traer comida, materiales o néctar.",
+     "nombre": "Salir por algo",
+     "usa": [
+      "ser-presa",
+      "orgullo-de-la-tribu",
+      "instrumentos",
+      "mercado-del-caracol"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "Los depredadores escuchan «sonó algo»; un escondite tapa al protagonista.",
+      "entrada": "Caminar despacio o entrar a un escondite.",
+      "estado": "Escondido o a la vista.",
+      "transformacion": ""
+     },
+     "descripcion": "Pasar sin que te sientan, o esconderte cuando se acerca un depredador.",
+     "nombre": "Escabullirse",
+     "usa": [
+      "aviso-sono-algo"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "El depredador persigue mientras te siente.",
+      "transformacion": ""
+     },
+     "descripcion": "Escapar de un depredador que te persigue hasta un escondite o un hueco.",
+     "nombre": "Huir",
+     "usa": [
+      "ser-presa",
+      "instrumentos",
+      "checkpoint"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "",
+      "transformacion": ""
+     },
+     "descripcion": "Juntar como lo hace cada especie: escuchar troncos huecos, abrir flores tocando, sacudir árboles al ritmo.",
+     "nombre": "Buscar comida",
+     "usa": [
+      "la-cosecha",
+      "dirigir-con-luz"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "",
+      "transformacion": ""
+     },
+     "descripcion": "Ramas que se mecen al pulso, hongos que rebotan con un golpe grave y suelo frágil que rompe el Pisotón.",
+     "nombre": "Pasar con el sonido",
+     "usa": [
+      "reloj-musical",
+      "habilidades"
+     ]
+    }
+   ],
+   "nombre": "Caminos entre guaridas",
+   "notas": "Aprobado el 27 nov. (idea mía). El 27 nov. se decidió qué se junta, cómo se tradea, los instrumentos y los cuatro retos.\n27 nov.: la semana 4 no prueba al enjambre; prueba el sintonizador con una puerta de guarida (un tronco hueco que se abre al igualar su nota).",
+   "orden": 132,
+   "real": "",
+   "resumen": "Las líneas del mapa: zonas que se exploran entre una guarida y otra, con la fauna depredadora. Ahí se sale por objetos o comida para el jugador o las tribus.",
+   "riesgos": "- Hay mucho que hacer en los caminos: con el equipo de dos desde diciembre cabe más, pero la zona 1 entra primero con escabullirse y huir (los depredadores de la semana 8); los demás retos se agregan sala por sala.",
+   "semana": "",
+   "tipo": "Mundo",
+   "zona": "Todas"
+  },
+  {
+   "id": "zonas-de-alto-riesgo",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Medir el riesgo escuchando",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "",
+   "juego": "- Son lugares aparte de los caminos normales, con muchos depredadores.\n- Dan cosas muy buenas: materiales raros, recetas, ritmos difíciles de encontrar.\n- El juego avisa que son muy peligrosas antes de entrar: las tribus lo dicen o hay señales en el camino. Así, perder ahí se siente justificado.\n- En cambio, los caminos normales tienen pocos depredadores y se ponen difíciles poco a poco (ver «Caminos entre guaridas»).",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Avisa a la telemetría si entra después del aviso.",
+      "deteccion": "",
+      "entrada": "El jugador se acerca a la entrada.",
+      "estado": "",
+      "transformacion": "Un miembro de la tribu advierte o se ve la señal."
+     },
+     "descripcion": "Antes de entrar, una tribu o una señal avisa que la zona es muy peligrosa.",
+     "nombre": "Avisar el peligro",
+     "usa": [
+      "ser-presa"
+     ]
+    }
+   ],
+   "nombre": "Zonas de alto riesgo",
+   "notas": "Aprobado el 27 nov. (idea mía).",
+   "orden": 133,
+   "real": "- Muchos animales dejan señales que otros entienden: marcas de olor, rasguños en los árboles, huesos cerca de una guarida.\n- Las presas reconocen las alarmas de otras especies: hay aves y monos que entienden los gritos de alarma de otras especies.",
+   "resumen": "Lugares llenos de depredadores, con recompensas muy buenas. El juego avisa antes de entrar, así que perder ahí se siente justo.",
+   "riesgos": "- Las señales tienen que entenderse sin texto: se prueba en el playtest.",
+   "semana": "",
+   "tipo": "Mundo",
+   "zona": "Todas"
+  },
+  {
+   "id": "fauna-de-los-caminos",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Escuchar el lugar para saber qué pasa",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "Coros de ranas, el tamborileo del pájaro carpintero y la lluvia en las hojas",
+   "juego": "- Son neutras: no atacan ni se dirigen como la tribu. Tocan patrones: ranas que se turnan, el pájaro carpintero, lluvia en hojas (ver sus fichas).\n- Dan ritmos: con suficiente oído se oyen sus patrones y se aprenden con la luz (ver «Desbloquear ritmos»).\n- Avisan: si un depredador se acerca, se callan. El jugador aprende a medir el riesgo escuchando.\n- Te delatan: si pasas brusco junto a ellas (corriendo, cayendo fuerte), se callan de golpe o dan un grito, y los depredadores cercanos lo notan.\n- Ayudan a pasar: el carpintero deja huecos en los troncos que sirven de escondite y las ranas saltan entre hojas al ritmo y sirven de plataforma.\n- Su sonido sigue al peligro: calladas cuando te buscan, en caos cuando te persiguen (ver «Paisaje del peligro»).",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "Escuchan dónde está el depredador más cercano.",
+      "entrada": "",
+      "estado": "Cantando o calladas.",
+      "transformacion": "Se callan de golpe y vuelven poco a poco cuando se va."
+     },
+     "descripcion": "Si un depredador se acerca, las criaturas cercanas se callan.",
+     "nombre": "Callarse",
+     "usa": [
+      "aviso-sono-algo",
+      "paisaje-del-peligro"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "Mandan «sonó algo» fuerte desde donde están.",
+      "deteccion": "Escuchan los pasos y las caídas del protagonista.",
+      "entrada": "",
+      "estado": "",
+      "transformacion": "Un grito o un silencio de golpe."
+     },
+     "descripcion": "Si pasas brusco junto a ellas, se callan de golpe o gritan y los depredadores cercanos lo oyen.",
+     "nombre": "Delatar",
+     "usa": [
+      "aviso-sono-algo"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "",
+      "transformacion": ""
+     },
+     "descripcion": "Su patrón se oye con suficiente oído y se aprende con la luz.",
+     "nombre": "Dar un ritmo",
+     "usa": [
+      "desbloquear-ritmos",
+      "experiencia",
+      "dirigir-con-luz"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "",
+      "transformacion": ""
+     },
+     "descripcion": "Huecos del carpintero como escondite y ranas que sirven de plataforma al ritmo.",
+     "nombre": "Ayudar a pasar",
+     "usa": [
+      "reloj-musical",
+      "caminos"
+     ]
+    }
+   ],
+   "nombre": "Fauna de los caminos",
+   "notas": "Aprobado el 27 nov.: elegí que avisan, que delatan y que ayudan a pasar, además de dar ritmos.",
+   "orden": 134,
+   "real": "- La rana túngara (Centroamérica) se calla cuando se acerca el murciélago que la caza guiándose por su canto.\n- Muchas ranas e insectos dejan de cantar cuando sienten un depredador cerca.\n- El coquí (Puerto Rico) acomoda su canto en los silencios de su vecino para no taparse.\n- Los pájaros carpinteros tamborilean en madera que resuena para marcar territorio; cada especie tiene su ritmo. Sus huecos viejos los usan muchos otros animales para vivir o esconderse.",
+   "resumen": "Las criaturas neutras de los caminos tocan patrones: de ellas salen los ritmos, avisan del peligro callándose, te pueden delatar y ayudan a pasar.",
+   "riesgos": "- Son cuatro papeles y muchas criaturas. La zona 1 puede entrar con callarse (casi solo datos sobre «sonó algo»); delatar y ayudar a pasar se agregan sala por sala.\n- Que el jugador note el silencio: hay que probar en el playtest si se entiende sin texto.",
+   "semana": "",
+   "tipo": "Mundo",
+   "zona": "Todas"
+  },
+  {
+   "id": "hora-del-dia",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "- La hora nueva.",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Que cada especie tiene su momento",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "La vida de cada especie (sección «Vida» del bestiario)",
+   "juego": "- Al dormir en un hueco que resuena eliges a qué momento despertar.\n- Cada sala cambia según la hora: quién está, quién caza y qué se puede dirigir. El atardecer importa mucho: ahí salen el bombo, el enjambre y el protagonista.\n- Algunas misiones o favores fijan la hora (por ejemplo, uno que pasa justo al oscurecer).",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Avisa a las criaturas, a la música y a la luz.",
+      "deteccion": "",
+      "entrada": "Dormir en un hueco, o empezar una misión que pide otra hora.",
+      "estado": "Amanecer, día, atardecer o noche.",
+      "transformacion": "Cambian la luz, la paleta y quién está en cada sala."
+     },
+     "descripcion": "Dormir o una misión cambian el momento del día.",
+     "nombre": "Cambiar la hora",
+     "usa": [
+      "checkpoint"
+     ]
+    }
+   ],
+   "nombre": "Hora del día",
+   "notas": "Aprobado el 27 nov.",
+   "orden": 135,
+   "real": "",
+   "resumen": "Hay cuatro momentos: amanecer, día, atardecer y noche. La hora no corre sola: cambia al dormir en un hueco, y algunas misiones la fijan.",
+   "riesgos": "",
+   "semana": "",
+   "tipo": "Mundo",
+   "zona": "Todas"
+  },
+  {
+   "id": "mercado-del-caracol",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Que la música y las cosas viajan juntas entre pueblos",
+   "estado": "aprobada",
+   "estados": "- Puesto pequeño (siempre).\n- Mercado lleno (luna llena, con la Gran Canción).",
+   "inspira": "Los mercados y ferias que se hacen el día de una fiesta",
+   "juego": "- Siempre hay un puesto pequeño en el caracol para cambiar lo que juntas.\n- Cada luna llena, el día de la Gran Canción, las tribus migran juntas al caracol y el mercado crece: ahí se encuentra de todo, también cosas raras de otras zonas.\n- Viajan siempre en grupo porque, aunque son especies neutras, si fueran solas o pocas habría criaturas que se arriesgarían a saquear lo que llevan para cambiar. Por eso ese día pasa todo.\n- Fuera del mercado también se tradea con cada tribu en su guarida, con lo de esa tribu.\n- Para esperar la luna llena se duerme en los huecos (ver «Hora del día»).",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Avisa al guardado y a la telemetría.",
+      "deteccion": "Si es luna llena.",
+      "entrada": "El jugador elige qué dar y qué recibir.",
+      "estado": "Qué hay hoy en el mercado (datos): el puesto de siempre y, con luna llena, lo de las caravanas.",
+      "transformacion": "Cambian los objetos que cargas."
+     },
+     "descripcion": "Cambias lo que juntaste por otras cosas; con luna llena hay más.",
+     "nombre": "Cambiar en el mercado",
+     "usa": [
+      "caminos",
+      "hora-del-dia"
+     ]
+    }
+   ],
+   "nombre": "Mercado del caracol",
+   "notas": "Aprobado el 27 nov. (idea mía).",
+   "orden": 135,
+   "real": "- Muchos animales viajan en grupo para protegerse: en grupo es más difícil que un depredador elija a uno (efecto de dilución).\n- Las grandes ferias y mercados de muchos pueblos se hacen el día de una fiesta, cuando todos llegan al mismo lugar.",
+   "resumen": "En el caracol siempre hay un puesto pequeño, y cada luna llena llegan las tribus en caravana para la Gran Canción y el mercado se llena de cosas raras.",
+   "riesgos": "- Tener que esperar la luna llena no debe frenar el camino principal: lo indispensable se consigue en las guaridas o en el puesto de siempre.",
+   "semana": "",
+   "tipo": "Mundo",
+   "zona": "Caracol"
+  },
+  {
+   "id": "mensajero",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Así nacen los géneros: mezclando piezas",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "",
+   "juego": "Ya está en la historia: la especie del protagonista lleva y trae música entre tribus para que siga viva. Si llevas una pieza de una zona a otra, aparece algo nuevo: una criatura, un camino o un ritmo. Así el jugador hace las mezclas en vez de solo verlas.\nAprobado el 27 nov.:\n- La pieza aprendida es conocimiento: nunca se pierde y siempre la puedes tocar con tu luz.\n- La pieza para llevar es un objeto: la tribu te da su sonido guardado en algo hueco que resuena (una concha, una semilla hueca).\n- Puedes cargar varias a la vez.\n- Al tocar un hueco (checkpoint) quedan a salvo, aunque sigues cargándolas; se entregan de verdad con la tribu que las mezcla.\n- Si te atrapan, se rompen las que no estén a salvo y vuelves por otras.\nAprobado el 27 nov., qué sale de cada mezcla:\n- Un género real en el árbol de los ritmos, con su historia (por ejemplo, el ritmo de África occidental con una melodía lleva hacia el son).\n- Y un cambio en el mundo: un camino nuevo, una isla en el mapa o una criatura que llega por la música.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Avisa al árbol de los ritmos (género nuevo), al mapa y a la telemetría.",
+      "deteccion": "Qué pieza es y qué tribu la recibe (datos: la receta de la mezcla).",
+      "entrada": "Entregar la pieza a la tribu que la mezcla.",
+      "estado": "Mezclas hechas.",
+      "transformacion": "La tribu toca la mezcla; aparece el cambio en el mundo (camino, isla o criatura)."
+     },
+     "descripcion": "Entregas una pieza para llevar a otra tribu; la mezcla da un género real y cambia algo del mundo.",
+     "nombre": "Mezclar una pieza",
+     "usa": [
+      "arbol-de-los-ritmos",
+      "mapa",
+      "checkpoint"
+     ]
+    }
+   ],
+   "nombre": "Llevar música entre tribus",
+   "notas": "Aprobado el 27 nov.: cada mezcla da un género real y un cambio en el mundo.",
+   "orden": 140,
+   "real": "- El canto de las ballenas jorobadas pasa de una población a otra: en pocos años cruza el Pacífico sur de oeste a este.",
+   "resumen": "El protagonista lleva un ritmo de una tribu a otra; la tribu lo mezcla con lo suyo y aparece algo nuevo.",
+   "riesgos": "",
+   "semana": "",
+   "tipo": "Mundo",
+   "zona": "Todas"
+  },
+  {
+   "id": "arbol-de-los-ritmos",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "La historia real de la música",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "",
+   "juego": "Va de los tambores de África occidental a la salsa, el rap y el reggaetón. Da ganas de explorar para completarlo.",
+   "mecanicas": [],
+   "nombre": "Árbol de los ritmos",
+   "notas": "Aprobado el 26 nov.",
+   "orden": 150,
+   "real": "",
+   "resumen": "En el caracol crece un árbol que se llena con cada pieza y cada receta de género que encuentras.",
+   "riesgos": "",
+   "semana": "Semana 11, con el guardado",
+   "tipo": "Progresión",
+   "zona": "Todas"
+  },
+  {
+   "id": "desbloquear-ritmos",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Que los ritmos salen de escuchar el mundo",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "Patrones de la naturaleza: ranas que se turnan, el pájaro carpintero, lluvia en hojas",
+   "juego": "1. Oírlo: en los caminos la naturaleza toca patrones. Con suficiente oído se oyen; con poco, se pierden en el ruido.\n2. Aprenderlo: el protagonista lo copia con su luz y queda aprendido (es conocimiento: nunca se pierde).\n3. Darlo: en la guarida, un miembro lo toca si ya tiene el instrumento que pide; si no, hay que hacerlo.\nAsí se juntan explorar, el oído y los instrumentos. Los ritmos más interesantes están en los caminos lejanos y en las zonas de alto riesgo.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Avisa al árbol de los ritmos y a la telemetría.",
+      "deteccion": "Si el oído alcanza para oírlo.",
+      "entrada": "La tecla de brillo.",
+      "estado": "Cuánto del patrón va bien.",
+      "transformacion": "El patrón gana color al aprenderlo."
+     },
+     "descripcion": "Oír un patrón en los caminos y copiarlo con la luz.",
+     "nombre": "Aprender un ritmo del mundo",
+     "usa": [
+      "experiencia",
+      "dirigir-con-luz",
+      "arbol-de-los-ritmos"
+     ]
+    },
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "Si el miembro tiene el instrumento que pide.",
+      "entrada": "Dirigirlo con la luz.",
+      "estado": "",
+      "transformacion": "El miembro toca el ritmo y se suma a la música."
+     },
+     "descripcion": "Un miembro toca el ritmo nuevo si tiene el instrumento.",
+     "nombre": "Que la tribu lo toque",
+     "usa": [
+      "instrumentos"
+     ]
+    }
+   ],
+   "nombre": "Desbloquear ritmos",
+   "notas": "Aprobado el 27 nov.",
+   "orden": 152,
+   "real": "- Algunas ranas se turnan para cantar y no taparse entre ellas: el coquí (Puerto Rico) acomoda su canto en los silencios de su vecino.\n- El pájaro carpintero tamborilea en troncos huecos para marcar territorio; cada especie tiene su ritmo.",
+   "resumen": "Los ritmos nuevos se oyen en los caminos, se aprenden copiándolos con la luz y la tribu los toca cuando tiene el instrumento que piden.",
+   "riesgos": "",
+   "semana": "",
+   "tipo": "Progresión",
+   "zona": "Todas"
+  },
+  {
+   "id": "pulsos",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Historia de la música y del sonido",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "",
+   "juego": "Están en ramas opcionales (2 o 3 por zona). Dan oído (experiencia) y llenan el árbol de los ritmos.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "",
+      "deteccion": "",
+      "entrada": "",
+      "estado": "",
+      "transformacion": ""
+     },
+     "descripcion": "Al tocarlo se escucha su historia.",
+     "nombre": "Encontrar un pulso",
+     "usa": [
+      "experiencia",
+      "arbol-de-los-ritmos"
+     ]
+    }
+   ],
+   "nombre": "Pulsos (coleccionables)",
+   "notas": "",
+   "orden": 160,
+   "real": "",
+   "resumen": "Lugares donde se escucha el mundo. Cuentan historia real: de dónde vienen los ritmos y cómo usa la naturaleza el sonido.",
+   "riesgos": "",
+   "semana": "",
+   "tipo": "Progresión",
+   "zona": "Todas"
+  },
+  {
+   "id": "mapa",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "Orientarse por el sonido",
+   "estado": "aprobada",
+   "estados": "",
+   "inspira": "",
+   "juego": "- Cada lugar tiene tres estados: vacío (no se dibuja: no sabes que existe), por explorar (sabes que existe, en gris como boceto) y explorado (completado, a color). Es el mismo «mundo gris que gana color».\n- Al inicio solo se ve la zona 1. Al desbloquear sonidos aparecen otras zonas y caminos por explorar; al terminar de aprender todo lo de un lugar, sale completado.\n- Con el tiempo pueden aparecer más islas en el mismo mapa.\n- Se revela con lo que se junta para el árbol de los ritmos (los pulsos). El árbol dice qué aprendiste (piezas, habilidades, recetas) y el mapa dónde está; se llenan con lo mismo, pero no llevan la misma cuenta dos veces.\n- Los dibujos de pasto, agua y biomas solo dan una idea de cómo se ve cada zona.\n- Por ahora el mapa es solo de zonas; un mapa sala por sala va después del 1 de mayo.",
+   "mecanicas": [
+    {
+     "bloques": {
+      "comunicacion": "Avisa al árbol de los ritmos y al guardado.",
+      "deteccion": "Qué lugares pide cada desbloqueo (datos).",
+      "entrada": "Juntar un pulso, desbloquear un sonido o terminar de aprender lo de un lugar.",
+      "estado": "Cada lugar: vacío, por explorar o explorado.",
+      "transformacion": "El lugar aparece en gris, o gana color."
+     },
+     "descripcion": "Un lugar pasa de vacío a por explorar, y de por explorar a explorado.",
+     "nombre": "Revelar en el mapa",
+     "usa": [
+      "pulsos",
+      "arbol-de-los-ritmos",
+      "exploracion"
+     ]
+    }
+   ],
+   "nombre": "Mapa que se dibuja",
+   "notas": "Aprobado el 27 nov. a partir de un dibujo mío: el caracol al centro, un camino rojo explorado a la zona 1, uno azul por explorar y uno rosa con dos lugares que salen de la zona 1.",
+   "orden": 170,
+   "real": "",
+   "resumen": "Un mapa del mundo por zonas, no sala por sala: el caracol al centro, las guaridas de cada tribu y los caminos entre ellas. Se va revelando con lo que juntas para el árbol de los ritmos.",
+   "riesgos": "",
+   "semana": "",
+   "tipo": "Mundo",
+   "zona": "Todas"
+  },
+  {
+   "id": "tribus-que-se-tapan",
+   "altura": "—",
+   "avisosEscucha": "",
+   "avisosManda": "",
+   "datos": [],
+   "editado": "2026-11-27",
+   "ensena": "No saturar",
+   "estado": "idea",
+   "estados": "",
+   "inspira": "",
+   "juego": "",
+   "mecanicas": [],
+   "nombre": "Tribus que se tapan",
+   "notas": "",
+   "orden": 200,
+   "real": "",
+   "resumen": "Al juntarse quieren lucirse. Hay que enseñarles a dejarse espacio.",
+   "riesgos": "",
+   "semana": "",
+   "tipo": "Obstáculo",
+   "zona": "3 · Armonía"
+  }
+ ]
+}
