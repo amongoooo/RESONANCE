@@ -218,6 +218,15 @@ export default {
   bitacora: [
     {
       fecha: "2026-11-28",
+      hora: "02:07",
+      titulo: "El almanaque se ve general o por zonas",
+      texto:
+        "En la página, el almanaque tiene ahora «Ver: General | Por zonas». Por zonas, el índice se agrupa en el orden del mapa: el caracol al centro, las zonas 1 a 4 y al final lo que sirve en todo el mundo. Es la base para ir armando el esquema del mapa. La vista elegida se recuerda en el navegador.",
+      enlace: { texto: "Ver el almanaque", url: "#/juego/almanaque" },
+      etiquetas: ["bitácora"],
+    },
+    {
+      fecha: "2026-11-28",
       hora: "01:59",
       titulo: "Cerré la zona 3 y limpié «Por decidir»",
       texto:

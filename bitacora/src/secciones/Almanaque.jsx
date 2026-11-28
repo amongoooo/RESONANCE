@@ -11,6 +11,7 @@ import {
   entradaPedida,
   hashEntrada,
   mecanicasDe,
+  porZona,
   SECCIONES,
   usadaPor,
   VIDA,
@@ -23,6 +24,7 @@ import { VIDRIO } from '../ui/vidrio.js'
 
 // Juego > Almanaque: copia de solo lectura del almanaque (el artifact es la fuente de verdad), con su misma
 // organización: Bestiario y Mecánicas globales, filtro por tipo, búsqueda, índice y una ficha por entrada.
+// El índice se ve general o por zonas, en el orden del mapa (base del esquema del mapa).
 // La ficha lleva una barra fija (nombre, tipo, estado y sus apartados) y desplegables para la vida y las mecánicas.
 // En pantalla ancha hay dos paneles y un enlace de uno se abre en el otro; en el teléfono, uno solo con «Volver a…».
 
@@ -483,6 +485,35 @@ function Ficha({ e, seccion, lado, llegada, scroller, ancho, seguir, volver }) {
   )
 }
 
+/** Las tarjetas del índice: nombre, tipo y un punto con el estado. */
+function Tarjetas({ entradas, actual, abrir }) {
+  return (
+    <ul className="grid grid-cols-2 gap-2 @lg:grid-cols-3" aria-label="Índice">
+        {entradas.map((e) => {
+          const activa = actual?.id === e.id
+          return (
+            <li key={e.id} className="min-w-0">
+              <Pulsable
+                aria-current={activa}
+                onClick={() => abrir(e.id)}
+                className={`flex h-full w-full flex-col items-start gap-1 rounded-2xl border-2 px-3 py-2.5 text-left ${activa ? 'border-zinc-900 bg-white' : 'border-transparent bg-white'}`}
+              >
+                <span className="font-titulo text-base leading-tight font-bold tracking-tight">{e.nombre}</span>
+                <span className="flex flex-wrap items-center gap-1.5 font-dato text-xs text-zinc-500">
+                  {e.tipo}
+                  <span
+                    aria-label={`estado: ${e.estado}`}
+                    className={`size-2 rounded-full ${['aprobada', 'hecha', 'en Unity'].includes(e.estado) ? 'bg-bien' : e.estado === 'propuesta' ? 'bg-fijate' : 'bg-zinc-300'}`}
+                  />
+                </span>
+              </Pulsable>
+            </li>
+          )
+        })}
+    </ul>
+  )
+}
+
 /** Un panel: su propio Bestiario | Globales, búsqueda, filtro, índice y ficha. En pantalla ancha, con su propio scroll. */
 function Panel({ lado, p, elegir, seguir, volver, ancho, nombre }) {
   const scroller = useRef(null)
@@ -490,7 +521,8 @@ function Panel({ lado, p, elegir, seguir, volver, ancho, nombre }) {
   const sec = SECCIONES.find((s) => s.id === p.seccion)
   const visibles = buscarEntradas(entradas, p.consulta, p.tipo)
   const actual = entradas.find((e) => e.id === p.id) ?? entradas[0]
-  const cambiarSeccion = (s) => elegir({ seccion: s, id: almanaque[s][0]?.id, tipo: 'Todas', consulta: '', llegada: llegada({ bajar: false }) })
+  const cambiarSeccion = (s) => elegir({ ...p, seccion: s, id: almanaque[s][0]?.id, tipo: 'Todas', consulta: '', llegada: llegada({ bajar: false }) })
+  const abrir = (id) => elegir({ ...p, id, llegada: llegada() })
 
   return (
     <section
@@ -532,6 +564,23 @@ function Panel({ lado, p, elegir, seguir, volver, ancho, nombre }) {
           />
         </label>
 
+        <div role="group" aria-label="Vista" className="flex flex-wrap items-center gap-2">
+          <span className="font-dato text-xs font-medium tracking-wider text-zinc-500 uppercase">Ver</span>
+          {[
+            ['general', 'General'],
+            ['zonas', 'Por zonas'],
+          ].map(([v, n]) => (
+            <Pulsable
+              key={v}
+              aria-pressed={(p.vista ?? 'general') === v}
+              onClick={() => elegir({ ...p, vista: v })}
+              className={`min-h-9 rounded-full border px-3.5 text-sm font-bold ${(p.vista ?? 'general') === v ? 'border-zinc-900 bg-zinc-900 text-fondo' : 'border-zinc-200 bg-white text-zinc-700'}`}
+            >
+              {n}
+            </Pulsable>
+          ))}
+        </div>
+
         <div role="group" aria-label="Filtrar por tipo" className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] @md:mx-0 @md:flex-wrap @md:px-0">
           {['Todas', ...sec.tipos].map((tp) => {
             const n = tp === 'Todas' ? entradas.length : entradas.filter((e) => e.tipo === tp).length
@@ -554,29 +603,22 @@ function Panel({ lado, p, elegir, seguir, volver, ancho, nombre }) {
         {visibles.length === 0 ? (
           <p className="rounded-3xl border border-dashed border-zinc-300 px-5 py-4 text-lg text-zinc-600">Nada coincide con la búsqueda.</p>
         ) : (
-          <ul className="grid grid-cols-2 gap-2 @lg:grid-cols-3" aria-label="Índice">
-            {visibles.map((e) => {
-              const activa = actual?.id === e.id
-              return (
-                <li key={e.id} className="min-w-0">
-                  <Pulsable
-                    aria-current={activa}
-                    onClick={() => elegir({ ...p, id: e.id, llegada: llegada() })}
-                    className={`flex h-full w-full flex-col items-start gap-1 rounded-2xl border-2 px-3 py-2.5 text-left ${activa ? 'border-zinc-900 bg-white' : 'border-transparent bg-white'}`}
-                  >
-                    <span className="font-titulo text-base leading-tight font-bold tracking-tight">{e.nombre}</span>
-                    <span className="flex flex-wrap items-center gap-1.5 font-dato text-xs text-zinc-500">
-                      {e.tipo}
-                      <span
-                        aria-label={`estado: ${e.estado}`}
-                        className={`size-2 rounded-full ${['aprobada', 'hecha', 'en Unity'].includes(e.estado) ? 'bg-bien' : e.estado === 'propuesta' ? 'bg-fijate' : 'bg-zinc-300'}`}
-                      />
-                    </span>
-                  </Pulsable>
-                </li>
-              )
-            })}
-          </ul>
+          p.vista === 'zonas' ? (
+            <div className="flex flex-col gap-5" aria-label="Índice por zonas">
+              {porZona(visibles).map(({ zona, entradas: es }) => (
+                <section key={zona.id} aria-label={zona.nombre} className="flex flex-col gap-2">
+                  <h3 className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5 border-b border-zinc-200 pb-1.5 font-titulo text-lg font-bold tracking-tight">
+                    {zona.nombre}
+                    <span className="font-dato text-sm font-medium text-zinc-500">{es.length}</span>
+                    {zona.nota && <small className="font-dato text-xs font-medium tracking-wider text-zinc-500 uppercase">{zona.nota}</small>}
+                  </h3>
+                  <Tarjetas entradas={es} actual={actual} abrir={abrir} />
+                </section>
+              ))}
+            </div>
+          ) : (
+            <Tarjetas entradas={visibles} actual={actual} abrir={abrir} />
+          )
         )}
 
         {actual && (
@@ -597,18 +639,36 @@ function Panel({ lado, p, elegir, seguir, volver, ancho, nombre }) {
   )
 }
 
+// La vista (General o Por zonas) se recuerda en este navegador; si no se puede, empieza en General.
+const CLAVE_VISTA = 'almanaque-vista'
+const leerVista = () => {
+  try {
+    return localStorage.getItem(CLAVE_VISTA) === 'zonas' ? 'zonas' : 'general'
+  } catch {
+    return 'general'
+  }
+}
+const guardarVista = (v) => {
+  try {
+    localStorage.setItem(CLAVE_VISTA, v)
+  } catch {
+    // sin almacenamiento: no pasa nada
+  }
+}
+
 const otraSeccion = (s) => (s === 'bestiario' ? 'globales' : 'bestiario')
 const nombreDe = (s, id) => t(almanaque[s].find((e) => e.id === id)?.nombre) || id
 
 export default function Almanaque() {
   const ancho = useAncho()
   const [paneles, setPaneles] = useState(() => {
+    const vista = leerVista()
     const pedida = entradaPedida(window.location.hash)
     const a = pedida ?? { seccion: 'bestiario', id: almanaque.bestiario[0]?.id }
     const s2 = otraSeccion(a.seccion)
     return [
-      { ...a, tipo: 'Todas', consulta: '', llegada: { n: 0, bajar: !!pedida } },
-      { seccion: s2, id: almanaque[s2][0]?.id, tipo: 'Todas', consulta: '', llegada: { n: 0, bajar: false } },
+      { ...a, vista, tipo: 'Todas', consulta: '', llegada: { n: 0, bajar: !!pedida } },
+      { seccion: s2, id: almanaque[s2][0]?.id, vista, tipo: 'Todas', consulta: '', llegada: { n: 0, bajar: false } },
     ]
   })
   // En el teléfono, de dónde se vino al seguir un enlace (para «Volver a…»).
@@ -625,7 +685,10 @@ export default function Almanaque() {
     history.replaceState(null, '', hashEntrada(izq.seccion, izq.id))
   }, [izq.seccion, izq.id])
 
-  const poner = (i, p) => setPaneles((ps) => ps.map((x, j) => (j === i ? p : x)))
+  const poner = (i, p) => {
+    if (p.vista) guardarVista(p.vista)
+    setPaneles((ps) => ps.map((x, j) => (j === i ? p : x)))
+  }
 
   // Elegir a mano (índice, filtro, búsqueda, Bestiario | Globales) olvida el camino de «Volver».
   const elegir = (i) => (p) => {
@@ -635,7 +698,8 @@ export default function Almanaque() {
 
   // Un enlace de un panel abre su destino en el otro; en el teléfono, en el mismo, guardando de dónde se vino.
   const seguir = (i) => (s, id, { abiertos, irA, destino = {} }) => {
-    const nuevo = { seccion: s, id, tipo: 'Todas', consulta: '', llegada: llegada({ foco: true, ...destino }) }
+    const vista = (ancho ? paneles[1 - i] : paneles[0]).vista
+    const nuevo = { seccion: s, id, vista, tipo: 'Todas', consulta: '', llegada: llegada({ foco: true, ...destino }) }
     if (ancho) return poner(1 - i, nuevo)
     setPila((pl) => [...pl, { ...paneles[0], llegada: llegada({ abiertos, irA, foco: true }) }])
     poner(0, nuevo)

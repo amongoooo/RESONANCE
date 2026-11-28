@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import almanaque from '../../contenido/almanaque.json'
-import { adelanto, alternarTodos, apartadoActual, apartadosDe, bloquesDe, buscarEntradas, entradaPedida, hashEntrada, mecanicasDe, SECCIONES, usadaPor } from './almanaque.js'
+import { adelanto, alternarTodos, apartadoActual, apartadosDe, bloquesDe, buscarEntradas, entradaPedida, hashEntrada, mecanicasDe, porZona, SECCIONES, usadaPor, zonaDe, ZONAS } from './almanaque.js'
 
 const bombo = { id: 'bombo', nombre: 'El bombo', tipo: 'Tribu', resumen: 'Golpea el suelo', mecanicas: [{ nombre: 'Pisotón', descripcion: 'Golpe grave', bloques: { entrada: 'El reloj', comunicacion: 'Manda «sonó algo»' }, usa: ['reloj-musical'] }] }
 const enjambre = { id: 'enjambre', nombre: 'El enjambre', tipo: 'Depredador', resumen: 'Caza por oído', vida: { dia: 'Sale al atardecer' }, bloques: {} }
@@ -54,5 +54,16 @@ describe('almanaque', () => {
   it('abre todo si falta alguno y cierra todo si ya estaban abiertos', () => {
     expect([...alternarTodos(new Set(['a']), ['a', 'b'])].sort()).toEqual(['a', 'b'])
     expect([...alternarTodos(new Set(['a', 'b', 'x']), ['a', 'b'])]).toEqual(['x'])
+  })
+  it('agrupa por zona en el orden del mapa, sin zonas vacías', () => {
+    const z1 = { id: 'a', zona: '1 · Ritmo' }
+    const todas = { id: 'b', zona: 'Todas' }
+    const caracol = { id: 'c', zona: 'caracol' }
+    const rara = { id: 'd', zona: 'Luna' }
+    expect(porZona([todas, rara, z1, caracol]).map((g) => g.zona.id)).toEqual(['Caracol', '1 · Ritmo', 'Todas', 'Sin zona'])
+    expect(zonaDe({ zona: '3 · ARMONIA' }).id).toBe('3 · Armonía')
+  })
+  it('todas las entradas de la copia caen en una zona del mapa', () => {
+    for (const s of SECCIONES) for (const e of almanaque[s.id]) expect(ZONAS.map((z) => z.id)).toContain(zonaDe(e).id)
   })
 })

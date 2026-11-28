@@ -108,3 +108,26 @@ export const alternarTodos = (abiertos, claves) => {
   claves.forEach((k) => (todos ? nuevo.delete(k) : nuevo.add(k)))
   return nuevo
 }
+
+/**
+ * Las zonas en el orden del mapa: el caracol al centro, las cuatro zonas y al final lo que sirve en todo el mundo.
+ * Es la base del esquema del mapa: cada zona junta sus criaturas y sus reglas.
+ */
+export const ZONAS = [
+  { id: 'Caracol', nombre: 'El caracol', nota: 'Centro del mapa' },
+  { id: '1 · Ritmo', nombre: 'Zona 1 · Ritmo', nota: 'África occidental' },
+  { id: '2 · Melodía', nombre: 'Zona 2 · Melodía', nota: '' },
+  { id: '3 · Armonía', nombre: 'Zona 3 · Armonía', nota: '' },
+  { id: '4 · La mezcla', nombre: 'Zona 4 · La mezcla', nota: 'Latinoamérica y México' },
+  { id: 'Todas', nombre: 'Todo el mundo', nota: 'Sirve en todas las zonas' },
+]
+const SIN_ZONA = { id: 'Sin zona', nombre: 'Sin zona', nota: '' }
+
+/** A qué zona del mapa va una entrada (sin importar acentos ni mayúsculas); si no se reconoce, «Sin zona». */
+export const zonaDe = (e) => ZONAS.find((z) => plano(z.id) === plano(e.zona).trim()) ?? SIN_ZONA
+
+/** Las entradas agrupadas por zona, en el orden del mapa y sin zonas vacías: [{ zona, entradas }]. */
+export const porZona = (entradas) =>
+  [...ZONAS, SIN_ZONA]
+    .map((zona) => ({ zona, entradas: entradas.filter((e) => zonaDe(e).id === zona.id) }))
+    .filter((g) => g.entradas.length)
